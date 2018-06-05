@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsChannelMinimumMapper" >
+  <resultMap id="DmsChannelMinimumResultMap" type="com.coracle.dms.po.DmsChannelMinimum" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="channel_id" property="channelId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="syn_price" property="synPrice" jdbcType="DECIMAL" />
+    <result column="min_order_quantity" property="minOrderQuantity" jdbcType="BIGINT" />
+    <result column="isboard" property="isboard" jdbcType="INTEGER" />
+    <result column="board_quantity" property="boardQuantity" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="last_update_date" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    <result column="last_update_by" property="lastUpdateBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsChannelMinimum_Column_List" >
+    id, channel_id, product_id, syn_price, min_order_quantity, isboard, board_quantity,
+    create_date, create_by, last_update_date, last_update_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsChannelMinimumResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsChannelMinimum_Column_List" />
+    from dms_channel_minimum
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_channel_minimum
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsChannelMinimum" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_channel_minimum (channel_id, product_id, syn_price, min_order_quantity, isboard,
+    board_quantity, create_date, create_by, last_update_date, last_update_by,
+    remove_flag)
+    values (#{channelId}, #{productId}, #{synPrice}, #{minOrderQuantity}, #{isboard},
+    #{boardQuantity}, #{createDate}, #{createBy}, #{lastUpdateDate}, #{lastUpdateBy},
+    #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsChannelMinimum" >
+    insert into dms_channel_minimum
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="synPrice != null" >
+        syn_price,
+      </if>
+      <if test="minOrderQuantity != null" >
+        min_order_quantity,
+      </if>
+      <if test="isboard != null" >
+        isboard,
+      </if>
+      <if test="boardQuantity != null" >
+        board_quantity,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="lastUpdateDate != null" >
+        last_update_date,
+      </if>
+      <if test="lastUpdateBy != null" >
+        last_update_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="channelId != null" >
+        #{channelId},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="synPrice != null" >
+        #{synPrice},
+      </if>
+      <if test="minOrderQuantity != null" >
+        #{minOrderQuantity},
+      </if>
+      <if test="isboard != null" >
+        #{isboard},
+      </if>
+      <if test="boardQuantity != null" >
+        #{boardQuantity},
+      </if>
+      <if test="createDate != null" >
+        #{createDate},
+      </if>
+      <if test="createBy != null" >
+        #{createBy},
+      </if>
+      <if test="lastUpdateDate != null" >
+        #{lastUpdateDate},
+      </if>
+      <if test="lastUpdateBy != null" >
+        #{lastUpdateBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsChannelMinimum" >
+    update dms_channel_minimum
+    <set >
+      <if test="channelId != null" >
+        channel_id = #{channelId},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="synPrice != null" >
+        syn_price = #{synPrice},
+      </if>
+      <if test="minOrderQuantity != null" >
+        min_order_quantity = #{minOrderQuantity},
+      </if>
+      <if test="isboard != null" >
+        isboard = #{isboard},
+      </if>
+      <if test="boardQuantity != null" >
+        board_quantity = #{boardQuantity},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy},
+      </if>
+      <if test="lastUpdateDate != null" >
+        last_update_date = #{lastUpdateDate},
+      </if>
+      <if test="lastUpdateBy != null" >
+        last_update_by = #{lastUpdateBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsChannelMinimum" >
+    update dms_channel_minimum
+    set channel_id = #{channelId},
+    product_id = #{productId},
+    syn_price = #{synPrice},
+    min_order_quantity = #{minOrderQuantity},
+    isboard = #{isboard},
+    board_quantity = #{boardQuantity},
+    create_date = #{createDate},
+    create_by = #{createBy},
+    last_update_date = #{lastUpdateDate},
+    last_update_by = #{lastUpdateBy},
+    remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="channelId != null" >
+        channel_id = #{channelId}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId}
+      </if>
+      <if test="synPrice != null" >
+        AND syn_price = #{synPrice}
+      </if>
+      <if test="minOrderQuantity != null" >
+        AND min_order_quantity = #{minOrderQuantity}
+      </if>
+      <if test="isboard != null" >
+        AND isboard = #{isboard}
+      </if>
+      <if test="boardQuantity != null" >
+        AND board_quantity = #{boardQuantity}
+      </if>
+      <if test="createDate != null" >
+        AND create_date = #{createDate}
+      </if>
+      <if test="createBy != null" >
+        AND create_by = #{createBy}
+      </if>
+      <if test="lastUpdateDate != null" >
+        AND last_update_date = #{lastUpdateDate}
+      </if>
+      <if test="lastUpdateBy != null" >
+        AND last_update_by = #{lastUpdateBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsChannelMinimum" resultMap="DmsChannelMinimumResultMap" >
+    select
+    <include refid="DmsChannelMinimum_Column_List" />
+    from dms_channel_minimum
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_channel_minimum
+    <set >
+      <if test="po.channelId != null" >
+        channel_id = #{po.channelId},
+      </if>
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.synPrice != null" >
+        syn_price = #{po.synPrice},
+      </if>
+      <if test="po.minOrderQuantity != null" >
+        min_order_quantity = #{po.minOrderQuantity},
+      </if>
+      <if test="po.isboard != null" >
+        isboard = #{po.isboard},
+      </if>
+      <if test="po.boardQuantity != null" >
+        board_quantity = #{po.boardQuantity},
+      </if>
+      <if test="po.createDate != null" >
+        create_date = #{po.createDate},
+      </if>
+      <if test="po.createBy != null" >
+        create_by = #{po.createBy},
+      </if>
+      <if test="po.lastUpdateDate != null" >
+        last_update_date = #{po.lastUpdateDate},
+      </if>
+      <if test="po.lastUpdateBy != null" >
+        last_update_by = #{po.lastUpdateBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+
+  <!--自定义sql start-->
+
+  <select id="selectIdListByChannelId" parameterType="java.lang.Long" resultType="java.util.List">
+
+    select id from dms_channel_minimum where channel_Id = #{channelId} and remove_flag = 0
+
+  </select>
+
+
+
+  <delete id="deleteByChannelIdandProductID" parameterType="com.coracle.dms.po.DmsChannelMinimum" >
+
+    delete from dms_channel_minimum where channel_Id = #{channelId} and product_Id = #{productId}
+
+  </delete>
+
+  <delete id="batchDelete2" parameterType="java.util.List">
+
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+      delete from dms_channel_minimum where channel_id = #{item.channelId} and product_id = #{item.productId}
+    </foreach>
+
+  </delete>
+
+  <insert id="batchInsert2" parameterType="java.util.List">
+
+    insert into dms_channel_minimum (channel_id,product_id,syn_price,min_order_quantity,isboard,board_quantity,create_date,create_by,last_update_date,last_update_by,remove_flag)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+
+      (#{item.channelId},#{item.productId},#{item.synPrice},#{item.minOrderQuantity},#{item.isboard},#{item.boardQuantity},#{item.createDate},#{item.createBy},#{item.lastUpdateDate},#{item.lastUpdateBy},#{item.removeFlag})
+
+    </foreach>
+
+  </insert>
+
+  <update id="updateInfo" parameterType="com.coracle.dms.po.DmsChannelMinimum">
+
+    update dms_channel_minimum set min_order_quantity = #{minOrderQuantity} ,
+
+     isboard =#{isboard} , board_quantity = #{boardQuantity}, last_update_date = #{lastUpdateDate},
+
+     remove_flag = #{removeFlag}
+
+    where channel_id = #{channelId} and product_id = #{productId}
+  </update>
+
+  <!-- 根据条件获取起定量 -->
+  <select id="getMinOrderQuantityByCondition" parameterType="com.coracle.dms.po.DmsChannelMinimum" resultType="java.lang.Long">
+    <!--
+    select
+      case
+        when ifnull(sum(cm.min_order_quantity), 0) = 0 or cm.isboard = 0 then 0
+        else cm.min_order_quantity
+      end as min_order_quantity
+    from
+      dms_channel_minimum cm
+    where
+      cm.channel_id = #{channelId}
+      and cm.product_id = #{productId}
+      and cm.remove_flag = 0
+    -->
+      select ifnull(dc.min_order_quantity, 0) from dms_channel dc where dc.id = #{channelId} and dc.remove_flag = 0
+  </select>
+</mapper>

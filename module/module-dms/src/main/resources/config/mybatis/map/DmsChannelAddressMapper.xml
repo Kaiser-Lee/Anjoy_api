@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsChannelAddressMapper" >
+  <resultMap id="DmsChannelAddressResultMap" type="com.coracle.dms.po.DmsChannelAddress" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="channel_id" property="channelId" jdbcType="BIGINT" />
+    <result column="recipient_name" property="recipientName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="receive_address" property="receiveAddress" jdbcType="VARCHAR" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="is_default" property="isDefault" jdbcType="INTEGER" />
+    <result column="anjoy_id" property="anjoyId" jdbcType="VARCHAR" />
+    <result column="anjoy_code" property="anjoyCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsChannelAddress_Column_List" >
+    id, channel_id, recipient_name, mobile, province, city, county, receive_address,
+    zip_code, created_date, created_by, update_date, update_by, remove_flag, is_default,
+    anjoy_id, anjoy_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsChannelAddressResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsChannelAddress_Column_List" />
+    from dms_channel_address
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_channel_address
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsChannelAddress" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_channel_address (channel_id, recipient_name, mobile, province, city, county,
+    receive_address, zip_code, created_date, created_by, update_date, update_by,
+    remove_flag, is_default, anjoy_id, anjoy_code)
+    values (#{channelId}, #{recipientName}, #{mobile}, #{province}, #{city}, #{county},
+    #{receiveAddress}, #{zipCode}, #{createdDate}, #{createdBy}, #{updateDate}, #{updateBy},
+    #{removeFlag}, #{isDefault}, #{anjoyId}, #{anjoyCode}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsChannelAddress" >
+    insert into dms_channel_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="recipientName != null" >
+        recipient_name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="receiveAddress != null" >
+        receive_address,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="anjoyId != null" >
+        anjoy_id,
+      </if>
+      <if test="anjoyCode != null" >
+        anjoy_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="channelId != null" >
+        #{channelId},
+      </if>
+      <if test="recipientName != null" >
+        #{recipientName},
+      </if>
+      <if test="mobile != null" >
+        #{mobile},
+      </if>
+      <if test="province != null" >
+        #{province},
+      </if>
+      <if test="city != null" >
+        #{city},
+      </if>
+      <if test="county != null" >
+        #{county},
+      </if>
+      <if test="receiveAddress != null" >
+        #{receiveAddress},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault},
+      </if>
+      <if test="anjoyId != null" >
+        #{anjoyId},
+      </if>
+      <if test="anjoyCode != null" >
+        #{anjoyCode},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsChannelAddress" >
+    update dms_channel_address
+    <set >
+      <if test="channelId != null" >
+        channel_id = #{channelId},
+      </if>
+      <if test="recipientName != null" >
+        recipient_name = #{recipientName},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile},
+      </if>
+      <if test="province != null" >
+        province = #{province},
+      </if>
+      <if test="city != null" >
+        city = #{city},
+      </if>
+      <if test="county != null" >
+        county = #{county},
+      </if>
+      <if test="receiveAddress != null" >
+        receive_address = #{receiveAddress},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault},
+      </if>
+      <if test="anjoyId != null" >
+        anjoy_id = #{anjoyId},
+      </if>
+      <if test="anjoyCode != null" >
+        anjoy_code = #{anjoyCode},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsChannelAddress" >
+    update dms_channel_address
+    set channel_id = #{channelId},
+    recipient_name = #{recipientName},
+    mobile = #{mobile},
+    province = #{province},
+    city = #{city},
+    county = #{county},
+    receive_address = #{receiveAddress},
+    zip_code = #{zipCode},
+    created_date = #{createdDate},
+    created_by = #{createdBy},
+    update_date = #{updateDate},
+    update_by = #{updateBy},
+    remove_flag = #{removeFlag},
+    is_default = #{isDefault},
+    anjoy_id = #{anjoyId},
+    anjoy_code = #{anjoyCode}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="channelId != null" >
+        channel_id = #{channelId}
+      </if>
+      <if test="recipientName != null and recipientName != ''" >
+        AND recipient_name = #{recipientName}
+      </if>
+      <if test="mobile != null and mobile != ''" >
+        AND mobile = #{mobile}
+      </if>
+      <if test="province != null and province != ''" >
+        AND province = #{province}
+      </if>
+      <if test="city != null and city != ''" >
+        AND city = #{city}
+      </if>
+      <if test="county != null and county != ''" >
+        AND county = #{county}
+      </if>
+      <if test="receiveAddress != null and receiveAddress != ''" >
+        AND receive_address = #{receiveAddress}
+      </if>
+      <if test="zipCode != null and zipCode != ''" >
+        AND zip_code = #{zipCode}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="updateDate != null" >
+        AND update_date = #{updateDate}
+      </if>
+      <if test="updateBy != null" >
+        AND update_by = #{updateBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="isDefault != null" >
+        AND is_default = #{isDefault}
+      </if>
+      <if test="anjoyId != null" >
+        AND BINARY anjoy_id = #{anjoyId}
+      </if>
+      <if test="anjoyCode != null" >
+        AND anjoy_code = #{anjoyCode}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsChannelAddress" resultMap="DmsChannelAddressResultMap" >
+    select
+    <include refid="DmsChannelAddress_Column_List" />
+    from dms_channel_address
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_channel_address
+    <set >
+      <if test="po.channelId != null" >
+        channel_id = #{po.channelId},
+      </if>
+      <if test="po.recipientName != null" >
+        recipient_name = #{po.recipientName},
+      </if>
+      <if test="po.mobile != null" >
+        mobile = #{po.mobile},
+      </if>
+      <if test="po.province != null" >
+        province = #{po.province},
+      </if>
+      <if test="po.city != null" >
+        city = #{po.city},
+      </if>
+      <if test="po.county != null" >
+        county = #{po.county},
+      </if>
+      <if test="po.receiveAddress != null" >
+        receive_address = #{po.receiveAddress},
+      </if>
+      <if test="po.zipCode != null" >
+        zip_code = #{po.zipCode},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.updateDate != null" >
+        update_date = #{po.updateDate},
+      </if>
+      <if test="po.updateBy != null" >
+        update_by = #{po.updateBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.isDefault != null" >
+        is_default = #{po.isDefault},
+      </if>
+      <if test="po.anjoyId != null" >
+        anjoy_id = #{po.anjoyId},
+      </if>
+      <if test="po.anjoyCode != null" >
+        anjoy_code = #{po.anjoyCode},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  <!--自定义sql start-->
+
+  <resultMap extends="DmsChannelAddressResultMap" id="DmsChannelAddressVoResultMap" type="com.coracle.dms.vo.DmsChannelAddressVo">
+    <result column="province_text" property="provinceText" jdbcType="VARCHAR" />
+    <result column="city_text" property="cityText" jdbcType="VARCHAR" />
+    <result column="county_text" property="countyText" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_channel_address
+    (
+      channel_id,recipient_name,mobile,province,city,county,receive_address,zip_code,created_date,created_by,
+      update_date,update_by,remove_flag,anjoy_id,anjoy_code
+    )
+    values
+    <foreach collection="list" index="index" item="item" separator="," >
+    (
+      #{item.channelId},#{item.recipientName},#{item.mobile},#{item.province},#{item.city},#{item.county},
+      #{item.receiveAddress},#{item.zipCode},#{item.createdDate},#{item.createdBy},#{item.updateDate},
+      #{item.updateBy},#{item.removeFlag},#{item.anjoyId},#{item.anjoyCode}
+    )
+  </foreach>
+  </insert>
+
+  <insert id="batchInsert2" parameterType="java.util.List">
+    insert into dms_channel_address
+    (
+    channel_id,recipient_name,mobile,province,city,county,receive_address,zip_code,created_date,created_by,
+    update_date,update_by,remove_flag,anjoy_id,anjoy_code
+    )
+    values
+    <foreach collection="list" index="index" item="item" separator="," >
+      (
+      #{item.channelId},#{item.recipientName},#{item.mobile},#{item.province},#{item.city},#{item.county},
+      #{item.receiveAddress},#{item.zipCode},#{item.createdDate},#{item.createdBy},#{item.updateDate},
+      #{item.updateBy},#{item.removeFlag},#{item.anjoyId},#{item.anjoyCode}
+      )
+    </foreach>
+  </insert>
+
+  <delete id="deleteByChannelId" parameterType="java.lang.Long">
+    delete from dms_channel_address
+    where channel_id = #{channelId}
+  </delete>
+
+  <select id="selectByChannelId" parameterType="java.lang.Long" resultMap="DmsChannelAddressVoResultMap">
+
+    select ca.* ,
+     (select b.region_name from dms_sys_region b where 1=1 and b.region_id = ca.province ) province_text,
+	(select b.region_name from dms_sys_region b where 1=1 and b.region_id = ca.city) city_text,
+	(select b.region_name from dms_sys_region b where 1=1 and b.region_id = ca.county ) county_text
+	from dms_channel_address  ca  where channel_id = #{channelId} and remove_flag = 0
+
+  </select>
+
+  <update id="deleteByAddressID" parameterType="java.lang.Long" >
+
+    update dms_channel_address set remove_flag = 1 where id = #{id}
+
+  </update>
+
+  <!-- 根据渠道id取消掉该渠道的所有默认收货地址 -->
+  <update id="cancelDefaultByChannelId" parameterType="java.lang.Long">
+    update dms_channel_address set is_default = 0 where channel_id = #{channelId}
+  </update>
+
+  <!-- 根据主键获取vo对象 -->
+  <select id="getVoByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsChannelAddressVoResultMap">
+    select
+      ca.*,
+      (select sr.region_name from dms_sys_region sr where sr.region_id = ca.province ) province_text,
+	  (select sr.region_name from dms_sys_region sr where sr.region_id = ca.city) city_text,
+	  (select sr.region_name from dms_sys_region sr where sr.region_id = ca.county ) county_text
+    from
+      dms_channel_address ca
+    where
+      ca.id = #{id}
+  </select>
+
+  <!-- 根据渠道id获取默认收货地址 -->
+  <select id="getDefaultByChannelId" parameterType="java.lang.Long" resultMap="DmsChannelAddressVoResultMap">
+    select
+      ca.*,
+      (select sr.region_name from dms_sys_region sr where sr.region_id = ca.province) as province_text,
+	  (select sr.region_name from dms_sys_region sr where sr.region_id = ca.city) as city_text,
+	  (select sr.region_name from dms_sys_region sr where sr.region_id = ca.county) as county_text
+    from
+      dms_channel_address ca
+    where
+      ca.channel_id = #{channelId}
+      and ca.is_default = 1
+  </select>
+
+  <select id="selectOneByCondition" parameterType="com.coracle.dms.po.DmsChannelAddress" resultMap="DmsChannelAddressResultMap" >
+    select
+    <include refid="DmsChannelAddress_Column_List" />
+    from dms_channel_address
+    <include refid="Where_Condition" />
+  </select>
+
+
+  <!-- 同步安井渠道数据前先将DMS所有渠道数据置为：已删除状态 -->
+  <update id="deleteChannelAddressSyncAnjoy">
+    UPDATE dms_channel_address t SET t.remove_flag = 1
+  </update>
+
+</mapper>

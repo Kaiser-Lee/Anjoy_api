@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsStorageSaleOutMapper">
+  <resultMap id="DmsStorageSaleOutResultMap" type="com.coracle.dms.po.DmsStorageSaleOut">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="send_unit" jdbcType="BIGINT" property="sendUnit" />
+    <result column="send_date" jdbcType="TIMESTAMP" property="sendDate" />
+    <result column="sale_order" jdbcType="VARCHAR" property="saleOrder" />
+    <result column="delivery_type" jdbcType="VARCHAR" property="deliveryType" />
+    <result column="express_company" jdbcType="VARCHAR" property="expressCompany" />
+    <result column="express_no" jdbcType="VARCHAR" property="expressNo" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="created_by" jdbcType="BIGINT" property="createdBy" />
+    <result column="last_updated_date" jdbcType="TIMESTAMP" property="lastUpdatedDate" />
+    <result column="last_updated_by" jdbcType="BIGINT" property="lastUpdatedBy" />
+    <result column="remove_flag" jdbcType="INTEGER" property="removeFlag" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="product_spec_id" jdbcType="BIGINT" property="productSpecId" />
+    <result column="storage" jdbcType="BIGINT" property="storage" />
+    <result column="storage_local" jdbcType="BIGINT" property="storageLocal" />
+  </resultMap>
+  <sql id="DmsStorageSaleOut_Column_List">
+    id, send_unit, send_date, sale_order, delivery_type, express_company, express_no, 
+    remark, created_date, created_by, last_updated_date, last_updated_by, remove_flag, 
+    num, product_id, product_spec_id, storage, storage_local
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsStorageSaleOutResultMap">
+    select 
+    <include refid="DmsStorageSaleOut_Column_List" />
+    from dms_storage_sale_out
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dms_storage_sale_out
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyProperty="id" parameterType="com.coracle.dms.po.DmsStorageSaleOut" useGeneratedKeys="true">
+    insert into dms_storage_sale_out (send_unit, send_date, sale_order, delivery_type, express_company, 
+      express_no, remark, created_date, created_by, last_updated_date, last_updated_by, 
+      remove_flag, num, product_id, product_spec_id, storage, storage_local
+      )
+    values (#{sendUnit}, #{sendDate}, #{saleOrder}, #{deliveryType}, #{expressCompany}, 
+      #{expressNo}, #{remark}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, 
+      #{removeFlag}, #{num}, #{productId}, #{productSpecId}, #{storage}, #{storageLocal}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsStorageSaleOut">
+    insert into dms_storage_sale_out
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sendUnit != null">
+        send_unit,
+      </if>
+      <if test="sendDate != null">
+        send_date,
+      </if>
+      <if test="saleOrder != null">
+        sale_order,
+      </if>
+      <if test="deliveryType != null">
+        delivery_type,
+      </if>
+      <if test="expressCompany != null">
+        express_company,
+      </if>
+      <if test="expressNo != null">
+        express_no,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null">
+        remove_flag,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productSpecId != null">
+        product_spec_id,
+      </if>
+      <if test="storage != null">
+        storage,
+      </if>
+      <if test="storageLocal != null">
+        storage_local,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="sendUnit != null">
+        #{sendUnit},
+      </if>
+      <if test="sendDate != null">
+        #{sendDate},
+      </if>
+      <if test="saleOrder != null">
+        #{saleOrder},
+      </if>
+      <if test="deliveryType != null">
+        #{deliveryType},
+      </if>
+      <if test="expressCompany != null">
+        #{expressCompany},
+      </if>
+      <if test="expressNo != null">
+        #{expressNo},
+      </if>
+      <if test="remark != null">
+        #{remark},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null">
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null">
+        #{removeFlag},
+      </if>
+      <if test="num != null">
+        #{num},
+      </if>
+      <if test="productId != null">
+        #{productId},
+      </if>
+      <if test="productSpecId != null">
+        #{productSpecId},
+      </if>
+      <if test="storage != null">
+        #{storage},
+      </if>
+      <if test="storageLocal != null">
+        #{storageLocal},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsStorageSaleOut">
+    update dms_storage_sale_out
+    <set>
+      <if test="sendUnit != null">
+        send_unit = #{sendUnit},
+      </if>
+      <if test="sendDate != null">
+        send_date = #{sendDate},
+      </if>
+      <if test="saleOrder != null">
+        sale_order = #{saleOrder},
+      </if>
+      <if test="deliveryType != null">
+        delivery_type = #{deliveryType},
+      </if>
+      <if test="expressCompany != null">
+        express_company = #{expressCompany},
+      </if>
+      <if test="expressNo != null">
+        express_no = #{expressNo},
+      </if>
+      <if test="remark != null">
+        remark = #{remark},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null">
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="num != null">
+        num = #{num},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId},
+      </if>
+      <if test="productSpecId != null">
+        product_spec_id = #{productSpecId},
+      </if>
+      <if test="storage != null">
+        storage = #{storage},
+      </if>
+      <if test="storageLocal != null">
+        storage_local = #{storageLocal},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsStorageSaleOut">
+    update dms_storage_sale_out
+    set send_unit = #{sendUnit},
+      send_date = #{sendDate},
+      sale_order = #{saleOrder},
+      delivery_type = #{deliveryType},
+      express_company = #{expressCompany},
+      express_no = #{expressNo},
+      remark = #{remark},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      num = #{num},
+      product_id = #{productId},
+      product_spec_id = #{productSpecId},
+      storage = #{storage},
+      storage_local = #{storageLocal}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition">
+    <where>
+      <if test="sendUnit != null">
+        send_unit = #{sendUnit}
+      </if>
+      <if test="sendDate != null">
+        AND send_date = #{sendDate}
+      </if>
+      <if test="saleOrder != null and saleOrder != ''">
+        AND sale_order = #{saleOrder}
+      </if>
+      <if test="deliveryType != null">
+        AND delivery_type = #{deliveryType}
+      </if>
+      <if test="expressCompany != null and expressCompany != ''">
+        AND express_company = #{expressCompany}
+      </if>
+      <if test="expressNo != null and expressNo != ''">
+        AND express_no = #{expressNo}
+      </if>
+      <if test="remark != null and remark != ''">
+        AND remark = #{remark}
+      </if>
+      <if test="createdDate != null">
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null">
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null">
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null">
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null">
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="num != null">
+        AND num = #{num}
+      </if>
+      <if test="productId != null">
+        AND product_id = #{productId}
+      </if>
+      <if test="productSpecId != null">
+        AND product_spec_id = #{productSpecId}
+      </if>
+      <if test="storage != null">
+        AND storage = #{storage}
+      </if>
+      <if test="storageLocal != null">
+        AND storage_local = #{storageLocal}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsStorageSaleOut" resultMap="DmsStorageSaleOutResultMap">
+    select 
+    <include refid="DmsStorageSaleOut_Column_List" />
+    from dms_storage_sale_out
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''">
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''">
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective">
+    update dms_storage_sale_out
+    <set>
+      <if test="po.sendUnit != null">
+        send_unit = #{po.sendUnit},
+      </if>
+      <if test="po.sendDate != null">
+        send_date = #{po.sendDate},
+      </if>
+      <if test="po.saleOrder != null">
+        sale_order = #{po.saleOrder},
+      </if>
+      <if test="po.deliveryType != null">
+        delivery_type = #{po.deliveryType},
+      </if>
+      <if test="po.expressCompany != null">
+        express_company = #{po.expressCompany},
+      </if>
+      <if test="po.expressNo != null">
+        express_no = #{po.expressNo},
+      </if>
+      <if test="po.remark != null">
+        remark = #{po.remark},
+      </if>
+      <if test="po.createdDate != null">
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null">
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null">
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null">
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null">
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.num != null">
+        num = #{po.num},
+      </if>
+      <if test="po.productId != null">
+        product_id = #{po.productId},
+      </if>
+      <if test="po.productSpecId != null">
+        product_spec_id = #{po.productSpecId},
+      </if>
+      <if test="po.storage != null">
+        storage = #{po.storage},
+      </if>
+      <if test="po.storageLocal != null">
+        storage_local = #{po.storageLocal},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size &gt; 0">
+      <foreach close=")" collection="ids" item="listItem" open="or id in(" separator=",">
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++Parting line : new sql here++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <select id="getPageList" resultMap="DmsStorageSaleOutResultMap" resultType="com.coracle.dms.po.DmsStorageSaleOut">
+    SELECT
+    <include refid="DmsStorageSaleOut_Column_List" />
+    FROM
+    dms_storage_sale_out where remove_flag=0
+  </select>
+</mapper>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsProductAttachFileMapper" >
+  <resultMap id="DmsProductAttachFileResultMap" type="com.coracle.dms.po.DmsProductAttachFile" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="attach_id" property="attachId" jdbcType="BIGINT" />
+    <result column="attach_url" property="attachUrl" jdbcType="VARCHAR" />
+    <result column="attach_size" property="attachSize" jdbcType="BIGINT" />
+    <result column="attach_name" property="attachName" jdbcType="VARCHAR" />
+    <result column="attach_type" property="attachType" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="sort_order" property="sortOrder" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsProductAttachFile_Column_List" >
+    id, product_id, attach_id, attach_url, attach_size, attach_name, attach_type, created_by, 
+    last_updated_by, created_date, last_updated_date, remove_flag, sort_order
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsProductAttachFileResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsProductAttachFile_Column_List" />
+    from dms_product_attach_file
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_product_attach_file
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsProductAttachFile" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_product_attach_file (product_id, attach_id, attach_url, attach_size, attach_name, attach_type, 
+      created_by, last_updated_by, created_date, last_updated_date, remove_flag, 
+      sort_order)
+    values (#{productId}, #{attachId}, #{attachUrl}, #{attachSize}, #{attachName}, #{attachType}, 
+      #{createdBy}, #{lastUpdatedBy}, #{createdDate}, #{lastUpdatedDate}, #{removeFlag}, 
+      #{sortOrder})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsProductAttachFile" >
+    insert into dms_product_attach_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="attachId != null" >
+        attach_id,
+      </if>
+      <if test="attachUrl != null" >
+        attach_url,
+      </if>
+      <if test="attachSize != null" >
+        attach_size,
+      </if>
+      <if test="attachName != null" >
+        attach_name,
+      </if>
+      <if test="attachType != null" >
+        attach_type,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="sortOrder != null" >
+        sort_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="attachId != null" >
+        #{attachId},
+      </if>
+      <if test="attachUrl != null" >
+        #{attachUrl},
+      </if>
+      <if test="attachSize != null" >
+        #{attachSize},
+      </if>
+      <if test="attachName != null" >
+        #{attachName},
+      </if>
+      <if test="attachType != null" >
+        #{attachType},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsProductAttachFile" >
+    update dms_product_attach_file
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="attachId != null" >
+        attach_id = #{attachId},
+      </if>
+      <if test="attachUrl != null" >
+        attach_url = #{attachUrl},
+      </if>
+      <if test="attachSize != null" >
+        attach_size = #{attachSize},
+      </if>
+      <if test="attachName != null" >
+        attach_name = #{attachName},
+      </if>
+      <if test="attachType != null" >
+        attach_type = #{attachType},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="sortOrder != null" >
+        sort_order = #{sortOrder},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsProductAttachFile" >
+    update dms_product_attach_file
+    set product_id = #{productId},
+      attach_id = #{attachId},
+      attach_url = #{attachUrl},
+      attach_size = #{attachSize},
+      attach_name = #{attachName},
+      attach_type = #{attachType},
+      created_by = #{createdBy},
+      last_updated_by = #{lastUpdatedBy},
+      created_date = #{createdDate},
+      last_updated_date = #{lastUpdatedDate},
+      remove_flag = #{removeFlag},
+      sort_order = #{sortOrder}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="productId != null" >
+        product_id = #{productId}
+      </if>
+      <if test="attachId != null" >
+        AND attach_id = #{attachId}
+      </if>
+      <if test="attachUrl != null and attachUrl != ''" >
+        AND attach_url = #{attachUrl}
+      </if>
+      <if test="attachSize != null" >
+        AND attach_size = #{attachSize}
+      </if>
+      <if test="attachName != null and attachName != ''" >
+        AND attach_name = #{attachName}
+      </if>
+      <if test="attachType != null" >
+        AND attach_type = #{attachType}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="sortOrder != null" >
+        AND sort_order = #{sortOrder}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsProductAttachFile" resultMap="DmsProductAttachFileResultMap" >
+    select 
+    <include refid="DmsProductAttachFile_Column_List" />
+    from dms_product_attach_file
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_product_attach_file
+    <set >
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.attachId != null" >
+        attach_id = #{po.attachId},
+      </if>
+      <if test="po.attachUrl != null" >
+        attach_url = #{po.attachUrl},
+      </if>
+      <if test="po.attachSize != null" >
+        attach_size = #{po.attachSize},
+      </if>
+      <if test="po.attachName != null" >
+        attach_name = #{po.attachName},
+      </if>
+      <if test="po.attachType != null" >
+        attach_type = #{po.attachType},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.sortOrder != null" >
+        sort_order = #{po.sortOrder},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++Parting line : new sql here++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_product_attach_file (product_id, attach_id, attach_url, attach_size, attach_name, attach_type, created_by,
+    last_updated_by, created_date, last_updated_date, remove_flag, sort_order)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.productId}, #{item.attachId}, #{item.attachUrl},#{item.attachSize}, #{item.attachName}, #{item.attachType}, #{item.createdBy},
+      #{item.lastUpdatedBy}, #{item.createdDate}, #{item.lastUpdatedDate}, #{item.removeFlag} ,#{item.sortOrder})
+    </foreach>
+  </insert>
+
+  <update id="batchDelete" parameterType="com.coracle.dms.po.DmsProductAttachFile">
+    update dms_product_attach_file
+    set
+    remove_flag = 1
+    where id in (
+    <foreach collection="list" index="index" item="item" separator=",">
+      #{item.id}
+    </foreach>)
+  </update>
+</mapper>

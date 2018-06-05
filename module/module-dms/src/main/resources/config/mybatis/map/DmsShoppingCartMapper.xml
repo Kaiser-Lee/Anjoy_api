@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsShoppingCartMapper" >
+  <resultMap id="DmsShoppingCartResultMap" type="com.coracle.dms.po.DmsShoppingCart" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_spec_id" property="productSpecId" jdbcType="BIGINT" />
+    <result column="spec_union_key" property="specUnionKey" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="balance_date" property="balanceDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="DmsShoppingCart_Column_List" >
+    id, user_id, product_id, product_spec_id, spec_union_key, count, created_date, created_by,
+    last_updated_date, last_updated_by, remove_flag, type, balance_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsShoppingCartResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsShoppingCart_Column_List" />
+    from dms_shopping_cart
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_shopping_cart
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsShoppingCart" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_shopping_cart (user_id, product_id, product_spec_id, spec_union_key, count, created_date,
+    created_by, last_updated_date, last_updated_by, remove_flag, type, balance_date
+    )
+    values (#{userId}, #{productId}, #{productSpecId}, #{specUnionKey}, #{count}, #{createdDate},
+    #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, #{type}, #{balanceDate}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsShoppingCart" >
+    insert into dms_shopping_cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id,
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="balanceDate != null" >
+        balance_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="productSpecId != null" >
+        #{productSpecId},
+      </if>
+      <if test="specUnionKey != null" >
+        #{specUnionKey},
+      </if>
+      <if test="count != null" >
+        #{count},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      <if test="balanceDate != null" >
+        #{balanceDate},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsShoppingCart" >
+    update dms_shopping_cart
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id = #{productSpecId},
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key = #{specUnionKey},
+      </if>
+      <if test="count != null" >
+        count = #{count},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="type != null" >
+        type = #{type},
+      </if>
+      <if test="balanceDate != null" >
+        balance_date = #{balanceDate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsShoppingCart" >
+    update dms_shopping_cart
+    set user_id = #{userId},
+    product_id = #{productId},
+    product_spec_id = #{productSpecId},
+    spec_union_key = #{specUnionKey},
+    count = #{count},
+    created_date = #{createdDate},
+    created_by = #{createdBy},
+    last_updated_date = #{lastUpdatedDate},
+    last_updated_by = #{lastUpdatedBy},
+    remove_flag = #{removeFlag},
+    type = #{type},
+    balance_date = #{balanceDate}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="userId != null" >
+        user_id = #{userId}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId}
+      </if>
+      <if test="productSpecId != null" >
+        AND product_spec_id = #{productSpecId}
+      </if>
+      <if test="specUnionKey != null and specUnionKey != ''" >
+        AND spec_union_key = #{specUnionKey}
+      </if>
+      <if test="count != null" >
+        AND count = #{count}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="type != null" >
+        AND type = #{type}
+      </if>
+      <if test="balanceDate != null" >
+        AND balance_date = #{balanceDate}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsShoppingCart" resultMap="DmsShoppingCartResultMap" >
+    select
+    <include refid="DmsShoppingCart_Column_List" />
+    from dms_shopping_cart
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_shopping_cart
+    <set >
+      <if test="po.userId != null" >
+        user_id = #{po.userId},
+      </if>
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.productSpecId != null" >
+        product_spec_id = #{po.productSpecId},
+      </if>
+      <if test="po.specUnionKey != null" >
+        spec_union_key = #{po.specUnionKey},
+      </if>
+      <if test="po.count != null" >
+        count = #{po.count},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.type != null" >
+        type = #{po.type},
+      </if>
+      <if test="po.balanceDate != null" >
+        balance_date = #{po.balanceDate},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+
+  <!-- 购物车列表页的商品信息 -->
+  <resultMap id="DmsShoppingCartVoResultMap" type="com.coracle.dms.vo.DmsShoppingCartVo" extends="DmsShoppingCartResultMap">
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="price" property="price" jdbcType="DECIMAL"/>
+    <result column="promotion_price" property="promotionPrice" jdbcType="DECIMAL"/>
+    <result column="inventory" property="inventory" jdbcType="INTEGER"/>
+    <result column="unit" property="unit" jdbcType="VARCHAR"/>
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR"/>
+    <result column="active" property="active" jdbcType="INTEGER"/>
+    <result column="channel_id" property="channelId" jdbcType="BIGINT"/>
+    <result column="specifications_text" property="specificationsText" jdbcType="VARCHAR"/>
+    <result column="board_quantity" property="boardQuantity" jdbcType="BIGINT"/>
+    <result column="account" property="account" jdbcType="VARCHAR"/>
+    <result column="code" property="code" jdbcType="VARCHAR"/>
+   <!-- <association property="promotionCount" column="{id=product_id,specId=product_spec_id,channelId=channel_id}" jdbcType="INTEGER" select="com.coracle.dms.dao.mybatis.DmsPromotionProductMapper.selectCountByProduct"/>
+        <association property="promotionPrice" column="{id=product_id,specId=product_spec_id,channelId=channel_id}" jdbcType="DECIMAL" select="com.coracle.dms.dao.mybatis.DmsProductMapper.selectMinPromotionPriceByProduct"/>-->
+  </resultMap>
+
+  <resultMap id="OftenBuyProductResultMap" type="com.coracle.dms.vo.DmsShoppingCartVo" extends="DmsShoppingCartVoResultMap">
+    <result column="start_time_last_year" property="startTimeLastYear" jdbcType="VARCHAR"/>
+    <result column="end_time_last_year" property="endTimeLastYear" jdbcType="VARCHAR"/>
+    <result column="start_time_last_month" property="startTimeLastMonth" jdbcType="VARCHAR"/>
+    <result column="start_time_firstDate_thisYear" property="startTimeFirstDateThisYear" jdbcType="VARCHAR"/>
+    <result column="start_time_firstDate_lastYear" property="startTimeFirstDateLastYear" jdbcType="VARCHAR"/>
+    <result column="now" property="now" jdbcType="VARCHAR"/>
+    <result column="unit_name" property="unitName" jdbcType="VARCHAR"/>
+
+    <association property="salesCountSameMonthLastYear" column="{productId=product_id,specId=product_spec_id,channelId=channel_id,startTime=start_time_last_year,endTime=end_time_last_year}" jdbcType="BIGINT" select="countSalesCountByCondition"/>
+    <association property="salesCountThisMonth" column="{productId=product_id,specId=product_spec_id,channelId=channel_id,startTime=start_time_this_month,endTime=now}" jdbcType="BIGINT" select="countSalesCountByCondition"/>
+    <association property="salesCountThisYear" column="{productId=product_id,specId=product_spec_id,channelId=channel_id,startTime=start_time_firstDate_thisYear,endTime=now}" jdbcType="BIGINT" select="countSalesCountByCondition"/>
+    <association property="salesCountLastYear" column="{productId=product_id,specId=product_spec_id,channelId=channel_id,startTime=start_time_firstDate_lastYear,endTime=now}" jdbcType="BIGINT" select="countSalesCountByCondition"/>
+  </resultMap>
+
+  <!--根据用户(账号)id获取购物车商品列表-->
+  <select id="selectVoByUserId" parameterType="map" resultMap="DmsShoppingCartVoResultMap">
+    select
+      sc.*,
+      p.name as name,
+      ifnull(acp.fprice,0) as price,
+      p.unit as unit,
+      caf.file_compress_path as pic_url,
+      p.active as active,
+      #{channelId} as channel_id,
+      IFNULL(dcm.board_quantity, 0) as board_quantity
+    from
+      dms_shopping_cart sc
+      left join dms_product p on p.id = sc.product_id
+      left join dms_common_attach_file caf on caf.id = p.pic_Id
+      left join anjoy_customer_price acp on acp.eas_product_code = p.eas_code and acp.eas_channel_code = #{channelCode}
+      left join dms_channel_minimum dcm on dcm.product_id = sc.product_id and dcm.channel_id = #{channelId}
+    where
+      sc.user_id = #{userId}
+      and sc.type = 1
+      and sc.remove_flag = 0
+  </select>
+
+  <!-- 根据id列表批量逻辑删除 -->
+  <update id="batchRemove" parameterType="java.util.List">
+    update dms_shopping_cart set remove_flag = 1 where id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+  </update>
+
+  <!--根据产品id 和用户id 软删除-->
+  <update id="removeShopCart" parameterType="com.coracle.dms.po.DmsShoppingCart">
+    update dms_shopping_cart set remove_flag = 1 where product_id  = #{productId} and user_id = #{userId} and type = 1
+  </update>
+  <!--根据产品id 和用户id 真删除-->
+  <delete id="deleteShopCart" parameterType="com.coracle.dms.po.DmsShoppingCart">
+
+    delete from dms_shopping_cart where  product_id  = #{productId} and user_id = #{userId} and type = 1
+
+  </delete>
+
+
+  <!-- 根据用户(账号)id获取购物车内商品数量 -->
+  <select id="selectCountByUserId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select
+      count(*)
+    from
+      dms_shopping_cart sc
+    where
+      sc.user_id = #{userId}
+      and sc.type = 1
+      and sc.remove_flag = 0
+  </select>
+
+  <!-- 常购商品列表 -->
+  <select id="listOftenBuyProductByCondition" parameterType="com.coracle.dms.vo.DmsShoppingCartVo" resultMap="OftenBuyProductResultMap">
+    select
+      sc.*,
+      p.name as name,
+      p.unit as unit_name,
+      ifnull(acp.fprice,0) as price,
+      caf.file_compress_path as pic_url,
+      p.active as active,
+      cc.channel_id as channel_id,
+      #{startTimeLastYear} start_time_last_year,
+      #{endTimeLastYear} end_time_last_year,
+      #{startTimeThisMonth} start_time_this_month,
+      #{startTimeFirstDateThisYear} start_time_firstDate_thisYear,
+      #{startTimeFirstDateLastYear} start_time_firstDate_lastYear,
+      #{now} as now,
+      p.specifications as specifications_text
+      <if test="channelId != null and channelId != ''">
+        , IFNULL((
+          select dcm.board_quantity from dms_channel_minimum dcm where dcm.channel_id = #{channelId}
+            and dcm.product_id = sc.product_id limit 0, 1
+        ), 0) as board_quantity
+      </if>
+    from
+      dms_shopping_cart sc
+      left join dms_product p on p.id = sc.product_id
+      left join dms_product_category pc on pc.id = p.category_id
+      left join dms_common_attach_file caf on caf.id = p.pic_id
+      left join dms_channel_contacts cc on cc.user_id = sc.user_id
+      left join anjoy_customer_price acp on acp.eas_channel_code = #{channelCode} and acp.eas_product_code = p.eas_code
+    where
+      sc.remove_flag = 0
+      and sc.type in (2, 3)
+      and cc.channel_id = #{channelId}
+      <if test="name != null and name != ''">
+        and p.name like concat('%', #{name}, '%')
+      </if>
+      <if test="categoryId != null and categoryId != 0">
+        and p.category_id in (
+        select t3.id from dms_product_category t3 WHERE FIND_IN_SET(#{categoryId}, REPLACE(t3.path, '.', ',')) > 0
+        )
+      </if>
+      <if test="specifications != null and specifications != ''">
+        and p.specifications = #{specifications}
+      </if>
+
+    group by sc.product_id
+    order by sum(sc.count) desc, sc.type desc
+  </select>
+
+  <!-- 根据产品id、产品规格id、渠道id和时间参数获取下单数量 -->
+  <select id="countSalesCountByCondition" parameterType="java.util.Map" resultType="java.lang.Long">
+    select
+	  ifnull(sum(sc.count), 0)
+    from
+    	dms_shopping_cart sc
+    left join dms_channel_contacts cc on cc.user_id = sc.user_id
+    where
+    	sc.product_id = #{productId}
+    	<if test="specId != null">
+          and sc.product_spec_id = #{specId}
+        </if>
+    	and sc.type in (2,3)
+    	and cc.channel_id = #{channelId}
+    	and (
+          sc.balance_date between str_to_date(#{startTime}, '%Y-%m-%d %H:%i:%s') and str_to_date(#{endTime}, '%Y-%m-%d %H:%i:%s')
+          or
+          sc.balance_date is null
+        )
+    order by sc.type desc, sum(sc.count) desc
+  </select>
+
+  <!-- 删除常购商品 -->
+  <update id="deleteOftenBuyProduct" parameterType="com.coracle.dms.vo.DmsShoppingCartVo">
+    UPDATE dms_shopping_cart t SET t.remove_flag = 1
+    WHERE t.type IN(2, 3)
+    AND t.product_id = #{productId}
+    <choose>
+      <when test="productSpecId != null and productSpecId != ''">
+        AND t.product_spec_id = #{productSpecId}
+      </when>
+      <otherwise>
+        AND t.product_spec_id IS NULL
+      </otherwise>
+    </choose>
+  </update>
+
+
+
+  <insert id="historyOfftenBuy" parameterType="com.coracle.dms.vo.DmsShoppingCartVo">
+
+    insert into dms_shopping_cart (user_id, product_id, product_spec_id, spec_union_key, count, created_date,
+    created_by, last_updated_date, last_updated_by, remove_flag, type, balance_date
+    )
+    values ((select u.id from dms_user u where u.account = #{account}),(select p.id from dms_product p where p.code = #{code}), #{productSpecId}, #{specUnionKey}, #{count}, #{createdDate},
+    #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, #{type}, #{balanceDate}
+    )
+
+
+
+  </insert>
+
+
+
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>

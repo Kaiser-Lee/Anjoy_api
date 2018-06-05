@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsCustomersMapper" >
+  <resultMap id="DmsCustomersResultMap" type="com.coracle.dms.po.DmsCustomers" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="occupation" property="occupation" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="BIGINT" />
+    <result column="city" property="city" jdbcType="BIGINT" />
+    <result column="county" property="county" jdbcType="BIGINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="wecat" property="wecat" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="expand1" property="expand1" jdbcType="VARCHAR" />
+    <result column="expand2" property="expand2" jdbcType="VARCHAR" />
+    <result column="expand3" property="expand3" jdbcType="VARCHAR" />
+    <result column="expand4" property="expand4" jdbcType="VARCHAR" />
+    <result column="expand5" property="expand5" jdbcType="VARCHAR" />
+    <result column="expand6" property="expand6" jdbcType="VARCHAR" />
+    <result column="expand7" property="expand7" jdbcType="VARCHAR" />
+    <result column="expand8" property="expand8" jdbcType="VARCHAR" />
+    <result column="expand9" property="expand9" jdbcType="VARCHAR" />
+    <result column="expand10" property="expand10" jdbcType="VARCHAR" />
+    <result column="expand11" property="expand11" jdbcType="VARCHAR" />
+    <result column="expand12" property="expand12" jdbcType="VARCHAR" />
+    <result column="expand13" property="expand13" jdbcType="VARCHAR" />
+    <result column="expand14" property="expand14" jdbcType="VARCHAR" />
+    <result column="expand15" property="expand15" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsCustomers_Column_List" >
+    id, user_id, name, phone, sex, birthday, occupation, province, city, county, address,
+    wecat, qq, remark, created_by, created_date, last_updated_by, last_updated_date,
+    remove_flag, expand1, expand2, expand3, expand4, expand5, expand6, expand7, expand8,
+    expand9, expand10, expand11, expand12, expand13, expand14, expand15
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsCustomersResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsCustomers_Column_List" />
+    from dms_customers
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_customers
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsCustomers" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_customers (user_id, name, phone, sex, birthday, occupation, province,
+    city, county, address, wecat, qq, remark, created_by, created_date,
+    last_updated_by, last_updated_date, remove_flag, expand1, expand2, expand3,
+    expand4, expand5, expand6, expand7, expand8, expand9, expand10,
+    expand11, expand12, expand13, expand14, expand15)
+    values (#{userId}, #{name}, #{phone}, #{sex}, #{birthday}, #{occupation}, #{province},
+    #{city}, #{county}, #{address}, #{wecat}, #{qq}, #{remark}, #{createdBy}, #{createdDate},
+    #{lastUpdatedBy}, #{lastUpdatedDate}, #{removeFlag}, #{expand1}, #{expand2}, #{expand3},
+    #{expand4}, #{expand5}, #{expand6}, #{expand7}, #{expand8}, #{expand9}, #{expand10},
+    #{expand11}, #{expand12}, #{expand13}, #{expand14}, #{expand15})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsCustomers" >
+    insert into dms_customers
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="occupation != null" >
+        occupation,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="wecat != null" >
+        wecat,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="expand1 != null" >
+        expand1,
+      </if>
+      <if test="expand2 != null" >
+        expand2,
+      </if>
+      <if test="expand3 != null" >
+        expand3,
+      </if>
+      <if test="expand4 != null" >
+        expand4,
+      </if>
+      <if test="expand5 != null" >
+        expand5,
+      </if>
+      <if test="expand6 != null" >
+        expand6,
+      </if>
+      <if test="expand7 != null" >
+        expand7,
+      </if>
+      <if test="expand8 != null" >
+        expand8,
+      </if>
+      <if test="expand9 != null" >
+        expand9,
+      </if>
+      <if test="expand10 != null" >
+        expand10,
+      </if>
+      <if test="expand11 != null" >
+        expand11,
+      </if>
+      <if test="expand12 != null" >
+        expand12,
+      </if>
+      <if test="expand13 != null" >
+        expand13,
+      </if>
+      <if test="expand14 != null" >
+        expand14,
+      </if>
+      <if test="expand15 != null" >
+        expand15,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="phone != null" >
+        #{phone},
+      </if>
+      <if test="sex != null" >
+        #{sex},
+      </if>
+      <if test="birthday != null" >
+        #{birthday},
+      </if>
+      <if test="occupation != null" >
+        #{occupation},
+      </if>
+      <if test="province != null" >
+        #{province},
+      </if>
+      <if test="city != null" >
+        #{city},
+      </if>
+      <if test="county != null" >
+        #{county},
+      </if>
+      <if test="address != null" >
+        #{address},
+      </if>
+      <if test="wecat != null" >
+        #{wecat},
+      </if>
+      <if test="qq != null" >
+        #{qq},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="expand1 != null" >
+        #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        #{expand15},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsCustomers" >
+    update dms_customers
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday},
+      </if>
+      <if test="occupation != null" >
+        occupation = #{occupation},
+      </if>
+      <if test="province != null" >
+        province = #{province},
+      </if>
+      <if test="city != null" >
+        city = #{city},
+      </if>
+      <if test="county != null" >
+        county = #{county},
+      </if>
+      <if test="address != null" >
+        address = #{address},
+      </if>
+      <if test="wecat != null" >
+        wecat = #{wecat},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="expand1 != null" >
+        expand1 = #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        expand2 = #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        expand3 = #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        expand4 = #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        expand5 = #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        expand6 = #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        expand7 = #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        expand8 = #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        expand9 = #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        expand10 = #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        expand11 = #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        expand12 = #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        expand13 = #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        expand14 = #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        expand15 = #{expand15},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsCustomers" >
+    update dms_customers
+    set user_id = #{userId},
+    name = #{name},
+    phone = #{phone},
+    sex = #{sex},
+    birthday = #{birthday},
+    occupation = #{occupation},
+    province = #{province},
+    city = #{city},
+    county = #{county},
+    address = #{address},
+    wecat = #{wecat},
+    qq = #{qq},
+    remark = #{remark},
+    created_by = #{createdBy},
+    created_date = #{createdDate},
+    last_updated_by = #{lastUpdatedBy},
+    last_updated_date = #{lastUpdatedDate},
+    remove_flag = #{removeFlag},
+    expand1 = #{expand1},
+    expand2 = #{expand2},
+    expand3 = #{expand3},
+    expand4 = #{expand4},
+    expand5 = #{expand5},
+    expand6 = #{expand6},
+    expand7 = #{expand7},
+    expand8 = #{expand8},
+    expand9 = #{expand9},
+    expand10 = #{expand10},
+    expand11 = #{expand11},
+    expand12 = #{expand12},
+    expand13 = #{expand13},
+    expand14 = #{expand14},
+    expand15 = #{expand15}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="userId != null" >
+        user_id = #{userId}
+      </if>
+      <if test="name != null and name != ''" >
+        AND name = #{name}
+      </if>
+      <if test="phone != null and phone != ''" >
+        AND phone = #{phone}
+      </if>
+      <if test="sex != null and sex != ''" >
+        AND sex = #{sex}
+      </if>
+      <if test="birthday != null" >
+        AND birthday = #{birthday}
+      </if>
+      <if test="occupation != null and occupation != ''" >
+        AND occupation = #{occupation}
+      </if>
+      <if test="province != null" >
+        AND province = #{province}
+      </if>
+      <if test="city != null" >
+        AND city = #{city}
+      </if>
+      <if test="county != null" >
+        AND county = #{county}
+      </if>
+      <if test="address != null and address != ''" >
+        AND address = #{address}
+      </if>
+      <if test="wecat != null and wecat != ''" >
+        AND wecat = #{wecat}
+      </if>
+      <if test="qq != null and qq != ''" >
+        AND qq = #{qq}
+      </if>
+      <if test="remark != null and remark != ''" >
+        AND remark = #{remark}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="expand1 != null and expand1 != ''" >
+        AND expand1 = #{expand1}
+      </if>
+      <if test="expand2 != null and expand2 != ''" >
+        AND expand2 = #{expand2}
+      </if>
+      <if test="expand3 != null and expand3 != ''" >
+        AND expand3 = #{expand3}
+      </if>
+      <if test="expand4 != null and expand4 != ''" >
+        AND expand4 = #{expand4}
+      </if>
+      <if test="expand5 != null and expand5 != ''" >
+        AND expand5 = #{expand5}
+      </if>
+      <if test="expand6 != null and expand6 != ''" >
+        AND expand6 = #{expand6}
+      </if>
+      <if test="expand7 != null and expand7 != ''" >
+        AND expand7 = #{expand7}
+      </if>
+      <if test="expand8 != null and expand8 != ''" >
+        AND expand8 = #{expand8}
+      </if>
+      <if test="expand9 != null and expand9 != ''" >
+        AND expand9 = #{expand9}
+      </if>
+      <if test="expand10 != null and expand10 != ''" >
+        AND expand10 = #{expand10}
+      </if>
+      <if test="expand11 != null and expand11 != ''" >
+        AND expand11 = #{expand11}
+      </if>
+      <if test="expand12 != null and expand12 != ''" >
+        AND expand12 = #{expand12}
+      </if>
+      <if test="expand13 != null and expand13 != ''" >
+        AND expand13 = #{expand13}
+      </if>
+      <if test="expand14 != null and expand14 != ''" >
+        AND expand14 = #{expand14}
+      </if>
+      <if test="expand15 != null and expand15 != ''" >
+        AND expand15 = #{expand15}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsCustomers" resultMap="DmsCustomersResultMap" >
+    select
+    <include refid="DmsCustomers_Column_List" />
+    from dms_customers
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_customers
+    <set >
+      <if test="po.userId != null" >
+        user_id = #{po.userId},
+      </if>
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.phone != null" >
+        phone = #{po.phone},
+      </if>
+      <if test="po.sex != null" >
+        sex = #{po.sex},
+      </if>
+      <if test="po.birthday != null" >
+        birthday = #{po.birthday},
+      </if>
+      <if test="po.occupation != null" >
+        occupation = #{po.occupation},
+      </if>
+      <if test="po.province != null" >
+        province = #{po.province},
+      </if>
+      <if test="po.city != null" >
+        city = #{po.city},
+      </if>
+      <if test="po.county != null" >
+        county = #{po.county},
+      </if>
+      <if test="po.address != null" >
+        address = #{po.address},
+      </if>
+      <if test="po.wecat != null" >
+        wecat = #{po.wecat},
+      </if>
+      <if test="po.qq != null" >
+        qq = #{po.qq},
+      </if>
+      <if test="po.remark != null" >
+        remark = #{po.remark},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.expand1 != null" >
+        expand1 = #{po.expand1},
+      </if>
+      <if test="po.expand2 != null" >
+        expand2 = #{po.expand2},
+      </if>
+      <if test="po.expand3 != null" >
+        expand3 = #{po.expand3},
+      </if>
+      <if test="po.expand4 != null" >
+        expand4 = #{po.expand4},
+      </if>
+      <if test="po.expand5 != null" >
+        expand5 = #{po.expand5},
+      </if>
+      <if test="po.expand6 != null" >
+        expand6 = #{po.expand6},
+      </if>
+      <if test="po.expand7 != null" >
+        expand7 = #{po.expand7},
+      </if>
+      <if test="po.expand8 != null" >
+        expand8 = #{po.expand8},
+      </if>
+      <if test="po.expand9 != null" >
+        expand9 = #{po.expand9},
+      </if>
+      <if test="po.expand10 != null" >
+        expand10 = #{po.expand10},
+      </if>
+      <if test="po.expand11 != null" >
+        expand11 = #{po.expand11},
+      </if>
+      <if test="po.expand12 != null" >
+        expand12 = #{po.expand12},
+      </if>
+      <if test="po.expand13 != null" >
+        expand13 = #{po.expand13},
+      </if>
+      <if test="po.expand14 != null" >
+        expand14 = #{po.expand14},
+      </if>
+      <if test="po.expand15 != null" >
+        expand15 = #{po.expand15},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--***************************************************-->
+  <resultMap id="DmsCustomersVoResultMap" type="com.coracle.dms.vo.DmsCustomersVo" extends="DmsCustomersResultMap">
+    <result column="sex_text" property="sexText" jdbcType="VARCHAR" />
+    <result column="occupation_text" property="occupationText" jdbcType="VARCHAR" />
+    <result column="province_text" property="provinceText" jdbcType="VARCHAR" />
+    <result column="city_text" property="cityText" jdbcType="VARCHAR" />
+    <result column="county_text" property="countyText" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getPageList" parameterType="com.coracle.dms.vo.DmsCustomersVo" resultMap="DmsCustomersVoResultMap">
+    select
+    <include refid="DmsCustomers_Column_List" />
+    from dms_customers
+    where remove_flag = 0
+    <if test="userId != null" >
+      and user_id = #{userId}
+    </if>
+    <if test="name != null and name != ''" >
+      and (name like concat('%', #{name}, '%') or phone like concat('%', #{name}, '%'))
+    </if>
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+
+  <select id="selectVoByPrimaryKey" resultMap="DmsCustomersVoResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsCustomers_Column_List" />,
+    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id
+    where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key='sex' and d2.s_key=dc.sex limit 0,1) as sex_text,
+    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id
+    where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key='occupation_type' and d2.s_key=dc.occupation limit 0,1) as occupation_text,
+    (select dsr.region_name from dms_sys_region dsr where dsr.region_id=dc.province) as province_text,
+    (select dsr.region_name from dms_sys_region dsr where dsr.region_id=dc.city) as city_text,
+    (select dsr.region_name from dms_sys_region dsr where dsr.region_id=dc.county) as county_text
+    from dms_customers dc
+    where dc.id = #{id}
+  </select>
+</mapper>

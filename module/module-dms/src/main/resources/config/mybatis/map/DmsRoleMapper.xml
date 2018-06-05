@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsRoleMapper" >
+  <resultMap id="DmsRoleResultMap" type="com.coracle.dms.po.DmsRole" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="mxm_id" property="mxmId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsRole_Column_List" >
+    id, name, code, active, description, mxm_id, created_date, created_by, last_updated_date, last_updated_by,
+    remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsRoleResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsRole_Column_List" />
+    from dms_role
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_role
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsRole" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_role (name, code, active, description, mxm_id, created_date, created_by,
+      last_updated_date, last_updated_by, remove_flag)
+    values (#{name}, #{code}, #{active}, #{description}, #{mxmId}, #{createdDate}, #{createdBy},
+      #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsRole" >
+    insert into dms_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="mxmId != null" >
+        mxm_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="active != null" >
+        #{active},
+      </if>
+      <if test="description != null" >
+        #{description},
+      </if>
+      <if test="mxmId != null" >
+        #{mxmId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsRole" >
+    update dms_role
+    <set >
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="active != null" >
+        active = #{active},
+      </if>
+      <if test="description != null" >
+        description = #{description},
+      </if>
+      <if test="mxmId != null" >
+        mxm_id = #{mxmId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsRole" >
+    update dms_role
+    set name = #{name},
+      code = #{code},
+      active = #{active},
+      description = #{description},
+      mxm_id = #{mxmId},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="name != null and name != ''" >
+        name = #{name}
+      </if>
+      <if test="code != null and code != ''" >
+        AND code = #{code}
+      </if>
+      <if test="active != null" >
+        AND active = #{active}
+      </if>
+      <if test="description != null and description != ''" >
+        AND description = #{description}
+      </if>
+      <if test="mxmId != null" >
+        AND mxm_id = #{mxmId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsRole" resultMap="DmsRoleResultMap" >
+    select 
+    <include refid="DmsRole_Column_List" />
+    from dms_role
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_role
+    <set >
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.active != null" >
+        active = #{po.active},
+      </if>
+      <if test="po.description != null" >
+        description = #{po.description},
+      </if>
+      <if test="po.mxmId != null" >
+        mxm_id = #{po.mxmId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

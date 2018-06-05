@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsUserCollectMapper" >
+  <resultMap id="DmsUserCollectResultMap" type="com.coracle.dms.po.DmsUserCollect" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="spec_union_key_id" property="specUnionKeyId" jdbcType="BIGINT" />
+    <result column="spec_union_key" property="specUnionKey" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="expand1" property="expand1" jdbcType="VARCHAR" />
+    <result column="expand2" property="expand2" jdbcType="VARCHAR" />
+    <result column="expand3" property="expand3" jdbcType="VARCHAR" />
+    <result column="expand4" property="expand4" jdbcType="VARCHAR" />
+    <result column="expand5" property="expand5" jdbcType="VARCHAR" />
+    <result column="expand6" property="expand6" jdbcType="VARCHAR" />
+    <result column="expand7" property="expand7" jdbcType="VARCHAR" />
+    <result column="expand8" property="expand8" jdbcType="VARCHAR" />
+    <result column="expand9" property="expand9" jdbcType="VARCHAR" />
+    <result column="expand10" property="expand10" jdbcType="VARCHAR" />
+    <result column="expand11" property="expand11" jdbcType="VARCHAR" />
+    <result column="expand12" property="expand12" jdbcType="VARCHAR" />
+    <result column="expand13" property="expand13" jdbcType="VARCHAR" />
+    <result column="expand14" property="expand14" jdbcType="VARCHAR" />
+    <result column="expand15" property="expand15" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsUserCollect_Column_List" >
+    id, user_id, product_id, spec_union_key_id, spec_union_key, created_date, created_by,
+    last_updated_date, last_updated_by, remove_flag, expand1, expand2, expand3, expand4,
+    expand5, expand6, expand7, expand8, expand9, expand10, expand11, expand12, expand13,
+    expand14, expand15
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsUserCollectResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsUserCollect_Column_List" />
+    from dms_user_collect
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_user_collect
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsUserCollect" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_user_collect (user_id, product_id, spec_union_key_id, spec_union_key, created_date,
+    created_by, last_updated_date, last_updated_by, remove_flag, expand1,
+    expand2, expand3, expand4, expand5, expand6, expand7, expand8,
+    expand9, expand10, expand11, expand12, expand13, expand14, expand15
+    )
+    values (#{userId}, #{productId}, #{specUnionKeyId}, #{specUnionKey}, #{createdDate},
+    #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, #{expand1},
+    #{expand2}, #{expand3}, #{expand4}, #{expand5}, #{expand6}, #{expand7}, #{expand8},
+    #{expand9}, #{expand10}, #{expand11}, #{expand12}, #{expand13}, #{expand14}, #{expand15}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsUserCollect" >
+    insert into dms_user_collect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="specUnionKeyId != null" >
+        spec_union_key_id,
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="expand1 != null" >
+        expand1,
+      </if>
+      <if test="expand2 != null" >
+        expand2,
+      </if>
+      <if test="expand3 != null" >
+        expand3,
+      </if>
+      <if test="expand4 != null" >
+        expand4,
+      </if>
+      <if test="expand5 != null" >
+        expand5,
+      </if>
+      <if test="expand6 != null" >
+        expand6,
+      </if>
+      <if test="expand7 != null" >
+        expand7,
+      </if>
+      <if test="expand8 != null" >
+        expand8,
+      </if>
+      <if test="expand9 != null" >
+        expand9,
+      </if>
+      <if test="expand10 != null" >
+        expand10,
+      </if>
+      <if test="expand11 != null" >
+        expand11,
+      </if>
+      <if test="expand12 != null" >
+        expand12,
+      </if>
+      <if test="expand13 != null" >
+        expand13,
+      </if>
+      <if test="expand14 != null" >
+        expand14,
+      </if>
+      <if test="expand15 != null" >
+        expand15,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="specUnionKeyId != null" >
+        #{specUnionKeyId},
+      </if>
+      <if test="specUnionKey != null" >
+        #{specUnionKey},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="expand1 != null" >
+        #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        #{expand15},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsUserCollect" >
+    update dms_user_collect
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="specUnionKeyId != null" >
+        spec_union_key_id = #{specUnionKeyId},
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key = #{specUnionKey},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="expand1 != null" >
+        expand1 = #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        expand2 = #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        expand3 = #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        expand4 = #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        expand5 = #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        expand6 = #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        expand7 = #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        expand8 = #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        expand9 = #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        expand10 = #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        expand11 = #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        expand12 = #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        expand13 = #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        expand14 = #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        expand15 = #{expand15},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsUserCollect" >
+    update dms_user_collect
+    set user_id = #{userId},
+    product_id = #{productId},
+    spec_union_key_id = #{specUnionKeyId},
+    spec_union_key = #{specUnionKey},
+    created_date = #{createdDate},
+    created_by = #{createdBy},
+    last_updated_date = #{lastUpdatedDate},
+    last_updated_by = #{lastUpdatedBy},
+    remove_flag = #{removeFlag},
+    expand1 = #{expand1},
+    expand2 = #{expand2},
+    expand3 = #{expand3},
+    expand4 = #{expand4},
+    expand5 = #{expand5},
+    expand6 = #{expand6},
+    expand7 = #{expand7},
+    expand8 = #{expand8},
+    expand9 = #{expand9},
+    expand10 = #{expand10},
+    expand11 = #{expand11},
+    expand12 = #{expand12},
+    expand13 = #{expand13},
+    expand14 = #{expand14},
+    expand15 = #{expand15}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="userId != null" >
+        user_id = #{userId}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId}
+      </if>
+      <if test="specUnionKeyId != null" >
+        AND spec_union_key_id = #{specUnionKeyId}
+      </if>
+      <if test="specUnionKey != null and specUnionKey != ''" >
+        AND spec_union_key = #{specUnionKey}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="expand1 != null and expand1 != ''" >
+        AND expand1 = #{expand1}
+      </if>
+      <if test="expand2 != null and expand2 != ''" >
+        AND expand2 = #{expand2}
+      </if>
+      <if test="expand3 != null and expand3 != ''" >
+        AND expand3 = #{expand3}
+      </if>
+      <if test="expand4 != null and expand4 != ''" >
+        AND expand4 = #{expand4}
+      </if>
+      <if test="expand5 != null and expand5 != ''" >
+        AND expand5 = #{expand5}
+      </if>
+      <if test="expand6 != null and expand6 != ''" >
+        AND expand6 = #{expand6}
+      </if>
+      <if test="expand7 != null and expand7 != ''" >
+        AND expand7 = #{expand7}
+      </if>
+      <if test="expand8 != null and expand8 != ''" >
+        AND expand8 = #{expand8}
+      </if>
+      <if test="expand9 != null and expand9 != ''" >
+        AND expand9 = #{expand9}
+      </if>
+      <if test="expand10 != null and expand10 != ''" >
+        AND expand10 = #{expand10}
+      </if>
+      <if test="expand11 != null and expand11 != ''" >
+        AND expand11 = #{expand11}
+      </if>
+      <if test="expand12 != null and expand12 != ''" >
+        AND expand12 = #{expand12}
+      </if>
+      <if test="expand13 != null and expand13 != ''" >
+        AND expand13 = #{expand13}
+      </if>
+      <if test="expand14 != null and expand14 != ''" >
+        AND expand14 = #{expand14}
+      </if>
+      <if test="expand15 != null and expand15 != ''" >
+        AND expand15 = #{expand15}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsUserCollect" resultMap="DmsUserCollectResultMap" >
+    select
+    <include refid="DmsUserCollect_Column_List" />
+    from dms_user_collect
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_user_collect
+    <set >
+      <if test="po.userId != null" >
+        user_id = #{po.userId},
+      </if>
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.specUnionKeyId != null" >
+        spec_union_key_id = #{po.specUnionKeyId},
+      </if>
+      <if test="po.specUnionKey != null" >
+        spec_union_key = #{po.specUnionKey},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.expand1 != null" >
+        expand1 = #{po.expand1},
+      </if>
+      <if test="po.expand2 != null" >
+        expand2 = #{po.expand2},
+      </if>
+      <if test="po.expand3 != null" >
+        expand3 = #{po.expand3},
+      </if>
+      <if test="po.expand4 != null" >
+        expand4 = #{po.expand4},
+      </if>
+      <if test="po.expand5 != null" >
+        expand5 = #{po.expand5},
+      </if>
+      <if test="po.expand6 != null" >
+        expand6 = #{po.expand6},
+      </if>
+      <if test="po.expand7 != null" >
+        expand7 = #{po.expand7},
+      </if>
+      <if test="po.expand8 != null" >
+        expand8 = #{po.expand8},
+      </if>
+      <if test="po.expand9 != null" >
+        expand9 = #{po.expand9},
+      </if>
+      <if test="po.expand10 != null" >
+        expand10 = #{po.expand10},
+      </if>
+      <if test="po.expand11 != null" >
+        expand11 = #{po.expand11},
+      </if>
+      <if test="po.expand12 != null" >
+        expand12 = #{po.expand12},
+      </if>
+      <if test="po.expand13 != null" >
+        expand13 = #{po.expand13},
+      </if>
+      <if test="po.expand14 != null" >
+        expand14 = #{po.expand14},
+      </if>
+      <if test="po.expand15 != null" >
+        expand15 = #{po.expand15},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--*****************************************************-->
+  <resultMap id="DmsUserCollectVoResultMap" type="com.coracle.dms.vo.DmsUserCollectVo" extends="DmsUserCollectResultMap">
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="json_object" property="jsonObject" jdbcType="VARCHAR" />
+    <result column="suggested_price" property="suggestPrice" jdbcType="DECIMAL" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="channel_id" property="channelId" jdbcType="BIGINT"/>
+    <result column="channel_code" property="channelCode" jdbcType="VARCHAR"/>
+    <association property="promotionPrice" column="{id=product_id,specId=spec_union_key_id,channelCode=channel_code}" jdbcType="DECIMAL" select="com.coracle.dms.dao.mybatis.DmsProductMapper.selectMinPriceForUserCollect"/>
+    <!--<association property="promotionCount" column="{id=product_id,specId=spec_union_key_id,channelId=channel_id}" jdbcType="INTEGER" select="com.coracle.dms.dao.mybatis.DmsPromotionProductMapper.selectCountByProduct"/>
+    <association property="promotionPrice" column="{id=product_id,specId=spec_union_key_id,channelId=channel_id}" jdbcType="DECIMAL" select="com.coracle.dms.dao.mybatis.DmsProductMapper.selectMinPromotionPriceByProduct"/>-->
+  </resultMap>
+  <resultMap id="DmsUserCollectAllResultMap" type="com.coracle.dms.vo.DmsUserCollectVo" extends="DmsUserCollectVoResultMap">
+    <result column="product_num" property="productNum" jdbcType="INTEGER" />
+  </resultMap>
+  <!--不包含库存数量-->
+  <select id="getPageList" parameterType="java.lang.Long" resultMap="DmsUserCollectVoResultMap">
+    select
+    duc.id, duc.user_id, duc.product_id,duc.spec_union_key_id,duc.spec_union_key, duc.created_date, duc.created_by, duc.last_updated_date, duc.last_updated_by,
+    duc.remove_flag, duc.expand1, duc.expand2, duc.expand3, duc.expand4, duc.expand5, duc.expand6, duc.expand7, duc.expand8,
+    duc.expand9, duc.expand10, duc.expand11, duc.expand12, duc.expand13, duc.expand14, duc.expand15,dp.name as product_name,dp.json_object as json_object,
+    (select file_path from dms_common_attach_file dcaf where id=dp.pic_Id) as img_url,
+    if(duc.spec_union_key_id is null,dp.suggested_price,if(duc.spec_union_key_id = 0,dp.suggested_price,(select dpsc.suggested_retail_price from dms_product_spec_matrix_config dpsc where dpsc.id=duc.spec_union_key_id and duc.product_id=dpsc.product_id))) as suggested_price,
+    if(duc.spec_union_key_id is null,dp.active,IF(duc.spec_union_key_id=0,dp.active,(select dpsmc.active from dms_product_spec_matrix_config dpsmc where dpsmc.id=duc.spec_union_key_id))) as active,
+    (select cc.channel_id from dms_channel_contacts cc  where cc.user_id = #{userId}) as channel_id,
+    (select  dc.eas_num from dms_channel dc left join dms_channel_contacts cc2 on dc.id = cc2.channel_id where cc2.user_id = #{userId} ) as channel_code
+    from dms_user_collect duc left join dms_product dp on duc.product_id = dp.id
+    where duc.remove_flag = 0 and duc.user_id = #{userId} order by duc.id desc
+  </select>
+  <!-- left join dms_product_spec_matrix_config dpsmc on duc.spec_union_key_id = dpsmc.id-->
+  <!--包含库存数量-->
+  <select id="getAllPageList" parameterType="java.lang.Long" resultMap="DmsUserCollectAllResultMap">
+    select
+    duc.id, duc.user_id, duc.product_id,duc.spec_union_key_id,duc.spec_union_key, duc.created_date, duc.created_by, duc.last_updated_date, duc.last_updated_by,
+    duc.remove_flag, duc.expand1, duc.expand2, duc.expand3, duc.expand4, duc.expand5, duc.expand6, duc.expand7, duc.expand8,
+    duc.expand9, duc.expand10, duc.expand11, duc.expand12, duc.expand13, duc.expand14, duc.expand15,
+    ifnull((select sum(dsi.use_num) as num from dms_storage ds left join dms_storage_inventory dsi on ds.id=dsi.`storage`
+    where ds.storage_type=1 and duc.product_id=dsi.product_id),0) as product_num,dp.name as product_name,dp.json_object as json_object,
+    (select file_path from dms_common_attach_file dcaf where id=dp.pic_Id) as img_url,
+    if(duc.spec_union_key_id is null,dp.suggested_price,if(duc.spec_union_key_id = 0,dp.suggested_price,(select dpsc.suggested_retail_price from dms_product_spec_matrix_config dpsc where dpsc.id=duc.spec_union_key_id and duc.product_id=dpsc.product_id))) as suggested_price,
+    if(duc.spec_union_key_id is null,dp.active,IF(duc.spec_union_key_id=0,dp.active,(select dpsmc.active from dms_product_spec_matrix_config dpsmc where dpsmc.id=duc.spec_union_key_id))) as active,
+    (select cc.channel_id from dms_channel_contacts cc where cc.user_id = #{userId}) as channel_id,
+    (select  dc.eas_num from dms_channel dc left join dms_channel_contacts cc2 on dc.id = cc2.channel_id where cc2.user_id = #{userId} ) as channel_code
+    FROM `dms_user_collect` duc left join dms_product dp on duc.product_id = dp.id
+     where duc.remove_flag=0 and duc.user_id=#{userId} order by duc.id desc
+  </select>
+
+  <delete id="deleteCollectByInfo">
+    delete from dms_user_collect
+    where user_id=#{userId} and product_id=#{productId}
+    <choose>
+      <when test="specUnionKey !=null and specUnionKey != ''">
+        AND spec_union_key = #{specUnionKey}
+      </when>
+      <otherwise>
+        AND (spec_union_key = '' or spec_union_key is null)
+      </otherwise>
+    </choose>
+  </delete>
+</mapper>

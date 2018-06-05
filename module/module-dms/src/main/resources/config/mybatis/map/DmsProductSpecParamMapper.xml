@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsProductSpecParamMapper" >
+  <resultMap id="DmsProductSpecParamResultMap" type="com.coracle.dms.po.DmsProductSpecParam" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_spec_id" property="productSpecId" jdbcType="BIGINT" />
+    <result column="spec_value" property="specValue" jdbcType="VARCHAR" />
+    <result column="sort_order" property="sortOrder" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsProductSpecParam_Column_List" >
+    id, product_spec_id, spec_value, sort_order, created_date, created_by, last_updated_date, 
+    last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsProductSpecParamResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsProductSpecParam_Column_List" />
+    from dms_product_spec_param
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_product_spec_param
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsProductSpecParam" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_product_spec_param (product_spec_id, spec_value, sort_order, created_date, created_by, 
+      last_updated_date, last_updated_by, remove_flag)
+    values (#{productSpecId}, #{specValue}, #{sortOrder}, #{createdDate}, #{createdBy}, 
+      #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsProductSpecParam" >
+    insert into dms_product_spec_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id,
+      </if>
+      <if test="specValue != null" >
+        spec_value,
+      </if>
+      <if test="sortOrder != null" >
+        sort_order,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="productSpecId != null" >
+        #{productSpecId},
+      </if>
+      <if test="specValue != null" >
+        #{specValue},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsProductSpecParam" >
+    update dms_product_spec_param
+    <set >
+      <if test="productSpecId != null" >
+        product_spec_id = #{productSpecId},
+      </if>
+      <if test="specValue != null" >
+        spec_value = #{specValue},
+      </if>
+      <if test="sortOrder != null" >
+        sort_order = #{sortOrder},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsProductSpecParam" >
+    update dms_product_spec_param
+    set product_spec_id = #{productSpecId},
+      spec_value = #{specValue},
+      sort_order = #{sortOrder},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="productSpecId != null" >
+        product_spec_id = #{productSpecId}
+      </if>
+      <if test="specValue != null and specValue != ''" >
+        AND spec_value = #{specValue}
+      </if>
+      <if test="sortOrder != null" >
+        AND sort_order = #{sortOrder}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsProductSpecParam" resultMap="DmsProductSpecParamResultMap" >
+    select 
+    <include refid="DmsProductSpecParam_Column_List" />
+    from dms_product_spec_param
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_product_spec_param
+    <set >
+      <if test="po.productSpecId != null" >
+        product_spec_id = #{po.productSpecId},
+      </if>
+      <if test="po.specValue != null" >
+        spec_value = #{po.specValue},
+      </if>
+      <if test="po.sortOrder != null" >
+        sort_order = #{po.sortOrder},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  
+  
+   <!--########################################################### new add sql create by tanyb ######################################-->
+  <select id="getSpecList" resultMap="DmsProductSpecParamResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsProductSpecParam_Column_List" />
+    from dms_product_spec_param
+    where product_spec_id = #{productSpecId}
+  </select>
+  
+ <delete id="deleteBySpecId" parameterType="java.lang.Long" >
+    delete from dms_product_spec_param
+    where product_spec_id = #{specId}
+  </delete>
+  
+</mapper>

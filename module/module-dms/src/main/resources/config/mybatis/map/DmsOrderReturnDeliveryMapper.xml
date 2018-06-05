@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderReturnDeliveryMapper" >
+  <resultMap id="DmsOrderReturnDeliveryResultMap" type="com.coracle.dms.po.DmsOrderReturnDelivery" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_return_id" property="orderReturnId" jdbcType="BIGINT" />
+    <result column="delivery_type" property="deliveryType" jdbcType="INTEGER" />
+    <result column="deliver_way_id" property="deliverWayId" jdbcType="VARCHAR" />
+    <result column="receiver" property="receiver" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="express_company" property="expressCompany" jdbcType="VARCHAR" />
+    <result column="express_no" property="expressNo" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsOrderReturnDelivery_Column_List" >
+    id, order_return_id, delivery_type, deliver_way_id, receiver, mobile, province, city, 
+    county, address, express_company, express_no, remark, created_date, created_by, last_updated_date, 
+    last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsOrderReturnDeliveryResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsOrderReturnDelivery_Column_List" />
+    from dms_order_return_delivery
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_order_return_delivery
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrderReturnDelivery" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_order_return_delivery (order_return_id, delivery_type, deliver_way_id, receiver, mobile, 
+      province, city, county, address, express_company, express_no, remark, 
+      created_date, created_by, last_updated_date, last_updated_by, remove_flag
+      )
+    values (#{orderReturnId}, #{deliveryType}, #{deliverWayId}, #{receiver}, #{mobile}, 
+      #{province}, #{city}, #{county}, #{address}, #{expressCompany}, #{expressNo}, #{remark}, 
+      #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrderReturnDelivery" >
+    insert into dms_order_return_delivery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderReturnId != null" >
+        order_return_id,
+      </if>
+      <if test="deliveryType != null" >
+        delivery_type,
+      </if>
+      <if test="deliverWayId != null" >
+        deliver_way_id,
+      </if>
+      <if test="receiver != null" >
+        receiver,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="expressCompany != null" >
+        express_company,
+      </if>
+      <if test="expressNo != null" >
+        express_no,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="orderReturnId != null" >
+        #{orderReturnId},
+      </if>
+      <if test="deliveryType != null" >
+        #{deliveryType},
+      </if>
+      <if test="deliverWayId != null" >
+        #{deliverWayId},
+      </if>
+      <if test="receiver != null" >
+        #{receiver},
+      </if>
+      <if test="mobile != null" >
+        #{mobile},
+      </if>
+      <if test="province != null" >
+        #{province},
+      </if>
+      <if test="city != null" >
+        #{city},
+      </if>
+      <if test="county != null" >
+        #{county},
+      </if>
+      <if test="address != null" >
+        #{address},
+      </if>
+      <if test="expressCompany != null" >
+        #{expressCompany},
+      </if>
+      <if test="expressNo != null" >
+        #{expressNo},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrderReturnDelivery" >
+    update dms_order_return_delivery
+    <set >
+      <if test="orderReturnId != null" >
+        order_return_id = #{orderReturnId},
+      </if>
+      <if test="deliveryType != null" >
+        delivery_type = #{deliveryType},
+      </if>
+      <if test="deliverWayId != null" >
+        deliver_way_id = #{deliverWayId},
+      </if>
+      <if test="receiver != null" >
+        receiver = #{receiver},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile},
+      </if>
+      <if test="province != null" >
+        province = #{province},
+      </if>
+      <if test="city != null" >
+        city = #{city},
+      </if>
+      <if test="county != null" >
+        county = #{county},
+      </if>
+      <if test="address != null" >
+        address = #{address},
+      </if>
+      <if test="expressCompany != null" >
+        express_company = #{expressCompany},
+      </if>
+      <if test="expressNo != null" >
+        express_no = #{expressNo},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrderReturnDelivery" >
+    update dms_order_return_delivery
+    set order_return_id = #{orderReturnId},
+      delivery_type = #{deliveryType},
+      deliver_way_id = #{deliverWayId},
+      receiver = #{receiver},
+      mobile = #{mobile},
+      province = #{province},
+      city = #{city},
+      county = #{county},
+      address = #{address},
+      express_company = #{expressCompany},
+      express_no = #{expressNo},
+      remark = #{remark},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="orderReturnId != null" >
+        order_return_id = #{orderReturnId}
+      </if>
+      <if test="deliveryType != null" >
+        AND delivery_type = #{deliveryType}
+      </if>
+      <if test="deliverWayId != null" >
+        AND deliver_way_id = #{deliverWayId}
+      </if>
+      <if test="receiver != null and receiver != ''" >
+        AND receiver = #{receiver}
+      </if>
+      <if test="mobile != null and mobile != ''" >
+        AND mobile = #{mobile}
+      </if>
+      <if test="province != null and province != ''" >
+        AND province = #{province}
+      </if>
+      <if test="city != null and city != ''" >
+        AND city = #{city}
+      </if>
+      <if test="county != null and county != ''" >
+        AND county = #{county}
+      </if>
+      <if test="address != null and address != ''" >
+        AND address = #{address}
+      </if>
+      <if test="expressCompany != null and expressCompany != ''" >
+        AND express_company = #{expressCompany}
+      </if>
+      <if test="expressNo != null and expressNo != ''" >
+        AND express_no = #{expressNo}
+      </if>
+      <if test="remark != null and remark != ''" >
+        AND remark = #{remark}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrderReturnDelivery" resultMap="DmsOrderReturnDeliveryResultMap" >
+    select 
+    <include refid="DmsOrderReturnDelivery_Column_List" />
+    from dms_order_return_delivery
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_order_return_delivery
+    <set >
+      <if test="po.orderReturnId != null" >
+        order_return_id = #{po.orderReturnId},
+      </if>
+      <if test="po.deliveryType != null" >
+        delivery_type = #{po.deliveryType},
+      </if>
+      <if test="po.deliverWayId != null" >
+        deliver_way_id = #{po.deliverWayId},
+      </if>
+      <if test="po.receiver != null" >
+        receiver = #{po.receiver},
+      </if>
+      <if test="po.mobile != null" >
+        mobile = #{po.mobile},
+      </if>
+      <if test="po.province != null" >
+        province = #{po.province},
+      </if>
+      <if test="po.city != null" >
+        city = #{po.city},
+      </if>
+      <if test="po.county != null" >
+        county = #{po.county},
+      </if>
+      <if test="po.address != null" >
+        address = #{po.address},
+      </if>
+      <if test="po.expressCompany != null" >
+        express_company = #{po.expressCompany},
+      </if>
+      <if test="po.expressNo != null" >
+        express_no = #{po.expressNo},
+      </if>
+      <if test="po.remark != null" >
+        remark = #{po.remark},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  
+  <!-- ++++++++++++++++++++++++++++++++++ 自定义sql start ++++++++++++++++++++++++++++++++++ -->
+
+  <resultMap id="DmsOrderReturnDeliveryVoResultMap" extends="DmsOrderReturnDeliveryResultMap" type="com.coracle.dms.vo.DmsOrderReturnDeliveryVo" >
+    <result column="deliver_way_text" property="deliverWayText" jdbcType="VARCHAR" />
+    <result column="express_company_text" property="expressCompanyText" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 品牌商配置信息 -->
+  <select id="getDeliveryInfo" parameterType="java.lang.Long" resultMap="DmsOrderReturnDeliveryVoResultMap" >
+      select rt.*,
+		(select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key='deliver_type' and d2.s_key=rt.deliver_way_id limit 0,1) as deliver_way_text,
+	    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key='express_company' and d2.s_key=rt.express_company limit 0,1) as express_company_text
+	from dms_order_return_delivery rt 
+	where 1=1 and rt.remove_flag=0 and rt.delivery_type=2 and rt.order_return_id=#{id} limit 0,1
+  </select>
+  <!-- 收(换)货人信息 -->
+  <select id="getDeliveryInfoByCahnnel" parameterType="java.lang.Long" resultMap="DmsOrderReturnDeliveryVoResultMap" >
+      select rt.*,
+		(select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key='deliver_type' and d2.s_key=rt.deliver_way_id limit 0,1) as deliver_way_text,
+	    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key='express_company' and d2.s_key=rt.express_company limit 0,1) as express_company_text
+	from dms_order_return_delivery rt 
+	where 1=1 and rt.remove_flag=0 and rt.delivery_type=1 and rt.order_return_id=#{id} limit 0,1
+  </select>
+  
+</mapper>

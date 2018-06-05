@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsEmployeeOrganizationMapper" >
+  <resultMap id="DmsEmployeeOrganizationResultMap" type="com.coracle.dms.po.DmsEmployeeOrganization" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="employee_id" property="employeeId" jdbcType="BIGINT" />
+    <result column="organization_id" property="organizationId" jdbcType="BIGINT" />
+    <result column="post_id" property="postId" jdbcType="BIGINT" />
+    <result column="is_charge" property="isCharge" jdbcType="INTEGER" />
+    <result column="is_major" property="isMajor" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsEmployeeOrganization_Column_List" >
+    id, employee_id, organization_id, post_id, is_charge, is_major, created_date, created_by, 
+    last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsEmployeeOrganizationResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsEmployeeOrganization_Column_List" />
+    from dms_employee_organization
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_employee_organization
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsEmployeeOrganization" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_employee_organization (employee_id, organization_id, post_id, is_charge, is_major, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag)
+    values (#{employeeId}, #{organizationId}, #{postId}, #{isCharge}, #{isMajor}, #{createdDate}, 
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsEmployeeOrganization" >
+    insert into dms_employee_organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="employeeId != null" >
+        employee_id,
+      </if>
+      <if test="organizationId != null" >
+        organization_id,
+      </if>
+      <if test="postId != null" >
+        post_id,
+      </if>
+      <if test="isCharge != null" >
+        is_charge,
+      </if>
+      <if test="isMajor != null" >
+        is_major,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="employeeId != null" >
+        #{employeeId},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId},
+      </if>
+      <if test="postId != null" >
+        #{postId},
+      </if>
+      <if test="isCharge != null" >
+        #{isCharge},
+      </if>
+      <if test="isMajor != null" >
+        #{isMajor},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsEmployeeOrganization" >
+    update dms_employee_organization
+    <set >
+      <if test="employeeId != null" >
+        employee_id = #{employeeId},
+      </if>
+      <if test="organizationId != null" >
+        organization_id = #{organizationId},
+      </if>
+      <if test="postId != null" >
+        post_id = #{postId},
+      </if>
+      <if test="isCharge != null" >
+        is_charge = #{isCharge},
+      </if>
+      <if test="isMajor != null" >
+        is_major = #{isMajor},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsEmployeeOrganization" >
+    update dms_employee_organization
+    set employee_id = #{employeeId},
+      organization_id = #{organizationId},
+      post_id = #{postId},
+      is_charge = #{isCharge},
+      is_major = #{isMajor},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="employeeId != null" >
+        employee_id = #{employeeId}
+      </if>
+      <if test="organizationId != null" >
+        AND organization_id = #{organizationId}
+      </if>
+      <if test="postId != null" >
+        AND post_id = #{postId}
+      </if>
+      <if test="isCharge != null" >
+        AND is_charge = #{isCharge}
+      </if>
+      <if test="isMajor != null" >
+        AND is_major = #{isMajor}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsEmployeeOrganization" resultMap="DmsEmployeeOrganizationResultMap" >
+    select 
+    <include refid="DmsEmployeeOrganization_Column_List" />
+    from dms_employee_organization
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_employee_organization
+    <set >
+      <if test="po.employeeId != null" >
+        employee_id = #{po.employeeId},
+      </if>
+      <if test="po.organizationId != null" >
+        organization_id = #{po.organizationId},
+      </if>
+      <if test="po.postId != null" >
+        post_id = #{po.postId},
+      </if>
+      <if test="po.isCharge != null" >
+        is_charge = #{po.isCharge},
+      </if>
+      <if test="po.isMajor != null" >
+        is_major = #{po.isMajor},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  
+  <!-- +++++++ 自定义sql start +++++++ -->
+
+  <resultMap id="DmsEmployeeOrganizationVoResultMap" type="com.coracle.dms.vo.DmsEmployeeOrganizationVo" extends="DmsEmployeeOrganizationResultMap">
+    <result column="organization" property="organization" jdbcType="VARCHAR"/>
+    <result column="post" property="post" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <!-- 批量新增 -->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into
+      dms_employee_organization(employee_id, organization_id, post_id, is_charge, is_major, created_date, created_by, last_updated_date, last_updated_by, remove_flag)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.employeeId}, #{item.organizationId},#{item.postId},#{item.isCharge},#{item.isMajor},#{item.createdDate},#{item.createdBy},#{item.lastUpdatedDate},#{item.lastUpdatedBy},#{item.removeFlag})
+    </foreach>
+  </insert>
+
+  <update id="batchRemove" parameterType="java.util.List">
+    update dms_employee_organization set remove_flag = 1 where id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+
+  <!-- 根据员工id获取员工-组织管理信息id列表 -->
+  <select id="selectIdListByEmployeeId" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select
+      eo.id
+    from
+      dms_employee_organization eo
+    where
+      eo.employee_id = #{employeeId}
+      and eo.remove_flag = 0
+  </select>
+
+  <!-- 根据员工id获取员工组织关系信息列表 -->
+  <select id="selectVoByEmployeeId" parameterType="java.lang.Long" resultMap="DmsEmployeeOrganizationVoResultMap">
+    select
+      eo.*,
+      o.name organization,
+      p.name post
+    from
+      dms_employee_organization eo
+    left join dms_organization o on o.id = eo.organization_id
+    left join dms_post p on p.id = eo.post_id
+    where
+      eo.remove_flag = 0
+      and eo.employee_id = #{id}
+  </select>
+
+  <!-- 将员工的所有主组织(除了id为#{id}的这一条)改为非主组织 -->
+  <update id="updateNotMajorByCondition" parameterType="com.coracle.dms.po.DmsEmployeeOrganization">
+    update
+      dms_employee_organization eo
+    set
+      eo.is_major = 0
+    where
+      eo.employee_id = #{employeeId}
+      and eo.id != #{id}
+      and eo.remove_flag = 0
+  </update>
+
+  <!-- 将组织的所有主负责人(除了id为#{id}的这一条)改为非主负责人 -->
+  <update id="updateNotChargeByCondition" parameterType="com.coracle.dms.po.DmsEmployeeOrganization">
+    update
+      dms_employee_organization eo
+    set
+      eo.is_charge = 0
+    where
+      eo.organization_id = #{organizationId}
+      and eo.id != #{id}
+      and eo.remove_flag = 0
+  </update>
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>

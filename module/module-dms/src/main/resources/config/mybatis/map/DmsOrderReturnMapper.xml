@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderReturnMapper" >
+  <resultMap id="DmsOrderReturnResultMap" type="com.coracle.dms.po.DmsOrderReturn" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="apply_date" property="applyDate" jdbcType="TIMESTAMP" />
+    <result column="buyer_status" property="buyerStatus" jdbcType="INTEGER" />
+    <result column="seller_status" property="sellerStatus" jdbcType="INTEGER" />
+    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+    <result column="audit_by" property="auditBy" jdbcType="BIGINT" />
+    <result column="audit_date" property="auditDate" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsOrderReturn_Column_List" >
+    id, user_id, order_type, code, amount, customer_name, contacts, phone, area_id, apply_date, 
+    buyer_status, seller_status, audit_status, audit_by, audit_date, remark, created_date, 
+    created_by, last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsOrderReturnResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsOrderReturn_Column_List" />
+    from dms_order_return
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_order_return
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrderReturn" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_order_return (user_id, order_type, code, amount, customer_name, contacts, 
+      phone, area_id, apply_date, buyer_status, seller_status, audit_status, 
+      audit_by, audit_date, remark, created_date, created_by, last_updated_date, 
+      last_updated_by, remove_flag)
+    values (#{userId}, #{orderType}, #{code}, #{amount}, #{customerName}, #{contacts}, 
+      #{phone}, #{areaId}, #{applyDate}, #{buyerStatus}, #{sellerStatus}, #{auditStatus}, 
+      #{auditBy}, #{auditDate}, #{remark}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, 
+      #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrderReturn" >
+    insert into dms_order_return
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="applyDate != null" >
+        apply_date,
+      </if>
+      <if test="buyerStatus != null" >
+        buyer_status,
+      </if>
+      <if test="sellerStatus != null" >
+        seller_status,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="auditBy != null" >
+        audit_by,
+      </if>
+      <if test="auditDate != null" >
+        audit_date,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="orderType != null" >
+        #{orderType},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="amount != null" >
+        #{amount},
+      </if>
+      <if test="customerName != null" >
+        #{customerName},
+      </if>
+      <if test="contacts != null" >
+        #{contacts},
+      </if>
+      <if test="phone != null" >
+        #{phone},
+      </if>
+      <if test="areaId != null" >
+        #{areaId},
+      </if>
+      <if test="applyDate != null" >
+        #{applyDate},
+      </if>
+      <if test="buyerStatus != null" >
+        #{buyerStatus},
+      </if>
+      <if test="sellerStatus != null" >
+        #{sellerStatus},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus},
+      </if>
+      <if test="auditBy != null" >
+        #{auditBy},
+      </if>
+      <if test="auditDate != null" >
+        #{auditDate},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrderReturn" >
+    update dms_order_return
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType},
+      </if>
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId},
+      </if>
+      <if test="applyDate != null" >
+        apply_date = #{applyDate},
+      </if>
+      <if test="buyerStatus != null" >
+        buyer_status = #{buyerStatus},
+      </if>
+      <if test="sellerStatus != null" >
+        seller_status = #{sellerStatus},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus},
+      </if>
+      <if test="auditBy != null" >
+        audit_by = #{auditBy},
+      </if>
+      <if test="auditDate != null" >
+        audit_date = #{auditDate},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrderReturn" >
+    update dms_order_return
+    set user_id = #{userId},
+      order_type = #{orderType},
+      code = #{code},
+      amount = #{amount},
+      customer_name = #{customerName},
+      contacts = #{contacts},
+      phone = #{phone},
+      area_id = #{areaId},
+      apply_date = #{applyDate},
+      buyer_status = #{buyerStatus},
+      seller_status = #{sellerStatus},
+      audit_status = #{auditStatus},
+      audit_by = #{auditBy},
+      audit_date = #{auditDate},
+      remark = #{remark},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="userId != null" >
+        user_id = #{userId}
+      </if>
+      <if test="orderType != null" >
+        AND order_type = #{orderType}
+      </if>
+      <if test="code != null and code != ''" >
+        AND code = #{code}
+      </if>
+      <if test="amount != null" >
+        AND amount = #{amount}
+      </if>
+      <if test="customerName != null and customerName != ''" >
+        AND customer_name = #{customerName}
+      </if>
+      <if test="contacts != null and contacts != ''" >
+        AND contacts = #{contacts}
+      </if>
+      <if test="phone != null and phone != ''" >
+        AND phone = #{phone}
+      </if>
+      <if test="areaId != null" >
+        AND area_id = #{areaId}
+      </if>
+      <if test="applyDate != null" >
+        AND apply_date = #{applyDate}
+      </if>
+      <if test="buyerStatus != null" >
+        AND buyer_status = #{buyerStatus}
+      </if>
+      <if test="sellerStatus != null" >
+        AND seller_status = #{sellerStatus}
+      </if>
+      <if test="auditStatus != null" >
+        AND audit_status = #{auditStatus}
+      </if>
+      <if test="auditBy != null" >
+        AND audit_by = #{auditBy}
+      </if>
+      <if test="auditDate != null" >
+        AND audit_date = #{auditDate}
+      </if>
+      <if test="remark != null and remark != ''" >
+        AND remark = #{remark}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrderReturn" resultMap="DmsOrderReturnResultMap" >
+    select 
+    <include refid="DmsOrderReturn_Column_List" />
+    from dms_order_return
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_order_return
+    <set >
+      <if test="po.userId != null" >
+        user_id = #{po.userId},
+      </if>
+      <if test="po.orderType != null" >
+        order_type = #{po.orderType},
+      </if>
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.amount != null" >
+        amount = #{po.amount},
+      </if>
+      <if test="po.customerName != null" >
+        customer_name = #{po.customerName},
+      </if>
+      <if test="po.contacts != null" >
+        contacts = #{po.contacts},
+      </if>
+      <if test="po.phone != null" >
+        phone = #{po.phone},
+      </if>
+      <if test="po.areaId != null" >
+        area_id = #{po.areaId},
+      </if>
+      <if test="po.applyDate != null" >
+        apply_date = #{po.applyDate},
+      </if>
+      <if test="po.buyerStatus != null" >
+        buyer_status = #{po.buyerStatus},
+      </if>
+      <if test="po.sellerStatus != null" >
+        seller_status = #{po.sellerStatus},
+      </if>
+      <if test="po.auditStatus != null" >
+        audit_status = #{po.auditStatus},
+      </if>
+      <if test="po.auditBy != null" >
+        audit_by = #{po.auditBy},
+      </if>
+      <if test="po.auditDate != null" >
+        audit_date = #{po.auditDate},
+      </if>
+      <if test="po.remark != null" >
+        remark = #{po.remark},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- ++++++++++++++++++++++++++++++++++ 自定义sql start ++++++++++++++++++++++++++++++++++ -->
+
+  <resultMap id="DmsOrderReturnVoResultMap" extends="DmsOrderReturnResultMap" type="com.coracle.dms.vo.DmsOrderReturnVo" >
+    <result column="order_type_text" property="orderTypeText" jdbcType="VARCHAR" />
+    <result column="buyer_status_text" property="buyerStatusText" jdbcType="VARCHAR" />
+    <result column="seller_status_text" property="sellerStatusText" jdbcType="VARCHAR" />
+    <result column="area_text" property="areaText" jdbcType="VARCHAR" /> 
+    <collection column="id" property="returnItemList" select="com.coracle.dms.dao.mybatis.DmsOrderReturnItemMapper.getProductItemList" />
+  </resultMap>
+  <!-- 退换货详情返回.包括配送数据 -->
+  <resultMap id="DmsOrderReturnDetailResultMap" extends="DmsOrderReturnVoResultMap" type="com.coracle.dms.vo.DmsOrderReturnVo" >
+    <collection column="id" property="returnDelivery" select="com.coracle.dms.dao.mybatis.DmsOrderReturnDeliveryMapper.getDeliveryInfo" />
+    <collection column="id" property="returnChannelDelivery" select="com.coracle.dms.dao.mybatis.DmsOrderReturnDeliveryMapper.getDeliveryInfoByCahnnel" />
+    <!-- 待发货列表 -->
+    <collection column="id" property="undeliveredList" select="com.coracle.dms.dao.mybatis.DmsOrderReturnItemMapper.selectUndeliveredListByOrderId" />
+    <!-- 已发货列表 -->
+    <collection column="id" property="deliveredList" select="com.coracle.dms.dao.mybatis.DmsOrderDeliveryItemMapper.selectDeliveredListByOrderIdRT" />
+  </resultMap>
+  <select id="getPageList" parameterType="com.coracle.dms.vo.DmsOrderReturnVo" resultMap="DmsOrderReturnVoResultMap" >
+     select o.*,
+     		(select b.`name` from dms_sys_area b where 1=1 and b.id = o.area_id) area_text,
+			case o.order_type
+        when 1 then '退货'
+        when 2 then '换货'
+      end as order_type_text,
+			case o.buyer_status
+        		when 1 then '待审核'
+        		when 2 then '待退货'
+				when 3 then '退货中'
+				when 4 then '待发货'
+				when 5 then '待收货'
+				when 6 then '已完成'
+				when 7 then '已取消'
+				when 8 then '待确认退款'
+      end as buyer_status_text,
+			case o.seller_status
+        		when 1 then '待审核'
+        		when 2 then '待客户发货'
+				when 3 then '待收货'
+				when 4 then '待发货'
+				when 5 then '待客户收货'
+				when 6 then '已完成'
+				when 7 then '已取消'
+				when 8 then '待确认退款'
+      end as seller_status_text
+	from dms_order_return o where 1=1 and o.remove_flag=0
+	<if test="userId != null" >
+        and o.user_id = #{userId}
+    </if>
+    <if test="orderType != null" >
+        AND o.order_type = #{orderType}
+      </if>
+    <if test="code != null and code != ''" >
+        and o.code like CONCAT('%', #{code},'%')
+     </if>
+     <if test="customerName != null and customerName != ''" >
+       and o.customer_name like CONCAT('%', #{customerName},'%')
+     </if>
+     <if test="areaId != null" >
+        AND o.area_id = #{areaId}
+      </if>
+     <if test="buyerStatus != null" >
+        and o.buyer_status = #{buyerStatus}
+     </if>
+     <if test="kw != null and kw!=''">
+     	and  o.id in (
+			select t.order_return_id from dms_order_return_item t where t.product_name like CONCAT('%', #{kw},'%'))
+     </if>
+     <if test="createTimeStart != null and createTimeStart !=''">
+          <![CDATA[ AND o.apply_date >= str_to_date(concat(#{createTimeStart},' 00:00:00'),'%Y-%m-%d %H:%i:%s') ]]>
+      </if>
+      <if test="createTimeEnd != null and createTimeEnd !=''">
+          <![CDATA[ AND o.apply_date <= str_to_date(concat(#{createTimeEnd},' 23:59:59'),'%Y-%m-%d %H:%i:%s') ]]>
+      </if>
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  
+  <select id="selectDetailByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsOrderReturnDetailResultMap" >
+     select o.*,
+     		(select b.`name` from dms_sys_area b where 1=1 and b.id = o.area_id) area_text,
+			case o.order_type
+        when 1 then '退货'
+        when 2 then '换货'
+      end as order_type_text,
+			case o.buyer_status
+        		when 1 then '待审核'
+        		when 2 then '待退货'
+				when 3 then '退货中'
+				when 4 then '待发货'
+				when 5 then '待收货'
+				when 6 then '已完成'
+				when 7 then '已取消'
+				when 8 then '待确认退款'
+      end as buyer_status_text,
+			case o.seller_status
+		        when 1 then '待审核'
+		        when 2 then '待客户发货'
+				when 3 then '待收货'
+				when 4 then '待发货'
+				when 5 then '待客户收货'
+				when 6 then '已完成'
+				when 7 then '已取消'
+				when 8 then '待确认退款'
+      end as seller_status_text
+	from dms_order_return o where 1=1 and o.remove_flag=0 and o.id=#{id}
+  </select>
+  
+  <!-- 根据账号id获取用户的退换货订单数量 -->
+  <select id="selectCountByUserId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select
+      count(*)
+    from
+      dms_order_return
+    where
+      user_id = #{userId}
+      and buyer_status not in (6, 7)
+      and remove_flag = 0
+  </select>
+
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>

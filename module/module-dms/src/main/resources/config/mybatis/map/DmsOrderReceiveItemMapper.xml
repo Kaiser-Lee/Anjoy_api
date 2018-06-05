@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderReceiveItemMapper" >
+  <resultMap id="DmsOrderReceiveItemResultMap" type="com.coracle.dms.po.DmsOrderReceiveItem" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="related_type" property="relatedType" jdbcType="INTEGER" />
+    <result column="order_product_id" property="orderProductId" jdbcType="BIGINT" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="storage_id" property="storageId" jdbcType="BIGINT" />
+    <result column="storage_local_id" property="storageLocalId" jdbcType="BIGINT" />
+    <result column="receive_date" property="receiveDate" jdbcType="TIMESTAMP" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsOrderReceiveItem_Column_List" >
+    id, order_id, related_type, order_product_id, count, storage_id, storage_local_id, 
+    receive_date, created_date, created_by, last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsOrderReceiveItemResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsOrderReceiveItem_Column_List" />
+    from dms_order_receive_item
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_order_receive_item
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrderReceiveItem" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_order_receive_item (order_id, related_type, order_product_id, count, storage_id, storage_local_id, 
+      receive_date, created_date, created_by, last_updated_date, last_updated_by, 
+      remove_flag)
+    values (#{orderId}, #{relatedType}, #{orderProductId}, #{count}, #{storageId}, #{storageLocalId}, 
+      #{receiveDate}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, 
+      #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrderReceiveItem" >
+    insert into dms_order_receive_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="relatedType != null" >
+        related_type,
+      </if>
+      <if test="orderProductId != null" >
+        order_product_id,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="storageId != null" >
+        storage_id,
+      </if>
+      <if test="storageLocalId != null" >
+        storage_local_id,
+      </if>
+      <if test="receiveDate != null" >
+        receive_date,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="orderId != null" >
+        #{orderId},
+      </if>
+      <if test="relatedType != null" >
+        #{relatedType},
+      </if>
+      <if test="orderProductId != null" >
+        #{orderProductId},
+      </if>
+      <if test="count != null" >
+        #{count},
+      </if>
+      <if test="storageId != null" >
+        #{storageId},
+      </if>
+      <if test="storageLocalId != null" >
+        #{storageLocalId},
+      </if>
+      <if test="receiveDate != null" >
+        #{receiveDate},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrderReceiveItem" >
+    update dms_order_receive_item
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId},
+      </if>
+      <if test="relatedType != null" >
+        related_type = #{relatedType},
+      </if>
+      <if test="orderProductId != null" >
+        order_product_id = #{orderProductId},
+      </if>
+      <if test="count != null" >
+        count = #{count},
+      </if>
+      <if test="storageId != null" >
+        storage_id = #{storageId},
+      </if>
+      <if test="storageLocalId != null" >
+        storage_local_id = #{storageLocalId},
+      </if>
+      <if test="receiveDate != null" >
+        receive_date = #{receiveDate},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrderReceiveItem" >
+    update dms_order_receive_item
+    set order_id = #{orderId},
+      related_type = #{relatedType},
+      order_product_id = #{orderProductId},
+      count = #{count},
+      storage_id = #{storageId},
+      storage_local_id = #{storageLocalId},
+      receive_date = #{receiveDate},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="orderId != null" >
+        order_id = #{orderId}
+      </if>
+      <if test="relatedType != null" >
+        AND related_type = #{relatedType}
+      </if>
+      <if test="orderProductId != null" >
+        AND order_product_id = #{orderProductId}
+      </if>
+      <if test="count != null" >
+        AND count = #{count}
+      </if>
+      <if test="storageId != null" >
+        AND storage_id = #{storageId}
+      </if>
+      <if test="storageLocalId != null" >
+        AND storage_local_id = #{storageLocalId}
+      </if>
+      <if test="receiveDate != null" >
+        AND receive_date = #{receiveDate}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrderReceiveItem" resultMap="DmsOrderReceiveItemResultMap" >
+    select 
+    <include refid="DmsOrderReceiveItem_Column_List" />
+    from dms_order_receive_item
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_order_receive_item
+    <set >
+      <if test="po.orderId != null" >
+        order_id = #{po.orderId},
+      </if>
+      <if test="po.relatedType != null" >
+        related_type = #{po.relatedType},
+      </if>
+      <if test="po.orderProductId != null" >
+        order_product_id = #{po.orderProductId},
+      </if>
+      <if test="po.count != null" >
+        count = #{po.count},
+      </if>
+      <if test="po.storageId != null" >
+        storage_id = #{po.storageId},
+      </if>
+      <if test="po.storageLocalId != null" >
+        storage_local_id = #{po.storageLocalId},
+      </if>
+      <if test="po.receiveDate != null" >
+        receive_date = #{po.receiveDate},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

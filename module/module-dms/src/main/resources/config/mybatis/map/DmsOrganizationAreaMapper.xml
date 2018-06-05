@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrganizationAreaMapper" >
+  <resultMap id="DmsOrganizationAreaResultMap" type="com.coracle.dms.po.DmsOrganizationArea" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="organization_id" property="organizationId" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsOrganizationArea_Column_List" >
+    id, organization_id, area_id, created_date, created_by, last_updated_date, last_updated_by,
+    remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsOrganizationAreaResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsOrganizationArea_Column_List" />
+    from dms_organization_area
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_organization_area
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrganizationArea" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_organization_area (organization_id, area_id, created_date, created_by, last_updated_date,
+      last_updated_by, remove_flag)
+    values (#{organizationId}, #{areaId}, #{createdDate}, #{createdBy}, #{lastUpdatedDate},
+      #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrganizationArea" >
+    insert into dms_organization_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="organizationId != null" >
+        organization_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId},
+      </if>
+      <if test="areaId != null" >
+        #{areaId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrganizationArea" >
+    update dms_organization_area
+    <set >
+      <if test="organizationId != null" >
+        organization_id = #{organizationId},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrganizationArea" >
+    update dms_organization_area
+    set organization_id = #{organizationId},
+      area_id = #{areaId},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="organizationId != null" >
+        organization_id = #{organizationId}
+      </if>
+      <if test="areaId != null" >
+        AND area_id = #{areaId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrganizationArea" resultMap="DmsOrganizationAreaResultMap" >
+    select 
+    <include refid="DmsOrganizationArea_Column_List" />
+    from dms_organization_area
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_organization_area
+    <set >
+      <if test="po.organizationId != null" >
+        organization_id = #{po.organizationId},
+      </if>
+      <if test="po.areaId != null" >
+        area_id = #{po.areaId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+
+  <!-- 批量新增 -->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into
+      dms_organization_area(organization_id, area_id, created_date, created_by, last_updated_date, last_updated_by, remove_flag)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.organizationId}, #{item.areaId},#{item.createdDate},#{item.createdBy},#{item.lastUpdatedDate},#{item.lastUpdatedBy},#{item.removeFlag})
+    </foreach>
+  </insert>
+
+  <!-- 根据组织id获取组织管理的区域id列表 -->
+  <select id="selectAreaIdListByOrganizationId" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select
+      oa.area_id
+    from
+      dms_organization_area oa
+    where
+      oa.organization_id = #{organizationId}
+      and oa.remove_flag = 0
+  </select>
+
+  <!-- 根据组织id删除组织-区域管理关系 -->
+  <update id="removeByOrganizationId" parameterType="java.lang.Long">
+    update dms_organization_area set remove_flag = 1 where organization_id = #{id}
+  </update>
+
+  <!-- 根据条件删除组织-区域管理关系 -->
+  <update id="removeByCondition" parameterType="java.util.Map">
+    update
+      dms_organization_area
+    set
+      remove_flag = 1
+    where
+      organization_id = #{organizationId}
+    <foreach collection="areaIdList" item="item" open="and area_id in (" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>

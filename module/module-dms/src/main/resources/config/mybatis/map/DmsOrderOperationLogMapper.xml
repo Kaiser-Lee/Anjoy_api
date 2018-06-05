@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderOperationLogMapper" >
+  <resultMap id="DmsOrderOperationLogResultMap" type="com.coracle.dms.po.DmsOrderOperationLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="related_type" property="relatedType" jdbcType="INTEGER"/>
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="operation" property="operation" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsOrderOperationLog_Column_List" >
+    id, related_type, order_id, operation, created_date, created_by, last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsOrderOperationLogResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsOrderOperationLog_Column_List" />
+    from dms_order_operation_log
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_order_operation_log
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrderOperationLog" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_order_operation_log (related_type, order_id, operation, created_date, created_by, last_updated_date,
+      last_updated_by, remove_flag)
+    values (#{relatedType}, #{orderId}, #{operation}, #{createdDate}, #{createdBy}, #{lastUpdatedDate},
+      #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrderOperationLog" >
+    insert into dms_order_operation_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="relatedType != null" >
+        related_type,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="operation != null" >
+        operation,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="relatedType != null" >
+        #{relatedType},
+      </if>
+      <if test="orderId != null" >
+        #{orderId},
+      </if>
+      <if test="operation != null" >
+        #{operation},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrderOperationLog" >
+    update dms_order_operation_log
+    <set >
+      <if test="relatedType != null" >
+        related_type = #{relatedType},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId},
+      </if>
+      <if test="operation != null" >
+        operation = #{operation},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrderOperationLog" >
+    update dms_order_operation_log
+    set related_type = #{relatedType},
+      order_id = #{orderId},
+      operation = #{operation},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="relatedType != null" >
+        related_type = #{relatedType}
+      </if>
+      <if test="orderId != null" >
+        AND order_id = #{orderId}
+      </if>
+      <if test="operation != null and operation != ''" >
+        AND operation = #{operation}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrderOperationLog" resultMap="DmsOrderOperationLogResultMap" >
+    select 
+    <include refid="DmsOrderOperationLog_Column_List" />
+    from dms_order_operation_log
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_order_operation_log
+    <set >
+      <if test="po.relatedType != null" >
+        related_type = #{po.relatedType},
+      </if>
+      <if test="po.orderId != null" >
+        order_id = #{po.orderId},
+      </if>
+      <if test="po.operation != null" >
+        operation = #{po.operation},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

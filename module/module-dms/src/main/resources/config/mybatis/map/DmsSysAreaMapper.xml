@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsSysAreaMapper">
+  <resultMap id="DmsSysAreaResultMap" type="com.coracle.dms.po.DmsSysArea">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
+    <result column="active" jdbcType="INTEGER" property="active" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+    <result column="parent_area_id" jdbcType="BIGINT" property="parentAreaId" />
+    <result column="area_path" jdbcType="VARCHAR" property="areaPath" />
+    <result column="full_path" jdbcType="VARCHAR" property="fullPath" />
+    <result column="anjoy_id" jdbcType="VARCHAR" property="anjoyId" />
+  </resultMap>
+  <sql id="DmsSysArea_Column_List">
+    id, name, area_code, active, sort_order, parent_area_id, area_path, full_path, anjoy_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsSysAreaResultMap">
+    select 
+    <include refid="DmsSysArea_Column_List" />
+    from dms_sys_area
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dms_sys_area
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyProperty="id" parameterType="com.coracle.dms.po.DmsSysArea" useGeneratedKeys="true">
+    insert into dms_sys_area (name, area_code, active, sort_order, parent_area_id, area_path, 
+      full_path, anjoy_id)
+    values (#{name}, #{areaCode}, #{active}, #{sortOrder}, #{parentAreaId}, #{areaPath}, 
+      #{fullPath}, #{anjoyId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsSysArea">
+    insert into dms_sys_area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="areaCode != null">
+        area_code,
+      </if>
+      <if test="active != null">
+        active,
+      </if>
+      <if test="sortOrder != null">
+        sort_order,
+      </if>
+      <if test="parentAreaId != null">
+        parent_area_id,
+      </if>
+      <if test="areaPath != null">
+        area_path,
+      </if>
+      <if test="fullPath != null">
+        full_path,
+      </if>
+      <if test="anjoyId != null">
+        anjoy_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="name != null">
+        #{name},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode},
+      </if>
+      <if test="active != null">
+        #{active},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder},
+      </if>
+      <if test="parentAreaId != null">
+        #{parentAreaId},
+      </if>
+      <if test="areaPath != null">
+        #{areaPath},
+      </if>
+      <if test="fullPath != null">
+        #{fullPath},
+      </if>
+      <if test="anjoyId != null">
+        #{anjoyId},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsSysArea">
+    update dms_sys_area
+    <set>
+      <if test="name != null">
+        name = #{name},
+      </if>
+      <if test="areaCode != null">
+        area_code = #{areaCode},
+      </if>
+      <if test="active != null">
+        active = #{active},
+      </if>
+      <if test="sortOrder != null">
+        sort_order = #{sortOrder},
+      </if>
+      <if test="parentAreaId != null">
+        parent_area_id = #{parentAreaId},
+      </if>
+      <if test="areaPath != null">
+        area_path = #{areaPath},
+      </if>
+      <if test="fullPath != null">
+        full_path = #{fullPath},
+      </if>
+      <if test="anjoyId != null">
+        anjoy_id = #{anjoyId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsSysArea">
+    update dms_sys_area
+    set name = #{name},
+      area_code = #{areaCode},
+      active = #{active},
+      sort_order = #{sortOrder},
+      parent_area_id = #{parentAreaId},
+      area_path = #{areaPath},
+      full_path = #{fullPath},
+      anjoy_id = #{anjoyId}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition">
+    <where>
+      <if test="name != null and name != ''">
+        name = #{name}
+      </if>
+      <if test="areaCode != null and areaCode != ''">
+        AND area_code = #{areaCode}
+      </if>
+      <if test="active != null">
+        AND active = #{active}
+      </if>
+      <if test="sortOrder != null">
+        AND sort_order = #{sortOrder}
+      </if>
+      <if test="parentAreaId != null">
+        AND parent_area_id = #{parentAreaId}
+      </if>
+      <if test="areaPath != null and areaPath != ''">
+        AND area_path = #{areaPath}
+      </if>
+      <if test="fullPath != null and fullPath != ''">
+        AND full_path = #{fullPath}
+      </if>
+      <if test="anjoyId != null and anjoyId != ''">
+        AND anjoy_id = #{anjoyId}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsSysArea" resultMap="DmsSysAreaResultMap">
+    select 
+    <include refid="DmsSysArea_Column_List" />
+    from dms_sys_area
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''">
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''">
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective">
+    update dms_sys_area
+    <set>
+      <if test="po.name != null">
+        name = #{po.name},
+      </if>
+      <if test="po.areaCode != null">
+        area_code = #{po.areaCode},
+      </if>
+      <if test="po.active != null">
+        active = #{po.active},
+      </if>
+      <if test="po.sortOrder != null">
+        sort_order = #{po.sortOrder},
+      </if>
+      <if test="po.parentAreaId != null">
+        parent_area_id = #{po.parentAreaId},
+      </if>
+      <if test="po.areaPath != null">
+        area_path = #{po.areaPath},
+      </if>
+      <if test="po.fullPath != null">
+        full_path = #{po.fullPath},
+      </if>
+      <if test="po.anjoyId != null">
+        anjoy_id = #{po.anjoyId},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size &gt; 0">
+      <foreach close=")" collection="ids" item="listItem" open="or id in(" separator=",">
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++Parting line : new sql here++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <!-- 区域树形结构类型 -->
+  <resultMap id="DmsSysAreaTreeResultMap" type="com.coracle.yk.base.vo.TreeNode">
+    <result property="key" column="key" jdbcType="VARCHAR"/>
+    <result property="value" column="value" jdbcType="VARCHAR"/>
+    <result property="label" column="label" jdbcType="VARCHAR"/>
+    <result property="isLeaf" column="isLeaf" jdbcType="BOOLEAN"/>
+    <collection property="children" column="key" javaType="java.util.List" ofType="com.coracle.yk.base.vo.TreeNode" select="selectByParentId"/>
+  </resultMap>
+
+  <!-- 根据父id获取子数据 -->
+  <select id="selectByParentId" parameterType="java.lang.Long" resultMap="DmsSysAreaTreeResultMap">
+    select
+    d.id as 'key', d.id as 'value',d.name as label,false as isLeaf, 0 as sort_order
+    from
+    dms_sys_area d
+    where
+    d.parent_area_id = #{id}
+  </select>
+
+  <select id="findAreaPageList" resultMap="DmsSysAreaResultMap" resultType="com.coracle.dms.po.DmsSysArea">
+    SELECT
+    <include refid="DmsSysArea_Column_List" />
+    FROM
+    dms_sys_area
+  </select>
+
+  <select id="findAreaByParentId" resultMap="DmsSysAreaResultMap" resultType="com.coracle.dms.po.DmsSysArea">
+    SELECT
+    <include refid="DmsSysArea_Column_List" />
+    FROM
+    dms_sys_area
+    where active=1 and parent_area_id=#{parentAreaId} order by sort_order desc
+  </select>
+
+  <select id="selectByName" resultMap="DmsSysAreaResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="DmsSysArea_Column_List" />
+    from dms_sys_area
+    where name like #{name}
+  </select>
+
+  <select id="selectById" resultMap="DmsSysAreaResultMap" parameterType="java.lang.Long" >
+    select
+    sa.id, sa.name, sa.area_code areaCode, sa.active, sa.sort_order sortOrder, sa.parent_area_id parentAreaId, sa.area_path areaPath, sa.full_path fullPath,
+    group_concat(sar.region_id) regionId,group_concat(sr.full_path separator ';') regionName
+    from dms_sys_area sa
+    LEFT JOIN dms_sys_area_region sar on sar.area_id=sa.id
+    LEFT JOIN dms_sys_region sr on sr.region_id=sar.region_id
+    where sa.id =#{id} GROUP BY sa.id
+  </select>
+
+  <select id="findChildById" resultType="java.lang.Integer" parameterType="java.lang.Long" >
+    select count(*) from dms_sys_area s
+    where s.parent_area_id =#{id}
+  </select>
+
+  <select id="selectByAreaCode" parameterType="java.lang.String" resultMap="DmsSysAreaResultMap">
+    select
+    <include refid="DmsSysArea_Column_List" />
+    from dms_sys_area
+    where area_code = #{areaCode}
+  </select>
+
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(t.id) from dms_sys_area t
+  </select>
+</mapper>

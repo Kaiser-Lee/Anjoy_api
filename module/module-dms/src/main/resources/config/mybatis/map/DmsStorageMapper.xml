@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsStorageMapper" >
+  <resultMap id="DmsStorageResultMap" type="com.coracle.dms.po.DmsStorage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="local_flag" property="localFlag" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="acreage" property="acreage" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="contacts_mobile" property="contactsMobile" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="relation_id" property="relationId" jdbcType="INTEGER" />
+    <result column="storage_type" property="storageType" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsStorage_Column_List" >
+    id, name, local_flag, code, acreage, active, contacts, contacts_mobile, province, 
+    city, county, address, org_id, created_date, created_by, last_updated_date, last_updated_by,storage_type,relation_id,
+    remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsStorageResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsStorage_Column_List" />
+    from dms_storage
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_storage
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsStorage" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_storage (name, local_flag, code, acreage, active, contacts, contacts_mobile, 
+      province, city, county, address, org_id, created_date, created_by, 
+      last_updated_date, last_updated_by, remove_flag,storage_type,relation_id)
+    values (#{name}, #{localFlag}, #{code}, #{acreage}, #{active}, #{contacts}, #{contactsMobile}, 
+      #{province}, #{city}, #{county}, #{address}, #{orgId}, #{createdDate}, #{createdBy}, 
+      #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag},#{storageType},#{relationId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsStorage" >
+    insert into dms_storage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="localFlag != null" >
+        local_flag,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="acreage != null" >
+        acreage,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="contactsMobile != null" >
+        contacts_mobile,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="localFlag != null" >
+        #{localFlag},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="acreage != null" >
+        #{acreage},
+      </if>
+      <if test="active != null" >
+        #{active},
+      </if>
+      <if test="contacts != null" >
+        #{contacts},
+      </if>
+      <if test="contactsMobile != null" >
+        #{contactsMobile},
+      </if>
+      <if test="province != null" >
+        #{province},
+      </if>
+      <if test="city != null" >
+        #{city},
+      </if>
+      <if test="county != null" >
+        #{county},
+      </if>
+      <if test="address != null" >
+        #{address},
+      </if>
+      <if test="orgId != null" >
+        #{orgId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsStorage" >
+    update dms_storage
+    <set >
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="localFlag != null" >
+        local_flag = #{localFlag},
+      </if>
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="acreage != null" >
+        acreage = #{acreage},
+      </if>
+      <if test="active != null" >
+        active = #{active},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts},
+      </if>
+      <if test="contactsMobile != null" >
+        contacts_mobile = #{contactsMobile},
+      </if>
+      <if test="province != null" >
+        province = #{province},
+      </if>
+      <if test="city != null" >
+        city = #{city},
+      </if>
+      <if test="county != null" >
+        county = #{county},
+      </if>
+      <if test="address != null" >
+        address = #{address},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsStorage" >
+    update dms_storage
+    set name = #{name},
+      local_flag = #{localFlag},
+      code = #{code},
+      acreage = #{acreage},
+      active = #{active},
+      contacts = #{contacts},
+      contacts_mobile = #{contactsMobile},
+      province = #{province},
+      city = #{city},
+      county = #{county},
+      address = #{address},
+      org_id = #{orgId},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="name != null and name != ''" >
+        name like CONCAT('%', #{name},'%')
+      </if>
+      <if test="localFlag != null" >
+        AND local_flag = #{localFlag}
+      </if>
+      <if test="code != null and code != ''" >
+        AND code like CONCAT('%', #{code},'%')
+      </if>
+      <if test="acreage != null and acreage != ''" >
+        AND acreage = #{acreage}
+      </if>
+      <if test="active != null" >
+        AND active = #{active}
+      </if>
+      <if test="contacts != null and contacts != ''" >
+        AND contacts = #{contacts}
+      </if>
+      <if test="contactsMobile != null and contactsMobile != ''" >
+        AND contacts_mobile = #{contactsMobile}
+      </if>
+      <if test="province != null and province != ''" >
+        AND province = #{province}
+      </if>
+      <if test="city != null and city != ''" >
+        AND city = #{city}
+      </if>
+      <if test="county != null and county != ''" >
+        AND county = #{county}
+      </if>
+      <if test="address != null and address != ''" >
+        AND address like CONCAT('%', #{address},'%')
+      </if>
+      <if test="orgId != null" >
+        AND org_id = #{orgId}
+      </if>
+      <if test="storageType != null" >
+        AND storage_type = #{storageType}
+      </if>
+      <if test="relationId != null" >
+        AND relation_id = #{relationId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsStorage" resultMap="DmsStorageResultMap" >
+    select 
+    <include refid="DmsStorage_Column_List" />
+    from dms_storage
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_storage
+    <set >
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.localFlag != null" >
+        local_flag = #{po.localFlag},
+      </if>
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.acreage != null" >
+        acreage = #{po.acreage},
+      </if>
+      <if test="po.active != null" >
+        active = #{po.active},
+      </if>
+      <if test="po.contacts != null" >
+        contacts = #{po.contacts},
+      </if>
+      <if test="po.contactsMobile != null" >
+        contacts_mobile = #{po.contactsMobile},
+      </if>
+      <if test="po.province != null" >
+        province = #{po.province},
+      </if>
+      <if test="po.city != null" >
+        city = #{po.city},
+      </if>
+      <if test="po.county != null" >
+        county = #{po.county},
+      </if>
+      <if test="po.address != null" >
+        address = #{po.address},
+      </if>
+      <if test="po.orgId != null" >
+        org_id = #{po.orgId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  <!--############################################## new sql update by tanyb ##############################################-->
+  <!--自定义vo-->
+  <resultMap id="DmsStorageVoResultMap" extends="DmsStorageResultMap"  type="com.coracle.dms.vo.DmsStorageVo">
+  	<result column="province_text" property="provinceText" jdbcType="VARCHAR" />
+  	<result column="city_text" property="cityText" jdbcType="VARCHAR" />
+  	<result column="county_text" property="countyText" jdbcType="VARCHAR" />
+  	<result column="org_text" property="orgText" jdbcType="VARCHAR" />
+    <collection property="storageAreaList" column="id" ofType="com.coracle.dms.po.DmsStorageArea" javaType="ArrayList"  
+    			select="com.coracle.dms.dao.mybatis.DmsStorageAreaMapper.getStorageAreaList"/>
+<!--     <collection property="storageLocalList" column="id" ofType="com.coracle.dms.po.DmsStorageLocal" javaType="ArrayList"   -->
+<!--     			select="com.coracle.dms.dao.mybatis.DmsStorageLocalMapper.getStorageLocalList"></collection> -->
+  </resultMap>
+  
+  <!-- 树形结构类型 -->
+  <resultMap id="DmsStorageTreeResultMap" type="com.coracle.yk.base.vo.TreeNode">
+    <result property="key" column="key" jdbcType="VARCHAR"/>
+    <result property="value" column="value" jdbcType="VARCHAR"/>
+    <result property="label" column="label" jdbcType="VARCHAR"/>
+    <result property="isLeaf" column="isLeaf" jdbcType="BOOLEAN"/>
+    <collection property="children" column="key" javaType="java.util.List" ofType="com.coracle.yk.base.vo.TreeNode" select="selectStorageLocalTree"/>
+  </resultMap>
+  
+  <select id="getPageList" parameterType="com.coracle.dms.vo.DmsStorageVo" resultMap="DmsStorageVoResultMap" >
+    select p.* from (
+		select a.*,
+		(select b.region_name from dms_sys_region b where 1=1 and b.region_id = a.province ) province_text,
+		(select b.region_name from dms_sys_region b where 1=1 and b.region_id = a.city) city_text,
+		(select b.region_name from dms_sys_region b where 1=1 and b.region_id = a.county ) county_text
+		from dms_storage a ) p where 1=1 
+      <if test="name != null and name != ''" >
+       and p.name like CONCAT('%', #{name},'%')
+      </if>
+      <if test="code != null and code != ''" >
+        AND p.code like CONCAT('%', #{code},'%')
+      </if>
+      <if test="active != null" >
+        AND p.active = #{active}
+      </if>
+      <if test="address != null and address != ''" >
+        AND p.address like CONCAT('%', #{address},'%')
+      </if>
+      <if test="kw != null and kw !=''">
+      	and (p.province_text like CONCAT('%', #{kw},'%') or p.city_text like CONCAT('%', #{kw},'%') or p.county_text like CONCAT('%', #{kw},'%'))
+      </if>
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+
+  <select id="getPageListForBill" parameterType="com.coracle.dms.vo.DmsStorageVo" resultMap="DmsStorageVoResultMap" >
+    select
+    <include refid="DmsStorage_Column_List" />
+    from dms_storage
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  
+  <select id="selectDetailByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsStorageVoResultMap" >
+    select a.id, a.name, a.local_flag, a.code, a.acreage, a.active, a.contacts, a.contacts_mobile, a.province, 
+    a.city, a.county, a.address, a.org_id, a.created_date, a.created_by, a.last_updated_date, a.last_updated_by,a.storage_type,a.relation_id,
+    a.remove_flag,
+	(select b.region_name from dms_sys_region b where 1=1 and b.region_id = a.province ) province_text,
+	(select b.region_name from dms_sys_region b where 1=1 and b.region_id = a.city) city_text,
+	(select b.region_name from dms_sys_region b where 1=1 and b.region_id = a.county ) county_text,
+	case a.storage_type
+	  	when 1 THEN (select b.`name` from dms_organization b where 1=1 and b.id=a.org_id AND b.remove_flag=0) 
+		when 2 THEN (select b.`name` from dms_channel b where 1=1 and b.id=a.org_id AND b.remove_flag=0)
+		when 3 THEN (select b.`name` from dms_channel b where 1=1 and b.id=a.org_id AND b.remove_flag=0)
+	end org_text
+	from dms_storage a where 1=1 and a.id=#{id} and a.remove_flag=0 
+  </select>
+
+  <select id="selectByOrgId" resultMap="DmsStorageResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsStorage_Column_List" />
+    from dms_storage
+    where org_id = #{orgId}
+  </select>
+  
+  <select id="getCountStorageCode" resultType="java.lang.Integer">
+    SELECT count(1) FROM dms_storage t where 1=1 and t.remove_flag=0  
+    <if test="code != null and code !=''">
+    	and t.code=#{code}
+    </if>
+    <if test="oldCode != null and oldCode !=''">
+    	 <![CDATA[ and t.code <> #{oldCode} ]]> 
+    </if>
+  </select>
+  
+  <select id="selectByRelation" resultMap="DmsStorageResultMap" >
+    select 
+    <include refid="DmsStorage_Column_List" />
+    from dms_storage
+    where relation_Id = #{relationId} and storage_type = #{relationType}
+  </select>
+  
+  <!-- 根据渠道联系人的账号id获取渠道商的仓库 -->
+  <select id="selectByChannelContactUserId" parameterType="java.lang.Long" resultMap="DmsStorageResultMap">
+    select
+      s.*
+    from
+	  dms_storage s
+    where
+	  s.relation_id = (
+		select
+		  cc.channel_id
+		from
+		  dms_channel_contacts cc
+		where
+		  cc.user_id = #{userId}
+		  and cc.remove_flag = 0
+	  )
+	  and s.storage_type = 2
+	  and s.remove_flag = 0
+  </select>
+  
+  <!-- 获取有效仓库-->
+  <select id="selectStorageTree" parameterType="com.coracle.dms.vo.DmsStorageVo" resultMap="DmsStorageTreeResultMap">
+    select distinct
+      s.id as `key`,
+      s.id as `value`,
+      s.name as `label`,
+      'false' as isLeaf
+    from
+        dms_storage s  where s.remove_flag=0 and s.active=1 
+     <if test="storageType != null">
+     	and s.storage_type = #{storageType}
+     </if>  
+  </select>
+
+  <!-- 获取仓库货位信息 -->
+  <select id="selectStorageLocalTree" parameterType="java.lang.Long" resultMap="DmsStorageTreeResultMap">
+    select
+      sl.id as `key`,
+      sl.id as `value`,
+      sl.code as `label`,
+      'false' as isLeaf
+    from
+      dms_storage_local sl
+    where
+      sl.storage_id = #{storageId}
+      and sl.remove_flag = 0 and sl.active=1
+  </select>
+  
+</mapper>

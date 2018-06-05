@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsUserMapper" >
+  <resultMap id="DmsUserResultMap" type="com.coracle.dms.po.DmsUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="photo_url" property="photoUrl" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="BIGINT" />
+    <result column="last_login_date" property="lastLoginDate" jdbcType="TIMESTAMP" />
+    <result column="auditor" property="auditor" jdbcType="BIGINT" />
+    <result column="audit_date" property="auditDate" jdbcType="TIMESTAMP" />
+    <result column="audit_opinion" property="auditOpinion" jdbcType="INTEGER" />
+    <result column="audit_remark" property="auditRemark" jdbcType="VARCHAR" />
+    <result column="mxm_id" property="mxmId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsUser_Column_List" >
+    id, account, salt, password, photo_url, status, source, staff_id, last_login_date,
+    auditor, audit_date, audit_opinion, audit_remark, mxm_id, created_date, created_by,
+    last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsUserResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsUser_Column_List" />
+    from dms_user
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_user
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsUser" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_user (account, salt, password, photo_url, status, source, staff_id,
+    last_login_date, auditor, audit_date, audit_opinion, audit_remark, mxm_id,
+    created_date, created_by, last_updated_date, last_updated_by, remove_flag)
+    values (#{account}, #{salt}, #{password}, #{photoUrl}, #{status}, #{source}, #{staffId},
+    #{lastLoginDate}, #{auditor}, #{auditDate}, #{auditOpinion}, #{auditRemark}, #{mxmId},
+    #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsUser" >
+    insert into dms_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="photoUrl != null" >
+        photo_url,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="lastLoginDate != null" >
+        last_login_date,
+      </if>
+      <if test="auditor != null" >
+        auditor,
+      </if>
+      <if test="auditDate != null" >
+        audit_date,
+      </if>
+      <if test="auditOpinion != null" >
+        audit_opinion,
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark,
+      </if>
+      <if test="mxmId != null" >
+        mxm_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="account != null" >
+        #{account},
+      </if>
+      <if test="salt != null" >
+        #{salt},
+      </if>
+      <if test="password != null" >
+        #{password},
+      </if>
+      <if test="photoUrl != null" >
+        #{photoUrl},
+      </if>
+      <if test="status != null" >
+        #{status},
+      </if>
+      <if test="source != null" >
+        #{source},
+      </if>
+      <if test="staffId != null" >
+        #{staffId},
+      </if>
+      <if test="lastLoginDate != null" >
+        #{lastLoginDate},
+      </if>
+      <if test="auditor != null" >
+        #{auditor},
+      </if>
+      <if test="auditDate != null" >
+        #{auditDate},
+      </if>
+      <if test="auditOpinion != null" >
+        #{auditOpinion},
+      </if>
+      <if test="auditRemark != null" >
+        #{auditRemark},
+      </if>
+      <if test="mxmId != null" >
+        #{mxmId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsUser" >
+    update dms_user
+    <set >
+      <if test="account != null" >
+        account = #{account},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt},
+      </if>
+      <if test="password != null" >
+        password = #{password},
+      </if>
+      <if test="photoUrl != null" >
+        photo_url = #{photoUrl},
+      </if>
+      <if test="status != null" >
+        status = #{status},
+      </if>
+      <if test="source != null" >
+        source = #{source},
+      </if>
+      <if test="staffId != null" >
+        staff_id = #{staffId},
+      </if>
+      <if test="lastLoginDate != null" >
+        last_login_date = #{lastLoginDate},
+      </if>
+      <if test="auditor != null" >
+        auditor = #{auditor},
+      </if>
+      <if test="auditDate != null" >
+        audit_date = #{auditDate},
+      </if>
+      <if test="auditOpinion != null" >
+        audit_opinion = #{auditOpinion},
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark = #{auditRemark},
+      </if>
+      <if test="mxmId != null" >
+        mxm_id = #{mxmId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsUser" >
+    update dms_user
+    set account = #{account},
+      salt = #{salt},
+      password = #{password},
+      photo_url = #{photoUrl},
+      status = #{status},
+      source = #{source},
+      staff_id = #{staffId},
+      last_login_date = #{lastLoginDate},
+      auditor = #{auditor},
+      audit_date = #{auditDate},
+      audit_opinion = #{auditOpinion},
+      audit_remark = #{auditRemark},
+      mxm_id = #{mxmId},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="account != null and account != ''" >
+        account = #{account}
+      </if>
+      <if test="salt != null and salt != ''" >
+        AND salt = #{salt}
+      </if>
+      <if test="password != null and password != ''" >
+        AND password = #{password}
+      </if>
+      <if test="photoUrl != null" >
+        AND photo_url = #{photoUrl}
+      </if>
+      <if test="status != null" >
+        AND status = #{status}
+      </if>
+      <if test="source != null" >
+        AND source = #{source}
+      </if>
+      <if test="staffId != null" >
+        AND staff_id = #{staffId}
+      </if>
+      <if test="lastLoginDate != null" >
+        AND last_login_date = #{lastLoginDate}
+      </if>
+      <if test="auditor != null" >
+        AND auditor = #{auditor}
+      </if>
+      <if test="auditDate != null" >
+        AND audit_date = #{auditDate}
+      </if>
+      <if test="auditOpinion != null" >
+        AND audit_opinion = #{auditOpinion}
+      </if>
+      <if test="auditRemark != null and auditRemark != ''" >
+        AND audit_remark = #{auditRemark}
+      </if>
+      <if test="mxmId != null" >
+        AND mxm_id = #{mxmId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsUser" resultMap="DmsUserResultMap" >
+    select
+    <include refid="DmsUser_Column_List" />
+    from dms_user
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_user
+    <set >
+      <if test="po.account != null" >
+        account = #{po.account},
+      </if>
+      <if test="po.salt != null" >
+        salt = #{po.salt},
+      </if>
+      <if test="po.password != null" >
+        password = #{po.password},
+      </if>
+      <if test="po.photoUrl != null" >
+        photo_url = #{po.photoUrl},
+      </if>
+      <if test="po.status != null" >
+        status = #{po.status},
+      </if>
+      <if test="po.source != null" >
+        source = #{po.source},
+      </if>
+      <if test="po.staffId != null" >
+        staff_id = #{po.staffId},
+      </if>
+      <if test="po.lastLoginDate != null" >
+        last_login_date = #{po.lastLoginDate},
+      </if>
+      <if test="po.auditor != null" >
+        auditor = #{po.auditor},
+      </if>
+      <if test="po.auditDate != null" >
+        audit_date = #{po.auditDate},
+      </if>
+      <if test="po.auditOpinion != null" >
+        audit_opinion = #{po.auditOpinion},
+      </if>
+      <if test="po.auditRemark != null" >
+        audit_remark = #{po.auditRemark},
+      </if>
+      <if test="po.mxmId != null" >
+        mxm_id = #{po.mxmId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+
+  <resultMap id="DmsUserVoResultMap" type="com.coracle.dms.vo.DmsUserVo" extends="DmsUserResultMap">
+    <result column="role_id" property="roleId" jdbcType="BIGINT"/>
+    <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+    <result column="role_code" property="roleCode" jdbcType="VARCHAR"/>
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="source_text" property="sourceText" jdbcType="VARCHAR"/>
+    <result column="status_text" property="statusText" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <!-- 根据条件获取Vo对象 -->
+  <select id="selectVoByCondition" parameterType="com.coracle.dms.vo.DmsUserVo" resultMap="DmsUserVoResultMap">
+    select
+      u.account as account, u.created_date as created_date,u.last_login_date as last_login_date,r.id as role_id, r.name as role_name,
+      case u.source
+        when 1 then '员工'
+        when 2 then '渠道商'
+        when 3 then '门店'
+      end as source_text,
+      case u.status
+        when 0 then '禁用'
+        when 1 then '启用'
+        when 2 then '待审核'
+      end as status_text,
+      case u.source
+        when 1 then e.name
+        when 2 then cc.name
+        when 3 then s.name
+      end as name
+    from
+      dms_user u
+    left join dms_user_role ur on ur.user_id = u.id and ur.remove_flag = 0
+    left join dms_role r on r.id = ur.role_id and r.remove_flag = 0
+    left join dms_employee e on e.id = u.staff_id
+    left join dms_channel_contacts cc on cc.id = u.staff_id
+    left join dms_seller s on s.id = u.staff_id
+    where
+      u.remove_flag = 0
+      <if test="account != null">
+        and u.account like concat('%', #{account}, '%')
+      </if>
+      <if test="name != null">
+        and (e.name like concat('%', #{name}, '%') or cc.name like concat('%', #{name}, '%') or s.name like concat('%', #{name}, '%'))
+      </if>
+      <if test="source != null">
+        and u.source = #{source}
+      </if>
+      <if test="status != null">
+        and u.status = #{status}
+      </if>
+      <if test="orderField != null and orderField != ''">
+        order by ${orderField}
+        <if test="orderString != null and orderString != ''">
+          ${orderString}
+        </if>
+      </if>
+  </select>
+
+  <!-- 根据主键id获取vo对象 -->
+  <select id="selectVoByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsUserVoResultMap">
+    select
+      u.*, r.id as role_id, r.name as role_name,
+      case u.source
+        when 1 then '员工'
+        when 2 then '渠道商'
+        when 3 then '门店'
+      end as source_text,
+      case u.status
+        when 0 then '禁用'
+        when 1 then '启用'
+        when 2 then '待审核'
+      end as status_text,
+      case u.source
+        when 1 then e.name
+        when 2 then cc.name
+        when 3 then s.name
+      end as name
+    from
+      dms_user u
+    left join dms_user_role ur on ur.user_id = u.id and ur.remove_flag = 0
+    left join dms_role r on r.id = ur.role_id and r.remove_flag = 0
+    left join dms_employee e on e.id = u.staff_id
+    left join dms_channel_contacts cc on cc.id = u.staff_id
+    left join dms_seller s on s.id = u.staff_id
+    where
+      u.id = #{id}
+  </select>
+
+  <!-- 根据账号查询数量 -->
+  <select id="selectCountByAccount" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(*) from dms_user where account = #{account} and remove_flag = 0
+  </select>
+
+  <!--根据来源查询用户的姓名以及组织名，还要字段后面加-->
+  <select id="selectUserDetail" parameterType="com.coracle.dms.dto.DmsUserInfoDto" resultType="java.util.HashMap">
+    <if test="source==1">
+      select de.name as userName,dor.name as orgName,dor.id as orgId,deo.post_id as post from dms_employee de left join dms_employee_organization deo on de.id=deo.employee_id left join dms_organization dor on deo.organization_id=dor.id where deo.is_major=1 and de.id = #{staffId} limit 0,1
+    </if>
+    <if test="source==2">
+      select dcc.name as userName,dc.name as orgName,dc.id as orgId,dcc.post as post from dms_channel_contacts dcc left join dms_channel dc on dcc.channel_id=dc.id where dcc.id = #{staffId}
+    </if>
+    <if test="source==3">
+      select s1.name as userName,s2.name as orgName,s2.id as orgId,s1.post as post from dms_seller s1 left join dms_store s2 on s1.shop_id=s2.id  where s1.id = #{staffId}
+    </if>
+    <if test="source == null || source>3">
+      select de.name as userName,dor.name as orgName,dor.id as orgId,deo.post_id as post from dms_employee de left join dms_employee_organization deo on de.id=deo.employee_id left join dms_organization dor on deo.organization_id=dor.id where deo.is_major=1 and de.id = #{staffId} limit 0,1
+    </if>
+  </select>
+
+
+  <!--根据来源查询用户的姓名以及组织名，还要字段后面加-->
+  <select id="selectUserId" parameterType="com.coracle.dms.dto.DmsUserInfoDto" resultType="java.lang.Long">
+    <if test="source==1">
+      select user_id from dms_channel_contacts dcc where dcc.id = #{staffId}
+    </if>
+    <if test="source==2">
+      select user_id from dms_seller s1  where s1.id = #{staffId}
+    </if>
+    <if test="source==3">
+      select user_id from dms_employee de WHERE de.id = #{staffId}
+    </if>
+    <if test="source == null || source>3">
+      select user_id from dms_employee de where de.id = #{staffId}
+    </if>
+  </select>
+
+  <!--获取门店店员账号列表-->
+  <select id="getDmsAccountContactList" parameterType="java.lang.Long" resultMap="DmsUserResultMap">
+    select
+    du.*
+    from dms_user du
+    where du.remove_flag =0 and du.source = 3 and du.staff_id = #{id} order by du.id desc limit 0,1
+  </select>
+  <!--获取门店渠道账号列表-->
+  <select id="getChannelAccount" parameterType="java.lang.Long" resultMap="DmsUserResultMap">
+    select
+    du.*
+    from dms_user du
+    where du.remove_flag =0 and du.source = 2 and du.staff_id = #{id} order by du.id desc limit 0,1
+  </select>
+
+  <!--获取用戶角色信息-->
+  <select id="selectRoleByUserId" parameterType="java.lang.Long" resultMap="DmsUserVoResultMap">
+    select
+    r.id roleId,r.name roleName,r.code roleCode
+    from dms_user du
+    left JOIN dms_user_role ur on ur.user_id=du.id
+    LEFT JOIN dms_role r on r.id=ur.role_id
+    where du.remove_flag =0 and du.id = #{id} order by du.id
+  </select>
+
+  <!-- 根据mxmId获取用户信息 -->
+  <select id="selectByMxmId" parameterType="java.lang.Long" resultMap="DmsUserResultMap">
+    select
+      u.*
+    from
+      dms_user u
+    where
+      u.mxm_id = #{id}
+      and u.remove_flag = 0
+  </select>
+
+  <!-- 根据账号id列表获取账号对应的mxm用户的id列表 -->
+  <select id="selectMxmIdByUserIdList" parameterType="java.util.List" resultType="java.lang.Long">
+    select
+      u.mxm_id
+    from
+      dms_user u
+    where
+      u.id in
+      <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+  </select>
+
+  <!-- 根据用户id获取用户姓名 -->
+  <select id="selectNameById" parameterType="java.lang.Long" resultType="java.lang.String">
+    select
+      case u.source
+        when 1 then e.name
+        when 2 then cc.name
+        when 3 then s.name
+      end
+    from
+      dms_user u
+    left join dms_user_role ur on ur.user_id = u.id and ur.remove_flag = 0
+    left join dms_employee e on e.id = u.staff_id
+    left join dms_channel_contacts cc on cc.id = u.staff_id
+    left join dms_seller s on s.id = u.staff_id
+    where
+      u.id = #{id}
+  </select>
+
+  <select id="selectUserListByChannelId" parameterType="java.lang.Long" resultMap="DmsUserResultMap">
+    SELECT
+      u.*
+    FROM
+      dms_user u
+      JOIN dms_channel_contacts dcc ON dcc.user_id = u.id
+      JOIN dms_channel c ON c.id = dcc.channel_id
+    WHERE
+      c.id = #{channelId}
+      AND u.remove_flag = 0
+      AND u.`status` = 1
+      AND dcc.remove_flag = 0
+      ORDER BY u.last_login_date DESC
+  </select>
+
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>

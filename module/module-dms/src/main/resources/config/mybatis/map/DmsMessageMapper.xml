@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsMessageMapper" >
+  <resultMap id="DmsMessageResultMap" type="com.coracle.dms.po.DmsMessage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="LONGVARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="message_type" property="messageType" jdbcType="INTEGER" />
+    <result column="entity_type" property="entityType" jdbcType="INTEGER" />
+    <result column="entity_id" property="entityId" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_read" property="isRead" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="is_send" property="isSend" jdbcType="INTEGER" />
+    <result column="is_show" property="isShow" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsMessage_Column_List" >
+    id, title,subject, content, message_type, entity_type, entity_id, remark, is_read, staff_id,
+    created_date, created_by, last_updated_date, last_updated_by, remove_flag, is_send,
+    is_show
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsMessageResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsMessage_Column_List" />
+    from dms_message
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_message
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsMessage" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_message (title,subject, content, message_type, entity_type, entity_id, remark,
+    is_read, staff_id, created_date, created_by, last_updated_date, last_updated_by,
+    remove_flag, is_send, is_show)
+    values (#{title},#{subject}, #{content}, #{messageType}, #{entityType}, #{entityId}, #{remark},
+    #{isRead}, #{staffId}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy},
+    #{removeFlag}, #{isSend}, #{isShow})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsMessage" >
+    insert into dms_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="messageType != null" >
+        message_type,
+      </if>
+      <if test="entityType != null" >
+        entity_type,
+      </if>
+      <if test="entityId != null" >
+        entity_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isRead != null" >
+        is_read,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="isSend != null" >
+        is_send,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="title != null" >
+        #{title},
+      </if>
+      <if test="subject != null" >
+        #{subject},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="messageType != null" >
+        #{messageType},
+      </if>
+      <if test="entityType != null" >
+        #{entityType},
+      </if>
+      <if test="entityId != null" >
+        #{entityId},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="isRead != null" >
+        #{isRead},
+      </if>
+      <if test="staffId != null" >
+        #{staffId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="isSend != null" >
+        #{isSend},
+      </if>
+      <if test="isShow != null" >
+        #{isShow},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsMessage" >
+    update dms_message
+    <set >
+      <if test="title != null" >
+        title = #{title},
+      </if>
+      <if test="subject != null" >
+        subject = #{subject},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="messageType != null" >
+        message_type = #{messageType},
+      </if>
+      <if test="entityType != null" >
+        entity_type = #{entityType},
+      </if>
+      <if test="entityId != null" >
+        entity_id = #{entityId},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="isRead != null" >
+        is_read = #{isRead},
+      </if>
+      <if test="staffId != null" >
+        staff_id = #{staffId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="isSend != null" >
+        is_send = #{isSend},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsMessage" >
+    update dms_message
+    set title = #{title},
+    subject = #{subject},
+    content = #{content},
+    message_type = #{messageType},
+    entity_type = #{entityType},
+    entity_id = #{entityId},
+    remark = #{remark},
+    is_read = #{isRead},
+    staff_id = #{staffId},
+    created_date = #{createdDate},
+    created_by = #{createdBy},
+    last_updated_date = #{lastUpdatedDate},
+    last_updated_by = #{lastUpdatedBy},
+    remove_flag = #{removeFlag},
+    is_send = #{isSend},
+    is_show = #{isShow}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="title != null and title != ''" >
+        title = #{title}
+      </if>
+      <if test="subject != null and subject != ''" >
+        subject = #{subject}
+      </if>
+      <if test="content != null and content != ''" >
+        AND content = #{content}
+      </if>
+      <if test="messageType != null" >
+        AND message_type = #{messageType}
+      </if>
+      <if test="entityType != null" >
+        AND entity_type = #{entityType}
+      </if>
+      <if test="entityId != null" >
+        AND entity_id = #{entityId}
+      </if>
+      <if test="remark != null and remark != ''" >
+        AND remark = #{remark}
+      </if>
+      <if test="isRead != null" >
+        AND is_read = #{isRead}
+      </if>
+      <if test="staffId != null" >
+        AND staff_id = #{staffId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="isSend != null" >
+        AND is_send = #{isSend}
+      </if>
+      <if test="isShow != null" >
+        AND is_show = #{isShow}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsMessage" resultMap="DmsMessageResultMap" >
+    select
+    <include refid="DmsMessage_Column_List" />
+    from dms_message
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_message
+    <set >
+      <if test="po.title != null" >
+        title = #{po.title},
+      </if>
+      <if test="po.subject != null" >
+        subject = #{po.subject},
+      </if>
+      <if test="po.content != null" >
+        content = #{po.content},
+      </if>
+      <if test="po.messageType != null" >
+        message_type = #{po.messageType},
+      </if>
+      <if test="po.entityType != null" >
+        entity_type = #{po.entityType},
+      </if>
+      <if test="po.entityId != null" >
+        entity_id = #{po.entityId},
+      </if>
+      <if test="po.remark != null" >
+        remark = #{po.remark},
+      </if>
+      <if test="po.isRead != null" >
+        is_read = #{po.isRead},
+      </if>
+      <if test="po.staffId != null" >
+        staff_id = #{po.staffId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.isSend != null" >
+        is_send = #{po.isSend},
+      </if>
+      <if test="po.isShow != null" >
+        is_show = #{po.isShow},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--***********************************-->
+  <resultMap id="DmsMessageVoResultMap" type="com.coracle.dms.vo.DmsMessageVo" extends="DmsMessageResultMap">
+    <result column="photo_url" property="photoUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <!--批量添加消息-->
+  <insert id="batchInsert" parameterType="java.util.List" >
+    insert into dms_message (title,subject, content, message_type, entity_type, entity_id, remark,
+    is_read, staff_id, created_date, created_by, last_updated_date, last_updated_by,
+    remove_flag, is_send, is_show) values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.title},#{item.subject}, #{item.content}, #{item.messageType}, #{item.entityType}, #{item.entityId}, #{item.remark},
+      #{item.isRead}, #{item.staffId}, #{item.createdDate}, #{item.createdBy}, #{item.lastUpdatedDate}, #{item.lastUpdatedBy},
+      #{item.removeFlag}, #{item.isSend}, #{item.isShow})
+    </foreach>
+  </insert>
+
+  <!--未读消息数量-->
+  <select id="getCount" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select
+    count(t.id)
+    from
+    dms_message t
+    where
+    t.remove_flag =0
+    and
+    t.staff_id =  #{staffId} and t.is_read=0 and t.is_show=1
+  </select>
+
+  <!-- pc端的未读消息数量 -->
+  <select id="getCountForPC" resultType="java.lang.Long">
+    select
+      count(*)
+    from
+      dms_message m
+    where
+      m.staff_id = 0
+      and m.is_read = 0
+      and m.is_show = 1
+      and m.remove_flag = 0
+  </select>
+
+  <!--设置已读-->
+  <update id="read">
+    update dms_message
+    set
+    is_read = 1
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--我的消息列表-->
+  <select id="getPageList" parameterType="com.coracle.dms.vo.DmsMessageVo" resultMap="DmsMessageVoResultMap">
+    select
+    t.*,u.photo_url as photo_url
+    from
+    dms_message t left join dms_user u on u.id=t.created_by
+    where
+    t.remove_flag =0
+    and  t.is_show=1 and
+    t.staff_id =  #{staffId}
+    <if test="searchContent!=null and searchContent!=''">
+      and (
+      t.title like CONCAT("%",#{searchContent},"%")
+      OR
+      t.content like CONCAT("%",#{searchContent},"%")
+      )
+    </if>
+    <if test="messageTypeList != null and messageTypeList.size()>0">
+      and t.message_type  in
+      <foreach collection="messageTypeList" index="index" item="item" open="(" separator="," close=")">
+        #{messageTypeList[${index}]}
+      </foreach>
+    </if>
+    ORDER BY t.created_date desc
+  </select>
+
+
+</mapper>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsLadderPriceMapper" >
+  <resultMap id="DmsLadderPriceResultMap" type="com.coracle.dms.po.DmsLadderPrice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ladderpriceporduct_id" property="ladderpriceporductId" jdbcType="BIGINT" />
+    <result column="start_count" property="startCount" jdbcType="BIGINT" />
+    <result column="end_count" property="endCount" jdbcType="BIGINT" />
+    <result column="discount_category" property="discountCategory" jdbcType="VARCHAR" />
+    <result column="discount" property="discount" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="last_update_date" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    <result column="last_update_by" property="lastUpdateBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsLadderPrice_Column_List" >
+    id, ladderpriceporduct_id, start_count, end_count, discount_category,
+    discount, create_date, create_by, last_update_date, last_update_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsLadderPriceResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="DmsLadderPrice_Column_List" />
+    from dms_ladderprice
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dms_ladderprice
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsLadderPrice" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_ladderprice (ladderpriceporduct_id, start_count, end_count,
+      discount_category, discount, create_date, create_by, last_update_date, 
+      last_update_by, remove_flag)
+    values (#{ladderpriceporductId}, #{startCount}, #{endCount},
+      #{discountCategory}, #{discount}, #{createDate}, #{createBy}, #{lastUpdateDate}, 
+      #{lastUpdateBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsLadderPrice" >
+    insert into dms_ladderprice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ladderpriceporductId != null" >
+        ladderpriceporduct_id,
+      </if>
+
+      <if test="startCount != null" >
+        start_count,
+      </if>
+      <if test="endCount != null" >
+        end_count,
+      </if>
+      <if test="discountCategory != null" >
+        discount_category,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="lastUpdateDate != null" >
+        last_update_date,
+      </if>
+      <if test="lastUpdateBy != null" >
+        last_update_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="ladderpriceporductId != null" >
+        #{ladderpriceporductId},
+      </if>
+
+      <if test="startCount != null" >
+        #{startCount},
+      </if>
+      <if test="endCount != null" >
+        #{endCount},
+      </if>
+      <if test="discountCategory != null" >
+        #{discountCategory},
+      </if>
+      <if test="discount != null" >
+        #{discount},
+      </if>
+      <if test="createDate != null" >
+        #{createDate},
+      </if>
+      <if test="createBy != null" >
+        #{createBy},
+      </if>
+      <if test="lastUpdateDate != null" >
+        #{lastUpdateDate},
+      </if>
+      <if test="lastUpdateBy != null" >
+        #{lastUpdateBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsLadderPrice" >
+    update dms_ladderprice
+    <set >
+      <if test="ladderpriceporductId != null" >
+        ladderpriceporduct_id = #{ladderpriceporductId},
+      </if>
+
+      <if test="startCount != null" >
+        start_count = #{startCount},
+      </if>
+      <if test="endCount != null" >
+        end_count = #{endCount},
+      </if>
+      <if test="discountCategory != null" >
+        discount_category = #{discountCategory},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy},
+      </if>
+      <if test="lastUpdateDate != null" >
+        last_update_date = #{lastUpdateDate},
+      </if>
+      <if test="lastUpdateBy != null" >
+        last_update_by = #{lastUpdateBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsLadderPrice" >
+    update dms_ladderprice
+    set ladderpriceporduct_id = #{ladderpriceporductId},
+
+      start_count = #{startCount},
+      end_count = #{endCount},
+      discount_category = #{discountCategory},
+      discount = #{discount},
+      create_date = #{createDate},
+      create_by = #{createBy},
+      last_update_date = #{lastUpdateDate},
+      last_update_by = #{lastUpdateBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="ladderpriceporductId != null" >
+        ladderpriceporduct_id = #{ladderpriceporductId}
+      </if>
+
+      <if test="startCount != null" >
+        AND start_count = #{startCount}
+      </if>
+      <if test="endCount != null" >
+        AND end_count = #{endCount}
+      </if>
+      <if test="discountCategory != null and discountCategory != ''" >
+        AND discount_category = #{discountCategory}
+      </if>
+      <if test="discount != null and discount != ''" >
+        AND discount = #{discount}
+      </if>
+      <if test="createDate != null" >
+        AND create_date = #{createDate}
+      </if>
+      <if test="createBy != null" >
+        AND create_by = #{createBy}
+      </if>
+      <if test="lastUpdateDate != null" >
+        AND last_update_date = #{lastUpdateDate}
+      </if>
+      <if test="lastUpdateBy != null" >
+        AND last_update_by = #{lastUpdateBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsLadderPrice" resultMap="DmsLadderPriceResultMap" >
+    select 
+    <include refid="DmsLadderPrice_Column_List" />
+    from dms_ladderprice
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_ladderprice
+    <set >
+      <if test="po.ladderpriceporductId != null" >
+        ladderpriceporduct_id = #{po.ladderpriceporductId},
+      </if>
+
+      <if test="po.startCount != null" >
+        start_count = #{po.startCount},
+      </if>
+      <if test="po.endCount != null" >
+        end_count = #{po.endCount},
+      </if>
+      <if test="po.discountCategory != null" >
+        discount_category = #{po.discountCategory},
+      </if>
+      <if test="po.discount != null" >
+        discount = #{po.discount},
+      </if>
+      <if test="po.createDate != null" >
+        create_date = #{po.createDate},
+      </if>
+      <if test="po.createBy != null" >
+        create_by = #{po.createBy},
+      </if>
+      <if test="po.lastUpdateDate != null" >
+        last_update_date = #{po.lastUpdateDate},
+      </if>
+      <if test="po.lastUpdateBy != null" >
+        last_update_by = #{po.lastUpdateBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+
+
+
+<!-- 根据阶梯价格项id查询阶梯价格-->
+  <select id="selectVoByLadderPriceProductId" parameterType="java.lang.Long" resultMap="DmsLadderPriceResultMap">
+
+    select lp.* from dms_ladderprice lp where lp.ladderpriceporduct_id = #{ladderPriceProductId} and lp.remove_flag =0;
+
+  </select>
+
+
+  <!-- 根据阶梯价格项id查询阶梯价格 id list -->
+  <select id="selectIdByLadderPriceProductId" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select
+    lp.id
+    from
+    dms_ladderprice  lp
+    where
+    lp.ladderpriceporduct_id = #{ladderPriceProductId}
+    and lp.remove_flag = 0
+  </select>
+
+
+  <!--根据id list 批量删除-->
+  <!-- 批量逻辑删除 -->
+  <update id="batchRemove" parameterType="java.util.List">
+    update dms_ladderprice  lp set remove_flag = 1 where id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+
+
+</mapper>

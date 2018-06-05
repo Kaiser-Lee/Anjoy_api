@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsNewsCommentMapper" >
+  <resultMap id="DmsNewsCommentResultMap" type="com.coracle.dms.po.DmsNewsComment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="news_id" property="newsId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="is_top" property="isTop" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsNewsComment_Column_List" >
+    id, news_id, user_id, user_name, content, comment_time, type, is_top, created_by, 
+    last_updated_by, created_date, last_updated_date, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsNewsCommentResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsNewsComment_Column_List" />
+    from dms_news_comment
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_news_comment
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsNewsComment" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_news_comment (news_id, user_id, user_name, content, comment_time, type, is_top, 
+      created_by, last_updated_by, created_date, last_updated_date, remove_flag
+      )
+    values (#{newsId}, #{userId}, #{userName}, #{content}, #{commentTime}, #{type}, #{isTop}, 
+      #{createdBy}, #{lastUpdatedBy}, #{createdDate}, #{lastUpdatedDate}, #{removeFlag}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsNewsComment" >
+    insert into dms_news_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="commentTime != null" >
+        comment_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="isTop != null" >
+        is_top,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="newsId != null" >
+        #{newsId},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="userName != null" >
+        #{userName},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="commentTime != null" >
+        #{commentTime},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      <if test="isTop != null" >
+        #{isTop},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsNewsComment" >
+    update dms_news_comment
+    <set >
+      <if test="newsId != null" >
+        news_id = #{newsId},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="commentTime != null" >
+        comment_time = #{commentTime},
+      </if>
+      <if test="type != null" >
+        type = #{type},
+      </if>
+      <if test="isTop != null" >
+        is_top = #{isTop},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsNewsComment" >
+    update dms_news_comment
+    set news_id = #{newsId},
+      user_id = #{userId},
+      user_name = #{userName},
+      content = #{content},
+      comment_time = #{commentTime},
+      type = #{type},
+      is_top = #{isTop},
+      created_by = #{createdBy},
+      last_updated_by = #{lastUpdatedBy},
+      created_date = #{createdDate},
+      last_updated_date = #{lastUpdatedDate},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="newsId != null" >
+        news_id = #{newsId}
+      </if>
+      <if test="userId != null" >
+        AND user_id = #{userId}
+      </if>
+      <if test="userName != null and userName != ''" >
+        AND user_name = #{userName}
+      </if>
+      <if test="content != null and content != ''" >
+        AND content = #{content}
+      </if>
+      <if test="commentTime != null" >
+        AND comment_time = #{commentTime}
+      </if>
+      <if test="type != null" >
+        AND type = #{type}
+      </if>
+      <if test="isTop != null" >
+        AND is_top = #{isTop}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsNewsComment" resultMap="DmsNewsCommentResultMap" >
+    select 
+    <include refid="DmsNewsComment_Column_List" />
+    from dms_news_comment
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_news_comment
+    <set >
+      <if test="po.newsId != null" >
+        news_id = #{po.newsId},
+      </if>
+      <if test="po.userId != null" >
+        user_id = #{po.userId},
+      </if>
+      <if test="po.userName != null" >
+        user_name = #{po.userName},
+      </if>
+      <if test="po.content != null" >
+        content = #{po.content},
+      </if>
+      <if test="po.commentTime != null" >
+        comment_time = #{po.commentTime},
+      </if>
+      <if test="po.type != null" >
+        type = #{po.type},
+      </if>
+      <if test="po.isTop != null" >
+        is_top = #{po.isTop},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--**************************************************-->
+  <resultMap id="DmsNewsCommentResultVoMap" type="com.coracle.dms.vo.DmsNewsCommentVo" extends="DmsNewsCommentResultMap">
+    <result column="photo_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="BIGINT" />
+    <result column="org_name" property="organizationName" jdbcType="VARCHAR" />
+  </resultMap>
+  <!--模糊匹配评论内容-->
+  <select id="selectSomeByCondition" parameterType="com.coracle.dms.vo.DmsNewsCommentVo" resultMap="DmsNewsCommentResultVoMap" >
+    SELECT
+    c.id, c.news_id, c.user_id, c.content, c.comment_time, c.type, c.is_top, c.created_by,
+    c.last_updated_by, c.created_date, c.last_updated_date, c.remove_flag, u.photo_url,u.source,u.staff_id,
+    case u.source
+    when 1 then (select de.name from dms_employee de where de.id = u.staff_id limit 0,1)
+    when 2 then (select dcc.name from dms_channel_contacts dcc where dcc.id = u.staff_id limit 0,1)
+    when 3 then (select ds.name from dms_seller ds where u.staff_id=ds.id limit 0,1)
+    end as user_name,
+    case u.source
+    when 1 then (select dor.name from dms_employee de left join dms_employee_organization deo on de.id=deo.employee_id left join dms_organization dor on deo.organization_id=dor.id where deo.is_major = 1 and de.id = u.staff_id)
+    when 2 then (select dc.name from dms_channel_contacts dcc left join dms_channel dc on dcc.channel_id=dc.id where dcc.id = u.staff_id)
+    when 3 then (select s2.name from dms_seller s1 left join dms_store s2 on s1.shop_id=s2.id where u.staff_id=s1.id limit 0,1)
+    end as org_name
+    FROM
+    dms_news_comment c
+    LEFT JOIN dms_user u ON c.user_id = u.id
+    WHERE
+    c.remove_flag = 0 and c.type = 0
+    <if test="newsId != null" >
+      and c.news_id = #{newsId}
+    </if>
+    <if test="userId != null" >
+      AND c.user_id = #{userId}
+    </if>
+    <if test="userName != null and userName != ''" >
+      AND c.user_name = #{userName}
+    </if>
+    <if test="content != null and content != ''" >
+      AND c.content like CONCAT('%',#{content},'%')
+    </if>
+    <if test="commentTime != null" >
+      AND c.comment_time = #{commentTime}
+    </if>
+    <if test="isTop != null" >
+      AND c.is_top = #{isTop}
+    </if>
+    <if test="createdBy != null" >
+      AND c.created_by = #{createdBy}
+    </if>
+    <if test="lastUpdatedBy != null" >
+      AND c.last_updated_by = #{lastUpdatedBy}
+    </if>
+    <if test="createdDate != null" >
+      AND c.created_date = #{createdDate}
+    </if>
+    <if test="lastUpdatedDate != null" >
+      AND c.last_updated_date = #{lastUpdatedDate}
+    </if>
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+
+  <select id="selectNewsId" resultType="java.util.Map">
+    select GROUP_CONCAT(news_id) as newIds from dms_news_comment
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </select>
+</mapper>

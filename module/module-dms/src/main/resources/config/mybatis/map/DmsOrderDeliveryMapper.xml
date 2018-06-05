@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderDeliveryMapper">
+  <resultMap id="DmsOrderDeliveryResultMap" type="com.coracle.dms.po.DmsOrderDelivery">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="related_type" jdbcType="INTEGER" property="relatedType" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="logistics_company" jdbcType="VARCHAR" property="logisticsCompany" />
+    <result column="logistics_code" jdbcType="VARCHAR" property="logisticsCode" />
+    <result column="driver_name" jdbcType="VARCHAR" property="driverName" />
+    <result column="driver_mobile" jdbcType="VARCHAR" property="driverMobile" />
+    <result column="plate_number" jdbcType="VARCHAR" property="plateNumber" />
+    <result column="attr1" jdbcType="VARCHAR" property="attr1" />
+    <result column="attr2" jdbcType="VARCHAR" property="attr2" />
+    <result column="attr3" jdbcType="VARCHAR" property="attr3" />
+    <result column="attr4" jdbcType="VARCHAR" property="attr4" />
+    <result column="attr5" jdbcType="VARCHAR" property="attr5" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="created_by" jdbcType="BIGINT" property="createdBy" />
+    <result column="last_updated_date" jdbcType="TIMESTAMP" property="lastUpdatedDate" />
+    <result column="last_updated_by" jdbcType="BIGINT" property="lastUpdatedBy" />
+    <result column="remove_flag" jdbcType="INTEGER" property="removeFlag" />
+  </resultMap>
+  <sql id="DmsOrderDelivery_Column_List">
+    id, order_id, related_type, code, logistics_company, logistics_code, driver_name,
+    driver_mobile, plate_number, attr1, attr2, attr3, attr4, attr5, created_date, created_by,
+    last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsOrderDeliveryResultMap">
+    select
+    <include refid="DmsOrderDelivery_Column_List" />
+    from dms_order_delivery
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dms_order_delivery
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyProperty="id" parameterType="com.coracle.dms.po.DmsOrderDelivery" useGeneratedKeys="true">
+    insert into dms_order_delivery (order_id, related_type, code, logistics_company, logistics_code,
+    driver_name, driver_mobile, plate_number, attr1, attr2, attr3, attr4,
+    attr5, created_date, created_by, last_updated_date, last_updated_by, remove_flag
+    )
+    values (#{orderId}, #{relatedType}, #{code}, #{logisticsCompany}, #{logisticsCode},
+    #{driverName}, #{driverMobile}, #{plateNumber}, #{attr1}, #{attr2}, #{attr3}, #{attr4},
+    #{attr5}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrderDelivery">
+    insert into dms_order_delivery
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="relatedType != null">
+        related_type,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="logisticsCompany != null">
+        logistics_company,
+      </if>
+      <if test="logisticsCode != null">
+        logistics_code,
+      </if>
+      <if test="driverName != null">
+        driver_name,
+      </if>
+      <if test="driverMobile != null">
+        driver_mobile,
+      </if>
+      <if test="plateNumber != null">
+        plate_number,
+      </if>
+      <if test="attr1 != null">
+        attr1,
+      </if>
+      <if test="attr2 != null">
+        attr2,
+      </if>
+      <if test="attr3 != null">
+        attr3,
+      </if>
+      <if test="attr4 != null">
+        attr4,
+      </if>
+      <if test="attr5 != null">
+        attr5,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null">
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="orderId != null">
+        #{orderId},
+      </if>
+      <if test="relatedType != null">
+        #{relatedType},
+      </if>
+      <if test="code != null">
+        #{code},
+      </if>
+      <if test="logisticsCompany != null">
+        #{logisticsCompany},
+      </if>
+      <if test="logisticsCode != null">
+        #{logisticsCode},
+      </if>
+      <if test="driverName != null">
+        #{driverName},
+      </if>
+      <if test="driverMobile != null">
+        #{driverMobile},
+      </if>
+      <if test="plateNumber != null">
+        #{plateNumber},
+      </if>
+      <if test="attr1 != null">
+        #{attr1},
+      </if>
+      <if test="attr2 != null">
+        #{attr2},
+      </if>
+      <if test="attr3 != null">
+        #{attr3},
+      </if>
+      <if test="attr4 != null">
+        #{attr4},
+      </if>
+      <if test="attr5 != null">
+        #{attr5},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null">
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null">
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrderDelivery">
+    update dms_order_delivery
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId},
+      </if>
+      <if test="relatedType != null">
+        related_type = #{relatedType},
+      </if>
+      <if test="code != null">
+        code = #{code},
+      </if>
+      <if test="logisticsCompany != null">
+        logistics_company = #{logisticsCompany},
+      </if>
+      <if test="logisticsCode != null">
+        logistics_code = #{logisticsCode},
+      </if>
+      <if test="driverName != null">
+        driver_name = #{driverName},
+      </if>
+      <if test="driverMobile != null">
+        driver_mobile = #{driverMobile},
+      </if>
+      <if test="plateNumber != null">
+        plate_number = #{plateNumber},
+      </if>
+      <if test="attr1 != null">
+        attr1 = #{attr1},
+      </if>
+      <if test="attr2 != null">
+        attr2 = #{attr2},
+      </if>
+      <if test="attr3 != null">
+        attr3 = #{attr3},
+      </if>
+      <if test="attr4 != null">
+        attr4 = #{attr4},
+      </if>
+      <if test="attr5 != null">
+        attr5 = #{attr5},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null">
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrderDelivery">
+    update dms_order_delivery
+    set order_id = #{orderId},
+    related_type = #{relatedType},
+    code = #{code},
+    logistics_company = #{logisticsCompany},
+    logistics_code = #{logisticsCode},
+    driver_name = #{driverName},
+    driver_mobile = #{driverMobile},
+    plate_number = #{plateNumber},
+    attr1 = #{attr1},
+    attr2 = #{attr2},
+    attr3 = #{attr3},
+    attr4 = #{attr4},
+    attr5 = #{attr5},
+    created_date = #{createdDate},
+    created_by = #{createdBy},
+    last_updated_date = #{lastUpdatedDate},
+    last_updated_by = #{lastUpdatedBy},
+    remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition">
+    <where>
+      <if test="orderId != null">
+        order_id = #{orderId}
+      </if>
+      <if test="relatedType != null">
+        AND related_type = #{relatedType}
+      </if>
+      <if test="code != null and code != ''">
+        AND code = #{code}
+      </if>
+      <if test="logisticsCompany != null and logisticsCompany != ''">
+        AND logistics_company = #{logisticsCompany}
+      </if>
+      <if test="logisticsCode != null and logisticsCode != ''">
+        AND logistics_code = #{logisticsCode}
+      </if>
+      <if test="driverName != null and driverName != ''">
+        AND driver_name = #{driverName}
+      </if>
+      <if test="driverMobile != null and driverMobile != ''">
+        AND driver_mobile = #{driverMobile}
+      </if>
+      <if test="plateNumber != null and plateNumber != ''">
+        AND plate_number = #{plateNumber}
+      </if>
+      <if test="attr1 != null and attr1 != ''">
+        AND attr1 = #{attr1}
+      </if>
+      <if test="attr2 != null and attr2 != ''">
+        AND attr2 = #{attr2}
+      </if>
+      <if test="attr3 != null and attr3 != ''">
+        AND attr3 = #{attr3}
+      </if>
+      <if test="attr4 != null and attr4 != ''">
+        AND attr4 = #{attr4}
+      </if>
+      <if test="attr5 != null and attr5 != ''">
+        AND attr5 = #{attr5}
+      </if>
+      <if test="createdDate != null">
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null">
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null">
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null">
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null">
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrderDelivery" resultMap="DmsOrderDeliveryResultMap">
+    select
+    <include refid="DmsOrderDelivery_Column_List" />
+    from dms_order_delivery
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''">
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''">
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective">
+    update dms_order_delivery
+    <set>
+      <if test="po.orderId != null">
+        order_id = #{po.orderId},
+      </if>
+      <if test="po.relatedType != null">
+        related_type = #{po.relatedType},
+      </if>
+      <if test="po.code != null">
+        code = #{po.code},
+      </if>
+      <if test="po.logisticsCompany != null">
+        logistics_company = #{po.logisticsCompany},
+      </if>
+      <if test="po.logisticsCode != null">
+        logistics_code = #{po.logisticsCode},
+      </if>
+      <if test="po.driverName != null">
+        driver_name = #{po.driverName},
+      </if>
+      <if test="po.driverMobile != null">
+        driver_mobile = #{po.driverMobile},
+      </if>
+      <if test="po.plateNumber != null">
+        plate_number = #{po.plateNumber},
+      </if>
+      <if test="po.attr1 != null">
+        attr1 = #{po.attr1},
+      </if>
+      <if test="po.attr2 != null">
+        attr2 = #{po.attr2},
+      </if>
+      <if test="po.attr3 != null">
+        attr3 = #{po.attr3},
+      </if>
+      <if test="po.attr4 != null">
+        attr4 = #{po.attr4},
+      </if>
+      <if test="po.attr5 != null">
+        attr5 = #{po.attr5},
+      </if>
+      <if test="po.createdDate != null">
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null">
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null">
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null">
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null">
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size &gt; 0">
+      <foreach close=")" collection="ids" item="listItem" open="or id in(" separator=",">
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+
+  <!-- 自定义SQL -->
+  <!-- 将历史发货订单数据标识为：已删除状态 -->
+  <update id="deleteOrderDeliveryHistory" parameterType="list">
+    UPDATE dms_order_delivery t SET t.remove_flag = 1, t.last_updated_date = SYSDATE()
+    WHERE t.order_id
+        <foreach collection="ids" item="listItem" open=" IN ( " close=")" separator=",">
+          #{listItem}
+        </foreach>
+  </update>
+
+  <!-- 将历史发货订单明细数据标识为：已删除状态 -->
+  <update id="deleteOrderDeliveryItemHistory" parameterType="list">
+    UPDATE dms_order_delivery_item t SET t.remove_flag = 1, t.last_updated_date = SYSDATE() WHERE t.order_delivery_id IN (
+      SELECT t2.id FROM dms_order_delivery t2
+      WHERE t2.order_id
+        <foreach collection="ids" item="listItem" open=" IN ( " close=")" separator=",">
+          #{listItem}
+        </foreach>
+    )
+  </update>
+
+</mapper>

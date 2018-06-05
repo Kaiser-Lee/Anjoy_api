@@ -1,0 +1,535 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>module-dms</artifactId>
+    <packaging>jar</packaging>
+    <name>module-dms</name>
+    <parent>
+    	<groupId>com.coracle</groupId>
+    	<artifactId>common-parent-micro-service</artifactId>
+		<relativePath></relativePath>  
+    	<version>1.0.0</version>
+    </parent>
+    <properties>
+        <project.build.name>dms</project.build.name>
+    </properties>
+    <dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-x-discovery</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.101tec</groupId>
+			<artifactId>zkclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.javassist</groupId>
+					<artifactId>javassist</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId></dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.fernandospr</groupId>
+			<artifactId>javapns-jdk16</artifactId>
+		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>com.gexin.platform</groupId>-->
+			<!--<artifactId>gexin-rp-sdk-http</artifactId>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>com.gexin.platform</groupId>-->
+			<!--<artifactId>gexin-rp-sdk-base</artifactId>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>com.gexin.platform</groupId>-->
+			<!--<artifactId>gexin-rp-sdk-template</artifactId>-->
+		<!--</dependency>-->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+		</dependency>
+
+		<dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <scope>test</scope>
+	    </dependency>
+        <dependency>
+		    <groupId>com.coracle</groupId>
+		    <artifactId>interface-dms</artifactId>
+		    <version>${ykee.version}</version>
+	    </dependency>
+
+		<dependency>
+			<groupId>com.coracle.common</groupId>
+			<artifactId>common-config</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+        <dependency>
+            <groupId>com.coracle.dms</groupId>
+            <artifactId>webservice</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
+
+
+
+
+
+
+	<profiles>
+		<!-- =====天正开发环境====== -->
+		<!--<profile>-->
+			<!--<id>dev</id>-->
+			<!--<properties>-->
+				<!--<env>dev</env>-->
+
+				<!--&lt;!&ndash; 微服务配置 &ndash;&gt;-->
+				<!--&lt;!&ndash;<dubbo.version>server.dms.hcs</dubbo.version>&ndash;&gt;-->
+				<!--<dubbo.version>server.dms</dubbo.version>-->
+				<!--<dubbo.zoo.connectString>zookeeper://192.16.8.50:2181</dubbo.zoo.connectString>-->
+				<!--<dubbo.port.positec>20885</dubbo.port.positec>-->
+
+				<!--&lt;!&ndash; 数据源配置 &ndash;&gt;-->
+				<!--<druid.url.bsdmxm>jdbc:mysql://192.16.8.156:13400/mxm_ztyxy_dev?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</druid.url.bsdmxm>-->
+				<!--<druid.username.bsdmxm>mxm</druid.username.bsdmxm>-->
+				<!--<druid.password.bsdmxm>cor2017</druid.password.bsdmxm>-->
+
+				<!--&lt;!&ndash; redis缓存配置 &ndash;&gt;-->
+				<!--<redis.ip>192.16.8.50</redis.ip>-->
+				<!--<redis.port>6379</redis.port>-->
+				<!--<redis.pass></redis.pass>-->
+
+				<!--&lt;!&ndash; 分布式时间服务 &ndash;&gt;-->
+				<!--<time.server.port>9999</time.server.port>-->
+				<!--<time.server.host>localhost</time.server.host>-->
+
+				<!--&lt;!&ndash; mxm同步接口url &ndash;&gt;-->
+				<!--<mxm.url>http://192.16.8.50:8280/mxm/dms</mxm.url>-->
+
+			<!--</properties>-->
+			<!--<activation>-->
+				<!--<activeByDefault>true</activeByDefault>-->
+			<!--</activation>-->
+		<!--</profile>-->
+
+		<!-- =====阳光开发环境====== -->
+		<!--<profile>-->
+			<!--<id>dev</id>-->
+			<!--<properties>-->
+				<!--<env>dev</env>-->
+
+				<!--&lt;!&ndash; 微服务配置 &ndash;&gt;-->
+				<!--&lt;!&ndash;<dubbo.version>server.dms.hcs</dubbo.version>&ndash;&gt;-->
+				<!--<dubbo.version>server.dms</dubbo.version>-->
+				<!--<dubbo.zoo.connectString>zookeeper://10.1.200.220:2181</dubbo.zoo.connectString>-->
+				<!--<dubbo.port.positec>20885</dubbo.port.positec>-->
+
+				<!--&lt;!&ndash; 数据源配置 &ndash;&gt;-->
+				<!--<druid.url.bsdmxm>jdbc:mysql://10.1.200.220:3307/mxm?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</druid.url.bsdmxm>-->
+				<!--<druid.username.bsdmxm>mxm</druid.username.bsdmxm>-->
+				<!--<druid.password.bsdmxm>dms2018</druid.password.bsdmxm>-->
+
+				<!--&lt;!&ndash; redis缓存配置 &ndash;&gt;-->
+				<!--<redis.ip>10.1.200.220</redis.ip>-->
+				<!--<redis.port>6377</redis.port>-->
+				<!--<redis.pass></redis.pass>-->
+
+				<!--&lt;!&ndash; 分布式时间服务 &ndash;&gt;-->
+				<!--<time.server.port>9999</time.server.port>-->
+				<!--<time.server.host>localhost</time.server.host>-->
+
+				<!--&lt;!&ndash; mxm同步接口url &ndash;&gt;-->
+				<!--<mxm.url>http://10.1.200.220:8080/mxm/dms</mxm.url>-->
+
+			<!--</properties>-->
+			<!--<activation>-->
+				<!--<activeByDefault>true</activeByDefault>-->
+			<!--</activation>-->
+		<!--</profile>-->
+
+		<!-- =======阳光DMS-UAT环境========== -->
+		<profile>
+			<id>yankon-uat</id>
+			<properties>
+				<env>yankon-uat</env>
+				<!-- 微服务配置 -->
+				<dubbo.version>server.dms</dubbo.version>
+				<dubbo.zoo.connectString>zookeeper://192.16.8.66:2181</dubbo.zoo.connectString>
+				<dubbo.port.positec>20898</dubbo.port.positec>
+
+				<!-- 数据源配置 -->
+				<druid.url.bsdmxm>jdbc:mysql://192.16.8.48:3307/ygdmscsmxm?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</druid.url.bsdmxm>
+				<druid.username.bsdmxm>mxm</druid.username.bsdmxm>
+				<druid.password.bsdmxm>cor2018</druid.password.bsdmxm>
+
+				<!-- redis缓存配置 -->
+				<redis.ip>127.0.0.1</redis.ip>
+				<redis.port>6379</redis.port>
+				<redis.pass></redis.pass>
+
+				<!-- mxm同步接口url -->
+				<mxm.url>http://192.16.8.66:8080/mxm/dms</mxm.url>
+
+				<!-- quartz数据源配置 -->
+				<org.quartz.dataSource.myDS.URL>jdbc:mysql://192.16.8.155:13306/crmdmstestdb?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</org.quartz.dataSource.myDS.URL>
+				<org.quartz.dataSource.myDS.user>crmtest</org.quartz.dataSource.myDS.user>
+				<org.quartz.dataSource.myDS.password>crmtest2017</org.quartz.dataSource.myDS.password>
+
+			</properties>
+		</profile>
+
+		<!-- =====安井开发环境====== -->
+		<profile>
+			<id>anjoy-dev</id>
+			<properties>
+				<env>anjoy-dev</env>
+
+				<!-- 微服务配置 -->
+				<dubbo.version>server.dms</dubbo.version>
+				<!--<dubbo.version>server.dms</dubbo.version>-->
+				<dubbo.zoo.connectString>192.16.8.68:7777</dubbo.zoo.connectString>
+				<dubbo.port.positec>20885</dubbo.port.positec>
+
+				<!-- 数据源配置 -->
+				<druid.url.bsdmxm>jdbc:mysql://192.16.8.155:13306/ajdmsdevdb?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</druid.url.bsdmxm>
+				<druid.username.bsdmxm>dmsdev</druid.username.bsdmxm>
+				<druid.password.bsdmxm>cor2017</druid.password.bsdmxm>
+
+				<!-- redis缓存配置 -->
+				<redis.ip>192.16.8.68</redis.ip>
+				<redis.port>6380</redis.port>
+				<redis.pass></redis.pass>
+
+				<!-- 分布式时间服务 -->
+				<time.server.port>9999</time.server.port>
+				<time.server.host>localhost</time.server.host>
+
+				<!-- mxm同步接口url -->
+				<mxm.url>http://192.16.8.68:8180/mxm/dms</mxm.url>
+
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+
+		<!-- =======安井 UAT环境========== -->
+		<profile>
+			<id>anjoy-uat</id>
+			<properties>
+				<env>uat</env>
+				<!-- 微服务配置 -->
+				<dubbo.version>server.dms</dubbo.version>
+				<dubbo.zoo.connectString>zookeeper://192.168.5.54:7777</dubbo.zoo.connectString>
+				<dubbo.port.positec>20885</dubbo.port.positec>
+
+				<!-- 数据源配置 -->
+				<druid.url.bsdmxm>jdbc:mysql://192.168.5.55:3307/dmsdevdb?useUnicode=true&amp;allowMultiQueries=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</druid.url.bsdmxm>
+				<druid.username.bsdmxm>dmsdev</druid.username.bsdmxm>
+				<druid.password.bsdmxm>dmsdev2017</druid.password.bsdmxm>
+
+				<!-- redis缓存配置 -->
+				<redis.ip>192.168.5.54</redis.ip>
+				<redis.port>6380</redis.port>
+				<redis.pass></redis.pass>
+
+				<!-- mxm同步接口url -->
+				<mxm.url>https://crmtest.ajxt.net/mxm/dms</mxm.url>
+
+				<!-- quartz数据源配置 -->
+				<org.quartz.dataSource.myDS.URL>jdbc:mysql://192.168.5.55:3307/dmsdevdb?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</org.quartz.dataSource.myDS.URL>
+				<org.quartz.dataSource.myDS.user>dmsdev</org.quartz.dataSource.myDS.user>
+				<org.quartz.dataSource.myDS.password>dmsdev2017</org.quartz.dataSource.myDS.password>
+
+			</properties>
+		</profile>
+
+		<!-- =======安井 UAT环境 个人 ========== -->
+		<profile>
+			<id>anjoy-uat-taok</id>
+			<properties>
+				<env>uat</env>
+				<!-- 微服务配置 -->
+				<dubbo.version>server.dms.taok</dubbo.version>
+				<dubbo.zoo.connectString>zookeeper://192.168.5.54:7777</dubbo.zoo.connectString>
+				<dubbo.port.positec>20885</dubbo.port.positec>
+
+				<!-- 数据源配置 -->
+				<druid.url.bsdmxm>jdbc:mysql://192.168.5.55:3307/dmsdevdb?useUnicode=true&amp;allowMultiQueries=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</druid.url.bsdmxm>
+				<druid.username.bsdmxm>dmsdev</druid.username.bsdmxm>
+				<druid.password.bsdmxm>dmsdev2017</druid.password.bsdmxm>
+
+				<!-- redis缓存配置 -->
+				<redis.ip>192.168.5.54</redis.ip>
+				<redis.port>6380</redis.port>
+				<redis.pass></redis.pass>
+
+				<!-- mxm同步接口url -->
+				<mxm.url>https://crmtest.ajxt.net/mxm/dms</mxm.url>
+
+				<!-- quartz数据源配置 -->
+				<org.quartz.dataSource.myDS.URL>jdbc:mysql://192.168.5.55:3307/dmsdevdb?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</org.quartz.dataSource.myDS.URL>
+				<org.quartz.dataSource.myDS.user>dmsdev</org.quartz.dataSource.myDS.user>
+				<org.quartz.dataSource.myDS.password>dmsdev2017</org.quartz.dataSource.myDS.password>
+
+			</properties>
+		</profile>
+
+		<!-- =======安井 生产环境========== -->
+		<profile>
+			<id>anjoy-pro</id>
+			<properties>
+				<env>pro</env>
+				<!-- 微服务配置 -->
+				<dubbo.version>server.dms</dubbo.version>
+				<dubbo.zoo.connectString>zookeeper://192.168.5.58:7777?backup=192.168.5.59:7777,192.168.5.60:7777</dubbo.zoo.connectString>
+				<dubbo.port.positec>20885</dubbo.port.positec>
+
+				<!-- 数据源配置 -->
+				<druid.url.bsdmxm>jdbc:mysql://192.168.5.66:3307/dmsproddb?useUnicode=true&amp;allowMultiQueries=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</druid.url.bsdmxm>
+				<druid.username.bsdmxm>dmsprod</druid.username.bsdmxm>
+				<druid.password.bsdmxm>DMSprod@017</druid.password.bsdmxm>
+
+				<!-- redis缓存配置 -->
+				<redis.ip>192.168.5.58</redis.ip>
+				<redis.port>6358</redis.port>
+				<redis.pass></redis.pass>
+
+				<!-- mxm同步接口url -->
+				<mxm.url>https://crm.ajxt.net/mxm/dms</mxm.url>
+
+				<!-- quartz数据源配置 -->
+				<org.quartz.dataSource.myDS.URL>jdbc:mysql://192.168.5.66:3307/dmsproddb?useUnicode=true&amp;allowMultiQueries=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</org.quartz.dataSource.myDS.URL>
+				<org.quartz.dataSource.myDS.user>dmsprod</org.quartz.dataSource.myDS.user>
+				<org.quartz.dataSource.myDS.password>DMSprod@017</org.quartz.dataSource.myDS.password>
+
+			</properties>
+		</profile>
+
+		<!-- =====dms demo环境====== -->
+		<profile>
+			<id>demo</id>
+			<properties>
+				<env>demo</env>
+
+				<!-- 微服务配置 -->
+				<dubbo.version>server.dms.kong</dubbo.version>
+				<dubbo.zoo.connectString>zookeeper://127.0.0.1:12281</dubbo.zoo.connectString>
+				<dubbo.port.positec>20885</dubbo.port.positec>
+
+				<!-- 数据源配置 -->
+				<druid.url.bsdmxm>jdbc:mysql://127.0.0.1:3309/crmdmsdb?useUnicode=true&amp;noAccessToProcedureBodies=true&amp;characterEncoding=UTF-8</druid.url.bsdmxm>
+				<druid.username.bsdmxm>dms</druid.username.bsdmxm>
+				<druid.password.bsdmxm>dms2017</druid.password.bsdmxm>
+
+
+				<!-- redis缓存配置 -->
+				<redis.ip>127.0.0.1</redis.ip>
+				<redis.port>6579</redis.port>
+				<redis.pass></redis.pass>
+
+				<!-- 分布式时间服务 -->
+				<time.server.port>9999</time.server.port>
+				<time.server.host>localhost</time.server.host>
+
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+
+		<!-- ======生产环境====== -->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<env>prod</env>
+
+			</properties>
+		</profile>
+	</profiles>
+
+
+
+	<build>
+
+		<resources>
+			<!-- 先指定 src/main/resources下所有文件及文件夹为资源文件 -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+			<!-- 设置对某些文件进行过滤， 这里对*.properties进行过虑，即这些文件中的${key}会被替换掉为真正的值 -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-assembly-plugin</artifactId>
+				<version>3.0.0</version>
+	            <configuration>
+					<appendAssemblyId>false</appendAssemblyId>
+	                <descriptors>
+	                    <descriptor>assembly.xml</descriptor>
+	                </descriptors>
+	            </configuration>
+	            <executions>
+	                <execution>
+	                    <id>make-assembly</id>
+	                    <phase>package</phase>
+	                    <goals>
+	                        <goal>single</goal>
+	                    </goals>
+	                </execution>
+	            </executions>
+	        </plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.coracle.${project.build.name}.DmsApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+	    </plugins>
+		<!-- 应用名（最后压缩包的名字）这个和你申请的应用名称一致 -->
+		<finalName>${project.build.name}</finalName>
+    </build>
+</project>

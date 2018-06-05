@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="
+	            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	            http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+	            http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	            
+	<!-- 提供方应用信息，用于计算依赖关系 -->
+	<dubbo:application name="positec_dubbo_service" />
+
+	<!-- 使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry protocol="zookeeper" address="${dubbo.zoo.connectString}" check="false" subscribe="false" register="true" file="dubboregistry/dubbo-registry.properties" />
+	
+	<!-- 延迟到Spring初始化完成后，再暴露服务,服务调用超时设置为6秒,超时不重试-->  
+    <dubbo:provider delay="-1" timeout="600000" retries="0"/>
+	
+	<!-- 用dubbo协议在20880端口暴露服务 -->
+	<dubbo:protocol name="dubbo" port="${dubbo.port}" />
+	<dubbo:monitor protocol="registry"></dubbo:monitor>
+	<!-- 声明需要暴露的服务接口 -->
+	<!-- 渠橙dms start -->
+	<dubbo:service interface="com.coracle.dms.service.DmsSysRegionService" ref="dmsSysRegionServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.KnResourceService" ref="knResourceServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<!-- DMS全局变量接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsGlobalVariableService" ref="dmsGlobalVariableServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS门店接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsStoreService" ref="dmsStoreServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS门店店员接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsSellerService" ref="dmsSellerServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS产品品牌接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsProductBrandService" ref="dmsProductBrandServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS新闻资讯接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsNewsService" ref="dmsNewsServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsNewsCommentService" ref="dmsNewsCommentServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsNoticeService" ref="dmsNoticeServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsChannelInformationService" ref="dmsChannelInformationServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsInfoCommentService" ref="dmsInfoCommentServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsPublishRrangeService" ref="dmsPublishRrangeServiceImpl" register="true" version="${dubbo.version}"/>
+	<!--DMS用户收货地址接口-->
+	<dubbo:service interface="com.coracle.dms.service.DmsUserAddressService" ref="dmsUserAddressServiceImpl" register="true" version="${dubbo.version}"/>
+	<!--DMS用户增值发票接口-->
+	<dubbo:service interface="com.coracle.dms.service.DmsUserValueAddedTaxInvoiceService" ref="dmsUserValueAddedTaxInvoiceServiceImpl" register="true" version="${dubbo.version}"/>
+	<!--DMS首页banner接口-->
+	<dubbo:service interface="com.coracle.dms.service.DmsHomeImagesService" ref="dmsHomeImagesServiceImpl" register="true" version="${dubbo.version}"/>
+	<!--DMS零售端客户接口-->
+	<dubbo:service interface="com.coracle.dms.service.DmsCustomersService" ref="dmsCustomersServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsDynamicService" ref="dmsDynamicServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsDynamicProductService" ref="dmsDynamicProductServiceImpl" register="true" version="${dubbo.version}"/>
+	<!--DMS用户收藏接口-->
+	<dubbo:service interface="com.coracle.dms.service.DmsUserCollectService" ref="dmsUserCollectServiceImpl" register="true" version="${dubbo.version}"/>
+	<!--DMS消息接口-->
+	<dubbo:service interface="com.coracle.dms.service.DmsMessageService" ref="dmsMessageServiceImpl" register="true" version="${dubbo.version}"/>
+	<!--DMS树接口-->
+	<dubbo:service interface="com.coracle.dms.service.DmsTreeRelationService" ref="dmsTreeRelationServiceImpl" register="true" version="${dubbo.version}"/>
+
+
+	<!-- DMS组织架构接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsOrganizationService" ref="dmsOrganizationServiceImpl" register="true" version="${dubbo.version}"/>
+    <!-- DMS岗位管理接口 -->
+    <dubbo:service interface="com.coracle.dms.service.DmsPostService" ref="dmsPostServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS账号管理接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsUserService" ref="dmsUserServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS角色管理接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsRoleService" ref="dmsRoleServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS账号-角色关联管理接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsUserRoleService" ref="dmsUserRoleServiceImpl" register="true" version="${dubbo.version}"/>
+    <!-- DMS员工管理接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsEmployeeService" ref="dmsEmployeeServiceImpl" register="true" version="${dubbo.version}"/>
+    <!-- DMS员工-组织关联管理接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsEmployeeOrganizationService" ref="dmsEmployeeOrganizationServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<!-- DMS购物车接口 -->
+    <dubbo:service interface="com.coracle.dms.service.DmsShoppingCartService" ref="dmsShoppingCartServiceImpl" register="true" version="${dubbo.version}"/>
+
+    <!-- DMS我的足迹接口-->
+	<dubbo:service interface="com.coracle.dms.service.DmsFootprintService" ref="dmsFootprintServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<!-- 二维码 -->
+	<dubbo:service interface="com.coracle.dms.service.KnQrcodeNumService" ref="knQrcodeNumServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<!-- DMS订单接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsOrderService" ref="dmsOrderServiceImpl" register="true" version="${dubbo.version}"/>
+    <!-- DMS发货单接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsOrderDeliveryService" ref="dmsOrderDeliveryServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS发货单商品接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsOrderDeliveryItemService" ref="dmsOrderDeliveryItemServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS订单评价接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsOrderEvaluationService" ref="dmsOrderEvaluationServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS订单产品评价接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsOrderProductEvaluationService" ref="dmsOrderProductEvaluationServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS订单物流服务评价接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsOrderLogisticsEvaluationService" ref="dmsOrderLogisticsEvaluationServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS订单付款接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsOrderPaymentService" ref="dmsOrderPaymentServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS订单操作日志接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsOrderOperationLogService" ref="dmsOrderOperationLogServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS订单商品接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsOrderProductService" ref="dmsOrderProductServiceImpl" register="true" version="${dubbo.version}"/>
+
+    <!-- DMS促销接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsPromotionService" ref="dmsPromotionServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS促销适用产品接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsPromotionProductService" ref="dmsPromotionProductServiceImpl" register="true" version="${dubbo.version}"/>
+    <!-- DMS促销适用范围接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsPromotionScopeService" ref="dmsPromotionScopeServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS促销产品销售记录接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsPromotionProductRecordService" ref="dmsPromotionProductRecordServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<!-- DMS产品CRUD接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsProductService" ref="dmsProductServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsProductAttachFileService" ref="dmsProductAttachFileServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsProductAreaService" ref="dmsProductAreaServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsProductSpecMatrixConfigService" ref="dmsProductSpecMatrixConfigServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<!-- DMS产品分类接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsProductCategoryService" ref="dmsProductCategoryServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS产品规格接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsProductSpecService" ref="dmsProductSpecServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS库存管理相关接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsStorageOutInRecordService" ref="dmsStorageOutInRecordServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsStorageBillService" ref="dmsStorageBillServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsStorageBillProductService" ref="dmsStorageBillProductServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsStorageTransportationService" ref="dmsStorageTransportationServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsStorageInventoryService" ref="dmsStorageInventoryServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsStorageSaleOutService" ref="dmsStorageSaleOutServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<dubbo:service interface="com.coracle.dms.service.DmsOrganizationService" ref="dmsOrganizationServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS地区、区域接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsSysRegionService" ref="dmsSysRegionServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsSysAreaService" ref="dmsSysAreaServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsSysAreaRegionService" ref="dmsSysAreaRegionServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS数据字典接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsDataDictionayService" ref="dmsDataDictionayServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsDataDictionayDependentService" ref="dmsDataDictionayDependentServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS附件、备注、联系信息接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsContactInfoService" ref="dmsContactInfoServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsCommonAttachFileService" ref="dmsCommonAttachFileServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsAttachmentRelationService" ref="dmsAttachmentRelationServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsRemarkService" ref="dmsRemarkServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsRemarkRelationService" ref="dmsRemarkRelationServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS渠道接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsChannelService" ref="dmsChannelServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsChannelContactsService" ref="dmsChannelContactsServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsChannelAddressService" ref="dmsChannelAddressServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsChannelEmployeeService" ref="dmsChannelEmployeeServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsChannelMinimumService" ref="dmsChannelMinimumServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS仓库接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsStorageService" ref="dmsStorageServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS调货接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsTransferApplyService" ref="dmsTransferApplyServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS退换货接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsOrderReturnCartService" ref="dmsOrderReturnCartServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsOrderReturnService" ref="dmsOrderReturnServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<!-- DMS流水号数据获取接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsSerialNumService" ref="dmsSerialNumServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- DMS报表接口 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsReportFormsService" ref="dmsReportFormsServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<!--阶梯价格接口-->
+	<dubbo:service interface="com.coracle.dms.service.DmsLadderPriceScopeService" ref="dmsLadderPriceScopeServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<dubbo:service interface="com.coracle.dms.service.DmsLadderPriceService" ref="dmsLadderPriceServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<dubbo:service interface="com.coracle.dms.service.DmsLadderPriceProductService" ref="dmsLadderPriceProductServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- 渠橙dms end -->
+
+	<!-- 理赔 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsClaimsService" ref="dmsClaimsServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsClaimsProductService" ref="dmsClaimsProductServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsExceptionClaimsService" ref="dmsExceptionClaimsServiceImpl" register="true" version="${dubbo.version}"/>
+	<!-- 退货 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsBackGoodsOrderService" ref="dmsBackGoodsOrderServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.DmsBackGoodsMaterialService" ref="dmsBackGoodsMaterialServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<!-- 定时任务同步 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsQuartzSyncService" ref="dmsQuartzSyncServiceImpl" register="true" version="${dubbo.version}"/>
+	<dubbo:service interface="com.coracle.dms.service.AnjoyCustomerPriceService" ref="anjoyCustomerPriceServiceImpl" register="true" version="${dubbo.version}"/>
+
+	<!-- 渠道-产品同步 -->
+	<dubbo:service interface="com.coracle.dms.service.DmsChannelProductAnjoyWhiteListService" ref="dmsChannelProductAnjoyWhiteListServiceImpl" register="true" version="${dubbo.version}"/>
+
+</beans>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.coracle.common</groupId>
+    <artifactId>common-config</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <profiles>
+
+        <!-- =====天正开发环境====== -->
+        <!--<profile>-->
+            <!--<id>dev</id>-->
+            <!--<properties>-->
+
+                <!--&lt;!&ndash; 文件服务mongodb配置 &ndash;&gt;-->
+                <!--<mongodb.server.uri>mongodb://192.16.8.50:27017</mongodb.server.uri>-->
+                <!--<mongodb.db.dbname>tianzheng</mongodb.db.dbname>-->
+
+                <!--&lt;!&ndash; 第三方BMS接口配置 &ndash;&gt;-->
+                <!--<bms.connection.url>http://bms-test.kresstools.cn/appsrv/</bms.connection.url>-->
+                <!--<bms.connection.username>app503</bms.connection.username>-->
+                <!--<bms.connection.password>123456</bms.connection.password>-->
+
+                <!--&lt;!&ndash; 第三方SAP接口配置 &ndash;&gt;-->
+                <!--<sap.connection.url>http://218.4.72.246:16000/sap/api/v2/sap/</sap.connection.url>-->
+                <!--<sap.connection.username>positec</sap.connection.username>-->
+                <!--<sap.connection.password>2daf6c8021fa4ef0b41338b77213cf1z</sap.connection.password>-->
+
+            <!--</properties>-->
+            <!--<activation>-->
+                <!--<activeByDefault>true</activeByDefault>-->
+            <!--</activation>-->
+        <!--</profile>-->
+
+        <!-- =====阳光开发环境====== -->
+        <!--<profile>
+            <id>dev</id>
+            <properties>
+
+            &lt;!&ndash; 文件服务mongodb配置 &ndash;&gt;
+            <mongodb.server.uri>mongodb://10.1.200.220:22077</mongodb.server.uri>
+            <mongodb.db.dbname>yankon</mongodb.db.dbname>
+
+            &lt;!&ndash; 第三方BMS接口配置 &ndash;&gt;
+            <bms.connection.url>http://bms-test.kresstools.cn/appsrv/</bms.connection.url>
+            <bms.connection.username>app503</bms.connection.username>
+            <bms.connection.password>123456</bms.connection.password>
+
+            &lt;!&ndash; 第三方SAP接口配置 &ndash;&gt;
+            <sap.connection.url>http://218.4.72.246:16000/sap/api/v2/sap/</sap.connection.url>
+            <sap.connection.username>positec</sap.connection.username>
+            <sap.connection.password>2daf6c8021fa4ef0b41338b77213cf1z</sap.connection.password>
+
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>-->
+
+        <!-- =======阳光DMS-UAT环境========== -->
+        <profile>
+            <id>yankon-uat</id>
+            <properties>
+                <!-- 文件服务mongodb配置 -->
+                <mongodb.server.uri>mongodb://192.16.8.48:22001</mongodb.server.uri>
+                <mongodb.db.dbname>ygdmscs_file</mongodb.db.dbname>
+
+                <!-- 第三方BMS接口配置 -->
+                <bms.connection.url>http://bms-test.kresstools.cn/appsrv/</bms.connection.url>
+                <bms.connection.username>app503</bms.connection.username>
+                <bms.connection.password>123456</bms.connection.password>
+
+                <!-- 第三方SAP接口配置 -->
+                <sap.connection.url>http://218.4.72.246:16000/sap/api/v2/sap/</sap.connection.url>
+                <sap.connection.username>positec</sap.connection.username>
+                <sap.connection.password>2daf6c8021fa4ef0b41338b77213cf1z</sap.connection.password>
+
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <!-- =====安井开发环境====== -->
+        <profile>
+            <id>anjoy-dev</id>
+            <properties>
+
+                <!-- 文件服务mongodb配置 -->
+                <mongodb.server.uri>mongodb://102.16.8.68:22017</mongodb.server.uri>
+                <mongodb.db.dbname>anjoy</mongodb.db.dbname>
+
+                <!-- 第三方BMS接口配置 -->
+                <bms.connection.url>http://bms-test.kresstools.cn/appsrv/</bms.connection.url>
+                <bms.connection.username>app503</bms.connection.username>
+                <bms.connection.password>123456</bms.connection.password>
+
+                <!-- 第三方SAP接口配置 -->
+                <sap.connection.url>http://218.4.72.246:16000/sap/api/v2/sap/</sap.connection.url>
+                <sap.connection.username>positec</sap.connection.username>
+                <sap.connection.password>2daf6c8021fa4ef0b41338b77213cf1z</sap.connection.password>
+
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <!-- =======UAT环境========== -->
+        <profile>
+            <id>uat</id>
+            <properties>
+                <!-- 文件服务mongodb配置 -->
+                <mongodb.server.uri>mongodb://127.0.0.1:27017</mongodb.server.uri>
+                <mongodb.db.dbname>positec</mongodb.db.dbname>
+
+                <!-- 第三方BMS接口配置 -->
+                <bms.connection.url>http://bms-test.kresstools.cn/appsrv/</bms.connection.url>
+                <bms.connection.username>app503</bms.connection.username>
+                <bms.connection.password>123456</bms.connection.password>
+
+                <!-- 第三方SAP接口配置 -->
+                <sap.connection.url>http://218.4.72.246:16000/sap/api/v2/sap/</sap.connection.url>
+                <sap.connection.username>positec</sap.connection.username>
+                <sap.connection.password>2daf6c8021fa4ef0b41338b77213cf1z</sap.connection.password>
+
+            </properties>
+        </profile>
+
+
+        <!-- ======生产环境====== -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <!-- 文件服务mongodb配置 -->
+                <mongodb.server.uri>mongodb://root:Te3m1nat0r@dds-bp126b74cbcff1c42.mongodb.rds.aliyuncs.com:3717,dds-bp126b74cbcff1c41.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-2997157</mongodb.server.uri>
+                <mongodb.db.dbname>positec</mongodb.db.dbname>
+
+                <!-- 第三方BMS接口配置 -->
+                <bms.connection.url>http://bms.kresstools.cn/appsrv/</bms.connection.url>
+                <bms.connection.username>app503</bms.connection.username>
+                <bms.connection.password>bms123456</bms.connection.password>
+
+                <!-- 第三方SAP接口配置 -->
+                <sap.connection.url>http://218.4.72.246:15000/sap/api/v2/sap/</sap.connection.url>
+                <sap.connection.username>positec</sap.connection.username>
+                <sap.connection.password>2daf6c8021fa4ef0b41338b77213cf1z</sap.connection.password>
+            </properties>
+        </profile>
+    </profiles>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+</project>

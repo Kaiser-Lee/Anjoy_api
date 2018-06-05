@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderPaymentMapper" >
+  <resultMap id="DmsOrderPaymentResultMap" type="com.coracle.dms.po.DmsOrderPayment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="confirm_amount" property="confirmAmount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="confirm_date" property="confirmDate" jdbcType="TIMESTAMP" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsOrderPayment_Column_List" >
+    id, order_id, code, type, amount, confirm_amount, status, confirm_date, created_date, 
+    created_by, last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsOrderPaymentResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsOrderPayment_Column_List" />
+    from dms_order_payment
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_order_payment
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrderPayment" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_order_payment (order_id, code, type, amount, confirm_amount, status, confirm_date, 
+      created_date, created_by, last_updated_date, last_updated_by, remove_flag
+      )
+    values (#{orderId}, #{code}, #{type}, #{amount}, #{confirmAmount}, #{status}, #{confirmDate}, 
+      #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrderPayment" >
+    insert into dms_order_payment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="confirmAmount != null" >
+        confirm_amount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="confirmDate != null" >
+        confirm_date,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="orderId != null" >
+        #{orderId},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      <if test="amount != null" >
+        #{amount},
+      </if>
+      <if test="confirmAmount != null" >
+        #{confirmAmount},
+      </if>
+      <if test="status != null" >
+        #{status},
+      </if>
+      <if test="confirmDate != null" >
+        #{confirmDate},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrderPayment" >
+    update dms_order_payment
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId},
+      </if>
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="type != null" >
+        type = #{type},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount},
+      </if>
+      <if test="confirmAmount != null" >
+        confirm_amount = #{confirmAmount},
+      </if>
+      <if test="status != null" >
+        status = #{status},
+      </if>
+      <if test="confirmDate != null" >
+        confirm_date = #{confirmDate},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrderPayment" >
+    update dms_order_payment
+    set order_id = #{orderId},
+      code = #{code},
+      type = #{type},
+      amount = #{amount},
+      confirm_amount = #{confirmAmount},
+      status = #{status},
+      confirm_date = #{confirmDate},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="orderId != null" >
+        order_id = #{orderId}
+      </if>
+      <if test="code != null and code != ''" >
+        AND code = #{code}
+      </if>
+      <if test="type != null" >
+        AND type = #{type}
+      </if>
+      <if test="amount != null" >
+        AND amount = #{amount}
+      </if>
+      <if test="confirmAmount != null" >
+        AND confirm_amount = #{confirmAmount}
+      </if>
+      <if test="status != null" >
+        AND status = #{status}
+      </if>
+      <if test="confirmDate != null" >
+        AND confirm_date = #{confirmDate}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrderPayment" resultMap="DmsOrderPaymentResultMap" >
+    select 
+    <include refid="DmsOrderPayment_Column_List" />
+    from dms_order_payment
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_order_payment
+    <set >
+      <if test="po.orderId != null" >
+        order_id = #{po.orderId},
+      </if>
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.type != null" >
+        type = #{po.type},
+      </if>
+      <if test="po.amount != null" >
+        amount = #{po.amount},
+      </if>
+      <if test="po.confirmAmount != null" >
+        confirm_amount = #{po.confirmAmount},
+      </if>
+      <if test="po.status != null" >
+        status = #{po.status},
+      </if>
+      <if test="po.confirmDate != null" >
+        confirm_date = #{po.confirmDate},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+
+  <resultMap id="DmsOrderPaymentListVoResultMap" type="com.coracle.dms.vo.DmsOrderPaymentVo" extends="DmsOrderPaymentResultMap">
+    <result column="status_text" property="statusText" jdbcType="VARCHAR"/>
+    <result column="type_text" property="typeText" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <resultMap id="DmsOrderPaymentDetailVoResultMap" type="com.coracle.dms.vo.DmsOrderPaymentVo" extends="DmsOrderPaymentListVoResultMap">
+    <result column="related_table_type" property="relatedTableType" jdbcType="INTEGER"/>
+    <collection property="picFileList" column="{type=related_table_type, id=id}" javaType="java.util.List" ofType="com.coracle.dms.po.DmsCommonAttachFile" select="com.coracle.dms.dao.mybatis.DmsCommonAttachFileMapper.selectByParam"/>
+  </resultMap>
+
+  <!-- 根据主键id获取vo -->
+  <select id="selectVoByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsOrderPaymentDetailVoResultMap">
+    select
+      op.*,
+      case op.status
+        when 0 then '待确认'
+        when 1 then '已确认'
+      end as status_text,
+      case op.type
+        when 1 then '对公转账'
+        when 2 then '在线支付'
+      end as type_text,
+      6 as related_table_type
+    from
+      dms_order_payment op
+    where
+      op.id = #{id}
+  </select>
+
+  <!-- 根据订单id获取订单收款记录列表 -->
+  <select id="selectByOrderId" parameterType="java.lang.Long" resultMap="DmsOrderPaymentListVoResultMap">
+    select
+      op.*,
+      case op.status
+        when 0 then '待确认'
+        when 1 then '已确认'
+      end as status_text,
+      case op.type
+        when 1 then '对公转账'
+        when 2 then '在线支付'
+      end as type_text
+    from
+      dms_order_payment op
+    where
+      op.order_id = #{id}
+      and op.remove_flag = 0
+  </select>
+
+  <!-- 根据订单id获取已收金额 -->
+  <select id="selectAmountByOrderId" parameterType="java.lang.Long" resultType="java.math.BigDecimal">
+    select
+      ifnull(sum(op.confirm_amount), 0)
+    from
+      dms_order_payment op
+    where
+      op.order_id = #{orderId}
+      and op.remove_flag = 0
+  </select>
+
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>

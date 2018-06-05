@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsChannelEmployeeMapper" >
+  <resultMap id="DmsChannelEmployeeResultMap" type="com.coracle.dms.po.DmsChannelEmployee" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="channel_id" property="channelId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="dept" property="dept" jdbcType="VARCHAR" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="last_update_date" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    <result column="last_update_by" property="lastUpdateBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsChannelEmployee_Column_List" >
+    id, channel_id, user_id, name, dept, post, create_date, create_by, last_update_date,
+    last_update_by, remove_flag
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="DmsChannelEmployeeResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsChannelEmployee_Column_List" />
+    from dms_channel_employee
+    where id = #{id}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_channel_employee
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsChannelEmployee" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_channel_employee (channel_id, user_id, name, dept, post, create_date, create_by,
+    last_update_date, last_update_by, remove_flag)
+    values (#{channelId}, #{userId}, #{name}, #{dept}, #{post}, #{createDate}, #{createBy},
+    #{lastUpdateDate}, #{lastUpdateBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsChannelEmployee" >
+    insert into dms_channel_employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="dept != null" >
+        dept,
+      </if>
+      <if test="post != null" >
+        post,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="lastUpdateDate != null" >
+        last_update_date,
+      </if>
+      <if test="lastUpdateBy != null" >
+        last_update_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="channelId != null" >
+        #{channelId},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="dept != null" >
+        #{dept},
+      </if>
+      <if test="post != null" >
+        #{post},
+      </if>
+      <if test="createDate != null" >
+        #{createDate},
+      </if>
+      <if test="createBy != null" >
+        #{createBy},
+      </if>
+      <if test="lastUpdateDate != null" >
+        #{lastUpdateDate},
+      </if>
+      <if test="lastUpdateBy != null" >
+        #{lastUpdateBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsChannelEmployee" >
+    update dms_channel_employee
+    <set >
+      <if test="channelId != null" >
+        channel_id = #{channelId},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="dept != null" >
+        dept = #{dept},
+      </if>
+      <if test="post != null" >
+        post = #{post},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy},
+      </if>
+      <if test="lastUpdateDate != null" >
+        last_update_date = #{lastUpdateDate},
+      </if>
+      <if test="lastUpdateBy != null" >
+        last_update_by = #{lastUpdateBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsChannelEmployee" >
+    update dms_channel_employee
+    set channel_id = #{channelId},
+    user_id = #{userId},
+    name = #{name},
+    dept = #{dept},
+    post = #{post},
+    create_date = #{createDate},
+    create_by = #{createBy},
+    last_update_date = #{lastUpdateDate},
+    last_update_by = #{lastUpdateBy},
+    remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="channelId != null" >
+        channel_id = #{channelId}
+      </if>
+      <if test="userId != null" >
+        AND user_id = #{userId}
+      </if>
+      <if test="name != null and name != ''" >
+        AND name = #{name}
+      </if>
+      <if test="dept != null and dept != ''" >
+        AND dept = #{dept}
+      </if>
+      <if test="post != null and post != ''" >
+        AND post = #{post}
+      </if>
+      <if test="createDate != null" >
+        AND create_date = #{createDate}
+      </if>
+      <if test="createBy != null" >
+        AND create_by = #{createBy}
+      </if>
+      <if test="lastUpdateDate != null" >
+        AND last_update_date = #{lastUpdateDate}
+      </if>
+      <if test="lastUpdateBy != null" >
+        AND last_update_by = #{lastUpdateBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsChannelEmployee" resultMap="DmsChannelEmployeeResultMap" >
+    select
+    <include refid="DmsChannelEmployee_Column_List" />
+    from dms_channel_employee
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_channel_employee
+    <set >
+      <if test="po.channelId != null" >
+        channel_id = #{po.channelId},
+      </if>
+      <if test="po.userId != null" >
+        user_id = #{po.userId},
+      </if>
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.dept != null" >
+        dept = #{po.dept},
+      </if>
+      <if test="po.post != null" >
+        post = #{po.post},
+      </if>
+      <if test="po.createDate != null" >
+        create_date = #{po.createDate},
+      </if>
+      <if test="po.createBy != null" >
+        create_by = #{po.createBy},
+      </if>
+      <if test="po.lastUpdateDate != null" >
+        last_update_date = #{po.lastUpdateDate},
+      </if>
+      <if test="po.lastUpdateBy != null" >
+        last_update_by = #{po.lastUpdateBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--自定义sql start-->
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_channel_employee
+    (channel_id, user_id,name, dept, post,create_date, create_by, last_update_date,last_update_by, remove_flag)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.channelId}, #{item.userId},#{item.name},#{item.dept},#{item.post},#{item.createDate}, #{item.createBy}, #{item.lastUpdateDate},#{item.lastUpdateBy}, #{item.removeFlag})
+    </foreach>
+  </insert>
+
+  <delete id="deleteByChannelId"  parameterType="java.lang.Long">
+      DELETE  from dms_channel_employee where channel_id = #{channelId}
+  </delete>
+
+  <select id="selectByChannelId" parameterType="java.lang.Long" resultMap="DmsChannelEmployeeResultMap">
+
+    select * FROM  dms_channel_employee where channel_id = #{channelId} and remove_flag = 0
+
+  </select>
+
+
+  <update id="deleteByEmployeeID" parameterType="java.lang.Long">
+
+    update dms_channel_employee set remove_flag = 1 where id = #{id}
+
+  </update>
+
+  <!-- 自定义SQL -->
+
+  <resultMap id="DmsChannelEmployeeVoResultMap" type="com.coracle.yk.xframework.po.DmsChannelMutilVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="userId" property="userId" jdbcType="BIGINT" />
+  </resultMap>
+
+
+  <!-- 同步安井渠道-业务员 数据前先将DMS所有渠道数据置为：已删除状态 -->
+  <update id="deleteChannelEmployeeSyncAnjoy">
+    UPDATE dms_channel_employee t SET t.remove_flag = 1
+  </update>
+
+  <select id="selectChannelList" parameterType="map" resultMap="DmsChannelEmployeeVoResultMap">
+    SELECT
+      dc.id id,
+      dc.`code`,
+      dc.`name`,
+      dc.address,
+      dc.contacts,
+      usr.id userId
+    FROM
+      dms_channel_employee dce
+      JOIN dms_channel dc ON dc.id = dce.channel_id
+      JOIN dms_user usr ON usr.id = dce.user_id
+    WHERE
+      usr.id = #{userId}
+      AND dce.remove_flag = 0
+      AND dc.remove_flag = 0
+      AND dc.active = 1
+      AND usr.remove_flag = 0
+  </select>
+
+</mapper>

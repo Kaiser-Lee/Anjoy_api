@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+	            http://www.springframework.org/schema/beans
+	            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	            http://www.springframework.org/schema/aop
+	            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	            http://www.springframework.org/schema/tx
+	            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	            http://www.springframework.org/schema/context
+	            http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	            http://www.springframework.org/schema/task
+	            http://www.springframework.org/schema/task/spring-task-4.0.xsd
+	            http://www.springframework.org/schema/mvc
+	            http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	             http://code.alibabatech.com/schema/dubbo
+	             http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	            ">
+
+	             <!--
+	<mvc:annotation-driven/>
+    <mvc:default-servlet-handler/>
+     -->
+
+	<bean id="propertyConfigurer"  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="fileEncoding" value="utf-8" />
+		<property name="locations">
+			<list>
+				<value>classpath:/TrustMerchant.properties</value>
+				<value>classpath:/config/mongodb.properties</value>
+				<value>classpath:/config/pay-alipay.properties</value>
+				<value>classpath:/config/pay-wechat.properties</value>
+				<value>classpath:/config/pay-bank-abc.properties</value>
+				<value>classpath:/config/short-message.properties</value>
+			</list>
+		</property>
+	</bean>
+
+
+    <bean class="com.coracle.dms.xweb.common.bean.BeanFactory" />
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/api/v2/customer/receiveMsg"/>
+            <bean class="com.coracle.dms.xweb.web.UrlInterceptor">
+                <property name="excludedUrls">
+                    <list>
+                        <value>/test1</value>
+                    </list>
+                </property>
+             </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="synchronizeOnSession" value="true" />
+		<!--<property name="customArgumentResolvers">-->
+			<!--&lt;!&ndash;<list>&ndash;&gt;-->
+				<!--&lt;!&ndash;<bean class="com.coracle.dms.xweb.common.resolver.UserSessionArgumentResolver" />&ndash;&gt;-->
+			<!--&lt;!&ndash;</list>&ndash;&gt;-->
+		<!--</property>-->
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+							<value>text/html;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/json;charset=UTF-8</value>
+							<value>text/html;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="false">
+			<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+			<bean class="org.springframework.http.converter.FormHttpMessageConverter"/>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<!-- *****自定义JSON返回类型***** -->
+						<value>text/javascript;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+
+	<!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+	<!-- 指定所上传文件的总大小不能超过50M。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+	<!--
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>
+
+		<property name="maxUploadSize" value="52428800"/>
+		<property name="maxInMemorySize" value="40960"/>
+	</bean>
+	-->
+
+	<!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
+	<!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的，而且此时还没有进入到Controller方法中 -->
+	<!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/views/error_fileupload.jsp页面 -->
+	<!--
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error_fileupload</prop>
+			</props>
+		</property>
+	</bean>
+	-->
+
+	<bean id="threadPoolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" scope="singleton">
+		<!-- 线程池维护线程的最小数量 -->
+		<property name="corePoolSize" value="10" />
+		<!-- 线程池维护线程的最大数量 -->
+		<property name="maxPoolSize" value="100" />
+		<!-- 线程池所使用的缓冲队列容量，默认为Integer.MAX_VALUE -->
+		<property name="queueCapacity" value="100" />
+		<!-- 是否允许线程池超时自动缩减 -->
+		<!--<property name="allowCoreThreadTimeOut" value="true" />-->
+		<!-- 线程池维护线程所允许的空闲时间，秒  -->
+		<property name="keepAliveSeconds" value="30" />
+	</bean>
+
+	<bean id="controllerAdvice"	class="com.coracle.dms.xweb.common.interceptor.ControllerInterceptor" />
+	<aop:config>
+		<aop:advisor advice-ref="controllerAdvice" pointcut="execution(* com.coracle.dms.xweb.controller..*Controller.*(..)) "/>
+		<!--
+		execution(* com.shj.app.bid.controller..*Controller.*(..)) or
+		execution(* com.shj.app.biz.controller..*Controller.*(..)) or
+		-->
+	</aop:config>
+
+	<bean id="base64EncoderAdvice"	class="com.coracle.dms.xweb.common.interceptor.Base64DecoderInterceptor" />
+	<aop:config>
+		<aop:advisor advice-ref="base64EncoderAdvice" pointcut="execution(* com.coracle.dms.xweb.controller..*Controller.*(..)) "/>
+		<!--
+		execution(* com.shj.app.bid.controller..*Controller.*(..)) or
+		execution(* com.shj.app.biz.controller..*Controller.*(..)) or
+		-->
+	</aop:config>
+
+
+	<mvc:interceptors>
+		<bean class="com.coracle.dms.xweb.common.interceptor.LoginInterceptor"></bean>
+	</mvc:interceptors>
+</beans>

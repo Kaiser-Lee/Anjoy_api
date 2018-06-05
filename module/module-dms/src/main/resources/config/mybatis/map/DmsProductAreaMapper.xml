@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsProductAreaMapper" >
+  <resultMap id="DmsProductAreaResultMap" type="com.coracle.dms.po.DmsProductArea" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="DmsProductArea_Column_List" >
+    id, product_id, area_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsProductAreaResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsProductArea_Column_List" />
+    from dms_product_area
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_product_area
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsProductArea" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_product_area (product_id, area_id)
+    values (#{productId}, #{areaId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsProductArea" >
+    insert into dms_product_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="areaId != null" >
+        #{areaId},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsProductArea" >
+    update dms_product_area
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsProductArea" >
+    update dms_product_area
+    set product_id = #{productId},
+      area_id = #{areaId}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="productId != null" >
+        product_id = #{productId}
+      </if>
+      <if test="areaId != null" >
+        AND area_id = #{areaId}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsProductArea" resultMap="DmsProductAreaResultMap" >
+    select 
+    <include refid="DmsProductArea_Column_List" />
+    from dms_product_area
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_product_area
+    <set >
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.areaId != null" >
+        area_id = #{po.areaId},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++Parting line : new sql here++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <!--批量新增-->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_product_area(product_id, area_id)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.productId}, #{item.areaId})
+    </foreach>
+  </insert>
+
+  <!--批量删除-->
+  <delete id="batchDelete" parameterType="java.util.List" >
+    DELETE FROM dms_product_area
+    where id in (
+    <foreach collection="list" index="index" item="item" separator=",">
+      #{item.id}
+    </foreach>)
+  </delete>
+
+  <!-- 根据渠道id和产品id判断该产品是否可为该渠道下账号可见：0-不可见；1-可见 -->
+  <select id="selectByChannelIdAndProductId" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select
+      case
+        when (
+          (select count(*) from dms_product_area where product_id = #{productId}) = 0
+          or
+          (
+            select
+              (
+                select tr.path from dms_tree_relation tr where tr.related_type = 1 and tr.related_id = #{channelId} and tr.remove_flag = 0
+              )
+              regexp
+              (
+                select group_concat(pa.area_id separator '|') from dms_product_area pa where pa.product_id = #{productId}
+              )
+          ) > 0
+        ) then 1
+        else 0
+      end
+    from dual
+  </select>
+</mapper>

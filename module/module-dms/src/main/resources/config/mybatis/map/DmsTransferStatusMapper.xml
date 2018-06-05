@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsTransferStatusMapper" >
+  <resultMap id="DmsTransferStatusResultMap" type="com.coracle.dms.po.DmsTransferStatus" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="transfer_id" property="transferId" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="process_status" property="processStatus" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsTransferStatus_Column_List" >
+    id, transfer_id, store_id, process_status, created_date, created_by, last_updated_date, 
+    last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsTransferStatusResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsTransferStatus_Column_List" />
+    from dms_transfer_status
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_transfer_status
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsTransferStatus" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_transfer_status (transfer_id, store_id, process_status, created_date, created_by, 
+      last_updated_date, last_updated_by, remove_flag)
+    values (#{transferId}, #{storeId}, #{processStatus}, #{createdDate}, #{createdBy}, 
+      #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsTransferStatus" >
+    insert into dms_transfer_status
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="transferId != null" >
+        transfer_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="processStatus != null" >
+        process_status,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="transferId != null" >
+        #{transferId},
+      </if>
+      <if test="storeId != null" >
+        #{storeId},
+      </if>
+      <if test="processStatus != null" >
+        #{processStatus},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsTransferStatus" >
+    update dms_transfer_status
+    <set >
+      <if test="transferId != null" >
+        transfer_id = #{transferId},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId},
+      </if>
+      <if test="processStatus != null" >
+        process_status = #{processStatus},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsTransferStatus" >
+    update dms_transfer_status
+    set transfer_id = #{transferId},
+      store_id = #{storeId},
+      process_status = #{processStatus},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="transferId != null" >
+        transfer_id = #{transferId}
+      </if>
+      <if test="storeId != null" >
+        AND store_id = #{storeId}
+      </if>
+      <if test="processStatus != null" >
+        AND process_status = #{processStatus}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsTransferStatus" resultMap="DmsTransferStatusResultMap" >
+    select 
+    <include refid="DmsTransferStatus_Column_List" />
+    from dms_transfer_status
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_transfer_status
+    <set >
+      <if test="po.transferId != null" >
+        transfer_id = #{po.transferId},
+      </if>
+      <if test="po.storeId != null" >
+        store_id = #{po.storeId},
+      </if>
+      <if test="po.processStatus != null" >
+        process_status = #{po.processStatus},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

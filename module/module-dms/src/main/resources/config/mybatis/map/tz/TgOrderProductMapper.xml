@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.tz.TgOrderProductMapper" >
+  <resultMap id="TgOrderProductResultMap" type="com.coracle.dms.po.tz.TgOrderProduct" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_spec_id" property="productSpecId" jdbcType="BIGINT" />
+    <result column="spec_union_key" property="specUnionKey" jdbcType="VARCHAR" />
+    <result column="shoppingcart_id" property="shoppingcartId" jdbcType="BIGINT" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="original_price" property="originalPrice" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="promotion_product_id" property="promotionProductId" jdbcType="BIGINT" />
+    <result column="promotion_subject" property="promotionSubject" jdbcType="LONGVARCHAR" />
+    <result column="available_reference_quantity" property="availableReferenceQuantity" jdbcType="INTEGER" />
+    <result column="production_cycle" property="productionCycle" jdbcType="INTEGER" />
+    <result column="logistics_cycle" property="logisticsCycle" jdbcType="INTEGER" />
+    <result column="reference_arrival_date" property="referenceArrivalDate" jdbcType="TIMESTAMP" />
+    <result column="predict_arrival_date" property="predictArrivalDate" jdbcType="TIMESTAMP" />
+    <result column="pick_pro_address" property="pickProAddress" jdbcType="VARCHAR" />
+    <result column="part_shipments" property="partShipments" jdbcType="VARCHAR" />
+    <result column="terminal_price_rate" property="terminalPriceRate" jdbcType="DECIMAL" />
+    <result column="terminal_unit_price" property="terminalUnitPrice" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="check_price" property="checkPrice" jdbcType="DECIMAL" />
+    <result column="price_rate" property="priceRate" jdbcType="DECIMAL" />
+    <result column="check_price_rate" property="checkPriceRate" jdbcType="DECIMAL" />
+    <result column="is_exigency" property="isExigency" jdbcType="INTEGER" />
+    <result column="check_msg" property="checkMsg" jdbcType="VARCHAR" />
+    <result column="pro_line" property="proLine" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="TgOrderProduct_Column_List" >
+    id, order_id, product_id, product_name, product_spec_id, spec_union_key, shoppingcart_id, 
+    unit, original_price, price, count, status, created_date, created_by, last_updated_date, 
+    last_updated_by, remove_flag, promotion_product_id, promotion_subject, available_reference_quantity, 
+    production_cycle, logistics_cycle, reference_arrival_date, predict_arrival_date, 
+    pick_pro_address, part_shipments, terminal_price_rate, terminal_unit_price, remark, 
+    check_price, price_rate, check_price_rate, is_exigency, check_msg,pro_line
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="TgOrderProductResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="TgOrderProduct_Column_List" />
+    from tg_order_product
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tg_order_product
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.tz.TgOrderProduct" useGeneratedKeys="true" keyProperty="id" >
+    insert into tg_order_product (
+    <if test="orderId != null" >
+      order_id,
+    </if>
+     product_id, product_name, product_spec_id, spec_union_key,
+      shoppingcart_id, unit, original_price, price, count, status, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag, promotion_product_id, 
+      promotion_subject, available_reference_quantity, production_cycle, logistics_cycle, 
+      reference_arrival_date, predict_arrival_date, pick_pro_address, part_shipments, 
+      terminal_price_rate, terminal_unit_price, remark, check_price, price_rate, 
+      check_price_rate, is_exigency, check_msg,pro_line)
+    values (
+    <if test="orderId != null" >
+      #{orderId},
+    </if>
+     #{productId}, #{productName}, #{productSpecId}, #{specUnionKey},
+      #{shoppingcartId}, #{unit}, #{originalPrice}, #{price}, #{count}, #{status}, #{createdDate}, 
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, #{promotionProductId}, 
+      #{promotionSubject}, #{availableReferenceQuantity}, #{productionCycle}, #{logisticsCycle}, 
+      #{referenceArrivalDate}, #{predictArrivalDate}, #{pickProAddress}, #{partShipments}, 
+      #{terminalPriceRate}, #{terminalUnitPrice}, #{remark}, #{checkPrice}, #{priceRate}, 
+      #{checkPriceRate}, #{isExigency}, #{checkMsg},#{proLine})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.tz.TgOrderProduct" >
+    insert into tg_order_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id,
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key,
+      </if>
+      <if test="shoppingcartId != null" >
+        shoppingcart_id,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="originalPrice != null" >
+        original_price,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="promotionProductId != null" >
+        promotion_product_id,
+      </if>
+      <if test="promotionSubject != null" >
+        promotion_subject,
+      </if>
+      <if test="availableReferenceQuantity != null" >
+        available_reference_quantity,
+      </if>
+      <if test="productionCycle != null" >
+        production_cycle,
+      </if>
+      <if test="logisticsCycle != null" >
+        logistics_cycle,
+      </if>
+      <if test="referenceArrivalDate != null" >
+        reference_arrival_date,
+      </if>
+      <if test="predictArrivalDate != null" >
+        predict_arrival_date,
+      </if>
+      <if test="pickProAddress != null" >
+        pick_pro_address,
+      </if>
+      <if test="partShipments != null" >
+        part_shipments,
+      </if>
+      <if test="terminalPriceRate != null" >
+        terminal_price_rate,
+      </if>
+      <if test="terminalUnitPrice != null" >
+        terminal_unit_price,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="checkPrice != null" >
+        check_price,
+      </if>
+      <if test="priceRate != null" >
+        price_rate,
+      </if>
+      <if test="checkPriceRate != null" >
+        check_price_rate,
+      </if>
+      <if test="isExigency != null" >
+        is_exigency,
+      </if>
+      <if test="checkMsg != null" >
+        check_msg,
+      </if>
+      <if test="proLine != null" >
+        pro_line,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="orderId != null" >
+        #{orderId},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="productName != null" >
+        #{productName},
+      </if>
+      <if test="productSpecId != null" >
+        #{productSpecId},
+      </if>
+      <if test="specUnionKey != null" >
+        #{specUnionKey},
+      </if>
+      <if test="shoppingcartId != null" >
+        #{shoppingcartId},
+      </if>
+      <if test="unit != null" >
+        #{unit},
+      </if>
+      <if test="originalPrice != null" >
+        #{originalPrice},
+      </if>
+      <if test="price != null" >
+        #{price},
+      </if>
+      <if test="count != null" >
+        #{count},
+      </if>
+      <if test="status != null" >
+        #{status},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="promotionProductId != null" >
+        #{promotionProductId},
+      </if>
+      <if test="promotionSubject != null" >
+        #{promotionSubject},
+      </if>
+      <if test="availableReferenceQuantity != null" >
+        #{availableReferenceQuantity},
+      </if>
+      <if test="productionCycle != null" >
+        #{productionCycle},
+      </if>
+      <if test="logisticsCycle != null" >
+        #{logisticsCycle},
+      </if>
+      <if test="referenceArrivalDate != null" >
+        #{referenceArrivalDate},
+      </if>
+      <if test="predictArrivalDate != null" >
+        #{predictArrivalDate},
+      </if>
+      <if test="pickProAddress != null" >
+        #{pickProAddress},
+      </if>
+      <if test="partShipments != null" >
+        #{partShipments},
+      </if>
+      <if test="terminalPriceRate != null" >
+        #{terminalPriceRate},
+      </if>
+      <if test="terminalUnitPrice != null" >
+        #{terminalUnitPrice},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="checkPrice != null" >
+        #{checkPrice},
+      </if>
+      <if test="priceRate != null" >
+        #{priceRate},
+      </if>
+      <if test="checkPriceRate != null" >
+        #{checkPriceRate},
+      </if>
+      <if test="isExigency != null" >
+        #{isExigency},
+      </if>
+      <if test="checkMsg != null" >
+        #{checkMsg},
+      </if>
+      <if test="proLine != null" >
+        #{proLine},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.tz.TgOrderProduct" >
+    update tg_order_product
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName},
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id = #{productSpecId},
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key = #{specUnionKey},
+      </if>
+      <if test="shoppingcartId != null" >
+        shoppingcart_id = #{shoppingcartId},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit},
+      </if>
+      <if test="originalPrice != null" >
+        original_price = #{originalPrice},
+      </if>
+      <if test="price != null" >
+        price = #{price},
+      </if>
+      <if test="count != null" >
+        count = #{count},
+      </if>
+      <if test="status != null" >
+        status = #{status},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="promotionProductId != null" >
+        promotion_product_id = #{promotionProductId},
+      </if>
+      <if test="promotionSubject != null" >
+        promotion_subject = #{promotionSubject},
+      </if>
+      <if test="availableReferenceQuantity != null" >
+        available_reference_quantity = #{availableReferenceQuantity},
+      </if>
+      <if test="productionCycle != null" >
+        production_cycle = #{productionCycle},
+      </if>
+      <if test="logisticsCycle != null" >
+        logistics_cycle = #{logisticsCycle},
+      </if>
+      <if test="referenceArrivalDate != null" >
+        reference_arrival_date = #{referenceArrivalDate},
+      </if>
+      <if test="predictArrivalDate != null" >
+        predict_arrival_date = #{predictArrivalDate},
+      </if>
+      <if test="pickProAddress != null" >
+        pick_pro_address = #{pickProAddress},
+      </if>
+      <if test="partShipments != null" >
+        part_shipments = #{partShipments},
+      </if>
+      <if test="terminalPriceRate != null" >
+        terminal_price_rate = #{terminalPriceRate},
+      </if>
+      <if test="terminalUnitPrice != null" >
+        terminal_unit_price = #{terminalUnitPrice},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="checkPrice != null" >
+        check_price = #{checkPrice},
+      </if>
+      <if test="priceRate != null" >
+        price_rate = #{priceRate},
+      </if>
+      <if test="checkPriceRate != null" >
+        check_price_rate = #{checkPriceRate},
+      </if>
+      <if test="isExigency != null" >
+        is_exigency = #{isExigency},
+      </if>
+      <if test="checkMsg != null" >
+        check_msg = #{checkMsg},
+      </if>
+      <if test="proLine != null" >
+        pro_line = #{proLine},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.tz.TgOrderProduct" >
+    update tg_order_product
+    set order_id = #{orderId},
+      product_id = #{productId},
+      product_name = #{productName},
+      product_spec_id = #{productSpecId},
+      spec_union_key = #{specUnionKey},
+      shoppingcart_id = #{shoppingcartId},
+      unit = #{unit},
+      original_price = #{originalPrice},
+      price = #{price},
+      count = #{count},
+      status = #{status},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      promotion_product_id = #{promotionProductId},
+      promotion_subject = #{promotionSubject},
+      available_reference_quantity = #{availableReferenceQuantity},
+      production_cycle = #{productionCycle},
+      logistics_cycle = #{logisticsCycle},
+      reference_arrival_date = #{referenceArrivalDate},
+      predict_arrival_date = #{predictArrivalDate},
+      pick_pro_address = #{pickProAddress},
+      part_shipments = #{partShipments},
+      terminal_price_rate = #{terminalPriceRate},
+      terminal_unit_price = #{terminalUnitPrice},
+      remark = #{remark},
+      check_price = #{checkPrice},
+      price_rate = #{priceRate},
+      check_price_rate = #{checkPriceRate},
+      is_exigency = #{isExigency},
+      check_msg = #{checkMsg},
+      pro_Line = #{proLine}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="orderId != null" >
+        order_id = #{orderId}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId}
+      </if>
+      <if test="productName != null and productName != ''" >
+        AND product_name = #{productName}
+      </if>
+      <if test="productSpecId != null" >
+        AND product_spec_id = #{productSpecId}
+      </if>
+      <if test="specUnionKey != null and specUnionKey != ''" >
+        AND spec_union_key = #{specUnionKey}
+      </if>
+      <if test="shoppingcartId != null" >
+        AND shoppingcart_id = #{shoppingcartId}
+      </if>
+      <if test="unit != null and unit != ''" >
+        AND unit = #{unit}
+      </if>
+      <if test="originalPrice != null" >
+        AND original_price = #{originalPrice}
+      </if>
+      <if test="price != null" >
+        AND price = #{price}
+      </if>
+      <if test="count != null" >
+        AND count = #{count}
+      </if>
+      <if test="status != null" >
+        AND status = #{status}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="promotionProductId != null" >
+        AND promotion_product_id = #{promotionProductId}
+      </if>
+      <if test="promotionSubject != null" >
+        AND promotion_subject = #{promotionSubject}
+      </if>
+      <if test="availableReferenceQuantity != null" >
+        AND available_reference_quantity = #{availableReferenceQuantity}
+      </if>
+      <if test="productionCycle != null" >
+        AND production_cycle = #{productionCycle}
+      </if>
+      <if test="logisticsCycle != null" >
+        AND logistics_cycle = #{logisticsCycle}
+      </if>
+      <if test="referenceArrivalDate != null" >
+        AND reference_arrival_date = #{referenceArrivalDate}
+      </if>
+      <if test="predictArrivalDate != null" >
+        AND predict_arrival_date = #{predictArrivalDate}
+      </if>
+      <if test="pickProAddress != null and pickProAddress != ''" >
+        AND pick_pro_address = #{pickProAddress}
+      </if>
+      <if test="partShipments != null and partShipments != ''" >
+        AND part_shipments = #{partShipments}
+      </if>
+      <if test="terminalPriceRate != null" >
+        AND terminal_price_rate = #{terminalPriceRate}
+      </if>
+      <if test="terminalUnitPrice != null" >
+        AND terminal_unit_price = #{terminalUnitPrice}
+      </if>
+      <if test="remark != null and remark != ''" >
+        AND remark = #{remark}
+      </if>
+      <if test="checkPrice != null" >
+        AND check_price = #{checkPrice}
+      </if>
+      <if test="priceRate != null" >
+        AND price_rate = #{priceRate}
+      </if>
+      <if test="checkPriceRate != null" >
+        AND check_price_rate = #{checkPriceRate}
+      </if>
+      <if test="isExigency != null" >
+        AND is_exigency = #{isExigency}
+      </if>
+      <if test="checkMsg != null and checkMsg != ''" >
+        AND check_msg = #{checkMsg}
+      </if>
+      <if test="proLine != null and proLine != ''" >
+        AND pro_line = #{proLine}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.tz.TgOrderProduct" resultMap="TgOrderProductResultMap" >
+    select 
+    <include refid="TgOrderProduct_Column_List" />
+    from tg_order_product
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update tg_order_product
+    <set >
+      <if test="po.orderId != null" >
+        order_id = #{po.orderId},
+      </if>
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.productName != null" >
+        product_name = #{po.productName},
+      </if>
+      <if test="po.productSpecId != null" >
+        product_spec_id = #{po.productSpecId},
+      </if>
+      <if test="po.specUnionKey != null" >
+        spec_union_key = #{po.specUnionKey},
+      </if>
+      <if test="po.shoppingcartId != null" >
+        shoppingcart_id = #{po.shoppingcartId},
+      </if>
+      <if test="po.unit != null" >
+        unit = #{po.unit},
+      </if>
+      <if test="po.originalPrice != null" >
+        original_price = #{po.originalPrice},
+      </if>
+      <if test="po.price != null" >
+        price = #{po.price},
+      </if>
+      <if test="po.count != null" >
+        count = #{po.count},
+      </if>
+      <if test="po.status != null" >
+        status = #{po.status},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.promotionProductId != null" >
+        promotion_product_id = #{po.promotionProductId},
+      </if>
+      <if test="po.promotionSubject != null" >
+        promotion_subject = #{po.promotionSubject},
+      </if>
+      <if test="po.availableReferenceQuantity != null" >
+        available_reference_quantity = #{po.availableReferenceQuantity},
+      </if>
+      <if test="po.productionCycle != null" >
+        production_cycle = #{po.productionCycle},
+      </if>
+      <if test="po.logisticsCycle != null" >
+        logistics_cycle = #{po.logisticsCycle},
+      </if>
+      <if test="po.referenceArrivalDate != null" >
+        reference_arrival_date = #{po.referenceArrivalDate},
+      </if>
+      <if test="po.predictArrivalDate != null" >
+        predict_arrival_date = #{po.predictArrivalDate},
+      </if>
+      <if test="po.pickProAddress != null" >
+        pick_pro_address = #{po.pickProAddress},
+      </if>
+      <if test="po.partShipments != null" >
+        part_shipments = #{po.partShipments},
+      </if>
+      <if test="po.terminalPriceRate != null" >
+        terminal_price_rate = #{po.terminalPriceRate},
+      </if>
+      <if test="po.terminalUnitPrice != null" >
+        terminal_unit_price = #{po.terminalUnitPrice},
+      </if>
+      <if test="po.remark != null" >
+        remark = #{po.remark},
+      </if>
+      <if test="po.checkPrice != null" >
+        check_price = #{po.checkPrice},
+      </if>
+      <if test="po.priceRate != null" >
+        price_rate = #{po.priceRate},
+      </if>
+      <if test="po.checkPriceRate != null" >
+        check_price_rate = #{po.checkPriceRate},
+      </if>
+      <if test="po.isExigency != null" >
+        is_exigency = #{po.isExigency},
+      </if>
+      <if test="po.checkMsg != null" >
+        check_msg = #{po.checkMsg},
+      </if>
+      <if test="po.proLine != null" >
+        pro_line = #{po.proLine},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

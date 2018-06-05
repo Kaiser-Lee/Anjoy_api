@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderLogisticsEvaluationMapper" >
+  <resultMap id="DmsOrderLogisticsEvaluationResultMap" type="com.coracle.dms.po.DmsOrderLogisticsEvaluation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="pack_score" property="packScore" jdbcType="INTEGER" />
+    <result column="speed_score" property="speedScore" jdbcType="INTEGER" />
+    <result column="attitude_score" property="attitudeScore" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsOrderLogisticsEvaluation_Column_List" >
+    id, order_id, pack_score, speed_score, attitude_score, created_date, created_by, 
+    last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsOrderLogisticsEvaluationResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsOrderLogisticsEvaluation_Column_List" />
+    from dms_order_logistics_evaluation
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_order_logistics_evaluation
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrderLogisticsEvaluation" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_order_logistics_evaluation (order_id, pack_score, speed_score, attitude_score, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag)
+    values (#{orderId}, #{packScore}, #{speedScore}, #{attitudeScore}, #{createdDate}, 
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrderLogisticsEvaluation" >
+    insert into dms_order_logistics_evaluation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="packScore != null" >
+        pack_score,
+      </if>
+      <if test="speedScore != null" >
+        speed_score,
+      </if>
+      <if test="attitudeScore != null" >
+        attitude_score,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="orderId != null" >
+        #{orderId},
+      </if>
+      <if test="packScore != null" >
+        #{packScore},
+      </if>
+      <if test="speedScore != null" >
+        #{speedScore},
+      </if>
+      <if test="attitudeScore != null" >
+        #{attitudeScore},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrderLogisticsEvaluation" >
+    update dms_order_logistics_evaluation
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId},
+      </if>
+      <if test="packScore != null" >
+        pack_score = #{packScore},
+      </if>
+      <if test="speedScore != null" >
+        speed_score = #{speedScore},
+      </if>
+      <if test="attitudeScore != null" >
+        attitude_score = #{attitudeScore},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrderLogisticsEvaluation" >
+    update dms_order_logistics_evaluation
+    set order_id = #{orderId},
+      pack_score = #{packScore},
+      speed_score = #{speedScore},
+      attitude_score = #{attitudeScore},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="orderId != null" >
+        order_id = #{orderId}
+      </if>
+      <if test="packScore != null" >
+        AND pack_score = #{packScore}
+      </if>
+      <if test="speedScore != null" >
+        AND speed_score = #{speedScore}
+      </if>
+      <if test="attitudeScore != null" >
+        AND attitude_score = #{attitudeScore}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrderLogisticsEvaluation" resultMap="DmsOrderLogisticsEvaluationResultMap" >
+    select 
+    <include refid="DmsOrderLogisticsEvaluation_Column_List" />
+    from dms_order_logistics_evaluation
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_order_logistics_evaluation
+    <set >
+      <if test="po.orderId != null" >
+        order_id = #{po.orderId},
+      </if>
+      <if test="po.packScore != null" >
+        pack_score = #{po.packScore},
+      </if>
+      <if test="po.speedScore != null" >
+        speed_score = #{po.speedScore},
+      </if>
+      <if test="po.attitudeScore != null" >
+        attitude_score = #{po.attitudeScore},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

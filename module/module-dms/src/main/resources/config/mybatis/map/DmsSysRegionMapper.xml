@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsSysRegionMapper" >
+  <resultMap id="DmsSysRegionResultMap" type="com.coracle.dms.po.DmsSysRegion" >
+    <id column="region_id" property="regionId" jdbcType="INTEGER" />
+    <result column="parent_region_id" property="parentRegionId" jdbcType="INTEGER" />
+    <result column="region_name" property="regionName" jdbcType="VARCHAR" />
+    <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
+    <result column="region_path" property="regionPath" jdbcType="VARCHAR" />
+    <result column="data_num" property="dataNum" jdbcType="INTEGER" />
+    <result column="sort_order" property="sortOrder" jdbcType="INTEGER" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="full_path" property="fullPath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsSysRegion_Column_List" >
+    region_id, parent_region_id, region_name, region_code, region_path, data_num, sort_order, 
+    active, remark, full_path
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsSysRegionResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="DmsSysRegion_Column_List" />
+    from dms_sys_region
+    where region_id = #{regionId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dms_sys_region
+    where region_id = #{regionId}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsSysRegion" useGeneratedKeys="true" keyProperty="regionId" >
+    insert into dms_sys_region (parent_region_id, region_name, region_code, region_path, data_num, 
+      sort_order, active, remark, full_path)
+    values (#{parentRegionId}, #{regionName}, #{regionCode}, #{regionPath}, #{dataNum}, 
+      #{sortOrder}, #{active}, #{remark}, #{fullPath})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsSysRegion" >
+    insert into dms_sys_region
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="regionId != null" >
+        region_id,
+      </if>
+      <if test="parentRegionId != null" >
+        parent_region_id,
+      </if>
+      <if test="regionName != null" >
+        region_name,
+      </if>
+      <if test="regionCode != null" >
+        region_code,
+      </if>
+      <if test="regionPath != null" >
+        region_path,
+      </if>
+      <if test="dataNum != null" >
+        data_num,
+      </if>
+      <if test="sortOrder != null" >
+        sort_order,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="fullPath != null" >
+        full_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="regionId != null" >
+        #{regionId},
+      </if>
+      <if test="parentRegionId != null" >
+        #{parentRegionId},
+      </if>
+      <if test="regionName != null" >
+        #{regionName},
+      </if>
+      <if test="regionCode != null" >
+        #{regionCode},
+      </if>
+      <if test="regionPath != null" >
+        #{regionPath},
+      </if>
+      <if test="dataNum != null" >
+        #{dataNum},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder},
+      </if>
+      <if test="active != null" >
+        #{active},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="fullPath != null" >
+        #{fullPath},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsSysRegion" >
+    update dms_sys_region
+    <set >
+      <if test="parentRegionId != null" >
+        parent_region_id = #{parentRegionId},
+      </if>
+      <if test="regionName != null" >
+        region_name = #{regionName},
+      </if>
+      <if test="regionCode != null" >
+        region_code = #{regionCode},
+      </if>
+      <if test="regionPath != null" >
+        region_path = #{regionPath},
+      </if>
+      <if test="dataNum != null" >
+        data_num = #{dataNum},
+      </if>
+      <if test="sortOrder != null" >
+        sort_order = #{sortOrder},
+      </if>
+      <if test="active != null" >
+        active = #{active},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="fullPath != null" >
+        full_path = #{fullPath},
+      </if>
+    </set>
+    where region_id = #{regionId}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsSysRegion" >
+    update dms_sys_region
+    set parent_region_id = #{parentRegionId},
+      region_name = #{regionName},
+      region_code = #{regionCode},
+      region_path = #{regionPath},
+      data_num = #{dataNum},
+      sort_order = #{sortOrder},
+      active = #{active},
+      remark = #{remark},
+      full_path = #{fullPath}
+    where region_id = #{regionId}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="parentRegionId != null" >
+        parent_region_id = #{parentRegionId}
+      </if>
+      <if test="regionName != null and regionName != ''" >
+        AND region_name = #{regionName}
+      </if>
+      <if test="regionCode != null and regionCode != ''" >
+        AND region_code = #{regionCode}
+      </if>
+      <if test="regionPath != null and regionPath != ''" >
+        AND region_path = #{regionPath}
+      </if>
+      <if test="dataNum != null" >
+        AND data_num = #{dataNum}
+      </if>
+      <if test="sortOrder != null" >
+        AND sort_order = #{sortOrder}
+      </if>
+      <if test="active != null" >
+        AND active = #{active}
+      </if>
+      <if test="remark != null and remark != ''" >
+        AND remark = #{remark}
+      </if>
+      <if test="fullPath != null and fullPath != ''" >
+        AND full_path = #{fullPath}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsSysRegion" resultMap="DmsSysRegionResultMap" >
+    select 
+    <include refid="DmsSysRegion_Column_List" />
+    from dms_sys_region
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_sys_region
+    <set >
+      <if test="po.parentRegionId != null" >
+        parent_region_id = #{po.parentRegionId},
+      </if>
+      <if test="po.regionName != null" >
+        region_name = #{po.regionName},
+      </if>
+      <if test="po.regionCode != null" >
+        region_code = #{po.regionCode},
+      </if>
+      <if test="po.regionPath != null" >
+        region_path = #{po.regionPath},
+      </if>
+      <if test="po.dataNum != null" >
+        data_num = #{po.dataNum},
+      </if>
+      <if test="po.sortOrder != null" >
+        sort_order = #{po.sortOrder},
+      </if>
+      <if test="po.active != null" >
+        active = #{po.active},
+      </if>
+      <if test="po.remark != null" >
+        remark = #{po.remark},
+      </if>
+      <if test="po.fullPath != null" >
+        full_path = #{po.fullPath},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++Parting line : new sql here++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <!-- 区域树形结构类型 -->
+  <resultMap id="DmsSysRegionTreeResultMap" type="com.coracle.yk.base.vo.TreeNode">
+    <result property="key" column="key" jdbcType="VARCHAR"/>
+    <result property="value" column="value" jdbcType="VARCHAR"/>
+    <result property="label" column="label" jdbcType="VARCHAR"/>
+    <result property="isLeaf" column="isLeaf" jdbcType="BOOLEAN"/>
+    <!--<collection property="children" column="key" javaType="java.util.List" ofType="com.coracle.yk.base.vo.TreeNode" select="selectByParentId"/>-->
+  </resultMap>
+
+  <!-- 根据父id获取子数据 -->
+  <select id="selectByParentId" parameterType="java.lang.Long" resultMap="DmsSysRegionTreeResultMap">
+    select
+    d.region_id as 'key', d.region_id as 'value',d.region_name as label,false as isLeaf, 0 as sort_order
+    from
+    dms_sys_region d
+    where
+    d.parent_region_id = #{id}
+    and d.active = 1
+  </select>
+
+  <select id="findRegionPageList" resultMap="DmsSysRegionResultMap" resultType="com.coracle.dms.po.DmsSysRegion">
+    SELECT
+    <include refid="DmsSysRegion_Column_List" />
+    FROM
+    dms_sys_region
+    where 1=1
+    <if test="active!=null">
+      and active =#{active}
+    </if>
+    <if test="regionName!=null and regionName!=''">
+      and region_name like concat('%',#{regionName},'%')
+    </if>
+    <if test="regionCode!=null and regionCode!=''">
+      and region_code like concat('%',#{regionCode},'%')
+    </if>
+  </select>
+
+  <select id="findRegionByParentId" resultMap="DmsSysRegionResultMap" resultType="com.coracle.dms.po.DmsSysRegion">
+    SELECT
+    <include refid="DmsSysRegion_Column_List" />
+    FROM
+    dms_sys_region
+    where active=1 and parent_region_id=#{parentRegionId} order by sort_order desc
+  </select>
+
+  <select id="selectByName" resultMap="DmsSysRegionResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="DmsSysRegion_Column_List" />
+    from dms_sys_region
+    where region_name like #{regionName} order by parent_region_id limit 1
+  </select>
+
+  <!-- 根据类型获取地区列表 -->
+  <select id="listByType" parameterType="java.lang.String" resultMap="DmsSysRegionResultMap">
+    select
+    from
+      dms_sys_region sr
+    where
+      sr.active = 1
+      <choose>
+        <when test="type != null and type == 'province'">
+          and (length(sr.region_path) - lentgh(replace(sr.region_path, ',', ''))) = 1
+        </when>
+        <when test="type != null and type == 'city'">
+          and (length(sr.region_path) - length(replace(sr.region_path, ',', ''))) = 2
+        </when>
+        <when test="type != null and type == 'county'">
+          and (length(sr.region_path) - length(replace(sr.region_path, ',', ''))) = 3
+        </when>
+        <otherwise>
+          and (length(sr.region_path) - length(replace(sr.region_path, ',', ''))) &lt; 4
+        </otherwise>
+      </choose>
+  </select>
+</mapper>

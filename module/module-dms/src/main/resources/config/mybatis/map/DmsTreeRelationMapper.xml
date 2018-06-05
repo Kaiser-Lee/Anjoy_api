@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsTreeRelationMapper" >
+  <resultMap id="DmsTreeRelationResultMap" type="com.coracle.dms.po.DmsTreeRelation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="related_type" property="relatedType" jdbcType="INTEGER" />
+    <result column="related_id" property="relatedId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsTreeRelation_Column_List" >
+    id, related_type, related_id, name, parent_id, type, created_date, created_by, last_updated_date,
+    last_updated_by, remove_flag, path
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsTreeRelationResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsTreeRelation_Column_List" />
+    from dms_tree_relation
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_tree_relation
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsTreeRelation" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_tree_relation (related_type, related_id, name, parent_id, type, created_date,
+    created_by, last_updated_date, last_updated_by, remove_flag, path)
+    values (#{relatedType}, #{relatedId}, #{name}, #{parentId}, #{type}, #{createdDate},
+    #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, #{path})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsTreeRelation" >
+    insert into dms_tree_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="relatedType != null" >
+        related_type,
+      </if>
+      <if test="relatedId != null" >
+        related_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="relatedType != null" >
+        #{relatedType},
+      </if>
+      <if test="relatedId != null" >
+        #{relatedId},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="parentId != null" >
+        #{parentId},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="path != null" >
+        #{path},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsTreeRelation" >
+    update dms_tree_relation
+    <set >
+      <if test="relatedType != null" >
+        related_type = #{relatedType},
+      </if>
+      <if test="relatedId != null" >
+        related_id = #{relatedId},
+      </if>
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId},
+      </if>
+      <if test="type != null" >
+        type = #{type},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="path != null" >
+        path = #{path},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsTreeRelation" >
+    update dms_tree_relation
+    set related_type = #{relatedType},
+    related_id = #{relatedId},
+    name = #{name},
+    parent_id = #{parentId},
+    type = #{type},
+    created_date = #{createdDate},
+    created_by = #{createdBy},
+    last_updated_date = #{lastUpdatedDate},
+    last_updated_by = #{lastUpdatedBy},
+    remove_flag = #{removeFlag},
+    path = #{path}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="relatedType != null" >
+        related_type = #{relatedType}
+      </if>
+      <if test="relatedId != null" >
+        AND related_id = #{relatedId}
+      </if>
+      <if test="name != null and name != ''" >
+        AND name = #{name}
+      </if>
+      <if test="parentId != null" >
+        AND parent_id = #{parentId}
+      </if>
+      <if test="type != null" >
+        AND type = #{type}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="path != null and path != ''" >
+        AND path = #{path}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsTreeRelation" resultMap="DmsTreeRelationResultMap" >
+    select
+    <include refid="DmsTreeRelation_Column_List" />
+    from dms_tree_relation
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_tree_relation
+    <set >
+      <if test="po.relatedType != null" >
+        related_type = #{po.relatedType},
+      </if>
+      <if test="po.relatedId != null" >
+        related_id = #{po.relatedId},
+      </if>
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.parentId != null" >
+        parent_id = #{po.parentId},
+      </if>
+      <if test="po.type != null" >
+        type = #{po.type},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.path != null" >
+        path = #{po.path},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--*****************************************-->
+  <update id="updateByRelation" parameterType="com.coracle.dms.po.DmsTreeRelation">
+    update dms_tree_relation set remove_flag = 1 where related_type = #{relatedType} AND related_id = #{relatedId}
+  </update>
+  
+  <select id="getListByRelatedTypeList" resultMap="DmsTreeRelationResultMap" parameterType="com.coracle.dms.vo.DmsTreeRelationVo">
+    select
+    <include refid="DmsTreeRelation_Column_List" />
+    from dms_tree_relation where remove_flag=0
+    <if test="relatedTypeList != null and relatedTypeList.size()>0">
+      and related_type  in
+      <foreach collection="relatedTypeList" index="index" item="item" open="(" separator="," close=")">
+        #{relatedTypeList[${index}]}
+      </foreach>
+    </if>
+  </select>
+
+  <select id="getListByIds" parameterType="java.util.List" resultMap="DmsTreeRelationResultMap">
+    select
+    <include refid="DmsTreeRelation_Column_List" />
+    from dms_tree_relation
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </select>
+
+  <!--根据用户ID获取其对应的 联系表中的id-->
+  <select id="getTreeRelationIdByChannel" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select dtr.id as id from dms_channel_contacts dcc left join dms_tree_relation dtr on dcc.channel_id=dtr.related_id
+    where dcc.user_id=#{id} and dtr.related_type=1 and dtr.remove_flag=0 order by dtr.id desc limit 0,1
+  </select>
+  <select id="getTreeRelationIdBySeller" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select dtr.id as id from dms_seller ds left join dms_tree_relation dtr on ds.shop_id=dtr.related_id
+    where ds.user_id=#{id} and dtr.related_type=2 and dtr.remove_flag=0 order by dtr.id desc limit 0,1
+  </select>
+
+  <!-- 树形结构类型 -->
+  <resultMap id="DmsTreeResultMap" type="com.coracle.yk.base.vo.TreeNode">
+    <result property="key" column="key" jdbcType="VARCHAR"/>
+    <result property="value" column="value" jdbcType="VARCHAR"/>
+    <result property="label" column="label" jdbcType="VARCHAR"/>
+    <result property="isLeaf" column="is_leaf" jdbcType="BOOLEAN"/>
+    <result property="sortOrder" column="sort_order" jdbcType="INTEGER"/>
+    <result property="level" column="level" jdbcType="VARCHAR"/>
+    <collection property="children" column="{id=key,level=level}" javaType="java.util.List" ofType="com.coracle.yk.base.vo.TreeNode" select="selectByParentId"/>
+  </resultMap>
+
+  <!-- 根据父节点id、层级等级 获取区域、渠道、门店树形结构 -->
+  <select id="selectByParentId" parameterType="java.util.Map" resultMap="DmsTreeResultMap">
+    select
+      tr.id as `key`, tr.related_id as `value`, tr.name as label, false as is_leaf, tr.related_type as sort_order, #{level} as level
+    from
+      dms_tree_relation tr
+    where
+      tr.parent_id = #{id}
+      and tr.remove_flag = 0
+      <if test="level != null and level == 'store'">
+        and tr.related_type in (1, 2, 4)
+      </if>
+      <if test="level != null and level == 'channel'">
+        and tr.related_type in (1, 4)
+      </if>
+  </select>
+
+  <!-- 根据父节点id获取区域、渠道树形结构 -->
+  <select id="getAreaChannelTree" parameterType="java.lang.Long" resultMap="DmsTreeResultMap">
+    select
+      tr.id as `key`, tr.related_id as `value`, tr.name as label, false as is_leaf, tr.related_type as sort_order
+    from
+      dms_tree_relation tr
+    where
+      tr.parent_id = #{id}
+      and tr.remove_flag = 0
+      and tr.related_type in (1, 4)
+  </select>
+
+  <!-- 根据父id获取子数据 -->
+  <select id="selectByParentIdForNews" parameterType="java.lang.Long" resultMap="DmsTreeResultMap">
+    select
+    d.id as 'key', d.related_id as 'value',d.name as label,false as isLeaf, d.related_type as sort_order
+    from
+    dms_tree_relation d
+    where
+    d.parent_id = #{id}
+    and d.remove_flag = 0 and related_type  in (1,2)
+  </select>
+  
+  <select id="getIdsByType" resultType="java.lang.Long">
+    select id from dms_tree_relation where remove_flag=0 and (related_type=1 or related_type=2)
+  </select>
+
+  <select id="selectByRelatedId" parameterType="java.lang.Long" resultMap="DmsTreeRelationResultMap">
+    select
+    tr.*
+    from
+    dms_tree_relation tr
+    where
+    tr.related_id = #{relatedId}
+    and tr.remove_flag = 0
+  </select>
+  <select id="selectChannelByRelatedId" parameterType="java.lang.Long" resultMap="DmsTreeRelationResultMap">
+    select
+    tr.*
+    from
+    dms_tree_relation tr
+    where
+    tr.related_id = #{relatedId}
+    and tr.remove_flag = 0 and tr.related_type = 4
+  </select>
+
+  <select id="selectOneByCondition" parameterType="com.coracle.dms.po.DmsTreeRelation" resultMap="DmsTreeRelationResultMap" >
+    select
+    <include refid="DmsTreeRelation_Column_List" />
+    from dms_tree_relation
+    <include refid="Where_Condition" />
+  </select>
+
+</mapper>

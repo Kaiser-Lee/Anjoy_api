@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.tz.TgOrderMapper" >
+  <resultMap id="TgOrderResultMap" type="com.coracle.dms.po.tz.TgOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="get_pro_code" property="getProCode" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="customer_code" property="customerCode" jdbcType="VARCHAR" />
+    <result column="customer_order_code" property="customerOrderCode" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="buy_company" property="buyCompany" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="finished_date" property="finishedDate" jdbcType="TIMESTAMP" />
+    <result column="gather_address" property="gatherAddress" jdbcType="VARCHAR" />
+    <result column="gather_order_address" property="gatherOrderAddress" jdbcType="VARCHAR" />
+    <result column="project_message" property="projectMessage" jdbcType="VARCHAR" />
+    <result column="salesman_name" property="salesmanName" jdbcType="VARCHAR" />
+    <result column="discount_rate" property="discountRate" jdbcType="DECIMAL" />
+    <result column="guarantee_quality" property="guaranteeQuality" jdbcType="DECIMAL" />
+    <result column="remaining_sum" property="remainingSum" jdbcType="DECIMAL" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="order_back_msg" property="orderBackMsg" jdbcType="VARCHAR" />
+    <result column="credit_extension_mode" property="creditExtensionMode" jdbcType="VARCHAR" />
+    <result column="contract_order_name" property="contractOrderName" jdbcType="VARCHAR" />
+    <result column="sell_type" property="sellType" jdbcType="VARCHAR" />
+    <result column="gather_reality_address" property="gatherRealityAddress" jdbcType="VARCHAR" />
+    <result column="project_cooperation" property="projectCooperation" jdbcType="VARCHAR" />
+    <result column="close_homologous" property="closeHomologous" jdbcType="VARCHAR" />
+    <result column="complete_factory" property="completeFactory" jdbcType="VARCHAR" />
+    <result column="special_offer_code" property="specialOfferCode" jdbcType="VARCHAR" />
+    <result column="project_add_msg" property="projectAddMsg" jdbcType="VARCHAR" />
+    <result column="file_id" property="fileId" jdbcType="BIGINT" />
+    <result column="gather_city" property="gatherCity" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="TgOrder_Column_List" >
+    id, code, get_pro_code, amount, customer_name, customer_code, customer_order_code, 
+    contacts, phone, buy_company, channel, order_status, order_type, user_id, created_date, 
+    created_by, last_updated_date, last_updated_by, remove_flag, finished_date, gather_address, 
+    gather_order_address, project_message, salesman_name, discount_rate, guarantee_quality, 
+    remaining_sum, project_name, remark, order_back_msg, credit_extension_mode, contract_order_name, 
+    sell_type, gather_reality_address, project_cooperation, close_homologous, complete_factory, 
+    special_offer_code, project_add_msg, file_id, gather_city
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="TgOrderResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="TgOrder_Column_List" />
+    from tg_order
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tg_order
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.tz.TgOrder" useGeneratedKeys="true" keyProperty="id" >
+    insert into tg_order (code, get_pro_code, amount, customer_name, customer_code, customer_order_code, 
+      contacts, phone, buy_company, channel, order_status, order_type, 
+      user_id, created_date, created_by, last_updated_date, last_updated_by, 
+      remove_flag, finished_date, gather_address, gather_order_address, project_message, 
+      salesman_name, discount_rate, guarantee_quality, remaining_sum, project_name, 
+      remark, order_back_msg, credit_extension_mode, contract_order_name, sell_type, 
+      gather_reality_address, project_cooperation, close_homologous, complete_factory, 
+      special_offer_code, project_add_msg, file_id, gather_city)
+    values (#{code}, #{getProCode}, #{amount}, #{customerName}, #{customerCode}, #{customerOrderCode}, 
+      #{contacts}, #{phone}, #{buyCompany}, #{channel}, #{orderStatus}, #{orderType}, 
+      #{userId}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, 
+      #{removeFlag}, #{finishedDate}, #{gatherAddress}, #{gatherOrderAddress}, #{projectMessage}, 
+      #{salesmanName}, #{discountRate}, #{guaranteeQuality}, #{remainingSum}, #{projectName}, 
+      #{remark}, #{orderBackMsg}, #{creditExtensionMode}, #{contractOrderName}, #{sellType}, 
+      #{gatherRealityAddress}, #{projectCooperation}, #{closeHomologous}, #{completeFactory}, 
+      #{specialOfferCode}, #{projectAddMsg}, #{fileId}, #{gatherCity})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.tz.TgOrder" >
+    insert into tg_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="getProCode != null" >
+        get_pro_code,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="customerCode != null" >
+        customer_code,
+      </if>
+      <if test="customerOrderCode != null" >
+        customer_order_code,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="buyCompany != null" >
+        buy_company,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="finishedDate != null" >
+        finished_date,
+      </if>
+      <if test="gatherAddress != null" >
+        gather_address,
+      </if>
+      <if test="gatherOrderAddress != null" >
+        gather_order_address,
+      </if>
+      <if test="projectMessage != null" >
+        project_message,
+      </if>
+      <if test="salesmanName != null" >
+        salesman_name,
+      </if>
+      <if test="discountRate != null" >
+        discount_rate,
+      </if>
+      <if test="guaranteeQuality != null" >
+        guarantee_quality,
+      </if>
+      <if test="remainingSum != null" >
+        remaining_sum,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="orderBackMsg != null" >
+        order_back_msg,
+      </if>
+      <if test="creditExtensionMode != null" >
+        credit_extension_mode,
+      </if>
+      <if test="contractOrderName != null" >
+        contract_order_name,
+      </if>
+      <if test="sellType != null" >
+        sell_type,
+      </if>
+      <if test="gatherRealityAddress != null" >
+        gather_reality_address,
+      </if>
+      <if test="projectCooperation != null" >
+        project_cooperation,
+      </if>
+      <if test="closeHomologous != null" >
+        close_homologous,
+      </if>
+      <if test="completeFactory != null" >
+        complete_factory,
+      </if>
+      <if test="specialOfferCode != null" >
+        special_offer_code,
+      </if>
+      <if test="projectAddMsg != null" >
+        project_add_msg,
+      </if>
+      <if test="fileId != null" >
+        file_id,
+      </if>
+      <if test="gatherCity != null" >
+        gather_city,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="getProCode != null" >
+        #{getProCode},
+      </if>
+      <if test="amount != null" >
+        #{amount},
+      </if>
+      <if test="customerName != null" >
+        #{customerName},
+      </if>
+      <if test="customerCode != null" >
+        #{customerCode},
+      </if>
+      <if test="customerOrderCode != null" >
+        #{customerOrderCode},
+      </if>
+      <if test="contacts != null" >
+        #{contacts},
+      </if>
+      <if test="phone != null" >
+        #{phone},
+      </if>
+      <if test="buyCompany != null" >
+        #{buyCompany},
+      </if>
+      <if test="channel != null" >
+        #{channel},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus},
+      </if>
+      <if test="orderType != null" >
+        #{orderType},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="finishedDate != null" >
+        #{finishedDate},
+      </if>
+      <if test="gatherAddress != null" >
+        #{gatherAddress},
+      </if>
+      <if test="gatherOrderAddress != null" >
+        #{gatherOrderAddress},
+      </if>
+      <if test="projectMessage != null" >
+        #{projectMessage},
+      </if>
+      <if test="salesmanName != null" >
+        #{salesmanName},
+      </if>
+      <if test="discountRate != null" >
+        #{discountRate},
+      </if>
+      <if test="guaranteeQuality != null" >
+        #{guaranteeQuality},
+      </if>
+      <if test="remainingSum != null" >
+        #{remainingSum},
+      </if>
+      <if test="projectName != null" >
+        #{projectName},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="orderBackMsg != null" >
+        #{orderBackMsg},
+      </if>
+      <if test="creditExtensionMode != null" >
+        #{creditExtensionMode},
+      </if>
+      <if test="contractOrderName != null" >
+        #{contractOrderName},
+      </if>
+      <if test="sellType != null" >
+        #{sellType},
+      </if>
+      <if test="gatherRealityAddress != null" >
+        #{gatherRealityAddress},
+      </if>
+      <if test="projectCooperation != null" >
+        #{projectCooperation},
+      </if>
+      <if test="closeHomologous != null" >
+        #{closeHomologous},
+      </if>
+      <if test="completeFactory != null" >
+        #{completeFactory},
+      </if>
+      <if test="specialOfferCode != null" >
+        #{specialOfferCode},
+      </if>
+      <if test="projectAddMsg != null" >
+        #{projectAddMsg},
+      </if>
+      <if test="fileId != null" >
+        #{fileId},
+      </if>
+      <if test="gatherCity != null" >
+        #{gatherCity},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.tz.TgOrder" >
+    update tg_order
+    <set >
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="getProCode != null" >
+        get_pro_code = #{getProCode},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName},
+      </if>
+      <if test="customerCode != null" >
+        customer_code = #{customerCode},
+      </if>
+      <if test="customerOrderCode != null" >
+        customer_order_code = #{customerOrderCode},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone},
+      </if>
+      <if test="buyCompany != null" >
+        buy_company = #{buyCompany},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="finishedDate != null" >
+        finished_date = #{finishedDate},
+      </if>
+      <if test="gatherAddress != null" >
+        gather_address = #{gatherAddress},
+      </if>
+      <if test="gatherOrderAddress != null" >
+        gather_order_address = #{gatherOrderAddress},
+      </if>
+      <if test="projectMessage != null" >
+        project_message = #{projectMessage},
+      </if>
+      <if test="salesmanName != null" >
+        salesman_name = #{salesmanName},
+      </if>
+      <if test="discountRate != null" >
+        discount_rate = #{discountRate},
+      </if>
+      <if test="guaranteeQuality != null" >
+        guarantee_quality = #{guaranteeQuality},
+      </if>
+      <if test="remainingSum != null" >
+        remaining_sum = #{remainingSum},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="orderBackMsg != null" >
+        order_back_msg = #{orderBackMsg},
+      </if>
+      <if test="creditExtensionMode != null" >
+        credit_extension_mode = #{creditExtensionMode},
+      </if>
+      <if test="contractOrderName != null" >
+        contract_order_name = #{contractOrderName},
+      </if>
+      <if test="sellType != null" >
+        sell_type = #{sellType},
+      </if>
+      <if test="gatherRealityAddress != null" >
+        gather_reality_address = #{gatherRealityAddress},
+      </if>
+      <if test="projectCooperation != null" >
+        project_cooperation = #{projectCooperation},
+      </if>
+      <if test="closeHomologous != null" >
+        close_homologous = #{closeHomologous},
+      </if>
+      <if test="completeFactory != null" >
+        complete_factory = #{completeFactory},
+      </if>
+      <if test="specialOfferCode != null" >
+        special_offer_code = #{specialOfferCode},
+      </if>
+      <if test="projectAddMsg != null" >
+        project_add_msg = #{projectAddMsg},
+      </if>
+      <if test="fileId != null" >
+        file_id = #{fileId},
+      </if>
+      <if test="gatherCity != null" >
+        gather_city = #{gatherCity},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.tz.TgOrder" >
+    update tg_order
+    set code = #{code},
+      get_pro_code = #{getProCode},
+      amount = #{amount},
+      customer_name = #{customerName},
+      customer_code = #{customerCode},
+      customer_order_code = #{customerOrderCode},
+      contacts = #{contacts},
+      phone = #{phone},
+      buy_company = #{buyCompany},
+      channel = #{channel},
+      order_status = #{orderStatus},
+      order_type = #{orderType},
+      user_id = #{userId},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      finished_date = #{finishedDate},
+      gather_address = #{gatherAddress},
+      gather_order_address = #{gatherOrderAddress},
+      project_message = #{projectMessage},
+      salesman_name = #{salesmanName},
+      discount_rate = #{discountRate},
+      guarantee_quality = #{guaranteeQuality},
+      remaining_sum = #{remainingSum},
+      project_name = #{projectName},
+      remark = #{remark},
+      order_back_msg = #{orderBackMsg},
+      credit_extension_mode = #{creditExtensionMode},
+      contract_order_name = #{contractOrderName},
+      sell_type = #{sellType},
+      gather_reality_address = #{gatherRealityAddress},
+      project_cooperation = #{projectCooperation},
+      close_homologous = #{closeHomologous},
+      complete_factory = #{completeFactory},
+      special_offer_code = #{specialOfferCode},
+      project_add_msg = #{projectAddMsg},
+      file_id = #{fileId},
+      gather_city = #{gatherCity}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="code != null and code != ''" >
+        code = #{code}
+      </if>
+      <if test="getProCode != null and getProCode != ''" >
+        AND get_pro_code = #{getProCode}
+      </if>
+      <if test="amount != null" >
+        AND amount = #{amount}
+      </if>
+      <if test="customerName != null and customerName != ''" >
+        AND customer_name = #{customerName}
+      </if>
+      <if test="customerCode != null and customerCode != ''" >
+        AND customer_code = #{customerCode}
+      </if>
+      <if test="customerOrderCode != null and customerOrderCode != ''" >
+        AND customer_order_code = #{customerOrderCode}
+      </if>
+      <if test="contacts != null and contacts != ''" >
+        AND contacts = #{contacts}
+      </if>
+      <if test="phone != null and phone != ''" >
+        AND phone = #{phone}
+      </if>
+      <if test="buyCompany != null and buyCompany != ''" >
+        AND buy_company = #{buyCompany}
+      </if>
+      <if test="channel != null and channel != ''" >
+        AND channel = #{channel}
+      </if>
+      <if test="orderStatus != null" >
+        AND order_status = #{orderStatus}
+      </if>
+      <if test="orderType != null" >
+        AND order_type = #{orderType}
+      </if>
+      <if test="userId != null" >
+        AND user_id = #{userId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="finishedDate != null" >
+        AND finished_date = #{finishedDate}
+      </if>
+      <if test="gatherAddress != null and gatherAddress != ''" >
+        AND gather_address = #{gatherAddress}
+      </if>
+      <if test="gatherOrderAddress != null and gatherOrderAddress != ''" >
+        AND gather_order_address = #{gatherOrderAddress}
+      </if>
+      <if test="projectMessage != null and projectMessage != ''" >
+        AND project_message = #{projectMessage}
+      </if>
+      <if test="salesmanName != null and salesmanName != ''" >
+        AND salesman_name = #{salesmanName}
+      </if>
+      <if test="discountRate != null" >
+        AND discount_rate = #{discountRate}
+      </if>
+      <if test="guaranteeQuality != null" >
+        AND guarantee_quality = #{guaranteeQuality}
+      </if>
+      <if test="remainingSum != null" >
+        AND remaining_sum = #{remainingSum}
+      </if>
+      <if test="projectName != null and projectName != ''" >
+        AND project_name = #{projectName}
+      </if>
+      <if test="remark != null and remark != ''" >
+        AND remark = #{remark}
+      </if>
+      <if test="orderBackMsg != null and orderBackMsg != ''" >
+        AND order_back_msg = #{orderBackMsg}
+      </if>
+      <if test="creditExtensionMode != null and creditExtensionMode != ''" >
+        AND credit_extension_mode = #{creditExtensionMode}
+      </if>
+      <if test="contractOrderName != null and contractOrderName != ''" >
+        AND contract_order_name = #{contractOrderName}
+      </if>
+      <if test="sellType != null and sellType != ''" >
+        AND sell_type = #{sellType}
+      </if>
+      <if test="gatherRealityAddress != null and gatherRealityAddress != ''" >
+        AND gather_reality_address = #{gatherRealityAddress}
+      </if>
+      <if test="projectCooperation != null and projectCooperation != ''" >
+        AND project_cooperation = #{projectCooperation}
+      </if>
+      <if test="closeHomologous != null and closeHomologous != ''" >
+        AND close_homologous = #{closeHomologous}
+      </if>
+      <if test="completeFactory != null and completeFactory != ''" >
+        AND complete_factory = #{completeFactory}
+      </if>
+      <if test="specialOfferCode != null and specialOfferCode != ''" >
+        AND special_offer_code = #{specialOfferCode}
+      </if>
+      <if test="projectAddMsg != null and projectAddMsg != ''" >
+        AND project_add_msg = #{projectAddMsg}
+      </if>
+      <if test="fileId != null" >
+        AND file_id = #{fileId}
+      </if>
+      <if test="gatherCity != null and gatherCity != ''" >
+        AND gather_city = #{gatherCity}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.tz.TgOrder" resultMap="TgOrderResultMap" >
+    select 
+    <include refid="TgOrder_Column_List" />
+    from tg_order
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+
+  <!-- 订单详情 -->
+  <select id="selectVoByOrder" parameterType="com.coracle.dms.po.tz.TgOrder" resultMap="TgOrderResultMap">
+    select * FROM tg_order o
+    where
+    o.id = #{id}
+  </select>
+
+  <!-- 天正订单列表 -->
+  <select id="tgOrderList" parameterType="com.coracle.dms.po.tz.TgOrder" resultMap="TgOrderResultMap" >
+    select
+    <include refid="TgOrder_Column_List" />
+    from tg_order
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update tg_order
+    <set >
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.getProCode != null" >
+        get_pro_code = #{po.getProCode},
+      </if>
+      <if test="po.amount != null" >
+        amount = #{po.amount},
+      </if>
+      <if test="po.customerName != null" >
+        customer_name = #{po.customerName},
+      </if>
+      <if test="po.customerCode != null" >
+        customer_code = #{po.customerCode},
+      </if>
+      <if test="po.customerOrderCode != null" >
+        customer_order_code = #{po.customerOrderCode},
+      </if>
+      <if test="po.contacts != null" >
+        contacts = #{po.contacts},
+      </if>
+      <if test="po.phone != null" >
+        phone = #{po.phone},
+      </if>
+      <if test="po.buyCompany != null" >
+        buy_company = #{po.buyCompany},
+      </if>
+      <if test="po.channel != null" >
+        channel = #{po.channel},
+      </if>
+      <if test="po.orderStatus != null" >
+        order_status = #{po.orderStatus},
+      </if>
+      <if test="po.orderType != null" >
+        order_type = #{po.orderType},
+      </if>
+      <if test="po.userId != null" >
+        user_id = #{po.userId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.finishedDate != null" >
+        finished_date = #{po.finishedDate},
+      </if>
+      <if test="po.gatherAddress != null" >
+        gather_address = #{po.gatherAddress},
+      </if>
+      <if test="po.gatherOrderAddress != null" >
+        gather_order_address = #{po.gatherOrderAddress},
+      </if>
+      <if test="po.projectMessage != null" >
+        project_message = #{po.projectMessage},
+      </if>
+      <if test="po.salesmanName != null" >
+        salesman_name = #{po.salesmanName},
+      </if>
+      <if test="po.discountRate != null" >
+        discount_rate = #{po.discountRate},
+      </if>
+      <if test="po.guaranteeQuality != null" >
+        guarantee_quality = #{po.guaranteeQuality},
+      </if>
+      <if test="po.remainingSum != null" >
+        remaining_sum = #{po.remainingSum},
+      </if>
+      <if test="po.projectName != null" >
+        project_name = #{po.projectName},
+      </if>
+      <if test="po.remark != null" >
+        remark = #{po.remark},
+      </if>
+      <if test="po.orderBackMsg != null" >
+        order_back_msg = #{po.orderBackMsg},
+      </if>
+      <if test="po.creditExtensionMode != null" >
+        credit_extension_mode = #{po.creditExtensionMode},
+      </if>
+      <if test="po.contractOrderName != null" >
+        contract_order_name = #{po.contractOrderName},
+      </if>
+      <if test="po.sellType != null" >
+        sell_type = #{po.sellType},
+      </if>
+      <if test="po.gatherRealityAddress != null" >
+        gather_reality_address = #{po.gatherRealityAddress},
+      </if>
+      <if test="po.projectCooperation != null" >
+        project_cooperation = #{po.projectCooperation},
+      </if>
+      <if test="po.closeHomologous != null" >
+        close_homologous = #{po.closeHomologous},
+      </if>
+      <if test="po.completeFactory != null" >
+        complete_factory = #{po.completeFactory},
+      </if>
+      <if test="po.specialOfferCode != null" >
+        special_offer_code = #{po.specialOfferCode},
+      </if>
+      <if test="po.projectAddMsg != null" >
+        project_add_msg = #{po.projectAddMsg},
+      </if>
+      <if test="po.fileId != null" >
+        file_id = #{po.fileId},
+      </if>
+      <if test="po.gatherCity != null" >
+        gather_city = #{po.gatherCity},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- 删除订单产品 -->
+  <select id="deleteOrderPro" resultType="java.util.HashMap">
+    delete from tg_order_product where
+    <if test="idList != null">
+      id IN
+      <foreach item="item" collection="idList" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </select>
+
+  <!-- 删除订单产品发运信息 -->
+  <select id="deleteOrderProPart" resultType="java.util.HashMap">
+    delete from tg_order_product_part where
+    <if test="idList != null">
+      id IN
+      <foreach item="item" collection="idList" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </select>
+</mapper>

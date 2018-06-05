@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsAttachmentRelationMapper" >
+  <resultMap id="DmsAttachmentRelationResultMap" type="com.coracle.dms.po.DmsAttachmentRelation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="attach_id" property="attachId" jdbcType="BIGINT" />
+    <result column="related_table_type" property="relatedTableType" jdbcType="INTEGER" />
+    <result column="related_table_id" property="relatedTableId" jdbcType="BIGINT" />
+    <result column="download_num" property="downloadNum" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsAttachmentRelation_Column_List" >
+    id, attach_id, related_table_type, related_table_id, download_num, created_date, 
+    created_by, last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsAttachmentRelationResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsAttachmentRelation_Column_List" />
+    from dms_attachment_relation
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_attachment_relation
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsAttachmentRelation" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_attachment_relation (attach_id, related_table_type, related_table_id, download_num, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag)
+    values (#{attachId}, #{relatedTableType}, #{relatedTableId}, #{downloadNum}, #{createdDate}, 
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsAttachmentRelation" >
+    insert into dms_attachment_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="attachId != null" >
+        attach_id,
+      </if>
+      <if test="relatedTableType != null" >
+        related_table_type,
+      </if>
+      <if test="relatedTableId != null" >
+        related_table_id,
+      </if>
+      <if test="downloadNum != null" >
+        download_num,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="attachId != null" >
+        #{attachId},
+      </if>
+      <if test="relatedTableType != null" >
+        #{relatedTableType},
+      </if>
+      <if test="relatedTableId != null" >
+        #{relatedTableId},
+      </if>
+      <if test="downloadNum != null" >
+        #{downloadNum},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsAttachmentRelation" >
+    update dms_attachment_relation
+    <set >
+      <if test="attachId != null" >
+        attach_id = #{attachId},
+      </if>
+      <if test="relatedTableType != null" >
+        related_table_type = #{relatedTableType},
+      </if>
+      <if test="relatedTableId != null" >
+        related_table_id = #{relatedTableId},
+      </if>
+      <if test="downloadNum != null" >
+        download_num = #{downloadNum},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsAttachmentRelation" >
+    update dms_attachment_relation
+    set attach_id = #{attachId},
+      related_table_type = #{relatedTableType},
+      related_table_id = #{relatedTableId},
+      download_num = #{downloadNum},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="attachId != null" >
+        attach_id = #{attachId}
+      </if>
+      <if test="relatedTableType != null" >
+        AND related_table_type = #{relatedTableType}
+      </if>
+      <if test="relatedTableId != null" >
+        AND related_table_id = #{relatedTableId}
+      </if>
+      <if test="downloadNum != null" >
+        AND download_num = #{downloadNum}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsAttachmentRelation" resultMap="DmsAttachmentRelationResultMap" >
+    select 
+    <include refid="DmsAttachmentRelation_Column_List" />
+    from dms_attachment_relation
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_attachment_relation
+    <set >
+      <if test="po.attachId != null" >
+        attach_id = #{po.attachId},
+      </if>
+      <if test="po.relatedTableType != null" >
+        related_table_type = #{po.relatedTableType},
+      </if>
+      <if test="po.relatedTableId != null" >
+        related_table_id = #{po.relatedTableId},
+      </if>
+      <if test="po.downloadNum != null" >
+        download_num = #{po.downloadNum},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--************************************************************-->
+  <!--软删除-->
+  <update id="updateByIdsSelectiveByDelete" >
+    update dms_attachment_relation
+    set remove_flag = 1
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or attach_id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  <resultMap id="DmsAttachmentDtoResultMap" type="com.coracle.dms.dto.DmsAttachmentDto" >
+    <result column="id" property="id" jdbcType="BIGINT" />
+    <result column="attach_id" property="attachId" jdbcType="BIGINT" />
+    <result column="related_table_type" property="relatedTableType" jdbcType="INTEGER" />
+    <result column="related_table_id" property="relatedTableId" jdbcType="BIGINT" />
+    <result column="download_num" property="downloadNum" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="fileId" property="fileId" jdbcType="BIGINT" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="file_compress_path" property="fileCompressPath" jdbcType="VARCHAR" />
+    <result column="file_preview_path" property="filePreviewPath" jdbcType="VARCHAR" />
+    <result column="orginal_name" property="orginalName" jdbcType="VARCHAR" />
+    <result column="md5" property="md5" jdbcType="VARCHAR" />
+    <result column="extension" property="extension" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="BIGINT" />
+    <result column="download_count" property="downloadCount" jdbcType="INTEGER" />
+    <result column="created_file_date" property="createdFileDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="DmsAttachmentRelation_Some_Column_List" >
+    dar.id, dar.attach_id, dar.related_table_type, dar.related_table_id, dar.download_num, dar.created_date,
+    dar.created_by, dar.last_updated_date, dar.last_updated_by, dar.remove_flag
+  </sql>
+  <sql id="DmsCommonAttachFile_Some_Column_List" >
+    dcaf.id as fileId , dcaf.file_name, dcaf.file_path, dcaf.file_compress_path, dcaf.file_preview_path, dcaf.orginal_name, dcaf.md5,
+    dcaf.extension, dcaf.size, dcaf.download_count, dcaf.created_date as created_file_date
+  </sql>
+  <!--获取附件分页列表-->
+  <select id="getPageList" parameterType="com.coracle.dms.dto.DmsAttachmentDto" resultMap="DmsAttachmentDtoResultMap">
+    select
+    <include refid="DmsAttachmentRelation_Some_Column_List" />,
+    <include refid="DmsCommonAttachFile_Some_Column_List" />
+    FROM
+    dms_attachment_relation dar left join dms_common_attach_file dcaf on dar.attach_id=dcaf.id
+    WHERE
+     dar.remove_flag=0 and dcaf.remove_flag=0
+    <if test="relatedTableType != null">
+      and dar.related_table_type = #{relatedTableType}
+    </if>
+    <if test="relatedTableId != null">
+      AND related_table_id = #{relatedTableId}
+    </if>
+  </select>
+  <select id="getRecordCount"  parameterType="com.coracle.dms.dto.DmsAttachmentDto" resultType="java.lang.Integer">
+    select  count(1)  FROM
+    dms_attachment_relation dar,dms_common_attach_file dcaf
+    WHERE
+    dar.attach_id=dcaf.id and dar.remove_flag=0 and dcaf.remove_flag=0
+    <if test="relatedTableType != null">
+      and dar.related_table_type = #{relatedTableType}
+    </if>
+    <if test="relatedTableId != null">
+      AND related_table_id = #{relatedTableId}
+    </if>
+  </select>
+  <!--获取附件列表-->
+  <select id="getList" parameterType="com.coracle.dms.dto.DmsAttachmentDto" resultMap="DmsAttachmentDtoResultMap">
+    select
+    <include refid="DmsAttachmentRelation_Some_Column_List" />,
+    <include refid="DmsCommonAttachFile_Some_Column_List" />
+    FROM
+    dms_attachment_relation dar,dms_common_attach_file dcaf
+    WHERE
+    dar.attach_id=dcaf.id and dar.remove_flag=0 and dcaf.remove_flag=0
+    <if test="relatedTableType != null">
+      and dar.related_table_type = #{relatedTableType}
+    </if>
+    <if test="relatedTableId != null">
+      AND related_table_id = #{relatedTableId}
+    </if>
+    <if test="orderField != null and orderField != ''">
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''">
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <!--统计次数-->
+  <update id="updateByIdsSelectiveByAddNum" >
+    update dms_attachment_relation
+    where attach_id = #{id}
+  </update>
+
+  <!-- 批量插入 -->
+  <insert id="batchInsert" parameterType="com.coracle.dms.po.DmsAttachmentRelation">
+    insert into dms_attachment_relation
+    (
+      attach_id, related_table_type, related_table_id, download_num,
+      created_date, created_by, last_updated_date, last_updated_by, remove_flag
+    )
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+    (
+      #{item.attachId}, #{item.relatedTableType}, #{item.relatedTableId}, #{item.downloadNum},
+      #{item.createdDate}, #{item.createdBy}, #{item.lastUpdatedDate}, #{item.lastUpdatedBy}, #{item.removeFlag}
+    )
+    </foreach>
+  </insert>
+  
+</mapper>

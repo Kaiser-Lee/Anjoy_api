@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsStorageInventoryMapper" >
+  <resultMap id="DmsStorageInventoryResultMap" type="com.coracle.dms.po.DmsStorageInventory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_spec_id" property="productSpecId" jdbcType="BIGINT" />
+    <result column="storage" property="storage" jdbcType="BIGINT" />
+    <result column="storage_local" property="storageLocal" jdbcType="BIGINT" />
+    <result column="storage_num" property="storageNum" jdbcType="INTEGER" />
+    <result column="use_num" property="useNum" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="expand1" property="expand1" jdbcType="VARCHAR" />
+    <result column="expand2" property="expand2" jdbcType="VARCHAR" />
+    <result column="expand3" property="expand3" jdbcType="VARCHAR" />
+    <result column="expand4" property="expand4" jdbcType="VARCHAR" />
+    <result column="expand5" property="expand5" jdbcType="VARCHAR" />
+    <result column="expand6" property="expand6" jdbcType="VARCHAR" />
+    <result column="expand7" property="expand7" jdbcType="VARCHAR" />
+    <result column="expand8" property="expand8" jdbcType="VARCHAR" />
+    <result column="expand9" property="expand9" jdbcType="VARCHAR" />
+    <result column="expand10" property="expand10" jdbcType="VARCHAR" />
+    <result column="expand11" property="expand11" jdbcType="VARCHAR" />
+    <result column="expand12" property="expand12" jdbcType="VARCHAR" />
+    <result column="expand13" property="expand13" jdbcType="VARCHAR" />
+    <result column="expand14" property="expand14" jdbcType="VARCHAR" />
+    <result column="expand15" property="expand15" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsStorageInventory_Column_List" >
+    id, product_id,product_spec_id, storage, storage_local,
+    storage_num, use_num, created_date, created_by, last_updated_date, last_updated_by, 
+    remove_flag, expand1, expand2, expand3, expand4, expand5, expand6, expand7, expand8, 
+    expand9, expand10, expand11, expand12, expand13, expand14, expand15
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsStorageInventoryResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsStorageInventory_Column_List" />
+    from dms_storage_inventory
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_storage_inventory
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsStorageInventory" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_storage_inventory (product_id,product_spec_id,
+      storage, storage_local, storage_num, use_num, created_date, created_by, 
+      last_updated_date, last_updated_by, remove_flag, expand1, expand2, expand3, 
+      expand4, expand5, expand6, expand7, expand8, expand9, expand10, 
+      expand11, expand12, expand13, expand14, expand15)
+    values (#{productId},#{productSpecId},
+      #{storage}, #{storageLocal}, #{storageNum}, #{useNum}, #{createdDate}, #{createdBy}, 
+      #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, #{expand1}, #{expand2}, #{expand3}, 
+      #{expand4}, #{expand5}, #{expand6}, #{expand7}, #{expand8}, #{expand9}, #{expand10}, 
+      #{expand11}, #{expand12}, #{expand13}, #{expand14}, #{expand15})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsStorageInventory" >
+    insert into dms_storage_inventory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productSpecId != null" >
+      product_spec_id,
+      </if>
+      <if test="storage != null" >
+        storage,
+      </if>
+      <if test="storageLocal != null" >
+        storage_local,
+      </if>
+      <if test="storageNum != null" >
+        storage_num,
+      </if>
+      <if test="useNum != null" >
+        use_num,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="expand1 != null" >
+        expand1,
+      </if>
+      <if test="expand2 != null" >
+        expand2,
+      </if>
+      <if test="expand3 != null" >
+        expand3,
+      </if>
+      <if test="expand4 != null" >
+        expand4,
+      </if>
+      <if test="expand5 != null" >
+        expand5,
+      </if>
+      <if test="expand6 != null" >
+        expand6,
+      </if>
+      <if test="expand7 != null" >
+        expand7,
+      </if>
+      <if test="expand8 != null" >
+        expand8,
+      </if>
+      <if test="expand9 != null" >
+        expand9,
+      </if>
+      <if test="expand10 != null" >
+        expand10,
+      </if>
+      <if test="expand11 != null" >
+        expand11,
+      </if>
+      <if test="expand12 != null" >
+        expand12,
+      </if>
+      <if test="expand13 != null" >
+        expand13,
+      </if>
+      <if test="expand14 != null" >
+        expand14,
+      </if>
+      <if test="expand15 != null" >
+        expand15,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="storage != null" >
+        #{storage},
+      </if>
+      <if test="storageLocal != null" >
+        #{storageLocal},
+      </if>
+      <if test="storageNum != null" >
+        #{storageNum},
+      </if>
+      <if test="useNum != null" >
+        #{useNum},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="expand1 != null" >
+        #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        #{expand15},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsStorageInventory" >
+    update dms_storage_inventory
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="productSpecId != null" >
+      product_spec_id = #{productSpecId},
+      </if>
+      <if test="storage != null" >
+        storage = #{storage},
+      </if>
+      <if test="storageLocal != null" >
+        storage_local = #{storageLocal},
+      </if>
+      <if test="storageNum != null" >
+        storage_num = #{storageNum},
+      </if>
+      <if test="useNum != null" >
+        use_num = #{useNum},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="expand1 != null" >
+        expand1 = #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        expand2 = #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        expand3 = #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        expand4 = #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        expand5 = #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        expand6 = #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        expand7 = #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        expand8 = #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        expand9 = #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        expand10 = #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        expand11 = #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        expand12 = #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        expand13 = #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        expand14 = #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        expand15 = #{expand15},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsStorageInventory" >
+    update dms_storage_inventory
+    set
+      product_id = #{productId},
+      product_spec_id = #{productSpecId},
+      storage = #{storage},
+      storage_local = #{storageLocal},
+      storage_num = #{storageNum},
+      use_num = #{useNum},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      expand1 = #{expand1},
+      expand2 = #{expand2},
+      expand3 = #{expand3},
+      expand4 = #{expand4},
+      expand5 = #{expand5},
+      expand6 = #{expand6},
+      expand7 = #{expand7},
+      expand8 = #{expand8},
+      expand9 = #{expand9},
+      expand10 = #{expand10},
+      expand11 = #{expand11},
+      expand12 = #{expand12},
+      expand13 = #{expand13},
+      expand14 = #{expand14},
+      expand15 = #{expand15}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="productId != null" >
+        AND product_id = #{productId}
+      </if>
+      <if test="productSpecId != null" >
+        AND product_spec_id = #{productSpeId}
+      </if>
+      <if test="storage != null" >
+        AND storage = #{storage}
+      </if>
+      <if test="storageLocal != null" >
+        AND storage_local = #{storageLocal}
+      </if>
+      <if test="storageNum != null" >
+        AND storage_num = #{storageNum}
+      </if>
+      <if test="useNum != null" >
+        AND use_num = #{useNum}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="expand1 != null and expand1 != ''" >
+        AND expand1 = #{expand1}
+      </if>
+      <if test="expand2 != null and expand2 != ''" >
+        AND expand2 = #{expand2}
+      </if>
+      <if test="expand3 != null and expand3 != ''" >
+        AND expand3 = #{expand3}
+      </if>
+      <if test="expand4 != null and expand4 != ''" >
+        AND expand4 = #{expand4}
+      </if>
+      <if test="expand5 != null and expand5 != ''" >
+        AND expand5 = #{expand5}
+      </if>
+      <if test="expand6 != null and expand6 != ''" >
+        AND expand6 = #{expand6}
+      </if>
+      <if test="expand7 != null and expand7 != ''" >
+        AND expand7 = #{expand7}
+      </if>
+      <if test="expand8 != null and expand8 != ''" >
+        AND expand8 = #{expand8}
+      </if>
+      <if test="expand9 != null and expand9 != ''" >
+        AND expand9 = #{expand9}
+      </if>
+      <if test="expand10 != null and expand10 != ''" >
+        AND expand10 = #{expand10}
+      </if>
+      <if test="expand11 != null and expand11 != ''" >
+        AND expand11 = #{expand11}
+      </if>
+      <if test="expand12 != null and expand12 != ''" >
+        AND expand12 = #{expand12}
+      </if>
+      <if test="expand13 != null and expand13 != ''" >
+        AND expand13 = #{expand13}
+      </if>
+      <if test="expand14 != null and expand14 != ''" >
+        AND expand14 = #{expand14}
+      </if>
+      <if test="expand15 != null and expand15 != ''" >
+        AND expand15 = #{expand15}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsStorageInventory" resultMap="DmsStorageInventoryResultMap" >
+    select 
+    <include refid="DmsStorageInventory_Column_List" />
+    from dms_storage_inventory
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_storage_inventory
+    <set >
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.productSpecId != null" >
+      product_spec_id = #{po.productSpecId},
+      </if>
+      <if test="po.storage != null" >
+        storage = #{po.storage},
+      </if>
+      <if test="po.storageLocal != null" >
+        storage_local = #{po.storageLocal},
+      </if>
+      <if test="po.storageNum != null" >
+        storage_num = #{po.storageNum},
+      </if>
+      <if test="po.useNum != null" >
+        use_num = #{po.useNum},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.expand1 != null" >
+        expand1 = #{po.expand1},
+      </if>
+      <if test="po.expand2 != null" >
+        expand2 = #{po.expand2},
+      </if>
+      <if test="po.expand3 != null" >
+        expand3 = #{po.expand3},
+      </if>
+      <if test="po.expand4 != null" >
+        expand4 = #{po.expand4},
+      </if>
+      <if test="po.expand5 != null" >
+        expand5 = #{po.expand5},
+      </if>
+      <if test="po.expand6 != null" >
+        expand6 = #{po.expand6},
+      </if>
+      <if test="po.expand7 != null" >
+        expand7 = #{po.expand7},
+      </if>
+      <if test="po.expand8 != null" >
+        expand8 = #{po.expand8},
+      </if>
+      <if test="po.expand9 != null" >
+        expand9 = #{po.expand9},
+      </if>
+      <if test="po.expand10 != null" >
+        expand10 = #{po.expand10},
+      </if>
+      <if test="po.expand11 != null" >
+        expand11 = #{po.expand11},
+      </if>
+      <if test="po.expand12 != null" >
+        expand12 = #{po.expand12},
+      </if>
+      <if test="po.expand13 != null" >
+        expand13 = #{po.expand13},
+      </if>
+      <if test="po.expand14 != null" >
+        expand14 = #{po.expand14},
+      </if>
+      <if test="po.expand15 != null" >
+        expand15 = #{po.expand15},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++Parting line : new sql here++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <resultMap id="DmsStorageInventoryVoResultMap" type="com.coracle.dms.vo.DmsStorageInventoryVo" extends="DmsStorageInventoryResultMap">
+    <result column="unitText" property="unitText" jdbcType="VARCHAR"/>
+    <result column="localCode" property="localCode" jdbcType="VARCHAR"/>
+    <result column="categoryText" property="categoryText" jdbcType="VARCHAR"/>
+    <result column="productName" property="productName" jdbcType="VARCHAR"/>
+    <result column="productCode" property="productCode" jdbcType="VARCHAR"/>
+    <result column="storageName" property="storageName" jdbcType="VARCHAR"/>
+    <result column="specName" property="specName" jdbcType="VARCHAR"/>
+    <result column="useNumTotal" property="useNumTotal" jdbcType="BIGINT"/>
+  </resultMap>
+
+
+  <!-- app库存按门店列表 -->
+  <resultMap id="DmsStorageInventoryVoResultMapForAppList" type="com.coracle.dms.vo.DmsStorageInventoryVo" extends="DmsStorageInventoryResultMap">
+    <result column="storeName" property="storeName" jdbcType="VARCHAR"/>
+    <result column="channelId" property="channelId" jdbcType="BIGINT"/>
+    <result column="storeId" property="storeId" jdbcType="BIGINT"/>
+    <collection column="{channelId=channelId,storage=storageId}" property="getProductList" select="getProductList" />
+  </resultMap>
+
+  <!-- 树形结构类型 -->
+  <resultMap id="DmsTreeResultMap" type="java.util.Map">
+    <result property="key" column="key" jdbcType="VARCHAR"/>
+    <result property="value" column="value" jdbcType="VARCHAR"/>
+    <result property="label" column="label" jdbcType="VARCHAR"/>
+    <result property="isLeaf" column="isLeaf" jdbcType="BOOLEAN"/>
+    <result property="productId" column="productId" jdbcType="BIGINT"/>
+    <result property="productSpecId" column="productSpecId" jdbcType="BIGINT"/>
+    <collection property="children" column="{storageId=key,productId=productId,productSpecId=productSpecId}" javaType="java.util.List" ofType="java.util.Map" select="selectStorageLocalByOrderProduct"/>
+  </resultMap>
+
+  <!--PC端-->
+  <select id="findStorageInventoryPageList" resultMap="DmsStorageInventoryVoResultMap" parameterType="com.coracle.dms.po.DmsStorageInventory">
+    SELECT si.id,si.productId,si.productSpecId, si.storage, si.storageLocal,
+    si.storageNum, si.useNum, si.createdDate, si.createdBy, si.lastUpdatedDate, si.lastUpdatedBy,si.removeFlag,
+    si.unitText,si.localCode,si.categoryText,si.productName,si.productCode,si.storageName,si.specName,
+    si.orgId,si.name,si.storageType,si.pcId,si.pName
+    FROM storage_inventory si
+    left join dms_storage s on s.id = si.storage
+    where 1=1
+    <choose>
+      <!-- 查询品牌商产品库存 -->
+      <when test="orgType != null and orgType==1">
+        and si.orgId = #{orgId} and si.storageType=#{storageType}
+      </when>
+      <!-- 查询渠道商产品库存 -->
+      <when test="orgType != null and orgType==2">
+        and (
+          (si.storageType = 2 and s.relation_id = #{channelId})
+          <if test="storeIdList != null and storeIdList.size > 0">
+          or
+          (
+            si.storageType = 3 and s.relation_id in
+            <foreach collection="storeIdList" item="item" open="(" separator="," close=")">
+              #{item}
+            </foreach>
+          )
+          </if>
+        )
+      </when>
+    </choose>
+    <if test="storage!=null and storage!=''">
+      and si.storage =storage
+    </if>
+    <if test="storageName!=null and storageName!=''">
+      and si.name like concat('%',#{storageName},'%')
+    </if>
+    <if test="categoryId!=null">
+      and si.pcId IN (SELECT id from dms_product_category where find_in_set(#{categoryId},path))
+    </if>
+    <if test="productName!=null and productName!=''">
+      and si.pName like concat('%',#{productName},'%')
+    </if>
+    ORDER  by si.id desc
+  </select>
+
+  <!--APP-按产品获取库存产品列表 -->
+  <select id="findStorageInventoryListByProduct" parameterType="com.coracle.dms.vo.DmsStorageInventoryVo" resultType="java.util.Map">
+    <!--一个用户对于一个渠道，一个渠道包含多个仓库（其中仓库中包含门店的仓库）-->
+    SELECT s.product_id productId,s.product_spec_id productSpecId,caf.file_preview_path filePreviewPath,p.name productName,p.keyword,SUM(s.storage_num) as storageNum,SUM(s.use_num) as useNum
+    ,s.storage_local storageLocal
+    FROM dms_storage_inventory s
+    LEFT JOIN dms_product p on s.product_id=p.id
+    LEFT JOIN dms_common_attach_file caf on p.pic_Id=caf.id
+    LEFT JOIN dms_storage st on st.id =s.`storage`
+    <!-- 根据渠道id查询渠道下面所有仓库,排除品牌商库存
+    where s.`storage` in (SELECT s.id from  dms_storage s  where s.org_id=#{orgId} and s.org_id!=s.relation_id ) and p.remove_flag=0 -->
+    where
+      (
+        (st.storage_type = 2 and st.relation_id = #{channelId})
+        <if test="storeIdList != null and storeIdList.size > 0">
+          or
+          (
+            st.storage_type = 3 and st.relation_id in
+            <foreach collection="storeIdList" item="item" open="(" separator="," close=")">
+              #{item}
+            </foreach>
+          )
+        </if>
+      )
+      and s.storage_num > 0
+      and p.remove_flag=0
+    <if test="kw != null and kw != ''">
+      and (p.name like concat('%',#{kw},'%') or p.keyword like concat('%',#{kw},'%'))
+    </if>
+    GROUP BY s.product_id
+
+  </select>
+
+
+  <!--APP-按门店获取库门店列表 -->
+  <select id="findStorageInventoryListByStoreList" parameterType="com.coracle.dms.vo.DmsStorageInventoryVo" resultMap="DmsStorageInventoryVoResultMapForAppList">
+    SELECT
+      IFNULL(s.id,dc.id) id,IFNULL(s.name,dc.name) storeName,#{orgId} orgId,ds.id storageId,
+      if(ds.storage_type = 2, dc.id, null) as channelId,
+      if(ds.storage_type = 3, s.id, null) as storeId
+    from dms_storage ds
+    LEFT JOIN dms_store s on s.id=ds.relation_id
+    LEFT JOIN dms_channel dc on dc.id =ds.relation_id
+    where
+      (
+        (ds.storage_type = 2 and ds.relation_id = #{channelId})
+        <if test="storeIdList != null and storeIdList.size > 0">
+          or
+          (
+            ds.storage_type = 3 and ds.relation_id in
+            <foreach collection="storeIdList" item="item" open="(" separator="," close=")">
+              #{item}
+            </foreach>
+          )
+        </if>
+      )
+    <if test="kw != null and kw != ''">
+      and (s.name like concat('%',#{kw},'%') or dc.name like concat('%',#{kw},'%'))
+    </if>
+  </select>
+
+  <!--APP-获取门店下的产品库存列表，不区分规格 -->
+  <select id="getProductList" parameterType="java.util.Map" resultType="java.util.Map">
+    select
+      st.`name` storageName, caf.file_preview_path filePreviewPath, s.`storage` storage, s.product_id productId,
+      p.name productName, sum(s.storage_num) as storageNum, st.storage_type storageType, st.org_id orgId, #{channelId} as channelId
+    from
+      dms_storage_inventory s
+    left join dms_product p on s.product_id = p.id
+    left join dms_common_attach_file caf on p.pic_Id = caf.id
+    left join dms_storage st on st.id = s.`storage`
+    where
+      p.remove_flag = 0
+      and s.storage_num > 0
+    <if test="channelId != null">
+      and (
+        (st.storage_type = 2 and st.relation_id = #{channelId})
+        or
+        (
+          st.storage_type = 3 and st.relation_id in (
+            select
+              id
+            from
+              dms_store
+            where
+              belong_dealer = #{channelId}
+              and remove_flag = 0
+          )
+        )
+      )
+    </if>
+    <if test="storeId != null">
+      and (
+        (
+          st.storage_type = 2 and st.relation_id = (
+            select
+              belong_dealer
+            from
+              dms_store
+            where
+              id = #{storeId}
+          )
+        )
+        or
+        (
+          st.storage_type = 3 and st.relation_id in (
+            select
+              id
+            from
+              dms_store
+            where
+              belong_dealer = (select belong_dealer from dms_store where id = #{storeId})
+          )
+        )
+      )
+    </if>
+    <if test="storage!=null">
+      and s.storage = #{storage}
+    </if>
+    group by s.product_id, s.`storage`
+  </select>
+
+  <select id="getDetails" resultMap="DmsStorageInventoryResultMap" parameterType="com.coracle.dms.po.DmsStorageInventory">
+    SELECT
+    <include refid="DmsStorageInventory_Column_List" />
+    FROM
+    dms_storage_inventory where id = #{id} and remove_flag=0
+  </select>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_storage_inventory (product_id,product_spec_id,
+    storage, storage_local, storage_num, use_num, created_date, created_by,
+    last_updated_date, last_updated_by, remove_flag)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      ( #{item.productId},#{item.productSpecId},
+      #{item.storage}, #{item.storageLocal},#{item.storageNum}, #{item.useNum},#{item.createdDate},#{item.createdBy},
+      #{item.lastUpdatedDate}, #{item.lastUpdatedBy},#{item.removeFlag}
+      )
+    </foreach>
+  </insert>
+
+  <select id="findBySidLidPid" resultMap="DmsStorageInventoryResultMap" parameterType="com.coracle.dms.vo.DmsStorageInventoryVo" >
+    select
+    <include refid="DmsStorageInventory_Column_List" />
+    from dms_storage_inventory
+    where storage = #{storage}
+    <if test="storageLocal!=null">
+      and storage_local = #{storageLocal}
+    </if>
+    and product_id = #{productId}
+    <if test="productSpecId!=null">
+      and product_spec_id = #{productSpecId}
+    </if>
+    order by created_date DESC
+  </select>
+
+  <select id="findByProductId" resultType="java.lang.Long" parameterType="java.lang.Long"  >
+    select
+    sum(storage_num)
+    from dms_storage_inventory si,dms_storage s
+    where si.storage= s.id and product_id = #{productId}
+    <if test="productSpecId!=null">
+      and product_spec_id = #{productSpecId}
+    </if>
+     and storage_type=1 and si.remove_flag=0
+  </select>
+
+  <!-- app-按产品，按门店  根据产品id获取产品详情,按规格区分开 -->
+  <select id="findStorageInventoryListByProductId" parameterType="com.coracle.dms.vo.DmsStorageInventoryVo" resultType="java.util.Map">
+    select
+      s.id, s.product_id productId, ifnull(s.product_spec_id,0) productSpecId, caf.file_preview_path filePreviewPath, ifnull(p.name, '') productName, sum(s.storage_num) as storageNum,sum(s.use_num) as useNum, st.storage_type storageType,
+      p.show_price showPrice,ifnull(smc.spec_union_key,'') specUnionKey,s.created_date createDate,s.storage storage,ifnull(s.storage_local,0) storageLocal,st.relation_id relationId,IFNULL(ds.name,dc.name) relationName
+    from
+      dms_storage_inventory s
+    left join dms_product p on s.product_id = p.id
+    left join dms_common_attach_file caf on p.pic_Id = caf.id
+    left join dms_storage st on st.id = s.`storage`
+    left join dms_product_spec_matrix_config smc on s.product_spec_id = smc.id
+    left join dms_store ds on ds.id = st.relation_id
+    left join dms_channel dc on dc.id = st.relation_id
+    where
+      s.storage_num > 0
+    <if test="productId!=null">
+      and s.product_id = #{productId}
+    </if>
+    <if test="channelId != null">
+      and (
+        (st.storage_type = 2 and st.relation_id = #{channelId})
+        <if test="storeIdList != null and storeIdList.size > 0">
+          or
+          (
+            st.storage_type = 3 and st.relation_id in
+            <foreach collection="storeIdList" item="item" open="(" separator="," close=")">
+              #{item}
+            </foreach>
+          )
+        </if>
+      )
+    </if>
+    <if test="storeId != null">
+      and (st.storage_type = 3 and st.relation_id = #{storeId})
+    </if>
+    <!-- 区分仓库 GROUP BY s.product_id,s.product_spec_id,s.storage-->
+    GROUP BY s.product_id,s.product_spec_id
+  </select>
+
+<!-- app-按产品，按门店  根据产品id获取产品详情,按规格区分开 数量统计 -->
+  <select id="findStorageInventoryListByProductIdNum" parameterType="com.coracle.dms.vo.DmsStorageInventoryVo" resultType="java.lang.Integer">
+    select
+      ifnull(sum(s.storage_num), 0) totalNum
+    from dms_storage_inventory s
+    left join dms_product p on s.product_id = p.id
+    left join dms_common_attach_file caf on p.pic_Id = caf.id
+    left join dms_storage st on st.id = s.`storage`
+    left join dms_product_spec_matrix_config smc on s.product_spec_id = smc.id
+    left join dms_store ds on ds.id = st.relation_id
+    left join dms_channel dc on dc.id = st.relation_id
+    where
+      s.storage_num > 0
+    <if test="productId!=null">
+      and s.product_id = #{productId}
+    </if>
+    <if test="channelId != null">
+      and (
+        (st.storage_type = 2 and st.relation_id = #{channelId})
+        <if test="storeIdList != null and storeIdList.size > 0">
+          or
+          (
+            st.storage_type = 3 and st.relation_id in
+            <foreach collection="storeIdList" item="item" open="(" separator="," close=")">
+              #{item}
+            </foreach>
+          )
+        </if>
+      )
+    </if>
+    <if test="storeId != null">
+      and (st.storage_type = 3 and st.relation_id = #{storeId})
+    </if>
+    <if test="kw != null and kw != ''">
+      and (s.name like concat('%', #{kw}, '%') or dc.name like concat('%', #{kw}, '%'))
+    </if>
+  <!--GROUP BY s.product_id -->
+</select>
+
+<!-- 根据门店id获取产品详情列表,不按规格区分开，产品库存合并 -->
+  <select id="findStorageInventoryListByStore" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT s.product_id productId,ifnull(s.product_spec_id,0) productSpecId,caf.file_preview_path filePreviewPath,ifnull(p.name,'') productName,SUM(s.storage_num) as storageNum,SUM(s.use_num) as useNum,
+    p.show_price showPrice,ifnull(smc.spec_union_key,'') specUnionKey,s.created_date createDate,ifnull(s.storage_local,0) storageLocal
+    FROM dms_storage_inventory s
+    LEFT JOIN dms_product p on s.product_id=p.id
+    LEFT JOIN dms_common_attach_file caf on p.pic_Id=caf.id
+    LEFT JOIN dms_storage st on st.id =s.`storage`
+    LEFT JOIN dms_product_spec_matrix_config smc on s.product_spec_id=smc.id
+    left JOIN dms_store ds on ds.id=st.relation_id
+    LEFT JOIN dms_channel dc on dc.id=st.relation_id
+    where p.remove_flag=0 and s.storage_num >0
+    <if test="channelId != null">
+      and (st.storage_type = 2 and st.relation_id = #{channelId})
+    </if>
+    <if test="storeId != null">
+      and (st.storage_type = 3 and st.relation_id = #{storeId})
+    </if>
+    GROUP BY s.product_id
+  </select>
+
+
+  <!-- 根据产品id和规格属性获取有库存的仓库信息 -->
+  <select id="selectStorageByOrderProduct" parameterType="java.util.Map" resultMap="DmsTreeResultMap">
+    select distinct
+      s.id as `key`,
+      s.id as `value`,
+      s.name as `label`,
+      'false' as isLeaf,
+      #{productId} "productId",
+      #{productSpecId} "productSpecId"
+    from
+      dms_storage_inventory si
+    left join dms_storage s on s.id = si.storage and s.remove_flag = 0
+    where
+      si.product_id = #{productId}
+      and s.storage_type = 1
+      <choose>
+        <when test="productSpecId == null">
+          and si.product_spec_id is null
+        </when>
+        <otherwise>
+          and si.product_spec_id = #{productSpecId}
+        </otherwise>
+      </choose>
+      and si.remove_flag = 0
+      and si.use_num > 0
+  </select>
+
+  <!-- 根据仓库id获取仓库下的有库存的仓库货位信息 -->
+  <select id="selectStorageLocalByOrderProduct" parameterType="java.util.Map" resultType="java.util.Map">
+    select
+      sl.id as `key`,
+      sl.id as `value`,
+      sl.code as `label`,
+      'false' as isLeaf
+    from
+      dms_storage_local sl
+    left join dms_storage_inventory si on si.storage_local = sl.id and si.remove_flag = 0
+    where
+      sl.storage_id = #{storageId}
+      and si.product_id = #{productId}
+      <choose>
+        <when test="productSpecId == null">
+          and si.product_spec_id is null
+        </when>
+        <otherwise>
+          and si.product_spec_id = #{productSpecId}
+        </otherwise>
+      </choose>
+      and sl.remove_flag = 0
+      and si.use_num > 0
+  </select>
+
+  <!-- 根据id从视图中获取库存数量和 -->
+  <select id="selectByPrimaryKeyForView" parameterType="java.lang.Long" resultMap="DmsStorageInventoryVoResultMap">
+    SELECT si.id,si.productId,si.productSpecId, si.storage, si.storageLocal,
+    si.storageNum, si.useNum, si.createdDate, si.createdBy, si.lastUpdatedDate, si.lastUpdatedBy,si.removeFlag,
+    si.unitText,si.localCode,si.categoryText,si.productName,si.productCode,si.storageName,si.specName,
+    si.orgId,si.name,si.storageType,si.pcId,si.pName
+    FROM storage_inventory si where 1=1
+    <choose>
+      <!-- app端库存调整，没有视图库存id -->
+      <when test="id == null">
+        and si.storage = #{storage}
+        <if test="storageLocal!=null">
+          and si.storageLocal = #{storageLocal}
+        </if>
+        and si.productId = #{productId}
+        <if test="productSpecId!=null">
+          and si.productSpecId = #{productSpecId}
+        </if>
+      </when>
+      <!-- pc端库存调整,有视图库存id -->
+      <otherwise>
+        and si.id=#{id}
+      </otherwise>
+    </choose>
+
+  </select>
+  <!-- 查询仓库或者货位库存数量 -->
+  <select id="getStorageLocalCount" resultType="java.lang.Integer">
+  	 SELECT count(1) FROM dms_storage_inventory t where t.remove_flag=0 
+  	 <if test="storageId != null">
+  	 	and t.`storage`=#{storageId}
+  	 </if>
+  	 <if test="storageLocalId !=null">
+  	  	and t.storage_local=#{storageLocalId}
+  	  </if>
+  </select>
+
+  <!-- 根据条件获取品牌商的可用量 -->
+  <select id="selectVoByCondition" parameterType="com.coracle.dms.po.DmsStorageInventory" resultMap="DmsStorageInventoryVoResultMap">
+    select
+      si.*,
+      p.name as productName,
+      psmc.spec_union_key as specName,
+      ifnull(sum(si.use_num), 0) as useNumTotal
+    from
+      dms_storage_inventory si
+    left join dms_product p on p.id = si.product_id
+    left join dms_product_spec_matrix_config psmc on psmc.id = si.product_spec_id
+    left join dms_storage s on s.id = si.storage and s.storage_type = 1 and s.active = 1
+    where
+      si.product_id = #{productId}
+    <if test="productSpecId != null">
+      and si.product_spec_id = #{productSpecId}
+    </if>
+    <if test="storage != null">
+      and si.storage = #{storage}
+    </if>
+    <if test="storageLocal != null">
+      and si.storage_local =#{storageLocal}
+    </if>
+      and si.remove_flag = 0
+  </select>
+
+</mapper>

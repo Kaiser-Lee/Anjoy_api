@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsEmployeeMapper" >
+  <resultMap id="DmsEmployeeResultMap" type="com.coracle.dms.po.DmsEmployee" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER"/>
+    <result column="anjoy_id" property="anjoyId" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="DmsEmployee_Column_List" >
+    id, name, sex, status, user_id, created_date, created_by, last_updated_date, last_updated_by, remove_flag, anjoy_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsEmployeeResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsEmployee_Column_List" />
+    from dms_employee
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_employee
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsEmployee" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_employee (name, sex, status, user_id, created_date, created_by, last_updated_date,
+      last_updated_by, remove_flag, anjoy_id)
+    values (#{name}, #{sex}, #{status}, #{userId}, #{createdDate}, #{createdBy}, #{lastUpdatedDate},
+      #{lastUpdatedBy}, #{removeFlag}, #{anjoyId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsEmployee" >
+    insert into dms_employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="anjoyId != null" >
+        anjoy_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="sex != null" >
+        #{sex},
+      </if>
+      <if test="status != null" >
+        #{status},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="anjoyId != null" >
+        #{anjoyId},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsEmployee" >
+    update dms_employee
+    <set >
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex},
+      </if>
+      <if test="status != null" >
+        status = #{status},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="anjoyId != null" >
+        anjoy_id = #{anjoyId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsEmployee" >
+    update dms_employee
+    set name = #{name},
+      sex = #{sex},
+      status = #{status},
+      user_id = #{userId},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      anjoy_id = #{anjoyId}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="name != null and name != ''" >
+        name = #{name}
+      </if>
+      <if test="sex != null" >
+        AND sex = #{sex}
+      </if>
+      <if test="status != null" >
+        AND status = #{status}
+      </if>
+      <if test="userId != null" >
+        AND user_id = #{userId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="anjoyId != null" >
+        AND anjoy_id = #{anjoyId}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsEmployee" resultMap="DmsEmployeeResultMap" >
+    select 
+    <include refid="DmsEmployee_Column_List" />
+    from dms_employee
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_employee
+    <set >
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.sex != null" >
+        sex = #{po.sex},
+      </if>
+      <if test="po.status != null" >
+        status = #{po.status},
+      </if>
+      <if test="po.userId != null" >
+        user_id = #{po.userId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.anjoyId != null" >
+        anjoy_id = #{po.anjoyId},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+
+  <!-- 列表vo对象 -->
+  <resultMap id="DmsEmployeeListVoResultMap" type="com.coracle.dms.vo.DmsEmployeeVo" extends="DmsEmployeeResultMap">
+    <result column="account" property="account" jdbcType="VARCHAR"/>
+    <result column="organization" property="organization" jdbcType="VARCHAR"/>
+    <result column="dept" property="dept" jdbcType="VARCHAR"/>
+    <result column="post" property="post" jdbcType="VARCHAR"/>
+    <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+    <result column="sex_text" property="sexText" jdbcType="VARCHAR"/>
+    <result column="status_text" property="statusText" jdbcType="VARCHAR"/>
+    <collection property="contactInfoList" column="{relatedTableType=contact_info_type, type = type, relatedTableId=id, removeFlag=remove_flag}" javaType="java.util.List" ofType="com.coracle.dms.po.DmsContactInfo" select="com.coracle.dms.dao.mybatis.DmsContactInfoMapper.selectByCondition"/>
+  </resultMap>
+
+  <!-- 详情vo对象 -->
+  <resultMap id="DmsEmployeeDetailVoResultMap" type="com.coracle.dms.vo.DmsEmployeeVo" extends="DmsEmployeeListVoResultMap">
+    <result column="contact_info_type" property="contactInfoType" jdbcType="INTEGER"/>
+    <result column="role_id" property="roleId" jdbcType="INTEGER"></result>
+    <collection property="employeeOrganizationList" column="id" javaType="java.util.List" ofType="com.coracle.dms.vo.DmsEmployeeOrganizationVo" select="com.coracle.dms.dao.mybatis.DmsEmployeeOrganizationMapper.selectVoByEmployeeId"/>
+  </resultMap>
+
+  <!-- 根据条件获取vo列表 -->
+  <select id="selectVoByCondition" parameterType="com.coracle.dms.vo.DmsEmployeeVo" resultMap="DmsEmployeeListVoResultMap">
+    select
+      e.id as  id,
+      e.name as name,
+      e.remove_flag as remove_flag,
+      u.account as account,
+      o.name as organization,
+      o.name as dept,
+      p.name as post,
+      r.description as role_name,
+      case e.status
+        when 0 then '离职'
+        when 1 then '在职'
+      end as status_text,
+      3 as contact_info_type,
+      3 as type
+    from
+      dms_employee e
+    left join dms_user u on u.id = e.user_id and u.remove_flag = 0
+    left join dms_employee_organization eo on eo.employee_id = e.id and eo.is_major = 1 and eo.remove_flag = 0
+    left join dms_organization o on o.id = eo.organization_id
+    left join dms_post p on p.id = eo.post_id and p.remove_flag = 0
+    left join dms_user_role ur on  ur.user_id = e.user_id AND   ur.remove_flag = 0
+    left join dms_role r on r.id = ur.role_id
+
+    where e.remove_flag = 0
+
+    <if test="name != null and name != ''">
+      and e.name like concat('%', #{name}, '%')
+    </if>
+    <if test="account != null and account != ''">
+      and u.account like concat('%', #{account}, '%')
+    </if>
+    <!--<if test="organizationId !=null and organizationId !=''">
+      and eo.organization_id = #{organizationId}
+
+    </if>-->
+    <if test="status != null">
+      and e.status = #{status}
+    </if>
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+
+  <!-- 根据主键获取vo对象 -->
+  <select id="selectVoByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsEmployeeDetailVoResultMap">
+    select
+      e.*,
+      case e.sex
+        when 0 then '未知'
+        when 1 then '男'
+        when 2 then '女'
+      end as sex_text,
+      case e.status
+        when 0 then '离职'
+        when 1 then '在职'
+      end as status_text,
+      u.account as account,
+      3 as contact_info_type,
+      null as type,
+      r.role_id
+    from
+        dms_employee e
+    left join dms_user u on u.id = e.user_id and u.remove_flag = 0
+    left join dms_employee_organization eo on eo.employee_id = e.id and eo.is_major = 1 and eo.remove_flag = 0
+    left join dms_organization o on o.id = eo.organization_id
+    left join dms_post p on p.id = eo.post_id and p.remove_flag = 0
+    left join dms_user_role r on r.user_id = e.user_id and r.remove_flag=0
+    where
+      e.id = #{id}
+  </select>
+
+  <!-- 根据id列表批量逻辑删除 -->
+  <update id="batchRemove" parameterType="java.util.List">
+    update dms_employee set remove_flag = 1 where id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+  <!-- +++++++ 自定义sql end +++++++ -->
+
+</mapper>

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsPromotionMapper" >
+  <resultMap id="DmsPromotionResultMap" type="com.coracle.dms.po.DmsPromotion" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="meanwhile" property="meanwhile" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsPromotion_Column_List" >
+    id, code, subject, category, active, start_time, end_time, description, meanwhile,
+    created_date, created_by, last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsPromotionResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsPromotion_Column_List" />
+    from dms_promotion
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_promotion
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsPromotion" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_promotion (code, subject, category, active, start_time, end_time,
+      description, meanwhile, created_date, created_by, last_updated_date, last_updated_by,
+      remove_flag)
+    values (#{code}, #{subject}, #{category}, #{active}, #{startTime}, #{endTime},
+      #{description}, #{meanwhile}, #{createdDate}, #{createdBy}, #{lastUpdatedDate},
+      #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsPromotion" >
+    insert into dms_promotion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="meanwhile != null" >
+        meanwhile,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="subject != null" >
+        #{subject},
+      </if>
+      <if test="category != null" >
+        #{category},
+      </if>
+      <if test="active != null" >
+        #{active},
+      </if>
+      <if test="startTime != null" >
+        #{startTime},
+      </if>
+      <if test="endTime != null" >
+        #{endTime},
+      </if>
+      <if test="description != null" >
+        #{description},
+      </if>
+      <if test="meanwhile != null" >
+        #{meanwhile},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsPromotion" >
+    update dms_promotion
+    <set >
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="subject != null" >
+        subject = #{subject},
+      </if>
+      <if test="category != null" >
+        category = #{category},
+      </if>
+      <if test="active != null" >
+        active = #{active},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime},
+      </if>
+      <if test="description != null" >
+        description = #{description},
+      </if>
+      <if test="meanwhile != null" >
+        meanwhile = #{meanwhile},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsPromotion" >
+    update dms_promotion
+    set code = #{code},
+      subject = #{subject},
+      category = #{category},
+      active = #{active},
+      start_time = #{startTime},
+      end_time = #{endTime},
+      description = #{description},
+      meanwhile = #{meanwhile},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="code != null and code != ''" >
+        code = #{code}
+      </if>
+      <if test="subject != null and subject != ''" >
+        AND subject = #{subject}
+      </if>
+      <if test="category != null and category != ''" >
+        AND category = #{category}
+      </if>
+      <if test="active != null" >
+        AND active = #{active}
+      </if>
+      <if test="startTime != null" >
+        AND start_time = #{startTime}
+      </if>
+      <if test="endTime != null" >
+        AND end_time = #{endTime}
+      </if>
+      <if test="description != null and description != ''" >
+        AND description = #{description}
+      </if>
+      <if test="meanwhile != null" >
+        AND meanwhile = #{meanwhile}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsPromotion" resultMap="DmsPromotionResultMap" >
+    select 
+    <include refid="DmsPromotion_Column_List" />
+    from dms_promotion
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+
+  <update id="updateByIdsSelective" >
+    update dms_promotion
+    <set >
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.subject != null" >
+        subject = #{po.subject},
+      </if>
+      <if test="po.category != null" >
+        category = #{po.category},
+      </if>
+      <if test="po.active != null" >
+        active = #{po.active},
+      </if>
+      <if test="po.startTime != null" >
+        start_time = #{po.startTime},
+      </if>
+      <if test="po.endTime != null" >
+        end_time = #{po.endTime},
+      </if>
+      <if test="po.description != null" >
+        description = #{po.description},
+      </if>
+      <if test="po.meanwhile != null" >
+        meanwhile = #{po.meanwhile},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+
+
+
+  <resultMap id="DmsPromotionListVoResultMap" type="com.coracle.dms.vo.DmsPromotionVo" extends="DmsPromotionResultMap">
+    <result column="active_text" property="activeText" jdbcType="VARCHAR"/>
+    <result column="status_text" property="statusText" jdbcType="VARCHAR"/>
+    <result column="category_text" property="categoryText" jdbcType="VARCHAR"/>
+    <result column="modifiable" property="modifiable" jdbcType="BOOLEAN"/>
+    <association property="scope" column="id" jdbcType="VARCHAR" select="com.coracle.dms.dao.mybatis.DmsPromotionScopeMapper.selectScopeByPromotionId"/>
+  </resultMap>
+
+  <resultMap id="DmsPromotionDetailVoResultMap" type="com.coracle.dms.vo.DmsPromotionVo" extends="DmsPromotionListVoResultMap">
+    <association property="creator" column="created_by" select="com.coracle.dms.dao.mybatis.DmsUserMapper.selectNameById"/>
+    <collection property="scopeList" column="id" javaType="java.util.List" ofType="com.coracle.dms.vo.DmsPromotionScopeVo" select="com.coracle.dms.dao.mybatis.DmsPromotionScopeMapper.selectVoByPromotionId"/>
+    <collection property="productList" column="id" javaType="java.util.List" ofType="com.coracle.dms.vo.DmsPromotionProductVo" select="com.coracle.dms.dao.mybatis.DmsPromotionProductMapper.selectVoByPromotionId"/>
+  </resultMap>
+
+
+
+
+  <!-- 根据主键id获取vo对象 -->
+  <select id="selectVoByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsPromotionDetailVoResultMap">
+    select
+      p.*,
+      if (p.active = 0, '无效', '有效') as active_text,
+      case p.active
+        when 0 then '已下架'
+        when 1 then
+          case
+            when sysdate() &lt; p.start_time then '未开始'
+            when sysdate() &gt; p.end_time then '已结束'
+            else '进行中'
+          end
+      end as status_text,
+      (select ddd.name from dms_data_dictionary_dependent ddd where ddd.s_key = p.category) as category_text
+    from
+      dms_promotion p
+    where
+      p.id = #{id}
+  </select>
+
+  <!-- 根据条件获取vo对象 -->
+  <select id="selectVoByCondition" parameterType="com.coracle.dms.vo.DmsPromotionVo" resultMap="DmsPromotionListVoResultMap">
+    select
+      p.*,
+      if (p.active = 0, '无效', '有效') as active_text,
+      case p.active
+        when 0 then '已下架'
+        when 1 then
+          case
+            when sysdate() &lt; p.start_time then '未开始'
+            when sysdate() &gt; p.end_time then '已结束'
+            else '进行中'
+          end
+      end as status_text,
+      (select ddd.name from dms_data_dictionary_dependent ddd where ddd.s_key = p.category) as category_text,
+      case
+        when sysdate() &gt; p.end_time or p.active = 0 then 0
+        else 1
+      end as modifiable
+    from
+      dms_promotion p
+    where
+      p.remove_flag = 0
+      <if test="code != null and code != ''">
+        and p.code like concat('%', #{code}, '%')
+      </if>
+      <if test="subject != null and subject != ''">
+        and p.subject like concat('%', #{subject}, '%')
+      </if>
+      <if test="startDate != null and startDate != ''">
+        <![CDATA[ and p.start_time >= str_to_date(concat(#{startDate}, '00:00:00'), '%Y-%m-%d %H:%i:%s') ]]>
+      </if>
+      <if test="endDate != null and endDate != ''">
+        <![CDATA[ and p.end_time <= str_to_date(concat(#{endDate}, '23:59:59'), '%Y-%m-%d %H:%i:%s') ]]>
+      </if>
+      <if test="status != null and status != ''">
+        and (1 = 2
+        <if test="status.indexOf('0') != -1">
+          or (p.active = 1 and sysdate() &lt; p.start_time)
+        </if>
+        <if test="status.indexOf('1') != -1">
+          <![CDATA[ or (p.active = 1 and sysdate() >= p.start_time and sysdate() <= p.end_time) ]]>
+        </if>
+        <if test="status.indexOf('2') != -1">
+          or (p.active = 1 and sysdate() &gt; p.end_time)
+        </if>
+        <if test="status.indexOf('3') != -1">
+          or p.active = 0
+        </if>
+        )
+      </if>
+      <if test="category != null and category != ''">
+        and p.category = #{category}
+      </if>
+    order by p.id desc
+  </select>
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>

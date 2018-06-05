@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsStorageAreaMapper" >
+  <resultMap id="DmsStorageAreaResultMap" type="com.coracle.dms.po.DmsStorageArea" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="storage_id" property="storageId" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsStorageArea_Column_List" >
+    id, storage_id, area_id, created_date, created_by, last_updated_date, last_updated_by, 
+    remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsStorageAreaResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsStorageArea_Column_List" />
+    from dms_storage_area
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_storage_area
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsStorageArea" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_storage_area (storage_id, area_id, created_date, created_by, last_updated_date, 
+      last_updated_by, remove_flag)
+    values (#{storageId}, #{areaId}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, 
+      #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsStorageArea" >
+    insert into dms_storage_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="storageId != null" >
+        storage_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="storageId != null" >
+        #{storageId},
+      </if>
+      <if test="areaId != null" >
+        #{areaId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsStorageArea" >
+    update dms_storage_area
+    <set >
+      <if test="storageId != null" >
+        storage_id = #{storageId},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsStorageArea" >
+    update dms_storage_area
+    set storage_id = #{storageId},
+      area_id = #{areaId},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="storageId != null" >
+        storage_id = #{storageId}
+      </if>
+      <if test="areaId != null" >
+        AND area_id = #{areaId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsStorageArea" resultMap="DmsStorageAreaResultMap" >
+    select 
+    <include refid="DmsStorageArea_Column_List" />
+    from dms_storage_area
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_storage_area
+    <set >
+      <if test="po.storageId != null" >
+        storage_id = #{po.storageId},
+      </if>
+      <if test="po.areaId != null" >
+        area_id = #{po.areaId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  <!--############################################## new sql update by tanyb ##############################################-->
+
+  <!-- v1.1版本修改 -->
+  <!-- 根据仓库id获取仓库辐射范围信息 -->
+  <select id="getStorageAreaList" parameterType="java.lang.Long" resultMap="DmsStorageAreaResultMap">
+    select
+      sa.id, sa.storage_id, sa.area_id, tr.name as area_name
+    from
+      dms_storage_area sa
+    left join dms_tree_relation tr on tr.id = sa.area_id
+    where
+      sa.storage_id = #{id}
+      and sa.remove_flag = 0
+  </select>
+  
+  <insert id="batchInsert" parameterType="java.util.List">
+     insert into dms_storage_area (storage_id, area_id, created_date, created_by, last_updated_date, 
+      last_updated_by, remove_flag)
+    values
+     <foreach collection="list" index="index" item="item" separator=",">
+       (#{item.storageId}, #{item.areaId}, #{item.createdDate}, #{item.createdBy}, #{item.lastUpdatedDate}, 
+      #{item.lastUpdatedBy}, #{item.removeFlag})
+     </foreach>
+  </insert>
+  
+  <delete id="deleteByStorageId" parameterType="java.lang.Long" >
+    delete from dms_storage_area
+    where storage_id = #{id}
+  </delete>
+  
+</mapper>

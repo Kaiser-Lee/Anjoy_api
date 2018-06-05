@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsTransferApplyMapper" >
+  <resultMap id="DmsTransferApplyResultMap" type="com.coracle.dms.po.DmsTransferApply" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="apply_no" property="applyNo" jdbcType="VARCHAR" />
+    <result column="apply_type" property="applyType" jdbcType="INTEGER" />
+    <result column="product_spec_id" property="productSpecId" jdbcType="BIGINT" />
+    <result column="bill_product_id" property="billProductId" jdbcType="BIGINT" />
+    <result column="delivery_store_id" property="deliveryStoreId" jdbcType="BIGINT" />
+    <result column="receive_store_id" property="receiveStoreId" jdbcType="BIGINT" />
+    <result column="apply_num" property="applyNum" jdbcType="BIGINT" />
+    <result column="apply_date" property="applyDate" jdbcType="TIMESTAMP" />
+    <result column="process_status" property="processStatus" jdbcType="INTEGER" />
+    <result column="delivery_status" property="deliveryStatus" jdbcType="INTEGER" />
+    <result column="receive_status" property="receiveStatus" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsTransferApply_Column_List" >
+    id, apply_no, apply_type, bill_product_id,product_spec_id, delivery_store_id, receive_store_id, apply_num, 
+    apply_date, process_status, delivery_status, receive_status, remark, created_date, 
+    created_by, last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsTransferApplyResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsTransferApply_Column_List" />
+    from dms_transfer_apply
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_transfer_apply
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsTransferApply" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_transfer_apply (apply_no, apply_type, bill_product_id,product_spec_id, delivery_store_id, receive_store_id, 
+      apply_num, apply_date, process_status, delivery_status, receive_status, 
+      remark, created_date, created_by, last_updated_date, last_updated_by, 
+      remove_flag)
+    values (#{applyNo}, #{applyType}, #{billProductId},#{productSpecId}, #{deliveryStoreId}, #{receiveStoreId}, 
+      #{applyNum}, #{applyDate}, #{processStatus}, #{deliveryStatus}, #{receiveStatus}, 
+      #{remark}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, 
+      #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsTransferApply" >
+    insert into dms_transfer_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="applyNo != null" >
+        apply_no,
+      </if>
+      <if test="applyType != null" >
+        apply_type,
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id,
+      </if>
+      <if test="billProductId != null" >
+        bill_product_id,
+      </if>
+      <if test="deliveryStoreId != null" >
+        delivery_store_id,
+      </if>
+      <if test="receiveStoreId != null" >
+        receive_store_id,
+      </if>
+      <if test="applyNum != null" >
+        apply_num,
+      </if>
+      <if test="applyDate != null" >
+        apply_date,
+      </if>
+      <if test="processStatus != null" >
+        process_status,
+      </if>
+      <if test="deliveryStatus != null" >
+        delivery_status,
+      </if>
+      <if test="receiveStatus != null" >
+        receive_status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="applyNo != null" >
+        #{applyNo},
+      </if>
+      <if test="applyType != null" >
+        #{applyType},
+      </if>
+      <if test="productSpecId != null" >
+        #{productSpecId},
+      </if>
+      <if test="billProductId != null" >
+        #{billProductId},
+      </if>
+      <if test="deliveryStoreId != null" >
+        #{deliveryStoreId},
+      </if>
+      <if test="receiveStoreId != null" >
+        #{receiveStoreId},
+      </if>
+      <if test="applyNum != null" >
+        #{applyNum},
+      </if>
+      <if test="applyDate != null" >
+        #{applyDate},
+      </if>
+      <if test="processStatus != null" >
+        #{processStatus},
+      </if>
+      <if test="deliveryStatus != null" >
+        #{deliveryStatus},
+      </if>
+      <if test="receiveStatus != null" >
+        #{receiveStatus},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsTransferApply" >
+    update dms_transfer_apply
+    <set >
+      <if test="applyNo != null" >
+        apply_no = #{applyNo},
+      </if>
+      <if test="applyType != null" >
+        apply_type = #{applyType},
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id = #{productSpecId},
+      </if>
+      <if test="billProductId != null" >
+        bill_product_id = #{billProductId},
+      </if>
+      <if test="deliveryStoreId != null" >
+        delivery_store_id = #{deliveryStoreId},
+      </if>
+      <if test="receiveStoreId != null" >
+        receive_store_id = #{receiveStoreId},
+      </if>
+      <if test="applyNum != null" >
+        apply_num = #{applyNum},
+      </if>
+      <if test="applyDate != null" >
+        apply_date = #{applyDate},
+      </if>
+      <if test="processStatus != null" >
+        process_status = #{processStatus},
+      </if>
+      <if test="deliveryStatus != null" >
+        delivery_status = #{deliveryStatus},
+      </if>
+      <if test="receiveStatus != null" >
+        receive_status = #{receiveStatus},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsTransferApply" >
+    update dms_transfer_apply
+    set apply_no = #{applyNo},
+      apply_type = #{applyType},
+      bill_product_id = #{billProductId},
+      delivery_store_id = #{deliveryStoreId},
+      receive_store_id = #{receiveStoreId},
+      apply_num = #{applyNum},
+      apply_date = #{applyDate},
+      process_status = #{processStatus},
+      delivery_status = #{deliveryStatus},
+      receive_status = #{receiveStatus},
+      remark = #{remark},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="applyNo != null and applyNo != ''" >
+        apply_no = #{applyNo}
+      </if>
+      <if test="applyType != null" >
+        AND apply_type = #{applyType}
+      </if>
+      <if test="billProductId != null" >
+        AND bill_product_id = #{billProductId}
+      </if>
+      <if test="productSpecId != null" >
+        AND product_spec_id = #{productSpecId}
+      </if>
+      <if test="deliveryStoreId != null" >
+        AND delivery_store_id = #{deliveryStoreId}
+      </if>
+      <if test="receiveStoreId != null" >
+        AND receive_store_id = #{receiveStoreId}
+      </if>
+      <if test="applyNum != null" >
+        AND apply_num = #{applyNum}
+      </if>
+      <if test="applyDate != null" >
+        AND apply_date = #{applyDate}
+      </if>
+      <if test="processStatus != null" >
+        AND process_status = #{processStatus}
+      </if>
+      <if test="deliveryStatus != null" >
+        AND delivery_status = #{deliveryStatus}
+      </if>
+      <if test="receiveStatus != null" >
+        AND receive_status = #{receiveStatus}
+      </if>
+      <if test="remark != null and remark != ''" >
+        AND remark = #{remark}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsTransferApply" resultMap="DmsTransferApplyResultMap" >
+    select 
+    <include refid="DmsTransferApply_Column_List" />
+    from dms_transfer_apply
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_transfer_apply
+    <set >
+      <if test="po.applyNo != null" >
+        apply_no = #{po.applyNo},
+      </if>
+      <if test="po.applyType != null" >
+        apply_type = #{po.applyType},
+      </if>
+      <if test="po.billProductId != null" >
+        bill_product_id = #{po.billProductId},
+      </if>
+      <if test="po.deliveryStoreId != null" >
+        delivery_store_id = #{po.deliveryStoreId},
+      </if>
+      <if test="po.receiveStoreId != null" >
+        receive_store_id = #{po.receiveStoreId},
+      </if>
+      <if test="po.applyNum != null" >
+        apply_num = #{po.applyNum},
+      </if>
+      <if test="po.applyDate != null" >
+        apply_date = #{po.applyDate},
+      </if>
+      <if test="po.processStatus != null" >
+        process_status = #{po.processStatus},
+      </if>
+      <if test="po.deliveryStatus != null" >
+        delivery_status = #{po.deliveryStatus},
+      </if>
+      <if test="po.receiveStatus != null" >
+        receive_status = #{po.receiveStatus},
+      </if>
+      <if test="po.remark != null" >
+        remark = #{po.remark},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  
+  <!--############################################## new sql update by tanyb ##############################################-->
+  <!--自定义dto-->
+  <resultMap id="DmsTransferApplyDtoResultMap" type="com.coracle.dms.dto.DmsTransferApplyDto" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="apply_no" property="applyNo" jdbcType="VARCHAR" />
+    <result column="apply_type" property="applyType" jdbcType="INTEGER" />
+    <result column="bill_product_id" property="billProductId" jdbcType="BIGINT" />
+    <result column="product_spec_id" property="productSpecId" jdbcType="BIGINT" />
+    <result column="delivery_store_id" property="deliveryStoreId" jdbcType="BIGINT" />
+    <result column="receive_store_id" property="receiveStoreId" jdbcType="BIGINT" />
+    <result column="apply_num" property="applyNum" jdbcType="BIGINT" />
+    <result column="apply_date" property="applyDate" jdbcType="TIMESTAMP" />
+    <result column="process_status" property="processStatus" jdbcType="INTEGER" />
+    <result column="delivery_status" property="deliveryStatus" jdbcType="INTEGER" />
+    <result column="receive_status" property="receiveStatus" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="apply_id" property="applyId" jdbcType="BIGINT" />
+    <result column="delivery_num" property="deliveryNum" jdbcType="INTEGER" />
+    <result column="delivery_type" property="deliveryType" jdbcType="VARCHAR" />
+    <result column="receiver" property="receiver" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="express_company" property="expressCompany" jdbcType="VARCHAR" />
+    <result column="express_no" property="expressNo" jdbcType="VARCHAR" />
+    <result column="delivery_date" property="deliveryDate" jdbcType="TIMESTAMP" />
+    <result column="province_text" property="provinceText" jdbcType="VARCHAR" />
+  	<result column="city_text" property="cityText" jdbcType="VARCHAR" />
+  	<result column="county_text" property="countyText" jdbcType="VARCHAR" />
+  	<result column="delivery_store_text" property="deliveryStoreText" jdbcType="VARCHAR" />
+  	<result column="receive_store_text" property="receiveStoreText" jdbcType="VARCHAR" />
+  	<result column="product_text" property="productText" jdbcType="VARCHAR" />
+  	<result column="file_preview_path" property="filePreviewPath" jdbcType="VARCHAR" />
+  	<result column="delivery_status_text" property="deliveryStatusText" jdbcType="VARCHAR" />
+  	<result column="receive_status_text" property="receiveStatusText" jdbcType="VARCHAR" />
+  	<result column="product_spec_text" property="productSpecText" jdbcType="VARCHAR" />
+  	<result column="inventory" property="inventory" jdbcType="INTEGER" />
+  </resultMap>
+   <sql id="DmsTransferApplyDto_Column_List" >
+    a.id, a.apply_no, a.apply_type, a.bill_product_id,a.product_spec_id, a.delivery_store_id, a.receive_store_id, a.apply_num, 
+    a.apply_date, a.process_status, a.delivery_status, a.receive_status, a.remark, a.created_date, 
+    a.created_by, a.last_updated_date, a.last_updated_by, a.remove_flag,
+  </sql>
+  <sql id="DmsTransferDeliveryDto_Column_List" >
+    b.apply_id, b.delivery_num, b.delivery_type, b.receiver, b.mobile, b.province, b.city, b.county, 
+    b.address, b.express_company, b.express_no,b.delivery_date
+  </sql>
+  
+  <select id="getPageList" parameterType="com.coracle.dms.dto.DmsTransferApplyDto" resultMap="DmsTransferApplyDtoResultMap" >
+  select d.*,
+  			case d.apply_type
+				when 1 then (select s.`name` from dms_channel s where 1=1 and s.id=d.delivery_store_id) 
+				when 2 then (select s.`name` from dms_store s where 1=1 and s.id=d.delivery_store_id) 
+				when 3 then (select s.`name` from dms_channel s where 1=1 and s.id=d.delivery_store_id) 
+		      end as delivery_store_text,
+			(select s.`name` from dms_store s where 1=1 and s.id=d.receive_store_id) as receive_store_text,
+			 p.`name` as product_text,attr.file_preview_path as file_preview_path,
+			 case d.delivery_status
+        when 1 then '待发货'
+        when 2 then '待收货'
+        when 3 then '已完成'
+        when 4 then '已取消'
+      end as delivery_status_text,
+			case d.receive_status
+        when 1 then '待发货'
+        when 2 then '已发货'
+        when 3 then '已完成'
+        when 4 then '已取消'
+      end as receive_status_text
+	from dms_transfer_apply d 
+	<choose>
+		<when test="receiveStoreId != null">left join dms_transfer_status s on d.id=s.transfer_id and d.receive_store_id=s.store_id</when>
+		<otherwise>left join dms_transfer_status s on d.id=s.transfer_id</otherwise>
+	</choose>
+	left join dms_product p on d.bill_product_id=p.id 
+	left join dms_common_attach_file attr on attr.id=p.pic_Id
+	where 1=1 and d.remove_flag=0
+	  <if test="storeId != null" >
+        AND s.store_id = #{storeId}
+      </if>
+      <if test="processStatus != null" >
+        AND s.process_status = #{processStatus}
+      </if>
+      <if test="applyType != null" >
+        AND d.apply_type in (2,3)
+      </if>
+      <if test="deliveryStatus != null" >
+        AND d.delivery_status = #{deliveryStatus}
+      </if>
+      <if test="receiveStatus != null" >
+        AND d.receive_status = #{receiveStatus}
+      </if>
+      <if test="deliveryStoreId != null" >
+        AND d.delivery_store_id = #{deliveryStoreId}
+     </if>
+     <if test="receiveStoreId != null" >
+        AND d.receive_store_id = #{receiveStoreId}
+     </if>
+      <if test="createTimeStart != null and createTimeStart !=''">
+          <![CDATA[ AND d.apply_date >= #{createTimeStart} ]]>
+      </if>
+      <if test="createTimeEnd != null and createTimeEnd !=''">
+          <![CDATA[ AND d.apply_date <= #{createTimeEnd} ]]>
+      </if>
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  
+   <select id="selectDetailByPrimaryKey" resultMap="DmsTransferApplyDtoResultMap" >
+   select d.*,l.*,
+            (select s.`name` from dms_store s where 1=1 and s.id=d.receive_store_id) as receive_store_text,
+            (select b.region_name from dms_sys_region b where 1=1 and b.region_id = l.province ) province_text,
+            (select b.region_name from dms_sys_region b where 1=1 and b.region_id = l.city) city_text,
+            (select b.region_name from dms_sys_region b where 1=1 and b.region_id = l.county ) county_text,
+			case d.apply_type
+				when 1 then (select s.`name` from dms_channel s where 1=1 and s.id=d.delivery_store_id) 
+				when 2 then (select s.`name` from dms_store s where 1=1 and s.id=d.delivery_store_id) 
+				when 3 then (select s.`name` from dms_channel s where 1=1 and s.id=d.delivery_store_id) 
+		    end as delivery_store_text,
+            p.`name` as product_text,attr.file_preview_path as file_preview_path,sc.spec_union_key as product_spec_text,
+			case d.delivery_status
+		        when 1 then '待发货'
+		        when 2 then '待收货'
+		        when 3 then '已完成'
+		        when 4 then '已取消'
+		    end as delivery_status_text,
+			case d.receive_status
+		        when 1 then '待发货'
+		        when 2 then '已发货'
+		        when 3 then '已完成'
+		        when 4 then '已取消'
+		    end as receive_status_text
+		from dms_transfer_apply d 
+		left join dms_transfer_status s on d.id=s.transfer_id
+		left join dms_transfer_delivery l on d.id=l.apply_id
+		left join dms_product p on d.bill_product_id=p.id 
+		left join dms_common_attach_file attr on attr.id=p.pic_Id
+		left join dms_product_spec_matrix_config sc on sc.id=d.product_spec_id and sc.remove_flag=0
+		where 1=1 and d.remove_flag=0 and d.id=#{id} and s.store_id=#{storeId} 
+   </select>
+
+   <select id="selectTransferInventory" resultType="java.lang.Integer">
+   		select ifnull(sum(d.use_num), 0) from dms_storage_inventory d left join dms_storage s on d.`storage`=s.id
+						where 1=1 and d.remove_flag=0 and s.remove_flag=0 and s.active=1
+		<if test="productId != null">
+			and d.product_id=#{productId}
+		</if>	
+		<if test="productSpecId != null">
+			and d.product_spec_id=#{productSpecId}
+		</if>
+		<if test="storageType != null and orgId != null">
+			and (s.storage_type = #{storageType} and s.relation_id=#{orgId})
+		</if>
+						  
+   </select>
+  
+  <select id="selectDtoByPrimaryKey" resultMap="DmsTransferApplyDtoResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsTransferApplyDto_Column_List" />
+    <include refid="DmsTransferDeliveryDto_Column_List" />
+    from dms_transfer_apply a left join dms_transfer_delivery b on a.id= b.apply_id
+    where a.id = #{id}
+  </select>
+  
+</mapper>

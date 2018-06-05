@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsLadderPriceScopeMapper" >
+  <resultMap id="DmsLadderPriceScopeResultMap" type="com.coracle.dms.po.DmsLadderPriceScope" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="ladderpriceproduct_code" property="ladderpriceproductCode" jdbcType="BIGINT" />
+    <result column="scope_id" property="scopeId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_update_by" property="lastUpdateBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsLadderPriceScope_Column_List" >
+    id, ladderpriceproduct_code, scope_id, created_date, created_by, last_updated_date, 
+    last_update_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsLadderPriceScopeResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsLadderPriceScope_Column_List" />
+    from dms_ladderprice_scope
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_ladderprice_scope
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsLadderPriceScope" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_ladderprice_scope (ladderpriceproduct_code, scope_id, created_date, created_by, last_updated_date, 
+      last_update_by, remove_flag)
+    values (#{ladderpriceproductCode}, #{scopeId}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, 
+      #{lastUpdateBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsLadderPriceScope" >
+    insert into dms_ladderprice_scope
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ladderpriceproductCode != null" >
+        ladderpriceproduct_code,
+      </if>
+      <if test="scopeId != null" >
+        scope_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdateBy != null" >
+        last_update_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="ladderpriceproductCode != null" >
+        #{ladderpriceproductCode},
+      </if>
+      <if test="scopeId != null" >
+        #{scopeId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdateBy != null" >
+        #{lastUpdateBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsLadderPriceScope" >
+    update dms_ladderprice_scope
+    <set >
+      <if test="ladderpriceproductCode != null" >
+        ladderpriceproduct_code = #{ladderpriceproductCode},
+      </if>
+      <if test="scopeId != null" >
+        scope_id = #{scopeId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdateBy != null" >
+        last_update_by = #{lastUpdateBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsLadderPriceScope" >
+    update dms_ladderprice_scope
+    set ladderpriceproduct_code = #{ladderpriceproductCode},
+      scope_id = #{scopeId},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_update_by = #{lastUpdateBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="ladderpriceproductCode != null" >
+        ladderpriceproduct_code = #{ladderpriceproductCode}
+      </if>
+      <if test="scopeId != null" >
+        AND scope_id = #{scopeId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdateBy != null" >
+        AND last_update_by = #{lastUpdateBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsLadderPriceScope" resultMap="DmsLadderPriceScopeResultMap" >
+    select 
+    <include refid="DmsLadderPriceScope_Column_List" />
+    from dms_ladderprice_scope
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_ladderprice_scope
+    <set >
+      <if test="po.ladderpriceproductCode != null" >
+        ladderpriceproduct_code = #{po.ladderpriceproductCode},
+      </if>
+      <if test="po.scopeId != null" >
+        scope_id = #{po.scopeId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdateBy != null" >
+        last_update_by = #{po.lastUpdateBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+
+  <resultMap id="DmsLadderPriceProductScopeVoResultMap" type="com.coracle.dms.vo.DmsLadderProductScopeVo" extends="DmsLadderPriceScopeResultMap">
+    <result column="scope_name" property="scopeName" jdbcType="VARCHAR"/>
+  </resultMap>
+
+
+  <!-- 根据阶梯价格项 id删除促销适用范围信息 -->
+  <delete id="deleteByLadderPriceProductId" parameterType="java.lang.Long">
+    delete from
+    dms_ladderprice_scope
+    where
+    ladderpriceproduct_code = #{ladderPriceProductId}
+  </delete>
+
+
+  <!-- 批量插入 -->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into
+    dms_ladderprice_scope
+    (
+    ladderpriceproduct_code, scope_id, created_date, created_by,
+    last_updated_date, last_update_by, remove_flag
+    )
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (
+      #{item.ladderpriceproductCode}, #{item.scopeId}, #{item.createdDate}, #{item.createdBy},
+      #{item.lastUpdatedDate}, #{item.lastUpdateBy}, #{item.removeFlag}
+      )
+    </foreach>
+  </insert>
+
+
+
+  <!-- 根据阶梯价格 id获取vo对象 -->
+
+  <select id="selectVoByLadderPriceProductId" parameterType="java.lang.Long" resultMap="DmsLadderPriceProductScopeVoResultMap">
+    select
+    ls.*,
+    case tr.related_type
+    when 4 then sa.full_path
+    when 1 then c.name
+    when 2 then s.name
+    end as scope_name
+    from
+    dms_ladderprice_scope ls
+    left join dms_tree_relation tr on tr.id = ls.scope_id
+    left join dms_sys_area sa on sa.id = tr.related_id
+    left join dms_channel c on c.id = tr.related_id
+    left join dms_store s on s.id = tr.related_id
+    where
+    ls.ladderpriceproduct_code = #{ladderPriceProductId}
+    and ls.remove_flag = 0
+  </select>
+
+  <!-- 根据阶梯价格项id获取促销适用范围 -->
+  <select id="selectScopeByLadderPriceProductId" parameterType="java.lang.Long" resultType="java.lang.String">
+    select
+    group_concat(
+    case tr.related_type
+    when 4 then sa.full_path
+    when 1 then c.name
+    when 2 then s.name
+    end
+    order by ls.scope_id asc separator ';'
+    )
+    from
+    dms_ladderprice_scope ls
+    left join dms_tree_relation tr on tr.id = ls.scope_id
+    left join dms_sys_area sa on sa.id = tr.related_id
+    left join dms_channel c on c.id = tr.related_id
+    left join dms_store s on s.id = tr.related_id
+    where
+    ls.ladderpriceproduct_code = #{ladderPriceProductId}
+    and ls.remove_flag = 0
+  </select>
+
+
+
+</mapper>

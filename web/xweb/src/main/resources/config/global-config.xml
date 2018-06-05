@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<global-config>
+
+	<!-- 0: number, 1: character, 2: mixture, 3: GB -->
+	<check-code-encoding>number</check-code-encoding>
+	<!-- 是否记录用户访问日志 -->
+	<require-log>true</require-log>
+
+	<!-- 线程池配置开始 -->
+	<!-- 线程池缓冲队列 -->
+	<threadpool-queuesize>50</threadpool-queuesize>
+	<!-- 核心线程池大小 -->
+	<threadpool-corepoolsize>20</threadpool-corepoolsize>
+	<!-- 最大线程池大小 -->
+	<threadpool-maxpoolsize>100</threadpool-maxpoolsize>
+	<!-- 线程存活时间，分钟 -->
+	<threadpool-keepalivetime>10</threadpool-keepalivetime>
+	<!-- 线程池配置结束 -->
+
+	<file-server-url>http://10.28.13.28:8280/xweb/</file-server-url>
+	<file-server-securityUrl>https://app.kingnode.com/app/</file-server-securityUrl>
+	<upload-rootpath>/resources/upload</upload-rootpath>
+
+</global-config>

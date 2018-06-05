@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsReportFormsMapper" >
+    <resultMap id="productSaleVolumeFormsMap" type="com.coracle.dms.dto.DmsSellNumByCategoryDto">
+        <result column="product_id" property="productId" jdbcType="BIGINT"/>
+        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+        <result column="path" property="categoryPath" jdbcType="VARCHAR"/>
+        <result column="dpc_name" property="categoryName" jdbcType="VARCHAR"/>
+        <result column="category_id" property="categoryId" jdbcType="BIGINT"/>
+        <result column="dpc_parent_id" property="categoryParentId" jdbcType="BIGINT"/>
+        <result column="num" property="saleNum" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- app库存按门店列表 -->
+    <resultMap id="DmsTopByOldLibraryResultMapForTop5" type="com.coracle.dms.dto.DmsSellNumByCategoryDto" >
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR"/>
+        <collection column="{userId=userId,type=type,categoryId=categoryId}" property="topByOldLibraryList" select="topByOldLibraryList" />
+    </resultMap>
+
+    <!--零售端：产品销量top5查询用-->
+    <select id="getProductTopByCategory" resultMap="productSaleVolumeFormsMap">
+        select dp.id as product_id,dp.`name` as product_name,dpc.id as category_id,
+        dpc.path as path,ifnull(sum(ddp.product_num),0) as num,dpc.parent_id as dpc_parent_id,dpc.`name` as dpc_name
+        from dms_dynamic dd
+        left join dms_dynamic_product ddp on ddp.dynamic_id=dd.id
+        left join dms_product dp on ddp.product_id=dp.id
+        left join dms_product_category dpc on dp.category_id=dpc.id
+        where dd.send_date>=#{startDate} and dd.shipping_unit=#{storeId} and FIND_IN_SET(#{categoryId},path)>0
+        group by ddp.product_id  order by num desc limit 0,1
+    </select>
+
+
+    <!--订货端：库龄top5查询用：统计一级分类-->
+    <select id="getTopByOldLibrary" resultMap="DmsTopByOldLibraryResultMapForTop5">
+        SELECT id as categoryId,#{userId} userId,#{type} type,pc.name categoryName from dms_product_category pc where pc.`level`=1
+    </select>
+
+    <!--订货端：库龄top5查询用 统计分类里面最大的库龄库存，按天倒序 -->
+    <select id="topByOldLibraryList" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT DATEDIFF(NOW(),si.createdDate) days,
+        si.id,si.productId,si.productSpecId, si.storage,
+        si.storageNum, si.useNum, si.createdDate, si.createdBy, si.lastUpdatedDate, si.lastUpdatedBy,
+        si.unitText,si.localCode,si.categoryText as categoryName,si.productName,si.productCode,si.storageName,si.specName,si.pcId,si.pcPath
+        from storage_inventory si
+        where 1=1
+        <!--<if test="orgId!=null">
+           and si.`storage` in (SELECT s.id from  dms_storage s  where s.org_id=#{orgId})
+       </if> -->
+       <choose>
+           <!-- 渠道 -->
+            <when test="type != null and type==1">
+                and si.`storage` in (SELECT s.id from dms_channel_contacts cc LEFT JOIN dms_channel c on cc.channel_id=c.id LEFT JOIN dms_storage s on s.org_id=cc.channel_id
+                LEFT JOIN dms_user u on u.staff_id=cc.id  where u.id=#{userId})
+            </when>
+            <!-- 门店 -->
+            <when test="type != null and type==2">
+                and si.`storage` in (SELECT s.id from dms_seller ds LEFT JOIN dms_store st on ds.shop_id=st.id LEFT JOIN dms_storage s on s.relation_id=st.id
+                LEFT JOIN dms_user u on u.staff_id=ds.id  where u.id=#{userId})
+            </when>
+        </choose>
+        <if test="categoryId!=null">
+            and FIND_IN_SET(#{categoryId},si.pcPath)
+        </if>
+        ORDER BY days DESC LIMIT 1
+    </select>
+
+    <!--PC首页销量查询top5，查询的时间需要修改-->
+    <select id="getTopByDateType" parameterType="java.lang.String" resultType="java.util.Map">
+        select dop.product_id as productId,sum(dop.count) as sellNum,
+        (select dp.`name` from dms_product dp where dop.product_id=dp.id) as productName,
+        (select df.file_path from dms_product dp left join dms_common_attach_file df on df.id=dp.pic_Id where dop.product_id=dp.id) as productImg
+        from dms_order dmso, dms_order_product dop
+        where
+          dmso.id = dop.order_id
+          and dmso.order_status in (2,3,4)
+        <if test="startDate != null and startDate != ''">
+            and dmso.finished_date >= #{startDate}
+        </if>
+        group by dop.product_id order by sellNum desc limit 0,5
+    </select>
+
+    <!--订货端报表-->
+    <select id="getChannelTopByProduct" resultMap="productSaleVolumeFormsMap">
+        select dp.id as product_id,dp.`name` as product_name,ifnull(sum(t.num),0) as num,dpc.id as category_id,
+        dpc.path as path,dpc.parent_id as dpc_parent_id,dpc.`name` as dpc_name  from (
+        select oir.product_id,oir.num from dms_storage_out_in_record oir
+        where oir.out_org_id =#{channelId} and oir.out_org_type=2 and oir.out_in_type=1 and oir.out_in_time>=#{startDate} and assign_way=3
+        <if test="storeIds != null and storeIds!=''">
+        union ALL
+        select oir.product_id,oir.num from dms_storage_out_in_record oir
+        where oir.out_org_id in (#{storeIds}) and oir.out_org_type=3 and oir.out_in_type=1 and oir.out_in_time>=#{startDate} and assign_way=3
+        </if>
+        )t left join dms_product dp on t.product_id=dp.id
+        left join dms_product_category dpc on dp.category_id = dpc.id
+        where FIND_IN_SET(#{categoryId},dpc.path)>0 group by dp.id order by num desc limit 0,1
+    </select>
+
+    <select id="getSaleMoneyByOrder" resultType="java.lang.Double">
+        SELECT ifnull(sum(amount),0) as num FROM `dms_order` dor
+        where dor.order_status in (2,3,4) and dor.finished_date>=#{startDate} and dor.finished_date &lt; #{endDate}
+    </select>
+    <select id="getSaleNumByOrder" resultType="java.lang.Integer">
+        SELECT count(1) as num FROM `dms_order` dor
+        where dor.order_status in (2,3,4) and dor.finished_date>=#{startDate} and dor.finished_date &lt; #{endDate}
+    </select>
+</mapper>

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.tz.TgOrderProductPartMapper" >
+  <resultMap id="TgOrderProductPartResultMap" type="com.coracle.dms.po.tz.TgOrderProductPart" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_product_id" property="orderProductId" jdbcType="BIGINT" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="logistics_cycle" property="logisticsCycle" jdbcType="INTEGER" />
+    <result column="appoint_delivery_date" property="appointDeliveryDate" jdbcType="TIMESTAMP" />
+    <result column="delivery_count" property="deliveryCount" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="TgOrderProductPart_Column_List" >
+    id, order_id, order_product_id, product_name, logistics_cycle, appoint_delivery_date, 
+    delivery_count, created_date, created_by, last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="TgOrderProductPartResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="TgOrderProductPart_Column_List" />
+    from tg_order_product_part
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tg_order_product_part
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.tz.TgOrderProductPart" useGeneratedKeys="true" keyProperty="id" >
+    insert into tg_order_product_part (
+    <if test="orderId != null" >
+      order_id,
+    </if>
+     order_product_id, product_name, logistics_cycle, appoint_delivery_date,
+      delivery_count, created_date, created_by, last_updated_date, last_updated_by, 
+      remove_flag)
+    values (
+    <if test="orderId != null" >
+      #{orderId},
+    </if>
+     #{orderProductId}, #{productName}, #{logisticsCycle}, #{appointDeliveryDate},
+      #{deliveryCount}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, 
+      #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.tz.TgOrderProductPart" >
+    insert into tg_order_product_part
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderProductId != null" >
+        order_product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="logisticsCycle != null" >
+        logistics_cycle,
+      </if>
+      <if test="appointDeliveryDate != null" >
+        appoint_delivery_date,
+      </if>
+      <if test="deliveryCount != null" >
+        delivery_count,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="orderId != null" >
+        #{orderId},
+      </if>
+      <if test="orderProductId != null" >
+        #{orderProductId},
+      </if>
+      <if test="productName != null" >
+        #{productName},
+      </if>
+      <if test="logisticsCycle != null" >
+        #{logisticsCycle},
+      </if>
+      <if test="appointDeliveryDate != null" >
+        #{appointDeliveryDate},
+      </if>
+      <if test="deliveryCount != null" >
+        #{deliveryCount},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.tz.TgOrderProductPart" >
+    update tg_order_product_part
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId},
+      </if>
+      <if test="orderProductId != null" >
+        order_product_id = #{orderProductId},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName},
+      </if>
+      <if test="logisticsCycle != null" >
+        logistics_cycle = #{logisticsCycle},
+      </if>
+      <if test="appointDeliveryDate != null" >
+        appoint_delivery_date = #{appointDeliveryDate},
+      </if>
+      <if test="deliveryCount != null" >
+        delivery_count = #{deliveryCount},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.tz.TgOrderProductPart" >
+    update tg_order_product_part
+    set order_id = #{orderId},
+      order_product_id = #{orderProductId},
+      product_name = #{productName},
+      logistics_cycle = #{logisticsCycle},
+      appoint_delivery_date = #{appointDeliveryDate},
+      delivery_count = #{deliveryCount},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="orderId != null" >
+        order_id = #{orderId}
+      </if>
+      <if test="orderProductId != null" >
+        AND order_product_id = #{orderProductId}
+      </if>
+      <if test="productName != null and productName != ''" >
+        AND product_name = #{productName}
+      </if>
+      <if test="logisticsCycle != null" >
+        AND logistics_cycle = #{logisticsCycle}
+      </if>
+      <if test="appointDeliveryDate != null" >
+        AND appoint_delivery_date = #{appointDeliveryDate}
+      </if>
+      <if test="deliveryCount != null" >
+        AND delivery_count = #{deliveryCount}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.tz.TgOrderProductPart" resultMap="TgOrderProductPartResultMap" >
+    select 
+    <include refid="TgOrderProductPart_Column_List" />
+    from tg_order_product_part
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update tg_order_product_part
+    <set >
+      <if test="po.orderId != null" >
+        order_id = #{po.orderId},
+      </if>
+      <if test="po.orderProductId != null" >
+        order_product_id = #{po.orderProductId},
+      </if>
+      <if test="po.productName != null" >
+        product_name = #{po.productName},
+      </if>
+      <if test="po.logisticsCycle != null" >
+        logistics_cycle = #{po.logisticsCycle},
+      </if>
+      <if test="po.appointDeliveryDate != null" >
+        appoint_delivery_date = #{po.appointDeliveryDate},
+      </if>
+      <if test="po.deliveryCount != null" >
+        delivery_count = #{po.deliveryCount},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

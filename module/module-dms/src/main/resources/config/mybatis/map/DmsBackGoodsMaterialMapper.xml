@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsBackGoodsMaterialMapper" >
+  <resultMap id="DmsBackGoodsMaterialResultMap" type="com.coracle.dms.po.DmsBackGoodsMaterial" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="back_goods_order_id" property="backGoodsOrderId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="product_line" property="productLine" jdbcType="VARCHAR" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="material_text" property="materialText" jdbcType="VARCHAR" />
+    <result column="production_company" property="productionCompany" jdbcType="VARCHAR" />
+    <result column="property" property="property" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="sell_price" property="sellPrice" jdbcType="DECIMAL" />
+    <result column="return_count" property="returnCount" jdbcType="INTEGER" />
+    <result column="sell_amount" property="sellAmount" jdbcType="DECIMAL" />
+    <result column="original_out_order" property="originalOutOrder" jdbcType="VARCHAR" />
+    <result column="original_order_discount" property="originalOrderDiscount" jdbcType="REAL" />
+    <result column="after_discount_price" property="afterDiscountPrice" jdbcType="DECIMAL" />
+    <result column="after_discount_amount" property="afterDiscountAmount" jdbcType="DECIMAL" />
+    <result column="problem_description" property="problemDescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsBackGoodsMaterial_Column_List" >
+    id, back_goods_order_id, created_date, created_by, last_updated_date, last_updated_by, 
+    remove_flag, channel, product_line, material_no, material_text, production_company, 
+    property, unit, price, sell_price, return_count, sell_amount, original_out_order, 
+    original_order_discount, after_discount_price, after_discount_amount, problem_description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsBackGoodsMaterialResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsBackGoodsMaterial_Column_List" />
+    from dms_back_goods_material
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_back_goods_material
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsBackGoodsMaterial" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_back_goods_material (back_goods_order_id, created_date, created_by, last_updated_date, last_updated_by, 
+      remove_flag, channel, product_line, material_no, material_text, production_company, 
+      property, unit, price, sell_price, return_count, sell_amount, original_out_order, 
+      original_order_discount, after_discount_price, after_discount_amount, problem_description
+      )
+    values (#{backGoodsOrderId}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, 
+      #{removeFlag}, #{channel}, #{productLine}, #{materialNo}, #{materialText}, #{productionCompany}, 
+      #{property}, #{unit}, #{price}, #{sellPrice}, #{returnCount}, #{sellAmount}, #{originalOutOrder}, 
+      #{originalOrderDiscount}, #{afterDiscountPrice}, #{afterDiscountAmount}, #{problemDescription}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsBackGoodsMaterial" >
+    insert into dms_back_goods_material
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="backGoodsOrderId != null" >
+        back_goods_order_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="productLine != null" >
+        product_line,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="materialText != null" >
+        material_text,
+      </if>
+      <if test="productionCompany != null" >
+        production_company,
+      </if>
+      <if test="property != null" >
+        property,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="sellPrice != null" >
+        sell_price,
+      </if>
+      <if test="returnCount != null" >
+        return_count,
+      </if>
+      <if test="sellAmount != null" >
+        sell_amount,
+      </if>
+      <if test="originalOutOrder != null" >
+        original_out_order,
+      </if>
+      <if test="originalOrderDiscount != null" >
+        original_order_discount,
+      </if>
+      <if test="afterDiscountPrice != null" >
+        after_discount_price,
+      </if>
+      <if test="afterDiscountAmount != null" >
+        after_discount_amount,
+      </if>
+      <if test="problemDescription != null" >
+        problem_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="backGoodsOrderId != null" >
+        #{backGoodsOrderId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="channel != null" >
+        #{channel},
+      </if>
+      <if test="productLine != null" >
+        #{productLine},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo},
+      </if>
+      <if test="materialText != null" >
+        #{materialText},
+      </if>
+      <if test="productionCompany != null" >
+        #{productionCompany},
+      </if>
+      <if test="property != null" >
+        #{property},
+      </if>
+      <if test="unit != null" >
+        #{unit},
+      </if>
+      <if test="price != null" >
+        #{price},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice},
+      </if>
+      <if test="returnCount != null" >
+        #{returnCount},
+      </if>
+      <if test="sellAmount != null" >
+        #{sellAmount},
+      </if>
+      <if test="originalOutOrder != null" >
+        #{originalOutOrder},
+      </if>
+      <if test="originalOrderDiscount != null" >
+        #{originalOrderDiscount},
+      </if>
+      <if test="afterDiscountPrice != null" >
+        #{afterDiscountPrice},
+      </if>
+      <if test="afterDiscountAmount != null" >
+        #{afterDiscountAmount},
+      </if>
+      <if test="problemDescription != null" >
+        #{problemDescription},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsBackGoodsMaterial" >
+    update dms_back_goods_material
+    <set >
+      <if test="backGoodsOrderId != null" >
+        back_goods_order_id = #{backGoodsOrderId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel},
+      </if>
+      <if test="productLine != null" >
+        product_line = #{productLine},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo},
+      </if>
+      <if test="materialText != null" >
+        material_text = #{materialText},
+      </if>
+      <if test="productionCompany != null" >
+        production_company = #{productionCompany},
+      </if>
+      <if test="property != null" >
+        property = #{property},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit},
+      </if>
+      <if test="price != null" >
+        price = #{price},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice},
+      </if>
+      <if test="returnCount != null" >
+        return_count = #{returnCount},
+      </if>
+      <if test="sellAmount != null" >
+        sell_amount = #{sellAmount},
+      </if>
+      <if test="originalOutOrder != null" >
+        original_out_order = #{originalOutOrder},
+      </if>
+      <if test="originalOrderDiscount != null" >
+        original_order_discount = #{originalOrderDiscount},
+      </if>
+      <if test="afterDiscountPrice != null" >
+        after_discount_price = #{afterDiscountPrice},
+      </if>
+      <if test="afterDiscountAmount != null" >
+        after_discount_amount = #{afterDiscountAmount},
+      </if>
+      <if test="problemDescription != null" >
+        problem_description = #{problemDescription},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsBackGoodsMaterial" >
+    update dms_back_goods_material
+    set back_goods_order_id = #{backGoodsOrderId},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      channel = #{channel},
+      product_line = #{productLine},
+      material_no = #{materialNo},
+      material_text = #{materialText},
+      production_company = #{productionCompany},
+      property = #{property},
+      unit = #{unit},
+      price = #{price},
+      sell_price = #{sellPrice},
+      return_count = #{returnCount},
+      sell_amount = #{sellAmount},
+      original_out_order = #{originalOutOrder},
+      original_order_discount = #{originalOrderDiscount},
+      after_discount_price = #{afterDiscountPrice},
+      after_discount_amount = #{afterDiscountAmount},
+      problem_description = #{problemDescription}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="backGoodsOrderId != null" >
+        back_goods_order_id = #{backGoodsOrderId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="channel != null and channel != ''" >
+        AND channel = #{channel}
+      </if>
+      <if test="productLine != null and productLine != ''" >
+        AND product_line = #{productLine}
+      </if>
+      <if test="materialNo != null and materialNo != ''" >
+        AND material_no = #{materialNo}
+      </if>
+      <if test="materialText != null and materialText != ''" >
+        AND material_text = #{materialText}
+      </if>
+      <if test="productionCompany != null and productionCompany != ''" >
+        AND production_company = #{productionCompany}
+      </if>
+      <if test="property != null and property != ''" >
+        AND property = #{property}
+      </if>
+      <if test="unit != null and unit != ''" >
+        AND unit = #{unit}
+      </if>
+      <if test="price != null" >
+        AND price = #{price}
+      </if>
+      <if test="sellPrice != null" >
+        AND sell_price = #{sellPrice}
+      </if>
+      <if test="returnCount != null" >
+        AND return_count = #{returnCount}
+      </if>
+      <if test="sellAmount != null" >
+        AND sell_amount = #{sellAmount}
+      </if>
+      <if test="originalOutOrder != null and originalOutOrder != ''" >
+        AND original_out_order = #{originalOutOrder}
+      </if>
+      <if test="originalOrderDiscount != null" >
+        AND original_order_discount = #{originalOrderDiscount}
+      </if>
+      <if test="afterDiscountPrice != null" >
+        AND after_discount_price = #{afterDiscountPrice}
+      </if>
+      <if test="afterDiscountAmount != null" >
+        AND after_discount_amount = #{afterDiscountAmount}
+      </if>
+      <if test="problemDescription != null and problemDescription != ''" >
+        AND problem_description = #{problemDescription}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsBackGoodsMaterial" resultMap="DmsBackGoodsMaterialResultMap" >
+    select 
+    <include refid="DmsBackGoodsMaterial_Column_List" />
+    from dms_back_goods_material
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_back_goods_material
+    <set >
+      <if test="po.backGoodsOrderId != null" >
+        back_goods_order_id = #{po.backGoodsOrderId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.channel != null" >
+        channel = #{po.channel},
+      </if>
+      <if test="po.productLine != null" >
+        product_line = #{po.productLine},
+      </if>
+      <if test="po.materialNo != null" >
+        material_no = #{po.materialNo},
+      </if>
+      <if test="po.materialText != null" >
+        material_text = #{po.materialText},
+      </if>
+      <if test="po.productionCompany != null" >
+        production_company = #{po.productionCompany},
+      </if>
+      <if test="po.property != null" >
+        property = #{po.property},
+      </if>
+      <if test="po.unit != null" >
+        unit = #{po.unit},
+      </if>
+      <if test="po.price != null" >
+        price = #{po.price},
+      </if>
+      <if test="po.sellPrice != null" >
+        sell_price = #{po.sellPrice},
+      </if>
+      <if test="po.returnCount != null" >
+        return_count = #{po.returnCount},
+      </if>
+      <if test="po.sellAmount != null" >
+        sell_amount = #{po.sellAmount},
+      </if>
+      <if test="po.originalOutOrder != null" >
+        original_out_order = #{po.originalOutOrder},
+      </if>
+      <if test="po.originalOrderDiscount != null" >
+        original_order_discount = #{po.originalOrderDiscount},
+      </if>
+      <if test="po.afterDiscountPrice != null" >
+        after_discount_price = #{po.afterDiscountPrice},
+      </if>
+      <if test="po.afterDiscountAmount != null" >
+        after_discount_amount = #{po.afterDiscountAmount},
+      </if>
+      <if test="po.problemDescription != null" >
+        problem_description = #{po.problemDescription},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

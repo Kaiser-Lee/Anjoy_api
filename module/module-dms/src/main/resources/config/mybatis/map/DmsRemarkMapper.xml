@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsRemarkMapper" >
+  <resultMap id="DmsRemarkResultMap" type="com.coracle.dms.po.DmsRemark" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsRemark_Column_List" >
+    id, subject, content, created_date, created_by, last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsRemarkResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsRemark_Column_List" />
+    from dms_remark
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_remark
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsRemark" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_remark (subject, content, created_date, created_by, last_updated_date, last_updated_by,
+      remove_flag)
+    values (#{subject}, #{content}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy},
+      #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsRemark" >
+    insert into dms_remark
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="subject != null" >
+        #{subject},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsRemark" >
+    update dms_remark
+    <set >
+      <if test="subject != null" >
+        subject = #{subject},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsRemark" >
+    update dms_remark
+    set subject = #{subject},
+      content = #{content},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="subject != null and subject != ''" >
+        subject = #{subject}
+      </if>
+      <if test="content != null and content != ''" >
+        AND content = #{content}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsRemark" resultMap="DmsRemarkResultMap" >
+    select 
+    <include refid="DmsRemark_Column_List" />
+    from dms_remark
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_remark
+    <set >
+      <if test="po.subject != null" >
+        subject = #{po.subject},
+      </if>
+      <if test="po.content != null" >
+        content = #{po.content},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  
+  <!--############################################## new sql update by tanyb ##############################################-->
+  <!--自定义vo-->
+  <resultMap  id="DmsRemarkDtoResultMap" type="com.coracle.dms.dto.DmsRemarkDto">
+  	<id column="id" property="id" jdbcType="BIGINT" />
+  	<result column="remark_id" property="remarkId" jdbcType="BIGINT" />
+    <result column="related_table_type" property="relatedTableType" jdbcType="INTEGER" />
+    <result column="related_table_id" property="relatedTableId" jdbcType="BIGINT" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <select id="getPageList" parameterType="com.coracle.dms.dto.DmsRemarkDto" resultMap="DmsRemarkDtoResultMap" >
+    select 
+      a.id, a.remark_id, a.related_table_type, a.related_table_id,b.subject,b.content,b.created_date, b.created_by, b.last_updated_date, b.last_updated_by, b.remove_flag
+    from dms_remark_relation a,dms_remark b where a.remark_id = b.id and a.remove_flag=0 and b.remove_flag=0
+   	  <if test="remarkId != null" >
+        a.remark_id = #{remarkId}
+      </if>
+      <if test="relatedTableType != null" >
+        AND a.related_table_type = #{relatedTableType}
+      </if>
+      <if test="relatedTableId != null" >
+        AND a.related_table_id = #{relatedTableId}
+      </if>
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  
+  
+</mapper>

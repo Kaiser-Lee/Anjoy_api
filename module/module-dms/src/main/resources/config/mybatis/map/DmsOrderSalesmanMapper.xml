@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderSalesmanMapper" >
+  <resultMap id="DmsOrderSalesmanResultMap" type="com.coracle.dms.po.DmsOrderSalesman" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="salesman_id" property="salesmanId" jdbcType="BIGINT" />
+    <result column="salesman_name" property="salesmanName" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_code" property="orderCode" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsOrderSalesman_Column_List" >
+    id, salesman_id, salesman_name, order_id, order_code, created_date, created_by, last_updated_date, 
+    last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsOrderSalesmanResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsOrderSalesman_Column_List" />
+    from dms_order_salesman
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_order_salesman
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrderSalesman" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_order_salesman (salesman_id, salesman_name, order_id, order_code, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag)
+    values (#{salesmanId}, #{salesmanName}, #{orderId}, #{orderCode}, #{createdDate}, 
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrderSalesman" >
+    insert into dms_order_salesman
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="salesmanId != null" >
+        salesman_id,
+      </if>
+      <if test="salesmanName != null" >
+        salesman_name,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="salesmanId != null" >
+        #{salesmanId},
+      </if>
+      <if test="salesmanName != null" >
+        #{salesmanName},
+      </if>
+      <if test="orderId != null" >
+        #{orderId},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrderSalesman" >
+    update dms_order_salesman
+    <set >
+      <if test="salesmanId != null" >
+        salesman_id = #{salesmanId},
+      </if>
+      <if test="salesmanName != null" >
+        salesman_name = #{salesmanName},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId},
+      </if>
+      <if test="orderCode != null" >
+        order_code = #{orderCode},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrderSalesman" >
+    update dms_order_salesman
+    set salesman_id = #{salesmanId},
+      salesman_name = #{salesmanName},
+      order_id = #{orderId},
+      order_code = #{orderCode},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="salesmanId != null" >
+        salesman_id = #{salesmanId}
+      </if>
+      <if test="salesmanName != null and salesmanName != ''" >
+        AND salesman_name = #{salesmanName}
+      </if>
+      <if test="orderId != null" >
+        AND order_id = #{orderId}
+      </if>
+      <if test="orderCode != null and orderCode != ''" >
+        AND order_code = #{orderCode}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrderSalesman" resultMap="DmsOrderSalesmanResultMap" >
+    select 
+    <include refid="DmsOrderSalesman_Column_List" />
+    from dms_order_salesman
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_order_salesman
+    <set >
+      <if test="po.salesmanId != null" >
+        salesman_id = #{po.salesmanId},
+      </if>
+      <if test="po.salesmanName != null" >
+        salesman_name = #{po.salesmanName},
+      </if>
+      <if test="po.orderId != null" >
+        order_id = #{po.orderId},
+      </if>
+      <if test="po.orderCode != null" >
+        order_code = #{po.orderCode},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

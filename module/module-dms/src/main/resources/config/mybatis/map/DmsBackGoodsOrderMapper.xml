@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsBackGoodsOrderMapper" >
+  <resultMap id="DmsBackGoodsOrderResultMap" type="com.coracle.dms.po.DmsBackGoodsOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="back_order_number" property="backOrderNumber" jdbcType="VARCHAR" />
+    <result column="lookup_date" property="lookupDate" jdbcType="TIMESTAMP" />
+    <result column="back_place" property="backPlace" jdbcType="VARCHAR" />
+    <result column="year_goods_amount" property="yearGoodsAmount" jdbcType="DECIMAL" />
+    <result column="suggestion_info" property="suggestionInfo" jdbcType="VARCHAR" />
+    <result column="customer" property="customer" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="back_sub_repository" property="backSubRepository" jdbcType="VARCHAR" />
+    <result column="year_back_goods_amount" property="yearBackGoodsAmount" jdbcType="DECIMAL" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="back_goods_type" property="backGoodsType" jdbcType="VARCHAR" />
+    <result column="customer_number" property="customerNumber" jdbcType="VARCHAR" />
+    <result column="sign_type" property="signType" jdbcType="VARCHAR" />
+    <result column="return_amount" property="returnAmount" jdbcType="DECIMAL" />
+    <result column="real_return_amount" property="realReturnAmount" jdbcType="VARCHAR" />
+    <result column="return_date" property="returnDate" jdbcType="TIMESTAMP" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="return_type" property="returnType" jdbcType="VARCHAR" />
+    <result column="returning_amount" property="returningAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="DmsBackGoodsOrder_Column_List" >
+    id, back_order_number, lookup_date, back_place, year_goods_amount, suggestion_info, 
+    customer, unit, back_sub_repository, year_back_goods_amount, created_date, created_by, 
+    last_updated_date, last_updated_by, remove_flag, back_goods_type, customer_number, 
+    sign_type, return_amount, real_return_amount, return_date, phone, return_type, returning_amount
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsBackGoodsOrderResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsBackGoodsOrder_Column_List" />
+    from dms_back_goods_order
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_back_goods_order
+    where id = #{id}
+  </delete>
+
+
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsBackGoodsOrder" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_back_goods_order (back_order_number, lookup_date, back_place, year_goods_amount, suggestion_info, 
+      customer, unit, back_sub_repository, year_back_goods_amount, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag, back_goods_type, 
+      customer_number, sign_type, return_amount, real_return_amount, return_date, 
+      phone, return_type, returning_amount)
+    values (#{backOrderNumber}, #{lookupDate}, #{backPlace}, #{yearGoodsAmount}, #{suggestionInfo}, 
+      #{customer}, #{unit}, #{backSubRepository}, #{yearBackGoodsAmount}, #{createdDate}, 
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, #{backGoodsType}, 
+      #{customerNumber}, #{signType}, #{returnAmount}, #{realReturnAmount}, #{returnDate}, 
+      #{phone}, #{returnType}, #{returningAmount})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsBackGoodsOrder" >
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into dms_back_goods_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="backOrderNumber != null" >
+        back_order_number,
+      </if>
+      <if test="lookupDate != null" >
+        lookup_date,
+      </if>
+      <if test="backPlace != null" >
+        back_place,
+      </if>
+      <if test="yearGoodsAmount != null" >
+        year_goods_amount,
+      </if>
+      <if test="suggestionInfo != null" >
+        suggestion_info,
+      </if>
+      <if test="customer != null" >
+        customer,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="backSubRepository != null" >
+        back_sub_repository,
+      </if>
+      <if test="yearBackGoodsAmount != null" >
+        year_back_goods_amount,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="backGoodsType != null" >
+        back_goods_type,
+      </if>
+      <if test="customerNumber != null" >
+        customer_number,
+      </if>
+      <if test="signType != null" >
+        sign_type,
+      </if>
+      <if test="returnAmount != null" >
+        return_amount,
+      </if>
+      <if test="realReturnAmount != null" >
+        real_return_amount,
+      </if>
+      <if test="returnDate != null" >
+        return_date,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="returnType != null" >
+        return_type,
+      </if>
+      <if test="returningAmount != null" >
+        returning_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="backOrderNumber != null" >
+        #{backOrderNumber},
+      </if>
+      <if test="lookupDate != null" >
+        #{lookupDate},
+      </if>
+      <if test="backPlace != null" >
+        #{backPlace},
+      </if>
+      <if test="yearGoodsAmount != null" >
+        #{yearGoodsAmount},
+      </if>
+      <if test="suggestionInfo != null" >
+        #{suggestionInfo},
+      </if>
+      <if test="customer != null" >
+        #{customer},
+      </if>
+      <if test="unit != null" >
+        #{unit},
+      </if>
+      <if test="backSubRepository != null" >
+        #{backSubRepository},
+      </if>
+      <if test="yearBackGoodsAmount != null" >
+        #{yearBackGoodsAmount},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="backGoodsType != null" >
+        #{backGoodsType},
+      </if>
+      <if test="customerNumber != null" >
+        #{customerNumber},
+      </if>
+      <if test="signType != null" >
+        #{signType},
+      </if>
+      <if test="returnAmount != null" >
+        #{returnAmount},
+      </if>
+      <if test="realReturnAmount != null" >
+        #{realReturnAmount},
+      </if>
+      <if test="returnDate != null" >
+        #{returnDate},
+      </if>
+      <if test="phone != null" >
+        #{phone},
+      </if>
+      <if test="returnType != null" >
+        #{returnType},
+      </if>
+      <if test="returningAmount != null" >
+        #{returningAmount},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsBackGoodsOrder" >
+    update dms_back_goods_order
+    <set >
+      <if test="backOrderNumber != null" >
+        back_order_number = #{backOrderNumber},
+      </if>
+      <if test="lookupDate != null" >
+        lookup_date = #{lookupDate},
+      </if>
+      <if test="backPlace != null" >
+        back_place = #{backPlace},
+      </if>
+      <if test="yearGoodsAmount != null" >
+        year_goods_amount = #{yearGoodsAmount},
+      </if>
+      <if test="suggestionInfo != null" >
+        suggestion_info = #{suggestionInfo},
+      </if>
+      <if test="customer != null" >
+        customer = #{customer},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit},
+      </if>
+      <if test="backSubRepository != null" >
+        back_sub_repository = #{backSubRepository},
+      </if>
+      <if test="yearBackGoodsAmount != null" >
+        year_back_goods_amount = #{yearBackGoodsAmount},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="backGoodsType != null" >
+        back_goods_type = #{backGoodsType},
+      </if>
+      <if test="customerNumber != null" >
+        customer_number = #{customerNumber},
+      </if>
+      <if test="signType != null" >
+        sign_type = #{signType},
+      </if>
+      <if test="returnAmount != null" >
+        return_amount = #{returnAmount},
+      </if>
+      <if test="realReturnAmount != null" >
+        real_return_amount = #{realReturnAmount},
+      </if>
+      <if test="returnDate != null" >
+        return_date = #{returnDate},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone},
+      </if>
+      <if test="returnType != null" >
+        return_type = #{returnType},
+      </if>
+      <if test="returningAmount != null" >
+        returning_amount = #{returningAmount},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsBackGoodsOrder" >
+    update dms_back_goods_order
+    set back_order_number = #{backOrderNumber},
+      lookup_date = #{lookupDate},
+      back_place = #{backPlace},
+      year_goods_amount = #{yearGoodsAmount},
+      suggestion_info = #{suggestionInfo},
+      customer = #{customer},
+      unit = #{unit},
+      back_sub_repository = #{backSubRepository},
+      year_back_goods_amount = #{yearBackGoodsAmount},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      back_goods_type = #{backGoodsType},
+      customer_number = #{customerNumber},
+      sign_type = #{signType},
+      return_amount = #{returnAmount},
+      real_return_amount = #{realReturnAmount},
+      return_date = #{returnDate},
+      phone = #{phone},
+      return_type = #{returnType},
+      returning_amount = #{returningAmount}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="backOrderNumber != null and backOrderNumber != ''" >
+        back_order_number = #{backOrderNumber}
+      </if>
+      <if test="lookupDate != null" >
+        AND lookup_date = #{lookupDate}
+      </if>
+      <if test="backPlace != null and backPlace != ''" >
+        AND back_place = #{backPlace}
+      </if>
+      <if test="yearGoodsAmount != null" >
+        AND year_goods_amount = #{yearGoodsAmount}
+      </if>
+      <if test="suggestionInfo != null and suggestionInfo != ''" >
+        AND suggestion_info = #{suggestionInfo}
+      </if>
+      <if test="customer != null and customer != ''" >
+        AND customer = #{customer}
+      </if>
+      <if test="unit != null and unit != ''" >
+        AND unit = #{unit}
+      </if>
+      <if test="backSubRepository != null and backSubRepository != ''" >
+        AND back_sub_repository = #{backSubRepository}
+      </if>
+      <if test="yearBackGoodsAmount != null" >
+        AND year_back_goods_amount = #{yearBackGoodsAmount}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="backGoodsType != null and backGoodsType != ''" >
+        AND back_goods_type = #{backGoodsType}
+      </if>
+      <if test="customerNumber != null and customerNumber != ''" >
+        AND customer_number = #{customerNumber}
+      </if>
+      <if test="signType != null and signType != ''" >
+        AND sign_type = #{signType}
+      </if>
+      <if test="returnAmount != null" >
+        AND return_amount = #{returnAmount}
+      </if>
+      <if test="realReturnAmount != null and realReturnAmount != ''" >
+        AND real_return_amount = #{realReturnAmount}
+      </if>
+      <if test="returnDate != null" >
+        AND return_date = #{returnDate}
+      </if>
+      <if test="phone != null and phone != ''" >
+        AND phone = #{phone}
+      </if>
+      <if test="returnType != null and returnType != ''" >
+        AND return_type = #{returnType}
+      </if>
+      <if test="returningAmount != null" >
+        AND returning_amount = #{returningAmount}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsBackGoodsOrder" resultMap="DmsBackGoodsOrderResultMap" >
+    select 
+    <include refid="DmsBackGoodsOrder_Column_List" />
+    from dms_back_goods_order
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_back_goods_order
+    <set >
+      <if test="po.backOrderNumber != null" >
+        back_order_number = #{po.backOrderNumber},
+      </if>
+      <if test="po.lookupDate != null" >
+        lookup_date = #{po.lookupDate},
+      </if>
+      <if test="po.backPlace != null" >
+        back_place = #{po.backPlace},
+      </if>
+      <if test="po.yearGoodsAmount != null" >
+        year_goods_amount = #{po.yearGoodsAmount},
+      </if>
+      <if test="po.suggestionInfo != null" >
+        suggestion_info = #{po.suggestionInfo},
+      </if>
+      <if test="po.customer != null" >
+        customer = #{po.customer},
+      </if>
+      <if test="po.unit != null" >
+        unit = #{po.unit},
+      </if>
+      <if test="po.backSubRepository != null" >
+        back_sub_repository = #{po.backSubRepository},
+      </if>
+      <if test="po.yearBackGoodsAmount != null" >
+        year_back_goods_amount = #{po.yearBackGoodsAmount},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.backGoodsType != null" >
+        back_goods_type = #{po.backGoodsType},
+      </if>
+      <if test="po.customerNumber != null" >
+        customer_number = #{po.customerNumber},
+      </if>
+      <if test="po.signType != null" >
+        sign_type = #{po.signType},
+      </if>
+      <if test="po.returnAmount != null" >
+        return_amount = #{po.returnAmount},
+      </if>
+      <if test="po.realReturnAmount != null" >
+        real_return_amount = #{po.realReturnAmount},
+      </if>
+      <if test="po.returnDate != null" >
+        return_date = #{po.returnDate},
+      </if>
+      <if test="po.phone != null" >
+        phone = #{po.phone},
+      </if>
+      <if test="po.returnType != null" >
+        return_type = #{po.returnType},
+      </if>
+      <if test="po.returningAmount != null" >
+        returning_amount = #{po.returningAmount},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

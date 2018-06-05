@@ -1,0 +1,1803 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsProductMapper" >
+
+  <resultMap id="DmsProductResultMap" type="com.coracle.dms.po.DmsProduct" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="bar_code" property="barCode" jdbcType="VARCHAR" />
+    <result column="show_price" property="showPrice" jdbcType="DECIMAL" />
+    <result column="suggested_price" property="suggestedPrice" jdbcType="DECIMAL" />
+    <result column="listing_time" property="listingTime" jdbcType="TIMESTAMP" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="place_of_origin" property="placeOfOrigin" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="labeling" property="labeling" jdbcType="BIGINT" />
+    <result column="specifications" property="specifications" jdbcType="VARCHAR" />
+    <result column="specifications_model" property="specificationsModel" jdbcType="VARCHAR" />
+    <result column="sale_area" property="saleArea" jdbcType="VARCHAR" />
+    <result column="pic_Id" property="picId" jdbcType="BIGINT" />
+    <result column="sales_volume" property="salesVolume" jdbcType="BIGINT" />
+    <result column="view_count" property="viewCount" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="json_object" property="jsonObject" jdbcType="VARCHAR" />
+    <result column="min_package_quantity" property="minPackageQuantity" jdbcType="BIGINT" />
+    <result column="package_quantity" property="packageQuantity" jdbcType="BIGINT" />
+    <result column="big_customer_price" property="bigCustomerPrice" jdbcType="DECIMAL" />
+    <result column="mid_customer_price" property="midCustomerPrice" jdbcType="DECIMAL" />
+    <result column="small_customer_price" property="smallCustomerPrice" jdbcType="DECIMAL" />
+    <result column="auxiliary_unit" property="auxiliaryUnit" jdbcType="VARCHAR" />
+    <result column="eas_code" property="easCode" jdbcType="VARCHAR" />
+    <result column="conversion_rate" property="conversionRate" jdbcType="DECIMAL" />
+    <result column="weight" property="weight" jdbcType="DECIMAL" />
+    <result column="volume" property="volume" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="sort_order" property="sortOrder" jdbcType="INTEGER" />
+    <result column="anjoy_id" property="anjoyId" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.coracle.dms.po.DmsProductWithBLOBs" extends="DmsProductResultMap" >
+    <result column="graphic_details" property="graphicDetails" jdbcType="LONGVARCHAR" />
+    <result column="parameter" property="parameter" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="DmsProduct_Column_List" >
+    id, name, code, category_id, unit, brand_id, bar_code, show_price, suggested_price,
+    listing_time, keyword, place_of_origin, active, labeling, specifications, specifications_model,
+    sale_area, pic_Id, sales_volume, view_count, created_date, created_by, last_updated_date,
+    last_updated_by, remove_flag, json_object, min_package_quantity, package_quantity,
+    big_customer_price, mid_customer_price, small_customer_price, auxiliary_unit, eas_code,
+    conversion_rate, weight, volume, remark, sort_order, anjoy_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    graphic_details, parameter
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsProduct_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dms_product
+    where id = #{id}
+  </select>
+
+  <select id="selectByCode" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select
+    <include refid="DmsProduct_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dms_product
+    where code = #{code}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_product
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsProductWithBLOBs" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_product (name, code, category_id, unit, brand_id, bar_code, show_price,
+    suggested_price, listing_time, keyword, place_of_origin, active, labeling,
+    specifications, specifications_model, sale_area, pic_Id, sales_volume,
+    view_count, created_date, created_by, last_updated_date, last_updated_by,
+    remove_flag, json_object, min_package_quantity, package_quantity, big_customer_price,
+    mid_customer_price, small_customer_price, auxiliary_unit, eas_code, conversion_rate,
+    weight, volume, remark, sort_order, anjoy_id, graphic_details, parameter)
+    values (#{name}, #{code}, #{categoryId}, #{unit}, #{brandId}, #{barCode}, #{showPrice},
+    #{suggestedPrice}, #{listingTime}, #{keyword}, #{placeOfOrigin}, #{active}, #{labeling},
+    #{specifications}, #{specificationsModel}, #{saleArea}, #{picId}, #{salesVolume},
+    #{viewCount}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy},
+    #{removeFlag}, #{jsonObject}, #{minPackageQuantity}, #{packageQuantity}, #{bigCustomerPrice},
+    #{midCustomerPrice}, #{smallCustomerPrice}, #{auxiliaryUnit}, #{easCode}, #{conversionRate},
+    #{weight}, #{volume}, #{remark}, #{sortOrder}, #{anjoyId}, #{graphicDetails}, #{parameter})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsProductWithBLOBs" >
+    insert into dms_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="barCode != null" >
+        bar_code,
+      </if>
+      <if test="showPrice != null" >
+        show_price,
+      </if>
+      <if test="suggestedPrice != null" >
+        suggested_price,
+      </if>
+      <if test="listingTime != null" >
+        listing_time,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="placeOfOrigin != null" >
+        place_of_origin,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="labeling != null" >
+        labeling,
+      </if>
+      <if test="specifications != null" >
+        specifications,
+      </if>
+      <if test="specificationsModel != null" >
+        specifications_model,
+      </if>
+      <if test="saleArea != null" >
+        sale_area,
+      </if>
+      <if test="picId != null" >
+        pic_Id,
+      </if>
+      <if test="salesVolume != null" >
+        sales_volume,
+      </if>
+      <if test="viewCount != null" >
+        view_count,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="jsonObject != null" >
+        json_object,
+      </if>
+      <if test="minPackageQuantity != null" >
+        min_package_quantity,
+      </if>
+      <if test="packageQuantity != null" >
+        package_quantity,
+      </if>
+      <if test="bigCustomerPrice != null" >
+        big_customer_price,
+      </if>
+      <if test="midCustomerPrice != null" >
+        mid_customer_price,
+      </if>
+      <if test="smallCustomerPrice != null" >
+        small_customer_price,
+      </if>
+      <if test="auxiliaryUnit != null">
+        auxiliary_unit,
+      </if>
+      <if test="easCode != null" >
+        eas_code,
+      </if>
+      <if test="conversionRate != null" >
+        conversion_rate,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="volume != null" >
+        volume,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="sortOrder != null" >
+        sort_order,
+      </if>
+      <if test="anjoyId != null" >
+        anjoy_id,
+      </if>
+      <if test="graphicDetails != null" >
+        graphic_details,
+      </if>
+      <if test="parameter != null" >
+        parameter,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId},
+      </if>
+      <if test="unit != null" >
+        #{unit},
+      </if>
+      <if test="brandId != null" >
+        #{brandId},
+      </if>
+      <if test="barCode != null" >
+        #{barCode},
+      </if>
+      <if test="showPrice != null" >
+        #{showPrice},
+      </if>
+      <if test="suggestedPrice != null" >
+        #{suggestedPrice},
+      </if>
+      <if test="listingTime != null" >
+        #{listingTime},
+      </if>
+      <if test="keyword != null" >
+        #{keyword},
+      </if>
+      <if test="placeOfOrigin != null" >
+        #{placeOfOrigin},
+      </if>
+      <if test="active != null" >
+        #{active},
+      </if>
+      <if test="labeling != null" >
+        #{labeling},
+      </if>
+      <if test="specifications != null" >
+        #{specifications},
+      </if>
+      <if test="specificationsModel != null" >
+        #{specificationsModel},
+      </if>
+      <if test="saleArea != null" >
+        #{saleArea},
+      </if>
+      <if test="picId != null" >
+        #{picId},
+      </if>
+      <if test="salesVolume != null" >
+        #{salesVolume},
+      </if>
+      <if test="viewCount != null" >
+        #{viewCount},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="jsonObject != null" >
+        #{jsonObject},
+      </if>
+      <if test="minPackageQuantity != null" >
+        #{minPackageQuantity},
+      </if>
+      <if test="packageQuantity != null" >
+        #{packageQuantity},
+      </if>
+      <if test="bigCustomerPrice != null" >
+        #{bigCustomerPrice},
+      </if>
+      <if test="midCustomerPrice != null" >
+        #{midCustomerPrice},
+      </if>
+      <if test="smallCustomerPrice != null" >
+        #{smallCustomerPrice},
+      </if>
+      <if test="auxiliaryUnit != null">
+        #{auxiliaryUnit},
+      </if>
+      <if test="easCode != null" >
+        #{easCode},
+      </if>
+      <if test="conversionRate != null" >
+        #{conversionRate},
+      </if>
+      <if test="weight != null" >
+        #{weight},
+      </if>
+      <if test="volume != null" >
+        #{volume},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder},
+      </if>
+      <if test="anjoyId != null" >
+        #{anjoyId},
+      </if>
+      <if test="graphicDetails != null" >
+        #{graphicDetails},
+      </if>
+      <if test="parameter != null" >
+        #{parameter},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsProductWithBLOBs" >
+    update dms_product
+    <set >
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId},
+      </if>
+      <if test="barCode != null" >
+        bar_code = #{barCode},
+      </if>
+      <if test="showPrice != null" >
+        show_price = #{showPrice},
+      </if>
+      <if test="suggestedPrice != null" >
+        suggested_price = #{suggestedPrice},
+      </if>
+      <if test="listingTime != null" >
+        listing_time = #{listingTime},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword},
+      </if>
+      <if test="placeOfOrigin != null" >
+        place_of_origin = #{placeOfOrigin},
+      </if>
+      <if test="active != null" >
+        active = #{active},
+      </if>
+      <if test="labeling != null" >
+        labeling = #{labeling},
+      </if>
+      <if test="specifications != null" >
+        specifications = #{specifications},
+      </if>
+      <if test="specificationsModel != null" >
+        specifications_model = #{specificationsModel},
+      </if>
+      <if test="saleArea != null" >
+        sale_area = #{saleArea},
+      </if>
+      <if test="picId != null" >
+        pic_Id = #{picId},
+      </if>
+      <if test="salesVolume != null" >
+        sales_volume = #{salesVolume},
+      </if>
+      <if test="viewCount != null" >
+        view_count = #{viewCount},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="jsonObject != null" >
+        json_object = #{jsonObject},
+      </if>
+      <if test="minPackageQuantity != null" >
+        min_package_quantity = #{minPackageQuantity},
+      </if>
+      <if test="packageQuantity != null" >
+        package_quantity = #{packageQuantity},
+      </if>
+      <if test="bigCustomerPrice != null" >
+        big_customer_price = #{bigCustomerPrice},
+      </if>
+      <if test="midCustomerPrice != null" >
+        mid_customer_price = #{midCustomerPrice},
+      </if>
+      <if test="smallCustomerPrice != null" >
+        small_customer_price = #{smallCustomerPrice},
+      </if>
+      <if test="auxiliaryUnit != null">
+        auxiliary_unit = #{auxiliaryUnit},
+      </if>
+      <if test="easCode != null" >
+        eas_code = #{easCode},
+      </if>
+      <if test="conversionRate != null" >
+        conversion_rate = #{conversionRate},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight},
+      </if>
+      <if test="volume != null" >
+        volume = #{volume},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="sortOrder != null" >
+        sort_order = #{sortOrder},
+      </if>
+      <if test="anjoyId != null" >
+        anjoy_id = #{anjoyId},
+      </if>
+      <if test="graphicDetails != null" >
+        graphic_details = #{graphicDetails},
+      </if>
+      <if test="parameter != null" >
+        parameter = #{parameter},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.coracle.dms.po.DmsProductWithBLOBs" >
+    update dms_product
+    set name = #{name},
+    code = #{code},
+    category_id = #{categoryId},
+    unit = #{unit},
+    brand_id = #{brandId},
+    bar_code = #{barCode},
+    show_price = #{showPrice},
+    suggested_price = #{suggestedPrice},
+    listing_time = #{listingTime},
+    keyword = #{keyword},
+    place_of_origin = #{placeOfOrigin},
+    active = #{active},
+    labeling = #{labeling},
+    specifications = #{specifications},
+    specifications_model = #{specificationsModel},
+    sale_area = #{saleArea},
+    pic_Id = #{picId},
+    sales_volume = #{salesVolume},
+    view_count = #{viewCount},
+    created_date = #{createdDate},
+    created_by = #{createdBy},
+    last_updated_date = #{lastUpdatedDate},
+    last_updated_by = #{lastUpdatedBy},
+    remove_flag = #{removeFlag},
+    json_object = #{jsonObject},
+    min_package_quantity = #{minPackageQuantity},
+    package_quantity = #{packageQuantity},
+    big_customer_price = #{bigCustomerPrice},
+    mid_customer_price = #{midCustomerPrice},
+    small_customer_price = #{smallCustomerPrice},
+    auxiliary_unit = #{auxiliaryUnit},
+    eas_code = #{easCode},
+    conversion_rate = #{conversionRate},
+    weight = #{weight},
+    volume = #{volume},
+    remark = #{remark},
+    sort_order = #{sortOrder},
+    anjoy_id = #{anjoyId},
+    graphic_details = #{graphicDetails},
+    parameter = #{parameter}
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsProduct" >
+    update dms_product
+    set name = #{name},
+    code = #{code},
+    category_id = #{categoryId},
+    unit = #{unit},
+    brand_id = #{brandId},
+    bar_code = #{barCode},
+    show_price = #{showPrice},
+    suggested_price = #{suggestedPrice},
+    listing_time = #{listingTime},
+    keyword = #{keyword},
+    place_of_origin = #{placeOfOrigin},
+    active = #{active},
+    labeling = #{labeling},
+    specifications = #{specifications},
+    specifications_model = #{specificationsModel},
+    sale_area = #{saleArea},
+    pic_Id = #{picId},
+    sales_volume = #{salesVolume},
+    view_count = #{viewCount},
+    created_date = #{createdDate},
+    created_by = #{createdBy},
+    last_updated_date = #{lastUpdatedDate},
+    last_updated_by = #{lastUpdatedBy},
+    remove_flag = #{removeFlag},
+    json_object = #{jsonObject},
+    min_package_quantity = #{minPackageQuantity},
+    package_quantity = #{packageQuantity},
+    big_customer_price = #{bigCustomerPrice},
+    mid_customer_price = #{midCustomerPrice},
+    small_customer_price = #{smallCustomerPrice},
+    auxiliary_unit = #{auxiliaryUnit},
+    eas_code = #{easCode},
+    conversion_rate = #{conversionRate},
+    weight = #{weight},
+    volume = #{volume},
+    remark = #{remark},
+    sort_order = #{sortOrder},
+    anjoy_id = #{anjoyId}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="name != null and name != ''" >
+        name = #{name}
+      </if>
+      <if test="code != null and code != ''" >
+        AND code = #{code}
+      </if>
+      <if test="categoryId != null" >
+        AND category_id = #{categoryId}
+      </if>
+      <if test="unit != null and unit != ''" >
+        AND unit = #{unit}
+      </if>
+      <if test="brandId != null" >
+        AND brand_id = #{brandId}
+      </if>
+      <if test="barCode != null and barCode != ''" >
+        AND bar_code = #{barCode}
+      </if>
+      <if test="showPrice != null" >
+        AND show_price = #{showPrice}
+      </if>
+      <if test="suggestedPrice != null" >
+        AND suggested_price = #{suggestedPrice}
+      </if>
+      <if test="listingTime != null" >
+        AND listing_time = #{listingTime}
+      </if>
+      <if test="keyword != null and keyword != ''" >
+        AND keyword = #{keyword}
+      </if>
+      <if test="placeOfOrigin != null and placeOfOrigin != ''" >
+        AND place_of_origin = #{placeOfOrigin}
+      </if>
+      <if test="active != null" >
+        AND active = #{active}
+      </if>
+      <if test="labeling != null" >
+        AND labeling = #{labeling}
+      </if>
+      <if test="specifications != null and specifications != ''" >
+        AND specifications = #{specifications}
+      </if>
+      <if test="specificationsModel != null and specificationsModel != ''" >
+        AND specifications_model = #{specificationsModel}
+      </if>
+      <if test="saleArea != null and saleArea != ''" >
+        AND sale_area = #{saleArea}
+      </if>
+      <if test="picId != null" >
+        AND pic_Id = #{picId}
+      </if>
+      <if test="salesVolume != null" >
+        AND sales_volume = #{salesVolume}
+      </if>
+      <if test="viewCount != null" >
+        AND view_count = #{viewCount}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="jsonObject != null and jsonObject != ''" >
+        AND json_object = #{jsonObject}
+      </if>
+      <if test="minPackageQuantity != null" >
+        AND min_package_quantity = #{minPackageQuantity}
+      </if>
+      <if test="packageQuantity != null" >
+        AND package_quantity = #{packageQuantity}
+      </if>
+      <if test="bigCustomerPrice != null" >
+        AND big_customer_price = #{bigCustomerPrice}
+      </if>
+      <if test="midCustomerPrice != null" >
+        AND mid_customer_price = #{midCustomerPrice}
+      </if>
+      <if test="smallCustomerPrice != null" >
+        AND small_customer_price = #{smallCustomerPrice}
+      </if>
+      <if test="auxiliaryUnit != null and auxiliaryUnit != ''">
+        AND auxiliary_unit = #{auxiliaryUnit}
+      </if>
+      <if test="easCode != null and easCode != ''" >
+        AND eas_code = #{easCode}
+      </if>
+      <if test="conversionRate != null" >
+        AND conversion_rate = #{conversionRate}
+      </if>
+      <if test="weight != null" >
+        AND weight = #{weight}
+      </if>
+      <if test="volume != null" >
+        AND volume = #{volume}
+      </if>
+      <if test="remark != null and remark != ''" >
+        AND remark = #{remark}
+      </if>
+      <if test="sortOrder != null" >
+        AND sort_order = #{sortOrder}
+      </if>
+      <if test="anjoyId != null and anjoyId != ''" >
+        AND BINARY anjoy_id = #{anjoyId}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsProduct" resultMap="DmsProductResultMap" >
+    select
+    <include refid="DmsProduct_Column_List" />
+    from dms_product
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_product
+    <set >
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.categoryId != null" >
+        category_id = #{po.categoryId},
+      </if>
+      <if test="po.unit != null" >
+        unit = #{po.unit},
+      </if>
+      <if test="po.brandId != null" >
+        brand_id = #{po.brandId},
+      </if>
+      <if test="po.barCode != null" >
+        bar_code = #{po.barCode},
+      </if>
+      <if test="po.showPrice != null" >
+        show_price = #{po.showPrice},
+      </if>
+      <if test="po.suggestedPrice != null" >
+        suggested_price = #{po.suggestedPrice},
+      </if>
+      <if test="po.listingTime != null" >
+        listing_time = #{po.listingTime},
+      </if>
+      <if test="po.keyword != null" >
+        keyword = #{po.keyword},
+      </if>
+      <if test="po.placeOfOrigin != null" >
+        place_of_origin = #{po.placeOfOrigin},
+      </if>
+      <if test="po.active != null" >
+        active = #{po.active},
+      </if>
+      <if test="po.labeling != null" >
+        labeling = #{po.labeling},
+      </if>
+      <if test="po.specifications != null" >
+        specifications = #{po.specifications},
+      </if>
+      <if test="po.specificationsModel != null" >
+        specifications_model = #{po.specificationsModel},
+      </if>
+      <if test="po.saleArea != null" >
+        sale_area = #{po.saleArea},
+      </if>
+      <if test="po.picId != null" >
+        pic_Id = #{po.picId},
+      </if>
+      <if test="po.salesVolume != null" >
+        sales_volume = #{po.salesVolume},
+      </if>
+      <if test="po.viewCount != null" >
+        view_count = #{po.viewCount},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.jsonObject != null" >
+        json_object = #{po.jsonObject},
+      </if>
+      <if test="po.minPackageQuantity != null" >
+        min_package_quantity = #{po.minPackageQuantity},
+      </if>
+      <if test="po.packageQuantity != null" >
+        package_quantity = #{po.packageQuantity},
+      </if>
+      <if test="po.bigCustomerPrice != null" >
+        big_customer_price = #{po.bigCustomerPrice},
+      </if>
+      <if test="po.midCustomerPrice != null" >
+        mid_customer_price = #{po.midCustomerPrice},
+      </if>
+      <if test="po.smallCustomerPrice != null" >
+        small_customer_price = #{po.smallCustomerPrice},
+      </if>
+      <if test="po.auxiliaryUnit != null">
+        auxiliary_unit = #{po.auxiliaryUnit},
+      </if>
+      <if test="po.easCode != null" >
+        eas_code = #{po.easCode},
+      </if>
+      <if test="po.conversionRate != null" >
+        conversion_rate = #{po.conversionRate},
+      </if>
+      <if test="po.weight != null" >
+        weight = #{po.weight},
+      </if>
+      <if test="po.volume != null" >
+        volume = #{po.volume},
+      </if>
+      <if test="po.remark != null" >
+        remark = #{po.remark},
+      </if>
+      <if test="po.sortOrder != null" >
+        sort_order = #{po.sortOrder},
+      </if>
+      <if test="po.anjoyId != null" >
+        anjoy_id = #{po.anjoyId},
+      </if>
+      <if test="po.graphicDetails != null" >
+        graphic_details = #{po.graphicDetails},
+      </if>
+      <if test="po.parameter != null" >
+        parameter = #{po.parameter},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++Parting line : new sql here++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <!--自定义vo-->
+  <resultMap extends="ResultMapWithBLOBs" id="DmsProductVoResultMap" type="com.coracle.dms.vo.DmsProductVo">
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="unit_text" jdbcType="VARCHAR" property="unitText" />
+    <result column="brand_text" jdbcType="VARCHAR" property="brandText" />
+    <result column="category_text" jdbcType="VARCHAR" property="categoryText" />
+    <result column="active_text" jdbcType="VARCHAR" property="activeText" />
+    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+    <result column="path_ids" jdbcType="VARCHAR" property="pathIds" />
+    <result column="inventory" jdbcType="INTEGER" property="inventory" />
+    <result column="is_collection" jdbcType="INTEGER" property="isCollection" />
+    <result column="evaluation_count" jdbcType="INTEGER" property="evaluationCount" />
+    <result column="product_area_count" jdbcType="INTEGER" property="productAreaCount" />
+    <result column="storage_num" property="storageNum" jdbcType="INTEGER"/>
+    <result column="spec_union_key" property="specUnionKey" jdbcType="VARCHAR"/>
+    <result column="product_code" property="productCode" jdbcType="VARCHAR"/>
+    <result column="spec_id" property="specId" jdbcType="BIGINT"/>
+    <result column="specifications_text" property="specificationsText" jdbcType="VARCHAR"/>
+    <result column="real_price" property="realPrice" jdbcType="DECIMAL"/>
+    <result column="isBigPicture" property="isBigPicture" jdbcType="VARCHAR"/>
+    <result column="isSmallPicture" property="isSmallPicture" jdbcType="VARCHAR"/>
+    <result column="isGraphicDetails" property="isGraphicDetails" jdbcType="VARCHAR"/>
+    <result column="isParameter" property="isParameter" jdbcType="VARCHAR"/>
+
+    <collection column="id" property="picUrls" select="getPicUrls" />
+    <collection column="id" property="saleAreaIds" select="getSaleAreaIds" />
+    <!--<collection column="id" property="labelingIds" select="getLabelingIds" />
+    <collection column="id" property="productSpecMatrixs" select="getProductSpecMatrixs" />-->
+  </resultMap>
+
+
+
+
+  <resultMap id="DmsProductPromotionVoResultMap" type="com.coracle.dms.vo.DmsProductVo" extends="DmsProductVoResultMap">
+    <result column="channel_id" property="channelId" jdbcType="BIGINT"/>
+    <result column="original_price" property="originalPrice" jdbcType="DECIMAL"/>
+    <result column="promotion_type" property="promotionType" jdbcType="VARCHAR"/>
+    <result column="browse_date" property="browseDate" jdbcType="TIMESTAMP"/>
+    <result column="board_quantity" property="boardQuantity" jdbcType="BIGINT"/>
+    <result column="shop_car_count" property="shopCarCount" jdbcType="BIGINT"/>
+    <result column="shop_car_id" property="shopCarId" jdbcType="BIGINT"/>
+
+    <association property="minOrderQuantity" column="{productId=id,channelId=channel_id}" jdbcType="BIGINT" select="com.coracle.dms.dao.mybatis.DmsChannelMinimumMapper.getMinOrderQuantityByCondition"/>
+    <!--<association property="promotionCount" column="{id=id,channelId=channel_id}" select="com.coracle.dms.dao.mybatis.DmsPromotionProductMapper.selectCountByProduct"/>
+    <association property="minPrice" column="{id=id,categoryId=category_id}" select="selectMinPriceByProduct"/>
+    <association property="minPromotionPrice" column="{id=id,categoryId=category_id,channelId=channel_id}" select="selectMinPromotionPriceByProduct"/>
+    <association property="promotion" column="{id=id,channelId=channel_id}" select="com.coracle.dms.dao.mybatis.DmsPromotionProductMapper.selectBestPromotingPromotionByProduct"/>-->
+  </resultMap>
+
+  <!---->
+  <resultMap id="ResultForMiniMum" type="com.coracle.dms.vo.DmsProductVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="isboard" property="isboard" jdbcType="INTEGER"/>
+    <result column="channel_id" property="channelId" jdbcType="BIGINT"/>
+    <result column="min_order_quantity" property="minOrderQuantity" jdbcType="BIGINT"/>
+    <result column="board_quantity" property="boardQuantity" jdbcType="BIGINT"/>
+ </resultMap>
+
+  <resultMap id="findById" type="com.coracle.dms.vo.DmsProductVo">
+    <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+    <result column="id" property="id" jdbcType="BIGINT"/>
+    <result column="isboard" property="isboard" jdbcType="INTEGER"/>
+    <result column="channel_id" property="channelId" jdbcType="BIGINT"/>
+    <result column="min_order_quantity" property="minOrderQuantity" jdbcType="BIGINT"/>
+    <result column="board_quantity" property="boardQuantity" jdbcType="BIGINT"/>
+  </resultMap>
+
+
+  <!--PC获取产品详情-->
+  <select id="getProductDetails" parameterType="java.util.Map" resultMap="DmsProductPromotionVoResultMap">
+    select
+      t.*,
+      if(t.`active`= 1, '上架', '下架') as active_text,
+      pc.full_path as category_text,
+      ddd.`name` as unit_text,
+      pb.name as brand_text,
+      pc.path as path_ids,
+      (
+        select
+          if(ifnull(count(*), 0) > 0, 1, 0)
+        from
+          dms_user_collect duc
+        where
+          duc.product_id = t.id
+          and duc.user_id = #{userId}
+      ) as is_collection,
+      (select t3.file_path from dms_common_attach_file t3 where t3.id = t.pic_Id) as pic_url,
+      (
+        select
+          ifnull(sum(si.use_num), 0)
+        from
+          dms_storage_inventory si
+        where
+          si.product_id = t.id and si.remove_flag = 0
+          and si.storage in (
+            select s.id from dms_storage s where s.active = 1 and s.storage_type = 1 and s.remove_flag = 0
+          )
+      ) as inventory,
+      (select cc.channel_id from dms_channel_contacts cc where cc.user_id = #{userId}) as channel_id,
+      (select dcm.board_quantity from dms_channel_minimum dcm join dms_channel_contacts cc on cc.channel_id = dcm.channel_id
+          where dcm.remove_flag = 0 and cc.user_id = #{userId} and dcm.product_id = t.id
+      ) as board_quantity,
+      d2.name as specifications_text
+    from
+      dms_product t
+      LEFT JOIN dms_produc_brand pb on t.brand_id = pb.id
+      LEFT JOIN dms_product_category pc on t.category_id=pc.id
+      LEFT JOIN dms_data_dictionary dd on dd.s_key='product_unit'
+      LEFT JOIN dms_data_dictionary_dependent ddd on dd.id=ddd.dictionary_id and ddd.s_key=t.unit
+      left join dms_data_dictionary_dependent d2 on d2.s_key = t.specifications
+
+    WHERE
+      t.remove_flag = 0
+      and t.id = #{id}
+  </select>
+  <!--APP获取产品详情-->
+  <select id="getProductDetailsAPP" parameterType="java.util.Map" resultMap="DmsProductPromotionVoResultMap">
+    select
+
+    t.id as id,
+    t.name as name,
+    ifnull(acp.fprice,0) as show_price,
+    t.category_id as category_id,
+    t.view_count as view_count,
+    t.graphic_details as graphic_details ,
+    t.parameter as parameter ,
+    if(t.`active`= 1, '上架', '下架') as active_text,
+    pc.full_path as category_text,
+    t.unit as unit_text,
+    pb.name as brand_text,
+    pc.path as path_ids,
+    (
+    select
+    if(ifnull(count(*), 0) > 0, 1, 0)
+    from
+    dms_user_collect duc
+    where
+    duc.product_id = t.id
+    and duc.user_id = #{userId}
+    ) as is_collection,
+    (select t3.file_path from dms_common_attach_file t3 where t3.id = t.pic_Id) as pic_url,
+    (select cc.channel_id from dms_channel_contacts cc where cc.user_id = #{userId}) as channel_id,
+    (select dcm.board_quantity from dms_channel_minimum dcm join dms_channel_contacts cc on cc.channel_id = dcm.channel_id
+    where dcm.remove_flag = 0 and cc.user_id = #{userId} and dcm.product_id = t.id
+    ) as board_quantity,
+    t.specifications as specifications_text
+    from
+    dms_product t
+    LEFT JOIN dms_produc_brand pb on t.brand_id = pb.id
+    LEFT JOIN dms_product_category pc on t.category_id = pc.id
+    left join anjoy_customer_price acp on acp.eas_product_code = t.eas_code and acp.eas_channel_code = #{channelCode}
+    WHERE
+    t.remove_flag = 0
+    and t.id=#{id}
+  </select>
+
+  <!--获取产品详情页规格矩阵列表（规格矩阵列表，作用于前端判断是否可以删除该规格）-->
+  <select id="getProductDetailSpecMatrix" parameterType="java.util.Map" resultMap="DmsProductPromotionVoResultMap">
+      SELECT
+      psm.id as id,
+      p.category_id as category_id,
+      psm.spec_union_key as spec_union_key,
+      psm.product_code as product_code,
+      psm.bar_code as bar_code,
+      psm.price as price,
+      psm.suggested_retail_price as suggested_retail_price,
+      psm.active as active,
+      ifnull(si.storage_num, 0) as storage_num,
+      (
+        select
+          ifnull(sum(op.count), 0)
+        from
+          dms_order_product op
+        left join dms_order o on o.id = op.order_id
+        where
+          op.product_id = #{id}
+          and op.remove_flag = 0
+          and o.order_status not in (4,5)
+      ) as order_num,
+      (select cc.channel_id from dms_channel_contacts cc where cc.user_id = #{userId}) as channel_id
+      from dms_product p
+      LEFT JOIN dms_product_spec_matrix_config psm on p.id=psm.product_id
+      LEFT JOIN dms_storage_inventory si on p.id=si.product_id and psm.id=si.product_spec_id
+      LEFT JOIN dms_storage ds on ds.id=si.storage
+      where p.id=#{id}
+  <!--and ds.storage_type=1 and odi.receive_date is null-->
+  group by p.id,psm.id
+</select>
+
+
+
+<!--获取产品图片路径-->
+  <select id="getPicUrls" parameterType="java.lang.Long" resultType="java.util.Map">
+    SELECT
+    t1.id as id,
+    t1.file_path as filePath,
+    t1.file_compress_path as fileCompressPath,
+    t1.file_preview_path as filePreviewPath,
+    t.sort_order as sortOrder
+    FROM
+    dms_product_attach_file t
+    LEFT JOIN dms_common_attach_file t1 ON t.attach_id = t1.id
+    WHERE
+    t.product_id = #{id}
+    and t.remove_flag=0
+    ORDER BY
+    t.sort_order
+  </select>
+
+  <!--获取产品销售区域-->
+  <select id="getSaleAreaIds" parameterType="java.lang.Long" resultType="java.lang.Long">
+    SELECT
+    t.area_id as id
+    FROM
+    dms_product_area t
+    WHERE
+    t.product_id = #{id}
+  </select>
+
+  <!--获取产品规格属性矩阵 -->
+  <select id="getProductSpecMatrixs" parameterType="java.lang.Long" resultType="java.util.Map">
+    SELECT
+    t.id as id,
+    t.spec_union_key as specUnionKey,
+    t.product_code as productCode,
+    t.bar_code as barCode,
+    t.price as price,
+    t.suggested_retail_price as suggestedRetailPrice,
+    t.active as active
+    FROM
+    dms_product_spec_matrix_config t
+    WHERE
+    t.product_id = #{id}
+  </select>
+
+<!--PC产品列表-->
+  <select id="findProductPCPageList" resultMap="DmsProductPromotionVoResultMap" parameterType="com.coracle.dms.vo.DmsProductVo">
+    SELECT
+      p.*,
+      pc.full_path AS category_text,
+      p.unit AS unit_text,
+      case
+        when p.graphic_details is null or LENGTH(p.graphic_details) = 0
+        then "否" else  "是" end
+      as isGraphicDetails,
+      case
+        when p.parameter is null or  LENGTH(p.parameter) = 0
+        then "否" else "是" end
+        as isParameter,
+      case
+        when p.pic_id is null or  LENGTH(p.pic_id) = 0
+        then "否" else "是" end
+        as isSmallPicture,
+      if((select count(0) from dms_product_attach_file paf where paf.product_id = p.id and paf.remove_flag = 0)>0,"是","否") as isBigPicture,
+      (
+        SELECT cc.channel_id FROM dms_channel_contacts cc WHERE cc.user_id = #{userId}
+      ) AS channel_id,
+      p.specifications  AS specifications_text,
+      pb.name AS brand_text
+    FROM
+      dms_product p
+      LEFT JOIN dms_product_category pc ON p.category_id = pc.id
+      LEFT JOIN dms_produc_brand pb ON p.brand_id = pb.id
+    WHERE
+      p.remove_flag = 0
+      <if test="name != null and name != ''" >
+        and p.name like concat('%', #{name}, '%')
+      </if>
+      <if test="active != null">
+        and p.active = #{active}
+      </if>
+      <if test ="brandText != null and brandText != ''">
+        and  pb.name like concat('%', #{brandText}, '%')
+      </if>
+      <if test ="isGraphicDetails == 'Y'.toString()">
+        and <![CDATA[ LENGTH(p.graphic_details)>0]]>
+      </if>
+      <if test ="isGraphicDetails == 'N'.toString()">
+        and <![CDATA[ LENGTH(p.graphic_details) = 0]]> or <![CDATA[ ifnull(p.graphic_details,0)=0]]>
+      </if>
+
+      <if test ="isParameter == 'Y'.toString()">
+        and <![CDATA[ LENGTH(p.parameter)>0]]>
+      </if>
+      <if test ="isParameter == 'N'.toString()">
+        and <![CDATA[ LENGTH(p.parameter) = 0]]> or <![CDATA[ ifnull(p.parameter,0)=0]]>
+      </if>
+      <if test ="isSmallPicture == 'Y'.toString()">
+        and <![CDATA[ LENGTH(p.pic_id)>0]]>
+
+      </if>
+      <if test ="isSmallPicture == 'N'.toString()">
+
+        and <![CDATA[ LENGTH(p.pic_id)=0]]> or <![CDATA[ ifnull(p.pic_id,0)=0]]>
+      </if>
+    <if test ="isBigPicture == 'Y'.toString()">
+      and <![CDATA[ (select count(0)  from dms_product_attach_file paf2 where paf2.product_id = p.id and  paf2.remove_flag = 0)>0]]>
+
+    </if>
+    <if test ="isBigPicture == 'N'.toString()">
+
+      and <![CDATA[(select count(0)  from dms_product_attach_file paf2 where paf2.product_id = p.id and  paf2.remove_flag = 0)=0]]>
+    </if>
+
+      <if test="categoryId != null and categoryId != 0">
+        and p.category_id in (
+          select t3.id from dms_product_category t3 WHERE FIND_IN_SET(#{categoryId}, REPLACE(t3.path, '.', ',')) > 0
+        )
+      </if>
+      order by p.created_date desc
+  </select>
+
+
+<!--根据渠道id和条件查询商品列表-->
+  <select id="findProductForMinimum" resultMap="ResultForMiniMum" parameterType="com.coracle.dms.vo.DmsProductVo">
+    select
+    p.id ,p.name ,(select c.min_order_quantity from dms_channel c where id = #{channelId} )as min_order_quantity,
+    cm.board_quantity as board_quantity,
+    cm.isboard as isboard
+    from
+      dms_product p
+        left join dms_channel_minimum cm on p.id = cm.product_id and cm.channel_id = #{channelId}
+          where 1=1 and p.remove_flag = 0
+    <if test ="brandId!=null and brandId !=''">
+    and p.brand_Id = #{brandId}
+    </if>
+    <if test="categoryId != null and categoryId != 0">
+      and p.category_id in (
+      select t3.id from dms_product_category t3 WHERE FIND_IN_SET(#{categoryId}, REPLACE(t3.path, '.', ',')) > 0
+      )
+    </if>
+    <if test="existProductWhiteList != null and existProductWhiteList != 0">
+      and p.id IN  (
+        SELECT pal.product_id FROM dms_channel_product_anjoy_white_list pal
+        WHERE pal.channel_id = #{channelId} AND pal.remove_flag = 0
+      )
+    </if>
+    order by p.id desc
+  </select>
+  <!--根据渠道id查询商品列表-->
+  <select id="findProductById" resultMap="findById" parameterType="java.lang.Long">
+    select
+    p.id as id,p.name as name ,
+    c.min_order_quantity as min_order_quantity,
+    cm.board_quantity as board_quantity,
+    cm.isboard as isboard
+    from
+    dms_product p
+    left join dms_product_category pc on p.category_id = pc.id
+	left join dms_produc_brand pb on p.brand_id = pb.id
+    left join dms_channel_product cp on p.category_id = cp.product_type_id and  cp.channel_id = #{channelId}
+	left join dms_channel c on c.id = cp.channel_id
+    left join dms_channel_minimum cm  on cp.channel_id = cm.channel_id and p.id =cm.product_id
+
+    where
+    p.remove_flag = 0  and p.active = 1 and p.category_id in (select  product_type_id from dms_channel_product where channel_id = #{channelId} )
+    order by p.created_date desc
+
+  </select>
+
+  <select id="findProductPCSpecPageList" resultMap="DmsProductPromotionVoResultMap" parameterType="com.coracle.dms.vo.DmsProductVo">
+    select
+      p.*,
+      case
+        when psmc.id is null then p.show_price
+        else psmc.price
+      end as original_price,
+      psmc.id as spec_id,
+      psmc.product_code as product_code,
+      psmc.spec_union_key as spec_union_key,
+      pc.full_path as category_text,
+      ddd.name as unit_text,
+      (select cc.channel_id from dms_channel_contacts cc where cc.user_id = #{userId}) as channel_id,
+      d2.name as specifications_text
+    from
+      dms_product p
+    left join dms_product_category pc on p.category_id = pc.id
+    left join dms_product_spec_matrix_config psmc on psmc.product_id = p.id and psmc.remove_flag = 0
+    left join dms_data_dictionary dd on dd.s_key = 'product_unit'
+    left join dms_data_dictionary_dependent ddd on dd.id = ddd.dictionary_id and ddd.s_key = p.unit
+    left join dms_data_dictionary_dependent d2 on d2.s_key = p.specifications
+    where
+      p.remove_flag = 0 and p.active =1
+      <if test="kw != null and kw != ''">
+        and (p.name like concat('%', #{kw}, '%') or psmc.product_code like concat('%', #{kw}, '%') or psmc.spec_union_key like concat('%', #{kw}, '%'))
+      </if>
+    order by p.created_date desc
+  </select>
+
+  <!-- 产品列表(app) -->
+  <select id="findProductPageList" resultMap="DmsProductPromotionVoResultMap" parameterType="com.coracle.dms.vo.DmsProductVo">
+    select
+      t.*
+    from
+    (
+      select
+        p.*,ifnull(acp.fprice ,0) as real_price,
+        (select caf.file_path from dms_common_attach_file caf where caf.id = p.pic_Id) as pic_url,
+        #{channelId} as channel_id,
+        (
+          select
+            count(*)
+          from
+            dms_product_area pa
+          where
+            pa.product_id = p.id
+        ) as product_area_count,
+        (
+          select f1.created_date from dms_footprint f1
+          where f1.id = (
+            select
+              max(f.id)
+            from
+              dms_footprint f
+            where
+            f.product_id = p.id
+            and f.user_id = #{userId}
+            and f.remove_flag = 0
+          )
+        ) as browse_date,
+        ifnull((select sum(dsc.count) from dms_shopping_cart dsc where dsc.product_id =p.id and dsc.user_id = #{userId} and
+        dsc.remove_flag = 0 and dsc.type = 1 ),0) as shop_car_count,
+        (select dsc2.id from dms_shopping_cart dsc2 where dsc2.product_id =p.id and dsc2.user_id = #{userId} and
+        dsc2.remove_flag = 0 and dsc2.type = 1 limit 0,1) as shop_car_id,
+        (select dcm.board_quantity from dms_channel_minimum dcm join dms_channel_contacts cc on cc.channel_id =
+          dcm.channel_id
+          where dcm.remove_flag = 0 and cc.user_id = #{userId} and dcm.product_id = p.id
+        ) as board_quantity
+      from
+        dms_product p
+        left join dms_product_category pc on pc.id = p.category_id and pc.remove_flag = 0
+        left join dms_data_dictionary_dependent ddd on ddd.s_key = p.specifications
+        left join anjoy_customer_price acp on acp.eas_product_code = p.eas_code and acp.eas_channel_code = #{channelCode}
+      where
+        p.active = 1 and p.remove_flag = 0
+        <if test="specifications != null and specifications != ''">
+          and p.specifications = #{specifications}
+        </if>
+        <if test="categoryId != null and categoryId != 0">
+          <!--
+          and pc.path like concat('%', (select pc1.path from dms_product_category pc1 where pc1.id = #{categoryId}), '%')
+          -->
+          and p.category_id in (
+            select t3.id from dms_product_category t3 WHERE FIND_IN_SET(#{categoryId}, REPLACE(t3.path, '.', ',')) > 0
+          )
+        </if>
+        <if test="labeling != null and labeling != 0">
+          and p.labeling = #{labeling}
+        </if>
+        <if test="keyword != null and keyword != ''">
+          and (p.name like concat('%', #{keyword}, '%') or p.keyword like concat('%', #{keyword}, '%'))
+        </if>
+        <if test="barCode != null and barCode != ''">
+          and p.bar_code = #{barCode}
+        </if>
+        <!-- 安井 渠道-商品 白名单 add by taok -->
+        <if test="existProductWhiteList != null and existProductWhiteList != 0">
+          and p.id IN (
+            SELECT pal.product_id FROM dms_channel_product_anjoy_white_list pal WHERE pal.channel_id = #{channelId} AND pal.remove_flag = 0
+          )
+        </if>
+    ) t
+    where
+      (t.channel_id is null)
+      or
+      (
+        (select count(*) from dms_product_area where product_id = t.id) = 0
+        or
+        (
+          select
+          (
+            select tr.path from dms_tree_relation tr where tr.related_type = 1 and tr.related_id = #{channelId} and
+            tr.remove_flag = 0
+          )
+          regexp
+          (
+            select group_concat(pa.area_id separator '|') from dms_product_area pa where pa.product_id = t.id
+          )
+        ) > 0
+      )
+    <if test="isFootprint != null and isFootprint == true">
+      <if test="productIdList != null and productIdList.size > 0">
+        and t.id in
+        <foreach collection="productIdList" item="item" index="index" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+      order by t.browse_date desc
+    </if>
+    <if test="orderField != null and orderField != ''">
+      order by t.${orderField}
+      <if test="orderString != null and orderString != ''">
+        ${orderString}
+      </if>
+    </if>
+  </select>
+
+  <select id="findProductPageListStore" resultMap="DmsProductVoResultMap" parameterType="com.coracle.dms.vo.DmsProductVo">
+    select
+    t.*,
+    (
+    select
+    ifnull(sum(si.use_num), 0)
+    from
+    dms_storage_inventory si
+    where
+    si.product_id = t.id and si.remove_flag = 0
+    and si.storage in (
+    select s.id from dms_storage s where s.active = 1 and s.storage_type = 1 and s.remove_flag = 0
+    )
+    ) as inventory,
+    (select caf.file_path from dms_common_attach_file caf where caf.id = t.pic_Id) as pic_url
+    from
+    dms_product t
+    left join dms_product_category pc on pc.id = t.category_id and pc.remove_flag = 0
+    LEFT JOIN storage_inventory si on si.productId=t.id and si.`storage`=
+    <choose>
+      <!-- 渠道 -->
+      <when test="type != null and type==1">
+        (SELECT s.id from dms_channel_contacts cc LEFT JOIN dms_channel c on cc.channel_id=c.id LEFT JOIN dms_storage s on s.org_id=cc.channel_id
+        LEFT JOIN dms_user u on u.staff_id=cc.id  where u.id=#{userId})
+      </when>
+      <!-- 门店 -->
+      <when test="type != null and type==2">
+        (SELECT s.id from dms_seller ds LEFT JOIN dms_store st on ds.shop_id=st.id LEFT JOIN dms_storage s on s.relation_id=st.id
+        LEFT JOIN dms_user u on u.staff_id=ds.id  where u.id=#{userId})
+      </when>
+    </choose>
+    where
+    t.active = 1 and t.remove_flag = 0
+    <if test="categoryId != null">
+      and pc.path like concat('%', (select pc1.path from dms_product_category pc1 where pc1.id = #{categoryId}), '%')
+    </if>
+    <if test="orderField != null and orderField != ''">
+      ORDER BY t.${orderField}
+      <if test="orderString != null and orderString != ''">
+        ${orderString}
+      </if>
+    </if>
+  </select>
+
+  <update id="updateById" parameterType="com.coracle.dms.po.DmsProduct">
+    update dms_product
+    set remove_flag = 1
+    where id = #{id}
+  </update>
+
+  <!--添加浏览次数-->
+  <update id="addReadCount" parameterType="java.lang.Long">
+    update dms_product t set t.view_count=t.view_count+1 where t.id =#{id}
+  </update>
+
+  <!--批量上架产品-->
+  <update id="up" parameterType="java.util.List">
+    update dms_product t set t.active=1 WHERE t.ID IN
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+      #{item}
+    </foreach>
+  </update>
+
+  <!--批量上架产品-->
+  <update id="down" parameterType="java.util.List">
+    update dms_product t set t.active=0 WHERE t.ID IN
+    <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+      #{item}
+    </foreach>
+  </update>
+
+  <!--根据产品id和规格id查询产品名称，规格名称-->
+  <select id="findProductNameSpecName" parameterType="java.util.Map" resultType="java.util.Map">
+    select
+      p.name productName,
+      ifnull(psmc.spec_union_key, '') specName
+    from
+      dms_product p
+    left join dms_product_spec_matrix_config psmc on psmc.product_id=p.id
+    where 1=1
+    <if test="productId != null">
+      and p.id =#{productId}
+    </if>
+    <if test="productSpecId != null">
+      and psmc.id =#{productSpecId}
+    </if>
+  </select>
+
+  <!-- 用户收藏页面的产品原价 -->
+  <!-- 如果收藏的产品没有规格，则获取的是产品的标价 -->
+  <!-- 如果收藏的产品有规格，但是收藏时没有选择规格，则获取所有规格价中的最低值-->
+  <!-- 如果收藏的产品有规格，而且收藏时选择了规格，则获取该规格产品的价格 -->
+  <select id="selectMinPriceForUserCollect" parameterType="com.coracle.dms.vo.DmsProductVo" resultType="java.math.BigDecimal">
+    select
+      case
+        when (
+          select
+            count(*)
+          from
+            dms_product_spec_matrix_config
+          where
+            product_id = #{id}
+            and remove_flag = 0
+        ) = 0 then
+          ifnull((
+            select
+              acp.fprice
+            from
+              dms_product p left join anjoy_customer_price  acp on acp.eas_product_code = p.eas_code and acp.eas_channel_code = #{channelCode}
+            where
+              p.id = #{id}
+          ),0)
+        else
+          (
+            <choose>
+              <when test="specId != null">
+                select
+                  psmc.price
+                from
+                  dms_product_spec_matrix_config psmc
+                where
+                  psmc.product_id = #{id}
+                  and psmc.id = #{specId}
+              </when>
+              <otherwise>
+                select
+                  min(psmc.price)
+                from
+                  dms_product_spec_matrix_config psmc
+                where
+                  psmc.product_id = #{id}
+                  and psmc.remove_flag = 0
+              </otherwise>
+            </choose>
+          )
+      end
+    from
+      dual
+  </select>
+  
+  <!-- 根据产品获取最低价格(不含促销) -->
+  <!-- 无规格的产品，获取产品的标价 -->
+  <!-- 有规格的产品，获取所有规格中的最低价 -->
+  <select id="selectMinPriceByProduct" parameterType="com.coracle.dms.vo.DmsProductVo" resultType="java.math.BigDecimal">
+    select
+      case
+        when (
+          select
+            count(*)
+          from
+            dms_product_spec_matrix_config
+          where
+            product_id = #{id}
+            and remove_flag = 0
+        ) = 0 then
+          (
+            select
+              p.show_price
+            from
+              dms_product p
+            where
+              p.id = #{id}
+          )
+        else
+          (
+            select
+              min(psmc.price)
+            from
+              dms_product_spec_matrix_config psmc
+            where
+              psmc.product_id = #{id}
+              and psmc.remove_flag = 0
+          )
+      end
+    from
+      dual
+  </select>
+
+  <!-- 根据产品获取最低价格（包括促销情况） -->
+  <!-- specId不为空时，获取的是具体规格的产品最低价 -->
+  <!-- specId为空时，获取的是产品的最低价，包括有规格和无规格的情况；有规格时获取规格价中折扣后价格最低的，无规格时获取产品按标价打折后的最低价 -->
+  <select id="selectMinPromotionPriceByProduct" parameterType="com.coracle.dms.vo.DmsProductVo" resultType="java.math.BigDecimal">
+    <choose>
+      <when test="specId != null">
+        select
+          psmc.price *
+          ifnull(
+            (
+              select
+                min(pp.discount) / 100
+              from
+                dms_promotion_product pp
+              left join dms_promotion p on p.id = pp.promotion_id
+              where
+                pp.remove_flag = 0
+                and p.active = 1
+                and p.remove_flag = 0
+                <![CDATA[ and sysdate() >= p.start_time ]]>
+                <![CDATA[ and sysdate() <= p.end_time ]]>
+                and (
+                  (pp.product_id = #{id} and pp.product_spec_id = psmc.id)
+                  or
+                  (
+                    pp.product_id is null and pp.product_category_id in (
+                      select
+                        id
+                      from
+                        dms_product_category
+                      where
+                        find_in_set(id, (select path from dms_product_category where id = (select category_id from dms_product where id = #{id}))) > 0
+                    )
+                  )
+                )
+                <if test="channelId != null">
+                and (
+                  (select count(*) from dms_promotion_scope ps where ps.promotion_id = pp.promotion_id and ps.remove_flag = 0) = 0
+                  or
+                  #{channelId} in (
+                    select
+                      tr.related_id
+                    from
+                      dms_promotion_scope ps
+                    left join dms_tree_relation tr on tr.id = ps.scope_id
+                    where
+                      ps.promotion_id = pp.promotion_id
+                      and ps.remove_flag = 0
+                      and tr.related_type = 1
+                  )
+                )
+                </if>
+            ),
+            1
+          )
+        from
+          dms_product_spec_matrix_config psmc
+        where
+          psmc.id = #{specId}
+      </when>
+      <otherwise>
+        select
+          case
+            when (
+              select
+                count(*)
+              from
+                dms_product_spec_matrix_config
+              where
+                product_id = #{id}
+                and remove_flag = 0
+            ) = 0 then
+              (
+                select
+                  p.show_price *
+                  ifnull(
+                    (
+                      select
+                        min(pp.discount) / 100
+                      from
+                        dms_promotion_product pp
+                      left join dms_promotion p on p.id = pp.promotion_id
+                      where
+                        pp.remove_flag = 0
+                        and p.active = 1
+                        and p.remove_flag = 0
+                        <![CDATA[ and sysdate() >= p.start_time ]]>
+                        <![CDATA[ and sysdate() <= p.end_time ]]>
+                        and (
+                          pp.product_id = #{id}
+                          or
+                          (
+                            pp.product_id is null and pp.product_category_id in (
+                              select
+                                id
+                              from
+                                dms_product_category
+                              where
+                                find_in_set(id, (select path from dms_product_category where id = (select category_id from dms_product where id = #{id}))) > 0
+                            )
+                          )
+                        )
+                        <if test="channelId != null">
+                        and (
+                          (select count(*) from dms_promotion_scope ps where ps.promotion_id = pp.promotion_id and ps.remove_flag = 0) = 0
+                          or
+                          #{channelId} in (
+                            select
+                              tr.related_id
+                            from
+                              dms_promotion_scope ps
+                            left join dms_tree_relation tr on tr.id = ps.scope_id
+                            where
+                              ps.promotion_id = pp.promotion_id
+                              and ps.remove_flag = 0
+                              and tr.related_type = 1
+                          )
+                        )
+                        </if>
+                    ),
+                    1
+                  )
+                from
+                  dms_product p
+                where
+                  p.id = #{id}
+              )
+            else
+              (
+                select
+                  min(
+                    psmc.price *
+                    ifnull(
+                      (
+                        select
+                          min(pp.discount) / 100
+                        from
+                          dms_promotion_product pp
+                        left join dms_promotion p on p.id = pp.promotion_id
+                        where
+                          pp.remove_flag = 0
+                          and p.active = 1
+                          and p.remove_flag = 0
+                          <![CDATA[ and sysdate() >= p.start_time ]]>
+                          <![CDATA[ and sysdate() <= p.end_time ]]>
+                          and (
+                            (pp.product_id = #{id} and pp.product_spec_id = psmc.id)
+                            or
+                            (
+                              pp.product_id is null and pp.product_category_id in (
+                                select
+                                  id
+                                from
+                                  dms_product_category
+                                where
+                                  find_in_set(id, (select path from dms_product_category where id = (select category_id from dms_product where id = #{id}))) > 0
+                              )
+                            )
+                          )
+                          <if test="channelId != null">
+                          and (
+                            (select count(*) from dms_promotion_scope ps where ps.promotion_id = pp.promotion_id and ps.remove_flag = 0) = 0
+                            or
+                            #{channelId} in (
+                              select
+                                tr.related_id
+                              from
+                                dms_promotion_scope ps
+                              left join dms_tree_relation tr on tr.id = ps.scope_id
+                              where
+                                ps.promotion_id = pp.promotion_id
+                                and ps.remove_flag = 0
+                                and tr.related_type = 1
+                            )
+                          )
+                          </if>
+                      ),
+                      1
+                    )
+                  )
+                from
+                  dms_product_spec_matrix_config psmc
+                where
+                  psmc.product_id = #{id}
+                  and psmc.remove_flag = 0
+              )
+          end
+        from
+          dual
+      </otherwise>
+    </choose>
+
+  </select>
+
+  <select id="selectByProductCode" parameterType="java.lang.String" resultType="java.lang.String">
+    select pc.name  from dms_product p left JOIN  dms_product_category pc on p.category_id = pc.id where p.code = #{productCode}
+  </select>
+
+  <!-- +++++++ 安井sql start +++++++ -->
+  <resultMap id="AnjoyProductResultMap" type="com.coracle.dms.vo.DmsProductVo">
+    <result column="specifications" property="specifications" jdbcType="VARCHAR"/>
+    <result column="specificatoions_text" property="specificationsText" jdbcType="VARCHAR"/>
+    <result column="channel_id" property="channelId" jdbcType="BIGINT"/>
+    <result column="user_id" property="userId" jdbcType="BIGINT"/>
+    <result column="keyword" property="keyword" jdbcType="VARCHAR"/>
+    <result column="category_id" property="categoryId" jdbcType="BIGINT"/>
+    <collection property="productList" column="{channelId=channel_id,userId=user_id,keyword=keyword,categoryId=category_id,specifications=specifications}" select="findProductPageList"/>
+  </resultMap>
+
+  <!-- 根据产品规格获取产品列表 -->
+  <select id="listBySpecifications" parameterType="com.coracle.dms.vo.DmsProductVo" resultMap="AnjoyProductResultMap">
+    select
+      ddd.s_key as specifications,
+      ddd.name as specificationsText,
+      #{channelId} as channel_id,
+      #{userId} as user_id,
+      #{keyword} as keyword,
+      #{categoryId} as category_id
+    from
+      dms_data_dictionary dd
+    left join dms_data_dictionary_dependent ddd on ddd.dictionary_id = dd.id
+    where
+      dd.s_key = 'specifications'
+      and dd.remove_flag = 0
+      and dd.active = 1
+      and ddd.remove_flag = 0
+      and ddd.active = 1
+  </select>
+
+  <!-- 批量插入 -->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_product
+    (
+      name, code, category_id, unit, brand_id, bar_code, show_price, suggested_price,
+      listing_time, keyword, place_of_origin, active, labeling, specifications, specifications_model,
+      sale_area, pic_Id, sales_volume, view_count, created_date, created_by, last_updated_date,
+      last_updated_by, remove_flag, json_object, min_package_quantity, package_quantity,
+      big_customer_price, mid_customer_price, small_customer_price, auxiliary_unit, eas_code,
+      conversion_rate, weight, volume, remark, sort_order, anjoy_id
+    )
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (
+        #{item.name}, #{item.code}, #{item.categoryId}, #{item.unit}, #{item.brandId}, #{item.barCode}, #{item.showPrice},
+        #{item.suggestedPrice}, #{item.listingTime}, #{item.keyword}, #{item.placeOfOrigin}, #{item.active}, #{item.labeling},
+        #{item.specifications}, #{item.specificationsModel}, #{item.saleArea}, #{item.picId}, #{item.salesVolume},
+        #{item.viewCount}, #{item.createdDate}, #{item.createdBy}, #{item.lastUpdatedDate}, #{item.lastUpdatedBy},
+        #{item.removeFlag}, #{item.jsonObject}, #{item.minPackageQuantity}, #{item.packageQuantity}, #{item.bigCustomerPrice},
+        #{item.midCustomerPrice}, #{item.smallCustomerPrice}, #{item.auxiliaryUnit}, #{item.easCode}, #{item.conversionRate},
+        #{item.weight}, #{item.volume}, #{item.remark}, #{item.sortOrder}, #{item.anjoyId}
+      )
+    </foreach>
+  </insert>
+
+  <!--同步批量更新产品的规格型号-->
+  <update id="batchUpdate" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+      update dms_product
+        <set>
+          specifications_model = #{item.specificationsModel},
+          specifications = #{item.specifications}
+        </set>
+      where
+        code = #{item.code}
+    </foreach>
+  </update>
+
+  <!--
+  通过渠道CODE，产品CODE获取价格
+  -->
+  <select id="selectProductPrice" parameterType="map" resultType="java.math.BigDecimal">
+    SELECT t.fprice FROM anjoy_customer_price t
+    WHERE t.eas_channel_code = #{easChannelCode}
+    AND t.eas_product_code = #{easProductCode}
+  </select>
+
+  <!-- 同步安井产品数据前先将DMS所有产品数据置为：已删除状态 -->
+  <update id="deleteProductSyncAnjoy">
+    UPDATE dms_product t SET t.remove_flag = 1
+  </update>
+
+  <select id="selectOneByCondition" parameterType="com.coracle.dms.po.DmsProduct" resultMap="DmsProductResultMap" >
+    select
+    <include refid="DmsProduct_Column_List" />
+    from dms_product
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+
+  <!-- 判断经销商是否有产品白名单数据 -->
+  <select id="findCountChannelProductWhite" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM dms_channel_product_anjoy_white_list t WHERE t.channel_id = #{channelId} AND t.remove_flag = 0
+  </select>
+   <!--+++++++ 安井sql start +++++++-->
+</mapper>

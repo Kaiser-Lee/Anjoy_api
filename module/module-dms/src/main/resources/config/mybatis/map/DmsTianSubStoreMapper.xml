@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsTianSubStoreMapper" >
+  <resultMap id="DmsTianSubStoreResultMap" type="com.coracle.dms.po.DmsTianSubStore" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="sub_store_number" property="subStoreNumber" jdbcType="VARCHAR" />
+    <result column="sub_store_name" property="subStoreName" jdbcType="VARCHAR" />
+    <result column="sut_store_text" property="sutStoreText" jdbcType="VARCHAR" />
+    <result column="master_store" property="masterStore" jdbcType="VARCHAR" />
+    <result column="take_effect" property="takeEffect" jdbcType="VARCHAR" />
+    <result column="post_due" property="postDue" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="DmsTianSubStore_Column_List" >
+    id, created_date, created_by, last_updated_date, last_updated_by, remove_flag, sub_store_number, 
+    sub_store_name, sut_store_text, master_store, take_effect, post_due
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsTianSubStoreResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="DmsTianSubStore_Column_List" />
+    from dms_tian_sub_store
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dms_tian_sub_store
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsTianSubStore" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_tian_sub_store (created_date, created_by, last_updated_date, last_updated_by, remove_flag, 
+      sub_store_number, sub_store_name, sut_store_text, master_store, take_effect, 
+      post_due)
+    values (#{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, 
+      #{subStoreNumber}, #{subStoreName}, #{sutStoreText}, #{masterStore}, #{takeEffect}, 
+      #{postDue})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsTianSubStore" >
+    insert into dms_tian_sub_store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="subStoreNumber != null" >
+        sub_store_number,
+      </if>
+      <if test="subStoreName != null" >
+        sub_store_name,
+      </if>
+      <if test="sutStoreText != null" >
+        sut_store_text,
+      </if>
+      <if test="masterStore != null" >
+        master_store,
+      </if>
+      <if test="takeEffect != null" >
+        take_effect,
+      </if>
+      <if test="postDue != null" >
+        post_due,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="subStoreNumber != null" >
+        #{subStoreNumber},
+      </if>
+      <if test="subStoreName != null" >
+        #{subStoreName},
+      </if>
+      <if test="sutStoreText != null" >
+        #{sutStoreText},
+      </if>
+      <if test="masterStore != null" >
+        #{masterStore},
+      </if>
+      <if test="takeEffect != null" >
+        #{takeEffect},
+      </if>
+      <if test="postDue != null" >
+        #{postDue},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsTianSubStore" >
+    update dms_tian_sub_store
+    <set >
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="subStoreNumber != null" >
+        sub_store_number = #{subStoreNumber},
+      </if>
+      <if test="subStoreName != null" >
+        sub_store_name = #{subStoreName},
+      </if>
+      <if test="sutStoreText != null" >
+        sut_store_text = #{sutStoreText},
+      </if>
+      <if test="masterStore != null" >
+        master_store = #{masterStore},
+      </if>
+      <if test="takeEffect != null" >
+        take_effect = #{takeEffect},
+      </if>
+      <if test="postDue != null" >
+        post_due = #{postDue},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsTianSubStore" >
+    update dms_tian_sub_store
+    set created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      sub_store_number = #{subStoreNumber},
+      sub_store_name = #{subStoreName},
+      sut_store_text = #{sutStoreText},
+      master_store = #{masterStore},
+      take_effect = #{takeEffect},
+      post_due = #{postDue}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="createdDate != null" >
+        created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="subStoreNumber != null and subStoreNumber != ''" >
+        AND sub_store_number = #{subStoreNumber}
+      </if>
+      <if test="subStoreName != null and subStoreName != ''" >
+        AND sub_store_name = #{subStoreName}
+      </if>
+      <if test="sutStoreText != null and sutStoreText != ''" >
+        AND sut_store_text = #{sutStoreText}
+      </if>
+      <if test="masterStore != null and masterStore != ''" >
+        AND master_store = #{masterStore}
+      </if>
+      <if test="takeEffect != null and takeEffect != ''" >
+        AND take_effect = #{takeEffect}
+      </if>
+      <if test="postDue != null" >
+        AND post_due = #{postDue}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsTianSubStore" resultMap="DmsTianSubStoreResultMap" >
+    select 
+    <include refid="DmsTianSubStore_Column_List" />
+    from dms_tian_sub_store
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_tian_sub_store
+    <set >
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.subStoreNumber != null" >
+        sub_store_number = #{po.subStoreNumber},
+      </if>
+      <if test="po.subStoreName != null" >
+        sub_store_name = #{po.subStoreName},
+      </if>
+      <if test="po.sutStoreText != null" >
+        sut_store_text = #{po.sutStoreText},
+      </if>
+      <if test="po.masterStore != null" >
+        master_store = #{po.masterStore},
+      </if>
+      <if test="po.takeEffect != null" >
+        take_effect = #{po.takeEffect},
+      </if>
+      <if test="po.postDue != null" >
+        post_due = #{po.postDue},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

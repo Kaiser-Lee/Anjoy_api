@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderReturnCartMapper" >
+  <resultMap id="DmsOrderReturnCartResultMap" type="com.coracle.dms.po.DmsOrderReturnCart" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="old_order_id" property="oldOrderId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_spec_id" property="productSpecId" jdbcType="BIGINT" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="spec_union_key" property="specUnionKey" jdbcType="VARCHAR" />
+    <result column="unit_id" property="unitId" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="return_num" property="returnNum" jdbcType="INTEGER" />
+    <result column="delivery_num" property="deliveryNum" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsOrderReturnCart_Column_List" >
+    id, user_id, old_order_id, product_id, product_spec_id,product_name, spec_union_key, unit_id, price, 
+    return_num, delivery_num, created_date, created_by, last_updated_date, last_updated_by, 
+    remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsOrderReturnCartResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsOrderReturnCart_Column_List" />
+    from dms_order_return_cart
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_order_return_cart
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrderReturnCart" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_order_return_cart (user_id, old_order_id, product_id,product_spec_id, product_name, spec_union_key, 
+      unit_id, price, return_num, delivery_num, created_date, created_by, 
+      last_updated_date, last_updated_by, remove_flag)
+    values (#{userId}, #{oldOrderId}, #{productId}, #{productSpecId},#{productName}, #{specUnionKey}, 
+      #{unitId}, #{price}, #{returnNum}, #{deliveryNum}, #{createdDate}, #{createdBy}, 
+      #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrderReturnCart" >
+    insert into dms_order_return_cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="oldOrderId != null" >
+        old_order_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key,
+      </if>
+      <if test="unitId != null" >
+        unit_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="returnNum != null" >
+        return_num,
+      </if>
+      <if test="deliveryNum != null" >
+        delivery_num,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="oldOrderId != null" >
+        #{oldOrderId},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="productSpecId != null" >
+        #{productSpecId},
+      </if>
+      <if test="productName != null" >
+        #{productName},
+      </if>
+      <if test="specUnionKey != null" >
+        #{specUnionKey},
+      </if>
+      <if test="unitId != null" >
+        #{unitId},
+      </if>
+      <if test="price != null" >
+        #{price},
+      </if>
+      <if test="returnNum != null" >
+        #{returnNum},
+      </if>
+      <if test="deliveryNum != null" >
+        #{deliveryNum},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrderReturnCart" >
+    update dms_order_return_cart
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="oldOrderId != null" >
+        old_order_id = #{oldOrderId},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id = #{productSpecId},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName},
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key = #{specUnionKey},
+      </if>
+      <if test="unitId != null" >
+        unit_id = #{unitId},
+      </if>
+      <if test="price != null" >
+        price = #{price},
+      </if>
+      <if test="returnNum != null" >
+        return_num = #{returnNum},
+      </if>
+      <if test="deliveryNum != null" >
+        delivery_num = #{deliveryNum},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrderReturnCart" >
+    update dms_order_return_cart
+    set user_id = #{userId},
+      old_order_id = #{oldOrderId},
+      product_id = #{productId},
+      product_spec_id = #{productSpecId},
+      product_name = #{productName},
+      spec_union_key = #{specUnionKey},
+      unit_id = #{unitId},
+      price = #{price},
+      return_num = #{returnNum},
+      delivery_num = #{deliveryNum},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="userId != null" >
+        user_id = #{userId}
+      </if>
+      <if test="oldOrderId != null" >
+        AND old_order_id = #{oldOrderId}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId}
+      </if>
+      <if test="productSpecId != null" >
+        AND product_spec_id = #{productSpecId}
+      </if>
+      <if test="productName != null and productName != ''" >
+        AND product_name = #{productName}
+      </if>
+      <if test="specUnionKey != null and specUnionKey != ''" >
+        AND spec_union_key = #{specUnionKey}
+      </if>
+      <if test="unitId != null" >
+        AND unit_id = #{unitId}
+      </if>
+      <if test="price != null" >
+        AND price = #{price}
+      </if>
+      <if test="returnNum != null" >
+        AND return_num = #{returnNum}
+      </if>
+      <if test="deliveryNum != null" >
+        AND delivery_num = #{deliveryNum}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+        AND remove_flag = 0
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrderReturnCart" resultMap="DmsOrderReturnCartResultMap" >
+    select 
+    <include refid="DmsOrderReturnCart_Column_List" />
+    from dms_order_return_cart
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_order_return_cart
+    <set >
+      <if test="po.userId != null" >
+        user_id = #{po.userId},
+      </if>
+      <if test="po.oldOrderId != null" >
+        old_order_id = #{po.oldOrderId},
+      </if>
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.productName != null" >
+        product_name = #{po.productName},
+      </if>
+      <if test="po.specUnionKey != null" >
+        spec_union_key = #{po.specUnionKey},
+      </if>
+      <if test="po.unitId != null" >
+        unit_id = #{po.unitId},
+      </if>
+      <if test="po.price != null" >
+        price = #{po.price},
+      </if>
+      <if test="po.returnNum != null" >
+        return_num = #{po.returnNum},
+      </if>
+      <if test="po.deliveryNum != null" >
+        delivery_num = #{po.deliveryNum},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  <!--########################################################### new add sql create by tanyb ######################################-->
+  <resultMap id="DmsOrderReturnCartVoResultMap" extends="DmsOrderReturnCartResultMap" type="com.coracle.dms.vo.DmsOrderReturnCartVo" >
+    <result column="product_text" property="productText" jdbcType="VARCHAR" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="old_order_num" property="oldOrderNum" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="getPageList" parameterType="com.coracle.dms.vo.DmsOrderReturnCartVo" resultMap="DmsOrderReturnCartVoResultMap" >
+    SELECT
+      r.id,
+      r.user_id,
+      r.old_order_id,
+      r.product_id,
+      r.spec_union_key,
+      r.unit_id,
+      r.price,
+      r.return_num,
+      r.product_spec_id,
+      p.`name` AS product_text,
+      attr.file_preview_path AS pic_url
+    FROM
+      dms_order_return_cart r
+      LEFT JOIN dms_product p ON r.product_id = p.id
+      LEFT JOIN dms_common_attach_file attr ON attr.id = p.pic_Id
+    WHERE
+      1 = 1
+      AND r.remove_flag = 0
+      <if test="userId != null" >
+          and r.user_id = #{userId}
+      </if>
+      <if test="productId != null" >
+        AND r.product_id = #{productId}
+      </if>
+      <if test="productSpecId != null" >
+          AND r.product_spec_id = #{productSpecId}
+       </if>
+       <if test="removeFlag != null">
+          and r.remove_flag = #{removeFlag}
+       </if>
+      <if test="orderField != null and orderField != ''" >
+        ORDER BY ${orderField}
+        <if test="orderString != null and orderString != ''" >
+           ${orderString}
+        </if>
+      </if>
+  </select>
+  <select id="selectReturnCount" resultType="java.lang.Integer" parameterType="com.coracle.dms.po.DmsOrderReturnCart">
+   		select ifnull((b.count-ifnull(b.return_count,0)),0) 
+				from dms_order_product b 
+				where 1=1 and b.remove_flag=0 
+		<if test="productId != null">
+			and b.product_id=#{productId}
+		</if>	
+		<if test="productSpecId != null">
+			and b.product_spec_id=#{productSpecId}
+		</if>
+		<if test="oldOrderId != null">
+			and b.order_id=#{oldOrderId}
+		</if>			
+						  
+   </select>
+  <!-- 软删除 -->
+  <update id="deleteByIdSoft" parameterType="java.lang.Long">
+    update dms_order_return_cart set remove_Flag = 1 where id = #{id}
+  </update>
+  
+  <update id="batchRemove" parameterType="java.util.List">
+    update dms_order_return_cart set remove_flag = 1 where id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+      </foreach>
+  </update>
+  
+  <select id="getOrderReturnCartCount" parameterType="com.coracle.dms.po.DmsOrderReturnCart" resultType="java.lang.Integer">
+    select count(1) from dms_order_return_cart t where 1=1 and t.remove_flag=0 and t.user_id = #{userId}
+  </select>
+  
+</mapper>

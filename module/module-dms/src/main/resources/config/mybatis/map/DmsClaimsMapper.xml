@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsClaimsMapper" >
+  <resultMap id="DmsClaimsResultMap" type="com.coracle.dms.po.DmsClaims" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="process_number" property="processNumber" jdbcType="VARCHAR" />
+    <result column="appler_date" property="applerDate" jdbcType="TIMESTAMP" />
+    <result column="appler_person" property="applerPerson" jdbcType="VARCHAR" />
+    <result column="claims_proportion" property="claimsProportion" jdbcType="VARCHAR" />
+    <result column="nature" property="nature" jdbcType="VARCHAR" />
+    <result column="customer_number" property="customerNumber" jdbcType="INTEGER" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="office" property="office" jdbcType="VARCHAR" />
+    <result column="big_regional" property="bigRegional" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="deduct_amount" property="deductAmount" jdbcType="VARCHAR" />
+    <result column="claims_amount" property="claimsAmount" jdbcType="VARCHAR" />
+    <result column="arrival_date" property="arrivalDate" jdbcType="TIMESTAMP" />
+    <result column="shipping_order_no" property="shippingOrderNo" jdbcType="INTEGER" />
+    <result column="claims_area" property="claimsArea" jdbcType="VARCHAR" />
+    <result column="signa_meaning" property="signaMeaning" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="approve_person" property="approvePerson" jdbcType="VARCHAR" />
+    <result column="approve_date" property="approveDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="DmsClaims_Column_List" >
+    id, title, process_number, appler_date, appler_person, claims_proportion, nature, 
+    customer_number, customer_name, office, big_regional, phone, deduct_amount, claims_amount, 
+    arrival_date, shipping_order_no, claims_area, signa_meaning, created_date, created_by, 
+    last_updated_date, last_updated_by, remove_flag, state, approve_person, approve_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsClaimsResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsClaims_Column_List" />
+    from dms_claims
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_claims
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsClaims" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_claims (title, process_number, appler_date, appler_person, claims_proportion, 
+      nature, customer_number, customer_name, office, big_regional, phone, 
+      deduct_amount, claims_amount, arrival_date, shipping_order_no, claims_area, 
+      signa_meaning, created_date, created_by, last_updated_date, last_updated_by, 
+      remove_flag, state, approve_person, approve_date)
+    values (#{title}, #{processNumber}, #{applerDate}, #{applerPerson}, #{claimsProportion}, 
+      #{nature}, #{customerNumber}, #{customerName}, #{office}, #{bigRegional}, #{phone}, 
+      #{deductAmount}, #{claimsAmount}, #{arrivalDate}, #{shippingOrderNo}, #{claimsArea}, 
+      #{signaMeaning}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, 
+      #{removeFlag}, #{state}, #{approvePerson}, #{approveDate})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsClaims" >
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into dms_claims
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="processNumber != null" >
+        process_number,
+      </if>
+      <if test="applerDate != null" >
+        appler_date,
+      </if>
+      <if test="applerPerson != null" >
+        appler_person,
+      </if>
+      <if test="claimsProportion != null" >
+        claims_proportion,
+      </if>
+      <if test="nature != null" >
+        nature,
+      </if>
+      <if test="customerNumber != null" >
+        customer_number,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="office != null" >
+        office,
+      </if>
+      <if test="bigRegional != null" >
+        big_regional,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="deductAmount != null" >
+        deduct_amount,
+      </if>
+      <if test="claimsAmount != null" >
+        claims_amount,
+      </if>
+      <if test="arrivalDate != null" >
+        arrival_date,
+      </if>
+      <if test="shippingOrderNo != null" >
+        shipping_order_no,
+      </if>
+      <if test="claimsArea != null" >
+        claims_area,
+      </if>
+      <if test="signaMeaning != null" >
+        signa_meaning,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="approvePerson != null" >
+        approve_person,
+      </if>
+      <if test="approveDate != null" >
+        approve_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="title != null" >
+        #{title},
+      </if>
+      <if test="processNumber != null" >
+        #{processNumber},
+      </if>
+      <if test="applerDate != null" >
+        #{applerDate},
+      </if>
+      <if test="applerPerson != null" >
+        #{applerPerson},
+      </if>
+      <if test="claimsProportion != null" >
+        #{claimsProportion},
+      </if>
+      <if test="nature != null" >
+        #{nature},
+      </if>
+      <if test="customerNumber != null" >
+        #{customerNumber},
+      </if>
+      <if test="customerName != null" >
+        #{customerName},
+      </if>
+      <if test="office != null" >
+        #{office},
+      </if>
+      <if test="bigRegional != null" >
+        #{bigRegional},
+      </if>
+      <if test="phone != null" >
+        #{phone},
+      </if>
+      <if test="deductAmount != null" >
+        #{deductAmount},
+      </if>
+      <if test="claimsAmount != null" >
+        #{claimsAmount},
+      </if>
+      <if test="arrivalDate != null" >
+        #{arrivalDate},
+      </if>
+      <if test="shippingOrderNo != null" >
+        #{shippingOrderNo},
+      </if>
+      <if test="claimsArea != null" >
+        #{claimsArea},
+      </if>
+      <if test="signaMeaning != null" >
+        #{signaMeaning},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="state != null" >
+        #{state},
+      </if>
+      <if test="approvePerson != null" >
+        #{approvePerson},
+      </if>
+      <if test="approveDate != null" >
+        #{approveDate},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsClaims" >
+    update dms_claims
+    <set >
+      <if test="title != null" >
+        title = #{title},
+      </if>
+      <if test="processNumber != null" >
+        process_number = #{processNumber},
+      </if>
+      <if test="applerDate != null" >
+        appler_date = #{applerDate},
+      </if>
+      <if test="applerPerson != null" >
+        appler_person = #{applerPerson},
+      </if>
+      <if test="claimsProportion != null" >
+        claims_proportion = #{claimsProportion},
+      </if>
+      <if test="nature != null" >
+        nature = #{nature},
+      </if>
+      <if test="customerNumber != null" >
+        customer_number = #{customerNumber},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName},
+      </if>
+      <if test="office != null" >
+        office = #{office},
+      </if>
+      <if test="bigRegional != null" >
+        big_regional = #{bigRegional},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone},
+      </if>
+      <if test="deductAmount != null" >
+        deduct_amount = #{deductAmount},
+      </if>
+      <if test="claimsAmount != null" >
+        claims_amount = #{claimsAmount},
+      </if>
+      <if test="arrivalDate != null" >
+        arrival_date = #{arrivalDate},
+      </if>
+      <if test="shippingOrderNo != null" >
+        shipping_order_no = #{shippingOrderNo},
+      </if>
+      <if test="claimsArea != null" >
+        claims_area = #{claimsArea},
+      </if>
+      <if test="signaMeaning != null" >
+        signa_meaning = #{signaMeaning},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="state != null" >
+        state = #{state},
+      </if>
+      <if test="approvePerson != null" >
+        approve_person = #{approvePerson},
+      </if>
+      <if test="approveDate != null" >
+        approve_date = #{approveDate},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsClaims" >
+    update dms_claims
+    set title = #{title},
+      process_number = #{processNumber},
+      appler_date = #{applerDate},
+      appler_person = #{applerPerson},
+      claims_proportion = #{claimsProportion},
+      nature = #{nature},
+      customer_number = #{customerNumber},
+      customer_name = #{customerName},
+      office = #{office},
+      big_regional = #{bigRegional},
+      phone = #{phone},
+      deduct_amount = #{deductAmount},
+      claims_amount = #{claimsAmount},
+      arrival_date = #{arrivalDate},
+      shipping_order_no = #{shippingOrderNo},
+      claims_area = #{claimsArea},
+      signa_meaning = #{signaMeaning},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      state = #{state},
+      approve_person = #{approvePerson},
+      approve_date = #{approveDate}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="title != null and title != ''" >
+        title = #{title}
+      </if>
+      <if test="processNumber != null and processNumber != ''" >
+        AND process_number = #{processNumber}
+      </if>
+      <if test="applerDate != null" >
+        AND appler_date = #{applerDate}
+      </if>
+      <if test="applerPerson != null and applerPerson != ''" >
+        AND appler_person = #{applerPerson}
+      </if>
+      <if test="claimsProportion != null and claimsProportion != ''" >
+        AND claims_proportion = #{claimsProportion}
+      </if>
+      <if test="nature != null and nature != ''" >
+        AND nature = #{nature}
+      </if>
+      <if test="customerNumber != null" >
+        AND customer_number = #{customerNumber}
+      </if>
+      <if test="customerName != null and customerName != ''" >
+        AND customer_name = #{customerName}
+      </if>
+      <if test="office != null and office != ''" >
+        AND office = #{office}
+      </if>
+      <if test="bigRegional != null and bigRegional != ''" >
+        AND big_regional = #{bigRegional}
+      </if>
+      <if test="phone != null and phone != ''" >
+        AND phone = #{phone}
+      </if>
+      <if test="deductAmount != null and deductAmount != ''" >
+        AND deduct_amount = #{deductAmount}
+      </if>
+      <if test="claimsAmount != null and claimsAmount != ''" >
+        AND claims_amount = #{claimsAmount}
+      </if>
+      <if test="arrivalDate != null" >
+        AND arrival_date = #{arrivalDate}
+      </if>
+      <if test="shippingOrderNo != null" >
+        AND shipping_order_no = #{shippingOrderNo}
+      </if>
+      <if test="claimsArea != null and claimsArea != ''" >
+        AND claims_area = #{claimsArea}
+      </if>
+      <if test="signaMeaning != null and signaMeaning != ''" >
+        AND signa_meaning = #{signaMeaning}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="state != null" >
+        AND state = #{state}
+      </if>
+      <if test="approvePerson != null and approvePerson != ''" >
+        AND approve_person = #{approvePerson}
+      </if>
+      <if test="approveDate != null" >
+        AND approve_date = #{approveDate}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsClaims" resultMap="DmsClaimsResultMap" >
+    select 
+    <include refid="DmsClaims_Column_List" />
+    from dms_claims
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_claims
+    <set >
+      <if test="po.title != null" >
+        title = #{po.title},
+      </if>
+      <if test="po.processNumber != null" >
+        process_number = #{po.processNumber},
+      </if>
+      <if test="po.applerDate != null" >
+        appler_date = #{po.applerDate},
+      </if>
+      <if test="po.applerPerson != null" >
+        appler_person = #{po.applerPerson},
+      </if>
+      <if test="po.claimsProportion != null" >
+        claims_proportion = #{po.claimsProportion},
+      </if>
+      <if test="po.nature != null" >
+        nature = #{po.nature},
+      </if>
+      <if test="po.customerNumber != null" >
+        customer_number = #{po.customerNumber},
+      </if>
+      <if test="po.customerName != null" >
+        customer_name = #{po.customerName},
+      </if>
+      <if test="po.office != null" >
+        office = #{po.office},
+      </if>
+      <if test="po.bigRegional != null" >
+        big_regional = #{po.bigRegional},
+      </if>
+      <if test="po.phone != null" >
+        phone = #{po.phone},
+      </if>
+      <if test="po.deductAmount != null" >
+        deduct_amount = #{po.deductAmount},
+      </if>
+      <if test="po.claimsAmount != null" >
+        claims_amount = #{po.claimsAmount},
+      </if>
+      <if test="po.arrivalDate != null" >
+        arrival_date = #{po.arrivalDate},
+      </if>
+      <if test="po.shippingOrderNo != null" >
+        shipping_order_no = #{po.shippingOrderNo},
+      </if>
+      <if test="po.claimsArea != null" >
+        claims_area = #{po.claimsArea},
+      </if>
+      <if test="po.signaMeaning != null" >
+        signa_meaning = #{po.signaMeaning},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.state != null" >
+        state = #{po.state},
+      </if>
+      <if test="po.approvePerson != null" >
+        approve_person = #{po.approvePerson},
+      </if>
+      <if test="po.approveDate != null" >
+        approve_date = #{po.approveDate},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsNoticeMapper" >
+  <resultMap id="DmsNoticeResultMap" type="com.coracle.dms.po.DmsNotice" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="effective_start_date" property="effectiveStartDate" jdbcType="TIMESTAMP" />
+    <result column="effective_end_date" property="effectiveEndDate" jdbcType="TIMESTAMP" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="publish_user_id" property="publishUserId" jdbcType="BIGINT" />
+    <result column="publish_date" property="publishDate" jdbcType="TIMESTAMP" />
+    <result column="is_publish" property="isPublish" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="expand1" property="expand1" jdbcType="VARCHAR" />
+    <result column="expand2" property="expand2" jdbcType="VARCHAR" />
+    <result column="expand3" property="expand3" jdbcType="VARCHAR" />
+    <result column="expand4" property="expand4" jdbcType="VARCHAR" />
+    <result column="expand5" property="expand5" jdbcType="VARCHAR" />
+    <result column="expand6" property="expand6" jdbcType="VARCHAR" />
+    <result column="expand7" property="expand7" jdbcType="VARCHAR" />
+    <result column="expand8" property="expand8" jdbcType="VARCHAR" />
+    <result column="expand9" property="expand9" jdbcType="VARCHAR" />
+    <result column="expand10" property="expand10" jdbcType="VARCHAR" />
+    <result column="expand11" property="expand11" jdbcType="VARCHAR" />
+    <result column="expand12" property="expand12" jdbcType="VARCHAR" />
+    <result column="expand13" property="expand13" jdbcType="VARCHAR" />
+    <result column="expand14" property="expand14" jdbcType="VARCHAR" />
+    <result column="expand15" property="expand15" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsNotice_Column_List" >
+    id, title, type, effective_start_date, effective_end_date,
+    content, publish_user_id, publish_date, is_publish, created_date, created_by, last_updated_date, 
+    last_updated_by, remove_flag, expand1, expand2, expand3, expand4, expand5, expand6, 
+    expand7, expand8, expand9, expand10, expand11, expand12, expand13, expand14, expand15
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsNoticeResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsNotice_Column_List" />
+    from dms_notice
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_notice
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsNotice" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_notice (title, type, effective_start_date, effective_end_date,
+       content, publish_user_id, publish_date, is_publish,
+      created_date, created_by, last_updated_date, last_updated_by, remove_flag, 
+      expand1, expand2, expand3, expand4, expand5, expand6, expand7, 
+      expand8, expand9, expand10, expand11, expand12, expand13, expand14, 
+      expand15)
+    values (#{title}, #{type}, #{effectiveStartDate}, #{effectiveEndDate},
+       #{content}, #{publishUserId}, #{publishDate}, #{isPublish},
+      #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, 
+      #{expand1}, #{expand2}, #{expand3}, #{expand4}, #{expand5}, #{expand6}, #{expand7}, 
+      #{expand8}, #{expand9}, #{expand10}, #{expand11}, #{expand12}, #{expand13}, #{expand14}, 
+      #{expand15})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsNotice" >
+    insert into dms_notice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="effectiveStartDate != null" >
+        effective_start_date,
+      </if>
+      <if test="effectiveEndDate != null" >
+        effective_end_date,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="publishUserId != null" >
+        publish_user_id,
+      </if>
+      <if test="publishDate != null" >
+        publish_date,
+      </if>
+      <if test="isPublish != null" >
+        is_publish,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="expand1 != null" >
+        expand1,
+      </if>
+      <if test="expand2 != null" >
+        expand2,
+      </if>
+      <if test="expand3 != null" >
+        expand3,
+      </if>
+      <if test="expand4 != null" >
+        expand4,
+      </if>
+      <if test="expand5 != null" >
+        expand5,
+      </if>
+      <if test="expand6 != null" >
+        expand6,
+      </if>
+      <if test="expand7 != null" >
+        expand7,
+      </if>
+      <if test="expand8 != null" >
+        expand8,
+      </if>
+      <if test="expand9 != null" >
+        expand9,
+      </if>
+      <if test="expand10 != null" >
+        expand10,
+      </if>
+      <if test="expand11 != null" >
+        expand11,
+      </if>
+      <if test="expand12 != null" >
+        expand12,
+      </if>
+      <if test="expand13 != null" >
+        expand13,
+      </if>
+      <if test="expand14 != null" >
+        expand14,
+      </if>
+      <if test="expand15 != null" >
+        expand15,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="title != null" >
+        #{title},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      <if test="effectiveStartDate != null" >
+        #{effectiveStartDate},
+      </if>
+      <if test="effectiveEndDate != null" >
+        #{effectiveEndDate},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="publishUserId != null" >
+        #{publishUserId},
+      </if>
+      <if test="publishDate != null" >
+        #{publishDate},
+      </if>
+      <if test="isPublish != null" >
+        #{isPublish},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="expand1 != null" >
+        #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        #{expand15},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsNotice" >
+    update dms_notice
+    <set >
+      <if test="title != null" >
+        title = #{title},
+      </if>
+      <if test="type != null" >
+        type = #{type},
+      </if>
+      <if test="effectiveStartDate != null" >
+        effective_start_date = #{effectiveStartDate},
+      </if>
+      <if test="effectiveEndDate != null" >
+        effective_end_date = #{effectiveEndDate},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="publishUserId != null" >
+        publish_user_id = #{publishUserId},
+      </if>
+      <if test="publishDate != null" >
+        publish_date = #{publishDate},
+      </if>
+      <if test="isPublish != null" >
+        is_publish = #{isPublish},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="expand1 != null" >
+        expand1 = #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        expand2 = #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        expand3 = #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        expand4 = #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        expand5 = #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        expand6 = #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        expand7 = #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        expand8 = #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        expand9 = #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        expand10 = #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        expand11 = #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        expand12 = #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        expand13 = #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        expand14 = #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        expand15 = #{expand15},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsNotice" >
+    update dms_notice
+    set title = #{title},
+      type = #{type},
+      effective_start_date = #{effectiveStartDate},
+      effective_end_date = #{effectiveEndDate},
+      content = #{content},
+      publish_user_id = #{publishUserId},
+      publish_date = #{publishDate},
+      is_publish = #{isPublish},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      expand1 = #{expand1},
+      expand2 = #{expand2},
+      expand3 = #{expand3},
+      expand4 = #{expand4},
+      expand5 = #{expand5},
+      expand6 = #{expand6},
+      expand7 = #{expand7},
+      expand8 = #{expand8},
+      expand9 = #{expand9},
+      expand10 = #{expand10},
+      expand11 = #{expand11},
+      expand12 = #{expand12},
+      expand13 = #{expand13},
+      expand14 = #{expand14},
+      expand15 = #{expand15}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="title != null and title != ''" >
+        title = #{title}
+      </if>
+      <if test="type != null" >
+        AND type = #{type}
+      </if>
+      <if test="effectiveStartDate != null" >
+        AND effective_start_date = #{effectiveStartDate}
+      </if>
+      <if test="effectiveEndDate != null" >
+        AND effective_end_date = #{effectiveEndDate}
+      </if>
+      <if test="content != null and content != ''" >
+        AND content = #{content}
+      </if>
+      <if test="publishUserId != null" >
+        AND publish_user_id = #{publishUserId}
+      </if>
+      <if test="publishDate != null" >
+        AND publish_date = #{publishDate}
+      </if>
+      <if test="isPublish != null" >
+        AND is_publish = #{isPublish}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="expand1 != null and expand1 != ''" >
+        AND expand1 = #{expand1}
+      </if>
+      <if test="expand2 != null and expand2 != ''" >
+        AND expand2 = #{expand2}
+      </if>
+      <if test="expand3 != null and expand3 != ''" >
+        AND expand3 = #{expand3}
+      </if>
+      <if test="expand4 != null and expand4 != ''" >
+        AND expand4 = #{expand4}
+      </if>
+      <if test="expand5 != null and expand5 != ''" >
+        AND expand5 = #{expand5}
+      </if>
+      <if test="expand6 != null and expand6 != ''" >
+        AND expand6 = #{expand6}
+      </if>
+      <if test="expand7 != null and expand7 != ''" >
+        AND expand7 = #{expand7}
+      </if>
+      <if test="expand8 != null and expand8 != ''" >
+        AND expand8 = #{expand8}
+      </if>
+      <if test="expand9 != null and expand9 != ''" >
+        AND expand9 = #{expand9}
+      </if>
+      <if test="expand10 != null and expand10 != ''" >
+        AND expand10 = #{expand10}
+      </if>
+      <if test="expand11 != null and expand11 != ''" >
+        AND expand11 = #{expand11}
+      </if>
+      <if test="expand12 != null and expand12 != ''" >
+        AND expand12 = #{expand12}
+      </if>
+      <if test="expand13 != null and expand13 != ''" >
+        AND expand13 = #{expand13}
+      </if>
+      <if test="expand14 != null and expand14 != ''" >
+        AND expand14 = #{expand14}
+      </if>
+      <if test="expand15 != null and expand15 != ''" >
+        AND expand15 = #{expand15}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsNotice" resultMap="DmsNoticeResultMap" >
+    select 
+    <include refid="DmsNotice_Column_List" />
+    from dms_notice
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_notice
+    <set >
+      <if test="po.title != null" >
+        title = #{po.title},
+      </if>
+      <if test="po.type != null" >
+        type = #{po.type},
+      </if>
+      <if test="po.effectiveStartDate != null" >
+        effective_start_date = #{po.effectiveStartDate},
+      </if>
+      <if test="po.effectiveEndDate != null" >
+        effective_end_date = #{po.effectiveEndDate},
+      </if>
+      <if test="po.content != null" >
+        content = #{po.content},
+      </if>
+      <if test="po.publishUserId != null" >
+        publish_user_id = #{po.publishUserId},
+      </if>
+      <if test="po.publishDate != null" >
+        publish_date = #{po.publishDate},
+      </if>
+      <if test="po.isPublish != null" >
+        is_publish = #{po.isPublish},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.expand1 != null" >
+        expand1 = #{po.expand1},
+      </if>
+      <if test="po.expand2 != null" >
+        expand2 = #{po.expand2},
+      </if>
+      <if test="po.expand3 != null" >
+        expand3 = #{po.expand3},
+      </if>
+      <if test="po.expand4 != null" >
+        expand4 = #{po.expand4},
+      </if>
+      <if test="po.expand5 != null" >
+        expand5 = #{po.expand5},
+      </if>
+      <if test="po.expand6 != null" >
+        expand6 = #{po.expand6},
+      </if>
+      <if test="po.expand7 != null" >
+        expand7 = #{po.expand7},
+      </if>
+      <if test="po.expand8 != null" >
+        expand8 = #{po.expand8},
+      </if>
+      <if test="po.expand9 != null" >
+        expand9 = #{po.expand9},
+      </if>
+      <if test="po.expand10 != null" >
+        expand10 = #{po.expand10},
+      </if>
+      <if test="po.expand11 != null" >
+        expand11 = #{po.expand11},
+      </if>
+      <if test="po.expand12 != null" >
+        expand12 = #{po.expand12},
+      </if>
+      <if test="po.expand13 != null" >
+        expand13 = #{po.expand13},
+      </if>
+      <if test="po.expand14 != null" >
+        expand14 = #{po.expand14},
+      </if>
+      <if test="po.expand15 != null" >
+        expand15 = #{po.expand15},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--*****************************************************-->
+  <resultMap id="DmsNoticeVoResultMap" type="com.coracle.dms.vo.DmsNoticeVo" extends="DmsNoticeResultMap">
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="type_text" property="typeText" jdbcType="VARCHAR" />
+    <collection column="id" property="rangeList" select="getRangeIds" />
+  </resultMap>
+  <!--分页查询通知，管理查询-->
+  <select id="selectPageByCondition" parameterType="com.coracle.dms.vo.DmsNoticeVo" resultMap="DmsNoticeVoResultMap" >
+    select
+    dn.id, dn.title, dn.type, dn.effective_start_date, dn.effective_end_date,
+    dn.content, dn.publish_user_id, dn.publish_date, dn.is_publish, dn.created_date, dn.created_by, dn.last_updated_date,
+    dn.last_updated_by, dn.remove_flag, dn.expand1, dn.expand2, dn.expand3, dn.expand4, dn.expand5, dn.expand6,
+    dn.expand7, dn.expand8, dn.expand9, dn.expand10, dn.expand11, dn.expand12, dn.expand13, dn.expand14, dn.expand15,du.source,du.staff_id,
+    case du.source
+    when 1 then (select de.name from dms_employee de where de.id = du.staff_id limit 0,1)
+    when 2 then (select dcc.name from dms_channel_contacts dcc where dcc.id = du.staff_id limit 0,1)
+    when 3 then (select ds.name from dms_seller ds where du.staff_id=ds.id limit 0,1)
+    end as user_name,
+    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id
+    where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key='notice_type' and d2.s_key=dn.type limit 0,1) as type_text
+    from dms_notice dn left join dms_user du on dn.publish_user_id = du.id
+      where dn.remove_flag = 0
+      <if test="title != null and title != ''" >
+        and dn.title  like CONCAT('%',#{title},'%')
+      </if>
+      <if test="type != null and type != ''" >
+        AND dn.type = #{type}
+      </if>
+      <if test="effectiveStartDate != null" >
+        AND dn.effective_start_date = #{effectiveStartDate}
+      </if>
+      <if test="effectiveEndDate != null" >
+        AND dn.effective_end_date = #{effectiveEndDate}
+      </if>
+      <if test="content != null and content != ''" >
+        AND dn.content   like CONCAT('%',#{content},'%')
+      </if>
+      <if test="publishUserId != null" >
+        AND dn.publish_user_id = #{publishUserId}
+      </if>
+      <if test="startDate != null and startDate!=''" >
+        AND dn.publish_date &gt;= #{startDate}
+      </if>
+      <if test="endDate != null and endDate!=''" >
+        AND dn.publish_date &lt;= #{endDate}
+      </if>
+      <if test="isPublish != null" >
+        AND dn.is_publish = #{isPublish}
+      </if>
+      <if test="createdDate != null" >
+        AND dn.created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND dn.created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND dn.last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND dn.last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="expand1 != null and expand1 != ''" >
+        AND dn.expand1 = #{expand1}
+      </if>
+      <if test="expand2 != null and expand2 != ''" >
+        AND dn.expand2 = #{expand2}
+      </if>
+      <if test="expand3 != null and expand3 != ''" >
+        AND dn.expand3 = #{expand3}
+      </if>
+      <if test="expand4 != null and expand4 != ''" >
+        AND dn.expand4 = #{expand4}
+      </if>
+      <if test="expand5 != null and expand5 != ''" >
+        AND dn.expand5 = #{expand5}
+      </if>
+      <if test="expand6 != null and expand6 != ''" >
+        AND dn.expand6 = #{expand6}
+      </if>
+      <if test="expand7 != null and expand7 != ''" >
+        AND dn.expand7 = #{expand7}
+      </if>
+      <if test="expand8 != null and expand8 != ''" >
+        AND dn.expand8 = #{expand8}
+      </if>
+      <if test="expand9 != null and expand9 != ''" >
+        AND dn.expand9 = #{expand9}
+      </if>
+      <if test="expand10 != null and expand10 != ''" >
+        AND dn.expand10 = #{expand10}
+      </if>
+      <if test="expand11 != null and expand11 != ''" >
+        AND dn.expand11 = #{expand11}
+      </if>
+      <if test="expand12 != null and expand12 != ''" >
+        AND dn.expand12 = #{expand12}
+      </if>
+      <if test="expand13 != null and expand13 != ''" >
+        AND dn.expand13 = #{expand13}
+      </if>
+      <if test="expand14 != null and expand14 != ''" >
+        AND dn.expand14 = #{expand14}
+      </if>
+      <if test="expand15 != null and expand15 != ''" >
+        AND dn.expand15 = #{expand15}
+      </if>
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+
+  <select id="selectVoByPrimaryKey" resultMap="DmsNoticeVoResultMap" parameterType="java.lang.Long" >
+    select
+    dn.id, dn.title, dn.type, dn.effective_start_date, dn.effective_end_date,
+    dn.content, dn.publish_user_id, dn.publish_date, dn.is_publish, dn.created_date, dn.created_by, dn.last_updated_date,
+    dn.last_updated_by, dn.remove_flag, dn.expand1, dn.expand2, dn.expand3, dn.expand4, dn.expand5, dn.expand6,
+    dn.expand7, dn.expand8, dn.expand9, dn.expand10, dn.expand11, dn.expand12, dn.expand13, dn.expand14, dn.expand15,du.source,du.staff_id,
+    case du.source
+    when 1 then (select de.name from dms_employee de where de.id = du.staff_id limit 0,1)
+    when 2 then (select dcc.name from dms_channel_contacts dcc where dcc.id = du.staff_id limit 0,1)
+    when 3 then (select ds.name from dms_seller ds where du.staff_id=ds.id limit 0,1)
+    end as user_name
+    from dms_notice dn left join dms_user du on dn.publish_user_id = du.id
+      where dn.id = #{id}
+  </select>
+
+  <select id="getRangeIds" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select publish_range_id from dms_publish_range where related_type=2 and related_id=#{id}
+  </select>
+</mapper>

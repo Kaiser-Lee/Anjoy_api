@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsStorageOutInRecordMapper">
+  <resultMap id="DmsStorageOutInRecordResultMap" type="com.coracle.dms.po.DmsStorageOutInRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="out_org_id" jdbcType="BIGINT" property="outOrgId" />
+    <result column="in_org_id" jdbcType="BIGINT" property="inOrgId" />
+    <result column="num" jdbcType="BIGINT" property="num" />
+    <result column="out_in_type" jdbcType="INTEGER" property="outInType" />
+    <result column="assign_way" jdbcType="INTEGER" property="assignWay" />
+    <result column="storage" jdbcType="BIGINT" property="storage" />
+    <result column="storage_local" jdbcType="BIGINT" property="storageLocal" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="product_spec_id" jdbcType="BIGINT" property="productSpecId" />
+    <result column="out_in_time" jdbcType="TIMESTAMP" property="outInTime" />
+    <result column="send_no" jdbcType="VARCHAR" property="sendNo" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="created_by" jdbcType="BIGINT" property="createdBy" />
+    <result column="last_updated_date" jdbcType="TIMESTAMP" property="lastUpdatedDate" />
+    <result column="last_updated_by" jdbcType="BIGINT" property="lastUpdatedBy" />
+    <result column="remove_flag" jdbcType="INTEGER" property="removeFlag" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="spec_name" jdbcType="VARCHAR" property="specName" />
+    <result column="out_org_type" jdbcType="INTEGER" property="outOrgType" />
+    <result column="in_org_type" jdbcType="INTEGER" property="inOrgType" />
+  </resultMap>
+  <sql id="DmsStorageOutInRecord_Column_List">
+    id, out_org_id, in_org_id, num, out_in_type, assign_way, storage, storage_local, 
+    product_id, product_spec_id, out_in_time, send_no, created_date, created_by, last_updated_date, 
+    last_updated_by, remove_flag, product_name, spec_name, out_org_type, in_org_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsStorageOutInRecordResultMap">
+    select 
+    <include refid="DmsStorageOutInRecord_Column_List" />
+    from dms_storage_out_in_record
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dms_storage_out_in_record
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyProperty="id" parameterType="com.coracle.dms.po.DmsStorageOutInRecord" useGeneratedKeys="true">
+    insert into dms_storage_out_in_record (out_org_id, in_org_id, num, out_in_type, assign_way, storage, 
+      storage_local, product_id, product_spec_id, out_in_time, send_no, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag, product_name, 
+      spec_name, out_org_type, in_org_type)
+    values (#{outOrgId}, #{inOrgId}, #{num}, #{outInType}, #{assignWay}, #{storage}, 
+      #{storageLocal}, #{productId}, #{productSpecId}, #{outInTime}, #{sendNo}, #{createdDate}, 
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, #{productName}, 
+      #{specName}, #{outOrgType}, #{inOrgType})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsStorageOutInRecord">
+    insert into dms_storage_out_in_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="outOrgId != null">
+        out_org_id,
+      </if>
+      <if test="inOrgId != null">
+        in_org_id,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="outInType != null">
+        out_in_type,
+      </if>
+      <if test="assignWay != null">
+        assign_way,
+      </if>
+      <if test="storage != null">
+        storage,
+      </if>
+      <if test="storageLocal != null">
+        storage_local,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productSpecId != null">
+        product_spec_id,
+      </if>
+      <if test="outInTime != null">
+        out_in_time,
+      </if>
+      <if test="sendNo != null">
+        send_no,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null">
+        remove_flag,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="specName != null">
+        spec_name,
+      </if>
+      <if test="outOrgType != null">
+        out_org_type,
+      </if>
+      <if test="inOrgType != null">
+        in_org_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="outOrgId != null">
+        #{outOrgId},
+      </if>
+      <if test="inOrgId != null">
+        #{inOrgId},
+      </if>
+      <if test="num != null">
+        #{num},
+      </if>
+      <if test="outInType != null">
+        #{outInType},
+      </if>
+      <if test="assignWay != null">
+        #{assignWay},
+      </if>
+      <if test="storage != null">
+        #{storage},
+      </if>
+      <if test="storageLocal != null">
+        #{storageLocal},
+      </if>
+      <if test="productId != null">
+        #{productId},
+      </if>
+      <if test="productSpecId != null">
+        #{productSpecId},
+      </if>
+      <if test="outInTime != null">
+        #{outInTime},
+      </if>
+      <if test="sendNo != null">
+        #{sendNo},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null">
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null">
+        #{removeFlag},
+      </if>
+      <if test="productName != null">
+        #{productName},
+      </if>
+      <if test="specName != null">
+        #{specName},
+      </if>
+      <if test="outOrgType != null">
+        #{outOrgType},
+      </if>
+      <if test="inOrgType != null">
+        #{inOrgType},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsStorageOutInRecord">
+    update dms_storage_out_in_record
+    <set>
+      <if test="outOrgId != null">
+        out_org_id = #{outOrgId},
+      </if>
+      <if test="inOrgId != null">
+        in_org_id = #{inOrgId},
+      </if>
+      <if test="num != null">
+        num = #{num},
+      </if>
+      <if test="outInType != null">
+        out_in_type = #{outInType},
+      </if>
+      <if test="assignWay != null">
+        assign_way = #{assignWay},
+      </if>
+      <if test="storage != null">
+        storage = #{storage},
+      </if>
+      <if test="storageLocal != null">
+        storage_local = #{storageLocal},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId},
+      </if>
+      <if test="productSpecId != null">
+        product_spec_id = #{productSpecId},
+      </if>
+      <if test="outInTime != null">
+        out_in_time = #{outInTime},
+      </if>
+      <if test="sendNo != null">
+        send_no = #{sendNo},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null">
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName},
+      </if>
+      <if test="specName != null">
+        spec_name = #{specName},
+      </if>
+      <if test="outOrgType != null">
+        out_org_type = #{outOrgType},
+      </if>
+      <if test="inOrgType != null">
+        in_org_type = #{inOrgType},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsStorageOutInRecord">
+    update dms_storage_out_in_record
+    set out_org_id = #{outOrgId},
+      in_org_id = #{inOrgId},
+      num = #{num},
+      out_in_type = #{outInType},
+      assign_way = #{assignWay},
+      storage = #{storage},
+      storage_local = #{storageLocal},
+      product_id = #{productId},
+      product_spec_id = #{productSpecId},
+      out_in_time = #{outInTime},
+      send_no = #{sendNo},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      product_name = #{productName},
+      spec_name = #{specName},
+      out_org_type = #{outOrgType},
+      in_org_type = #{inOrgType}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition">
+    <where>
+      <if test="outOrgId != null">
+        out_org_id = #{outOrgId}
+      </if>
+      <if test="inOrgId != null">
+        AND in_org_id = #{inOrgId}
+      </if>
+      <if test="num != null">
+        AND num = #{num}
+      </if>
+      <if test="outInType != null">
+        AND out_in_type = #{outInType}
+      </if>
+      <if test="assignWay != null">
+        AND assign_way = #{assignWay}
+      </if>
+      <if test="storage != null">
+        AND storage = #{storage}
+      </if>
+      <if test="storageLocal != null">
+        AND storage_local = #{storageLocal}
+      </if>
+      <if test="productId != null">
+        AND product_id = #{productId}
+      </if>
+      <if test="productSpecId != null">
+        AND product_spec_id = #{productSpecId}
+      </if>
+      <if test="outInTime != null">
+        AND out_in_time = #{outInTime}
+      </if>
+      <if test="sendNo != null and sendNo != ''">
+        AND send_no = #{sendNo}
+      </if>
+      <if test="createdDate != null">
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null">
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null">
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null">
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null">
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="productName != null and productName != ''">
+        AND product_name = #{productName}
+      </if>
+      <if test="specName != null and specName != ''">
+        AND spec_name = #{specName}
+      </if>
+      <if test="outOrgType != null">
+        AND out_org_type = #{outOrgType}
+      </if>
+      <if test="inOrgType != null">
+        AND in_org_type = #{inOrgType}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsStorageOutInRecord" resultMap="DmsStorageOutInRecordResultMap">
+    select 
+    <include refid="DmsStorageOutInRecord_Column_List" />
+    from dms_storage_out_in_record
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''">
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''">
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective">
+    update dms_storage_out_in_record
+    <set>
+      <if test="po.outOrgId != null">
+        out_org_id = #{po.outOrgId},
+      </if>
+      <if test="po.inOrgId != null">
+        in_org_id = #{po.inOrgId},
+      </if>
+      <if test="po.num != null">
+        num = #{po.num},
+      </if>
+      <if test="po.outInType != null">
+        out_in_type = #{po.outInType},
+      </if>
+      <if test="po.assignWay != null">
+        assign_way = #{po.assignWay},
+      </if>
+      <if test="po.storage != null">
+        storage = #{po.storage},
+      </if>
+      <if test="po.storageLocal != null">
+        storage_local = #{po.storageLocal},
+      </if>
+      <if test="po.productId != null">
+        product_id = #{po.productId},
+      </if>
+      <if test="po.productSpecId != null">
+        product_spec_id = #{po.productSpecId},
+      </if>
+      <if test="po.outInTime != null">
+        out_in_time = #{po.outInTime},
+      </if>
+      <if test="po.sendNo != null">
+        send_no = #{po.sendNo},
+      </if>
+      <if test="po.createdDate != null">
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null">
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null">
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null">
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null">
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.productName != null">
+        product_name = #{po.productName},
+      </if>
+      <if test="po.specName != null">
+        spec_name = #{po.specName},
+      </if>
+      <if test="po.outOrgType != null">
+        out_org_type = #{po.outOrgType},
+      </if>
+      <if test="po.inOrgType != null">
+        in_org_type = #{po.inOrgType},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size &gt; 0">
+      <foreach close=")" collection="ids" item="listItem" open="or id in(" separator=",">
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++Parting line : new sql here++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <resultMap extends="DmsStorageOutInRecordResultMap" id="DmsStorageOutInRecordVoResultMap" type="com.coracle.dms.vo.DmsStorageOutInRecordVo">
+    <result column="unitText" jdbcType="VARCHAR" property="unitText" />
+    <result column="localCode" jdbcType="VARCHAR" property="localCode" />
+    <result column="categoryText" jdbcType="VARCHAR" property="categoryText" />
+    <result column="productCode" jdbcType="VARCHAR" property="productCode" />
+    <result column="storageName" jdbcType="VARCHAR" property="storageName" />
+    <result column="filePreviewPath" jdbcType="VARCHAR" property="filePreviewPath" />
+    <result column="assignWayText" jdbcType="VARCHAR" property="assignWayText" />
+    <!--<result column="productName" jdbcType="VARCHAR" property="productName" />
+    <result column="specName" jdbcType="VARCHAR" property="specName" />-->
+  </resultMap>
+
+  <!--pc端-->
+  <select id="findStorageOutInRecordPageList" parameterType="com.coracle.dms.vo.DmsStorageOutInRecordVo" resultMap="DmsStorageOutInRecordVoResultMap">
+    SELECT
+    soi.id, soi.out_org_id outOrgId, soi.in_org_id inOrgId, soi.num, soi.out_in_type outInType, soi.assign_way assignWay,
+    soi.storage, soi.storage_local storageLocal,soi.product_id productId, soi.product_spec_id productSpecId,soi.out_in_time outInTime, soi.send_no sendNo,
+    soi.product_name productName,soi.spec_name specName,soi.out_org_type outOrgType,soi.in_org_type inOrgType,
+    soi.created_date createdDate, soi.created_by createdBy, soi.last_updated_date lastUpdatedDate, soi.last_updated_by lastUpdatedBy,soi.remove_flag removeFlag,
+    ds.name storageName,sl.code localCode,p.code productCode,ddd.name unitText,pc.name categoryText,ddd1.`name` assignWayText
+    FROM
+    dms_storage_out_in_record soi
+    LEFT JOIN dms_product p on soi.product_id=p.id
+    LEFT JOIN dms_product_category pc on p.category_id=pc.id
+    LEFT JOIN dms_storage_local sl on sl.id=soi.storage_local
+    LEFT JOIN dms_storage ds on ds.id=soi.`storage`
+    LEFT JOIN dms_product_spec_matrix_config smc on soi.product_spec_id=smc.id
+    LEFT JOIN dms_data_dictionary dd on dd.s_key='product_unit' LEFT JOIN dms_data_dictionary_dependent ddd on dd.id=ddd.dictionary_id and ddd.s_key=p.unit
+    LEFT JOIN dms_data_dictionary dd1 on dd1.s_key='entry_type' LEFT JOIN dms_data_dictionary_dependent ddd1 on dd1.id=ddd1.dictionary_id and ddd1.s_key=soi.assign_way
+    where soi.remove_flag=0
+    <choose>
+      <!-- 查询品牌商产品库存 -->
+      <when test="orgType != null and orgType == 1">
+        and ds.org_id = #{orgId} and ds.storage_type = 1
+      </when>
+      <!-- 查询渠道商产品库存 -->
+      <when test="orgType != null and orgType == 2">
+        and ds.org_id = #{orgId}
+        and (
+          (ds.storage_type = 2 and ds.relation_id = #{channelId})
+          <if test="storeIdList != null and storeIdList.size > 0">
+          or
+          (
+            ds.storage_type = 3 and ds.relation_id in
+            <foreach collection="storeIdList" item="item" open="(" separator="," close=")">
+              #{item}
+            </foreach>
+          )
+          </if>
+        )
+      </when>
+    </choose>
+    <if test="assignWay!=null">
+      and soi.assign_way =#{assignWay}
+    </if>
+    <if test="storageName!=null and storageName!=''">
+      and ds.`name` like concat('%',#{storageName},'%')
+    </if>
+    <if test="categoryId!=null">
+      and pc.id IN (SELECT id from dms_product_category where find_in_set(#{categoryId},path))
+    </if>
+    <if test="productName!=null and productName!=''">
+      and p.`name` like concat('%',#{productName},'%')
+    </if>
+    <if test="startDate != null and startDate != ''">
+      and soi.created_date &gt;= #{startDate}
+    </if>
+    <if test="endDate != null and endDate != ''">
+      and soi.created_date &lt;= #{endDate}
+    </if>
+    order by soi.id desc
+  </select>
+
+  <!--pc端 根据ids选择性导出sql  暂时空着-->
+  <select id="findStorageOutInRecordByIds" parameterType="java.util.List" resultMap="DmsStorageOutInRecordVoResultMap">
+
+  </select>
+
+  <!--app端-->
+  <select id="findStorageOutInRecordList" parameterType="com.coracle.dms.vo.DmsStorageOutInRecordVo" resultMap="DmsStorageOutInRecordVoResultMap">
+    SELECT s.out_org_id outOrgId,s.in_org_id inOrgId,s.product_id productId,s.num,s.product_name productName,s.spec_name specName,s.assign_way assignWay,
+    ddd.`name` assignWayText,caf.file_preview_path filePreviewPath,s.created_date createdDate,s.out_org_type outOrgType,s.in_org_type inOrgType
+    from dms_storage_out_in_record s
+    RIGHT JOIN dms_product p ON s.product_id=p.id
+    LEFT JOIN dms_common_attach_file caf on p.pic_Id=caf.id
+    LEFT JOIN dms_data_dictionary dd on dd.s_key='entry_type' LEFT JOIN dms_data_dictionary_dependent ddd on dd.id=ddd.dictionary_id and ddd.s_key=s.assign_way
+    where s.product_id=p.id and s.remove_flag=0
+    <if test="productId!=null">
+      and s.product_id = #{productId}
+    </if>
+    <if test="outOrgId!=null">
+      and s.out_org_id = #{outOrgId}
+    </if>
+    <if test="inOrgId!=null">
+      and s.in_org_id = #{inOrgId}
+    </if>
+    <if test="assignWay!=null">
+      and s.assign_way = #{assignWay}
+    </if>
+    <if test="outInType!=null">
+      and s.out_in_type = #{outInType}
+    </if>
+    <if test="startDate != null and startDate != ''">
+      and s.created_date &gt;= #{startDate}
+    </if>
+    <if test="endDate != null and endDate != ''">
+      and s.created_date &lt;= #{endDate}
+    </if>
+    <!-- 前端控制了一个月
+    and  DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= s.created_date-->
+    order by s.id desc
+  </select>
+
+  <!--app端-->
+  <select id="findStorageOutInRecordListNum" parameterType="com.coracle.dms.vo.DmsStorageOutInRecordVo" resultType="java.lang.Integer">
+    SELECT IFNULL(SUM(s.num),0) totalNum
+    from dms_storage_out_in_record s
+    RIGHT JOIN dms_product p ON s.product_id=p.id
+    LEFT JOIN dms_common_attach_file caf on p.pic_Id=caf.id
+    LEFT JOIN dms_data_dictionary dd on dd.s_key='entry_type' LEFT JOIN dms_data_dictionary_dependent ddd on dd.id=ddd.dictionary_id and ddd.s_key=s.assign_way
+    where s.product_id=p.id and s.remove_flag=0
+    <if test="productId!=null">
+      and s.product_id = #{productId}
+    </if>
+    <if test="outOrgId!=null">
+      and s.out_org_id = #{outOrgId}
+    </if>
+    <if test="inOrgId!=null">
+      and s.in_org_id = #{inOrgId}
+    </if>
+    <if test="assignWay!=null">
+      and s.assign_way = #{assignWay}
+    </if>
+    <if test="outInType!=null">
+      and s.out_in_type = #{outInType}
+    </if>
+    <if test="startDate != null and startDate != ''">
+      and s.created_date &gt;= #{startDate}
+    </if>
+    <if test="endDate != null and endDate != ''">
+      and s.created_date &lt;= #{endDate}
+    </if>
+    <!-- 前端控制了一个月
+    and  DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= s.created_date-->
+    order by s.id desc
+  </select>
+
+  <select id="getDetails" parameterType="com.coracle.dms.po.DmsStorageOutInRecord" resultMap="DmsStorageOutInRecordResultMap">
+    SELECT
+    <include refid="DmsStorageOutInRecord_Column_List" />
+    FROM
+    dms_storage_out_in_record where id = #{id} and remove_flag=0
+  </select>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_storage_out_in_record (out_org_id, in_org_id, num, out_in_type, assign_way,
+    storage, storage_local,product_id, product_spec_id,
+    out_in_time, send_no, created_date, created_by, last_updated_date,
+    last_updated_by, remove_flag,product_name,spec_name,out_org_type,in_org_type)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.outOrgId}, #{item.inOrgId}, #{item.num}, #{item.outInType}, #{item.assignWay},
+      #{item.storage},#{item.storageLocal},#{item.productId},#{item.productSpecId},
+      #{item.outInTime},#{item.sendNo}, #{item.createdDate},#{item.createdBy},#{item.lastUpdatedDate},
+      #{item.lastUpdatedBy}, #{item.removeFlag},#{item.productName},#{item.specName},#{item.outOrgType},#{item.inOrgType})
+    </foreach>
+  </insert>
+</mapper>

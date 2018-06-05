@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsPublishRrangeMapper" >
+  <resultMap id="DmsPublishRrangeResultMap" type="com.coracle.dms.po.DmsPublishRrange" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="related_type" property="relatedType" jdbcType="INTEGER" />
+    <result column="related_id" property="relatedId" jdbcType="BIGINT" />
+    <result column="publish_range_id" property="publishRangeId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsPublishRrange_Column_List" >
+    id, related_type, related_id, publish_range_id, created_date, created_by, last_updated_date, 
+    last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsPublishRrangeResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsPublishRrange_Column_List" />
+    from dms_publish_range
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_publish_range
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsPublishRrange" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_publish_range (related_type, related_id, publish_range_id, created_date, created_by, 
+      last_updated_date, last_updated_by, remove_flag)
+    values (#{relatedType}, #{relatedId}, #{publishRangeId}, #{createdDate}, #{createdBy}, 
+      #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsPublishRrange" >
+    insert into dms_publish_range
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="relatedType != null" >
+        related_type,
+      </if>
+      <if test="relatedId != null" >
+        related_id,
+      </if>
+      <if test="publishRangeId != null" >
+        publish_range_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="relatedType != null" >
+        #{relatedType},
+      </if>
+      <if test="relatedId != null" >
+        #{relatedId},
+      </if>
+      <if test="publishRangeId != null" >
+        #{publishRangeId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsPublishRrange" >
+    update dms_publish_range
+    <set >
+      <if test="relatedType != null" >
+        related_type = #{relatedType},
+      </if>
+      <if test="relatedId != null" >
+        related_id = #{relatedId},
+      </if>
+      <if test="publishRangeId != null" >
+        publish_range_id = #{publishRangeId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsPublishRrange" >
+    update dms_publish_range
+    set related_type = #{relatedType},
+      related_id = #{relatedId},
+      publish_range_id = #{publishRangeId},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="relatedType != null" >
+        related_type = #{relatedType}
+      </if>
+      <if test="relatedId != null" >
+        AND related_id = #{relatedId}
+      </if>
+      <if test="publishRangeId != null" >
+        AND publish_range_id = #{publishRangeId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsPublishRrange" resultMap="DmsPublishRrangeResultMap" >
+    select 
+    <include refid="DmsPublishRrange_Column_List" />
+    from dms_publish_range
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_publish_range
+    <set >
+      <if test="po.relatedType != null" >
+        related_type = #{po.relatedType},
+      </if>
+      <if test="po.relatedId != null" >
+        related_id = #{po.relatedId},
+      </if>
+      <if test="po.publishRangeId != null" >
+        publish_range_id = #{po.publishRangeId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--******************************************-->
+  <resultMap id="DmsChannelInformationResultMap" type="com.coracle.dms.po.DmsChannelInformation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="publish_user_id" property="publishUserId" jdbcType="BIGINT" />
+    <result column="is_comment" property="isComment" jdbcType="INTEGER" />
+    <result column="is_publish" property="isPublish" jdbcType="INTEGER" />
+    <result column="publish_date" property="publishDate" jdbcType="TIMESTAMP" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="click_count" property="clickCount" jdbcType="BIGINT" />
+    <result column="comment_count" property="commentCount" jdbcType="BIGINT" />
+    <result column="forward_count" property="forwardCount" jdbcType="BIGINT" />
+    <result column="is_show" property="isShow" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="is_can_forward" property="isCanForward" jdbcType="INTEGER" />
+  </resultMap>
+  <!--批量添加发布范围-->
+  <insert id="batchInsert" parameterType="java.util.List" >
+    insert into dms_publish_range (related_type, related_id, publish_range_id, created_date, created_by,
+    last_updated_date, last_updated_by, remove_flag) values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.relatedType}, #{item.relatedId}, #{item.publishRangeId}, #{item.createdDate}, #{item.createdBy},
+      #{item.lastUpdatedDate}, #{item.lastUpdatedBy}, #{item.removeFlag})
+    </foreach>
+  </insert>
+
+  <update id="deleteByRelatedInfo" parameterType="com.coracle.dms.po.DmsPublishRrange">
+    delete from dms_publish_range where related_type=#{relatedType} and related_id=#{relatedId}
+  </update>
+
+<!--依据发布范围ID，获取名字-->
+  <select id="getPublishRangeNameIds" parameterType="java.util.List" resultType="java.util.Map">
+    select id,name from dms_tree_relation where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsExceptionClaimsMapper" >
+  <resultMap id="DmsExceptionClaimsResultMap" type="com.coracle.dms.po.DmsExceptionClaims" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="topic" property="topic" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="idea" property="idea" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="approve_person" property="approvePerson" jdbcType="VARCHAR" />
+    <result column="approve_date" property="approveDate" jdbcType="TIMESTAMP" />
+    <result column="approve_idea" property="approveIdea" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsExceptionClaims_Column_List" >
+    id, title, keyword, area, topic, content, state, idea, created_date, created_by, 
+    last_updated_date, last_updated_by, remove_flag, approve_person, approve_date, approve_idea
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsExceptionClaimsResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsExceptionClaims_Column_List" />
+    from dms_exception_claims
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_exception_claims
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsExceptionClaims" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_exception_claims (title, keyword, area, topic, content, state, idea, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag, approve_person, 
+      approve_date, approve_idea)
+    values (#{title}, #{keyword}, #{area}, #{topic}, #{content}, #{state}, #{idea}, #{createdDate}, 
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, #{approvePerson}, 
+      #{approveDate}, #{approveIdea})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsExceptionClaims" >
+    insert into dms_exception_claims
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="topic != null" >
+        topic,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="idea != null" >
+        idea,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="approvePerson != null" >
+        approve_person,
+      </if>
+      <if test="approveDate != null" >
+        approve_date,
+      </if>
+      <if test="approveIdea != null" >
+        approve_idea,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="title != null" >
+        #{title},
+      </if>
+      <if test="keyword != null" >
+        #{keyword},
+      </if>
+      <if test="area != null" >
+        #{area},
+      </if>
+      <if test="topic != null" >
+        #{topic},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="state != null" >
+        #{state},
+      </if>
+      <if test="idea != null" >
+        #{idea},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="approvePerson != null" >
+        #{approvePerson},
+      </if>
+      <if test="approveDate != null" >
+        #{approveDate},
+      </if>
+      <if test="approveIdea != null" >
+        #{approveIdea},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsExceptionClaims" >
+    update dms_exception_claims
+    <set >
+      <if test="title != null" >
+        title = #{title},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword},
+      </if>
+      <if test="area != null" >
+        area = #{area},
+      </if>
+      <if test="topic != null" >
+        topic = #{topic},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="state != null" >
+        state = #{state},
+      </if>
+      <if test="idea != null" >
+        idea = #{idea},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="approvePerson != null" >
+        approve_person = #{approvePerson},
+      </if>
+      <if test="approveDate != null" >
+        approve_date = #{approveDate},
+      </if>
+      <if test="approveIdea != null" >
+        approve_idea = #{approveIdea},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsExceptionClaims" >
+    update dms_exception_claims
+    set title = #{title},
+      keyword = #{keyword},
+      area = #{area},
+      topic = #{topic},
+      content = #{content},
+      state = #{state},
+      idea = #{idea},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      approve_person = #{approvePerson},
+      approve_date = #{approveDate},
+      approve_idea = #{approveIdea}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="title != null and title != ''" >
+        title = #{title}
+      </if>
+      <if test="keyword != null and keyword != ''" >
+        AND keyword = #{keyword}
+      </if>
+      <if test="area != null and area != ''" >
+        AND area = #{area}
+      </if>
+      <if test="topic != null and topic != ''" >
+        AND topic = #{topic}
+      </if>
+      <if test="content != null and content != ''" >
+        AND content = #{content}
+      </if>
+      <if test="state != null and state != ''" >
+        AND state = #{state}
+      </if>
+      <if test="idea != null and idea != ''" >
+        AND idea = #{idea}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="approvePerson != null and approvePerson != ''" >
+        AND approve_person = #{approvePerson}
+      </if>
+      <if test="approveDate != null" >
+        AND approve_date = #{approveDate}
+      </if>
+      <if test="approveIdea != null and approveIdea != ''" >
+        AND approve_idea = #{approveIdea}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsExceptionClaims" resultMap="DmsExceptionClaimsResultMap" >
+    select 
+    <include refid="DmsExceptionClaims_Column_List" />
+    from dms_exception_claims
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_exception_claims
+    <set >
+      <if test="po.title != null" >
+        title = #{po.title},
+      </if>
+      <if test="po.keyword != null" >
+        keyword = #{po.keyword},
+      </if>
+      <if test="po.area != null" >
+        area = #{po.area},
+      </if>
+      <if test="po.topic != null" >
+        topic = #{po.topic},
+      </if>
+      <if test="po.content != null" >
+        content = #{po.content},
+      </if>
+      <if test="po.state != null" >
+        state = #{po.state},
+      </if>
+      <if test="po.idea != null" >
+        idea = #{po.idea},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.approvePerson != null" >
+        approve_person = #{po.approvePerson},
+      </if>
+      <if test="po.approveDate != null" >
+        approve_date = #{po.approveDate},
+      </if>
+      <if test="po.approveIdea != null" >
+        approve_idea = #{po.approveIdea},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

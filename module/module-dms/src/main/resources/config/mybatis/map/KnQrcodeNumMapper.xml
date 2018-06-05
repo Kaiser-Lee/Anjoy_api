@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.KnQrcodeNumMapper" >
+  <resultMap id="KnQrcodeNumResultMap" type="com.coracle.dms.po.KnQrcodeNum" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="login_status" property="loginStatus" jdbcType="BIT" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="app_key" property="appKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="KnQrcodeNum_Column_List" >
+    id, create_time, login_status, login_name, app_key
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="KnQrcodeNumResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="KnQrcodeNum_Column_List" />
+    from kn_qrcode_num
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kn_qrcode_num
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.KnQrcodeNum" useGeneratedKeys="true" keyProperty="id" >
+    insert into kn_qrcode_num (create_time, login_status, login_name, app_key)
+    values (#{createTime}, #{loginStatus}, #{loginName}, #{appKey})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.KnQrcodeNum" >
+    insert into kn_qrcode_num
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="loginStatus != null" >
+        login_status,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="appKey != null" >
+        app_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="loginStatus != null" >
+        #{loginStatus},
+      </if>
+      <if test="loginName != null" >
+        #{loginName},
+      </if>
+      <if test="appKey != null" >
+        #{appKey},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.KnQrcodeNum" >
+    update kn_qrcode_num
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="loginStatus != null" >
+        login_status = #{loginStatus},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName},
+      </if>
+      <if test="appKey != null" >
+        app_key = #{appKey},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.KnQrcodeNum" >
+    update kn_qrcode_num
+    set create_time = #{createTime},
+      login_status = #{loginStatus},
+      login_name = #{loginName},
+      app_key = #{appKey}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="createTime != null" >
+        create_time = #{createTime}
+      </if>
+      <if test="loginStatus != null" >
+        AND login_status = #{loginStatus}
+      </if>
+      <if test="loginName != null and loginName != ''" >
+        AND login_name = #{loginName}
+      </if>
+      <if test="appKey != null and appKey != ''" >
+        AND app_key = #{appKey}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.KnQrcodeNum" resultMap="KnQrcodeNumResultMap" >
+    select 
+    <include refid="KnQrcodeNum_Column_List" />
+    from kn_qrcode_num
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update kn_qrcode_num
+    <set >
+      <if test="po.createTime != null" >
+        create_time = #{po.createTime},
+      </if>
+      <if test="po.loginStatus != null" >
+        login_status = #{po.loginStatus},
+      </if>
+      <if test="po.loginName != null" >
+        login_name = #{po.loginName},
+      </if>
+      <if test="po.appKey != null" >
+        app_key = #{po.appKey},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

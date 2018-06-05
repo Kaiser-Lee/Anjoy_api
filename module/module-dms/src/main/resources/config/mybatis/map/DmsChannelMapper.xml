@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsChannelMapper" >
+  <resultMap id="DmsChannelResultMap" type="com.coracle.dms.po.DmsChannel" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="short_name" property="shortName" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="rank" property="rank" jdbcType="VARCHAR" />
+    <result column="channel_type" property="channelType" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="contacts_mobile" property="contactsMobile" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="employee_id" property="employeeId" jdbcType="BIGINT" />
+    <result column="compny_phone" property="compnyPhone" jdbcType="VARCHAR" />
+    <result column="company_fax" property="companyFax" jdbcType="VARCHAR" />
+    <result column="employee_num" property="employeeNum" jdbcType="BIGINT" />
+    <result column="company_website" property="companyWebsite" jdbcType="VARCHAR" />
+    <result column="company_ceo" property="companyCeo" jdbcType="VARCHAR" />
+    <result column="company_income" property="companyIncome" jdbcType="DECIMAL" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="postage_free_price" property="postageFreePrice" jdbcType="DECIMAL" />
+    <result column="eas_num" property="easNum" jdbcType="VARCHAR" />
+    <result column="logistics_num" property="logisticsNum" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="credit_limit" property="creditLimit" jdbcType="INTEGER" />
+    <result column="account_limit" property="accountLimit" jdbcType="BIGINT" />
+    <result column="invoice_type" property="invoiceType" jdbcType="VARCHAR" />
+    <result column="invoice_head" property="invoiceHead" jdbcType="VARCHAR" />
+    <result column="tax_num" property="taxNum" jdbcType="VARCHAR" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="bank_num" property="bankNum" jdbcType="VARCHAR" />
+    <result column="min_order_quantity" property="minOrderQuantity" jdbcType="BIGINT" />
+    <result column="anjoy_id" property="anjoyId" jdbcType="VARCHAR" />
+    <result column="anjoy_parent_id" property="anjoyParentId" jdbcType="VARCHAR" />
+    <result column="anjoy_cfbibscid_id" property="anjoyCfbibscidId" jdbcType="VARCHAR" />
+    <result column="anjoy_sale_org_id" property="anjoySaleOrgId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsChannel_Column_List" >
+    id, name, code, short_name, parent_id, rank, channel_type, contacts, contacts_mobile,
+    province, city, county, address, area_id, employee_id, compny_phone, company_fax,
+    employee_num, company_website, company_ceo, company_income, created_date, created_by,
+    last_updated_date, last_updated_by, remove_flag, postage_free_price, eas_num, logistics_num,
+    active, credit_limit, account_limit, invoice_type, invoice_head, tax_num, bank, bank_num,
+    min_order_quantity, anjoy_id, anjoy_parent_id, anjoy_cfbibscid_id, anjoy_sale_org_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsChannelResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsChannel_Column_List" />
+    from dms_channel
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_channel
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsChannel" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_channel (name, code, short_name, parent_id, rank, channel_type, contacts,
+      contacts_mobile, province, city, county, address, area_id, employee_id,
+      compny_phone, company_fax, employee_num, company_website, company_ceo,
+      company_income, created_date, created_by, last_updated_date, last_updated_by,
+      remove_flag, postage_free_price, eas_num, logistics_num, active, credit_limit,
+      account_limit, invoice_type, invoice_head, tax_num, bank, bank_num,
+      min_order_quantity, anjoy_id, anjoy_parent_id, anjoy_cfbibscid_id, anjoy_sale_org_id)
+    values (#{name}, #{code}, #{shortName}, #{parentId}, #{rank}, #{channelType}, #{contacts},
+      #{contactsMobile}, #{province}, #{city}, #{county}, #{address}, #{areaId}, #{employeeId},
+      #{compnyPhone}, #{companyFax}, #{employeeNum}, #{companyWebsite}, #{companyCeo},
+      #{companyIncome}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy},
+      #{removeFlag}, #{postageFreePrice}, #{easNum}, #{logisticsNum}, #{active}, #{creditLimit},
+      #{accountLimit}, #{invoiceType}, #{invoiceHead}, #{taxNum}, #{bank}, #{bankNum},
+      #{minOrderQuantity}, #{anjoyId}, #{anjoyParentId}, #{anjoyCfbibscidId}, #{anjoySaleOrgId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsChannel" >
+    insert into dms_channel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="shortName != null" >
+        short_name,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="rank != null" >
+        rank,
+      </if>
+      <if test="channelType != null" >
+        channel_type,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="contactsMobile != null" >
+        contacts_mobile,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="employeeId != null" >
+        employee_id,
+      </if>
+      <if test="compnyPhone != null" >
+        compny_phone,
+      </if>
+      <if test="companyFax != null" >
+        company_fax,
+      </if>
+      <if test="employeeNum != null" >
+        employee_num,
+      </if>
+      <if test="companyWebsite != null" >
+        company_website,
+      </if>
+      <if test="companyCeo != null" >
+        company_ceo,
+      </if>
+      <if test="companyIncome != null" >
+        company_income,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="postageFreePrice != null" >
+        postage_free_price,
+      </if>
+      <if test="easNum != null" >
+        eas_num,
+      </if>
+      <if test="logisticsNum != null" >
+        logistics_num,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="creditLimit != null" >
+        credit_limit,
+      </if>
+      <if test="accountLimit != null" >
+        account_limit,
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type,
+      </if>
+      <if test="invoiceHead != null" >
+        invoice_head,
+      </if>
+      <if test="taxNum != null" >
+        tax_num,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="bankNum != null" >
+        bank_num,
+      </if>
+      <if test="minOrderQuantity != null" >
+        min_order_quantity,
+      </if>
+      <if test="anjoyId != null" >
+        anjoy_id,
+      </if>
+      <if test="anjoyParentId != null" >
+        anjoy_parent_id,
+      </if>
+      <if test="anjoyCfbibscidId != null" >
+        anjoy_cfbibscid_id,
+      </if>
+      <if test="anjoySaleOrgId != null" >
+        anjoy_sale_org_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="shortName != null" >
+        #{shortName},
+      </if>
+      <if test="parentId != null" >
+        #{parentId},
+      </if>
+      <if test="rank != null" >
+        #{rank},
+      </if>
+      <if test="channelType != null" >
+        #{channelType},
+      </if>
+      <if test="contacts != null" >
+        #{contacts},
+      </if>
+      <if test="contactsMobile != null" >
+        #{contactsMobile},
+      </if>
+      <if test="province != null" >
+        #{province},
+      </if>
+      <if test="city != null" >
+        #{city},
+      </if>
+      <if test="county != null" >
+        #{county},
+      </if>
+      <if test="address != null" >
+        #{address},
+      </if>
+      <if test="areaId != null" >
+        #{areaId},
+      </if>
+      <if test="employeeId != null" >
+        #{employeeId},
+      </if>
+      <if test="compnyPhone != null" >
+        #{compnyPhone},
+      </if>
+      <if test="companyFax != null" >
+        #{companyFax},
+      </if>
+      <if test="employeeNum != null" >
+        #{employeeNum},
+      </if>
+      <if test="companyWebsite != null" >
+        #{companyWebsite},
+      </if>
+      <if test="companyCeo != null" >
+        #{companyCeo},
+      </if>
+      <if test="companyIncome != null" >
+        #{companyIncome},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="postageFreePrice != null" >
+        #{postageFreePrice},
+      </if>
+      <if test="easNum != null" >
+        #{easNum},
+      </if>
+      <if test="logisticsNum != null" >
+        #{logisticsNum},
+      </if>
+      <if test="active != null" >
+        #{active},
+      </if>
+      <if test="creditLimit != null" >
+        #{creditLimit},
+      </if>
+      <if test="accountLimit != null" >
+        #{accountLimit},
+      </if>
+      <if test="invoiceType != null" >
+        #{invoiceType},
+      </if>
+      <if test="invoiceHead != null" >
+        #{invoiceHead},
+      </if>
+      <if test="taxNum != null" >
+        #{taxNum},
+      </if>
+      <if test="bank != null" >
+        #{bank},
+      </if>
+      <if test="bankNum != null" >
+        #{bankNum},
+      </if>
+      <if test="minOrderQuantity != null" >
+        #{minOrderQuantity},
+      </if>
+      <if test="anjoyId != null" >
+        #{anjoyId},
+      </if>
+      <if test="anjoyParentId != null" >
+        #{anjoyParentId},
+      </if>
+      <if test="anjoyCfbibscidId != null" >
+        #{anjoyCfbibscidId},
+      </if>
+      <if test="anjoySaleOrgId != null" >
+        #{anjoySaleOrgId},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsChannel" >
+    update dms_channel
+    <set >
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="shortName != null" >
+        short_name = #{shortName},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank},
+      </if>
+      <if test="channelType != null" >
+        channel_type = #{channelType},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts},
+      </if>
+      <if test="contactsMobile != null" >
+        contacts_mobile = #{contactsMobile},
+      </if>
+      <if test="province != null" >
+        province = #{province},
+      </if>
+      <if test="city != null" >
+        city = #{city},
+      </if>
+      <if test="county != null" >
+        county = #{county},
+      </if>
+      <if test="address != null" >
+        address = #{address},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId},
+      </if>
+      <if test="employeeId != null" >
+        employee_id = #{employeeId},
+      </if>
+      <if test="compnyPhone != null" >
+        compny_phone = #{compnyPhone},
+      </if>
+      <if test="companyFax != null" >
+        company_fax = #{companyFax},
+      </if>
+      <if test="employeeNum != null" >
+        employee_num = #{employeeNum},
+      </if>
+      <if test="companyWebsite != null" >
+        company_website = #{companyWebsite},
+      </if>
+      <if test="companyCeo != null" >
+        company_ceo = #{companyCeo},
+      </if>
+      <if test="companyIncome != null" >
+        company_income = #{companyIncome},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="postageFreePrice != null" >
+        postage_free_price = #{postageFreePrice},
+      </if>
+      <if test="easNum != null" >
+        eas_num = #{easNum},
+      </if>
+      <if test="logisticsNum != null" >
+        logistics_num = #{logisticsNum},
+      </if>
+      <if test="active != null" >
+        active = #{active},
+      </if>
+      <if test="creditLimit != null" >
+        credit_limit = #{creditLimit},
+      </if>
+      <if test="accountLimit != null" >
+        account_limit = #{accountLimit},
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type = #{invoiceType},
+      </if>
+      <if test="invoiceHead != null" >
+        invoice_head = #{invoiceHead},
+      </if>
+      <if test="taxNum != null" >
+        tax_num = #{taxNum},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank},
+      </if>
+      <if test="bankNum != null" >
+        bank_num = #{bankNum},
+      </if>
+      <if test="minOrderQuantity != null" >
+        min_order_quantity = #{minOrderQuantity},
+      </if>
+      <if test="anjoyId != null" >
+        anjoy_id = #{anjoyId},
+      </if>
+      <if test="anjoyParentId != null" >
+        anjoy_parent_id = #{anjoyParentId},
+      </if>
+      <if test="anjoyCfbibscidId != null" >
+        anjoy_cfbibscid_id = #{anjoyCfbibscidId},
+      </if>
+      <if test="anjoySaleOrgId != null" >
+        anjoy_sale_org_id = #{anjoySaleOrgId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsChannel" >
+    update dms_channel
+    set name = #{name},
+      code = #{code},
+      short_name = #{shortName},
+      parent_id = #{parentId},
+      rank = #{rank},
+      channel_type = #{channelType},
+      contacts = #{contacts},
+      contacts_mobile = #{contactsMobile},
+      province = #{province},
+      city = #{city},
+      county = #{county},
+      address = #{address},
+      area_id = #{areaId},
+      employee_id = #{employeeId},
+      compny_phone = #{compnyPhone},
+      company_fax = #{companyFax},
+      employee_num = #{employeeNum},
+      company_website = #{companyWebsite},
+      company_ceo = #{companyCeo},
+      company_income = #{companyIncome},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      postage_free_price = #{postageFreePrice},
+      eas_num = #{easNum},
+      logistics_num = #{logisticsNum},
+      active = #{active},
+      credit_limit = #{creditLimit},
+      account_limit = #{accountLimit},
+      invoice_type = #{invoiceType},
+      invoice_head = #{invoiceHead},
+      tax_num = #{taxNum},
+      bank = #{bank},
+      bank_num = #{bankNum},
+      min_order_quantity = #{minOrderQuantity},
+      anjoy_id = #{anjoyId},
+      anjoy_parent_id = #{anjoyParentId},
+      anjoy_cfbibscid_id = #{anjoyCfbibscidId},
+      anjoy_sale_org_id = #{anjoySaleOrgId}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="name != null and name != ''" >
+        name = #{name}
+      </if>
+      <if test="code != null and code != ''" >
+        AND code = #{code}
+      </if>
+      <if test="shortName != null and shortName != ''" >
+        AND short_name = #{shortName}
+      </if>
+      <if test="parentId != null" >
+        AND parent_id = #{parentId}
+      </if>
+      <if test="rank != null and rank != ''" >
+        AND rank = #{rank}
+      </if>
+      <if test="channelType != null and channelType != ''" >
+        AND channel_type = #{channelType}
+      </if>
+      <if test="contacts != null and contacts != ''" >
+        AND contacts = #{contacts}
+      </if>
+      <if test="contactsMobile != null and contactsMobile != ''" >
+        AND contacts_mobile = #{contactsMobile}
+      </if>
+      <if test="province != null and province != ''" >
+        AND province = #{province}
+      </if>
+      <if test="city != null and city != ''" >
+        AND city = #{city}
+      </if>
+      <if test="county != null and county != ''" >
+        AND county = #{county}
+      </if>
+      <if test="address != null and address != ''" >
+        AND address = #{address}
+      </if>
+      <if test="areaId != null" >
+        AND area_id = #{areaId}
+      </if>
+      <if test="employeeId != null" >
+        AND employee_id = #{employeeId}
+      </if>
+      <if test="compnyPhone != null and compnyPhone != ''" >
+        AND compny_phone = #{compnyPhone}
+      </if>
+      <if test="companyFax != null and companyFax != ''" >
+        AND company_fax = #{companyFax}
+      </if>
+      <if test="employeeNum != null" >
+        AND employee_num = #{employeeNum}
+      </if>
+      <if test="companyWebsite != null and companyWebsite != ''" >
+        AND company_website = #{companyWebsite}
+      </if>
+      <if test="companyCeo != null and companyCeo != ''" >
+        AND company_ceo = #{companyCeo}
+      </if>
+      <if test="companyIncome != null" >
+        AND company_income = #{companyIncome}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="postageFreePrice != null" >
+        AND postage_free_price = #{postageFreePrice}
+      </if>
+      <if test="easNum != null and easNum != ''" >
+        AND eas_num = #{easNum}
+      </if>
+      <if test="logisticsNum != null and logisticsNum != ''" >
+        AND logistics_num = #{logisticsNum}
+      </if>
+      <if test="active != null" >
+        AND active = #{active}
+      </if>
+      <if test="creditLimit != null" >
+        AND credit_limit = #{creditLimit}
+      </if>
+      <if test="accountLimit != null" >
+        AND account_limit = #{accountLimit}
+      </if>
+      <if test="invoiceType != null and invoiceType != ''" >
+        AND invoice_type = #{invoiceType}
+      </if>
+      <if test="invoiceHead != null and invoiceHead != ''" >
+        AND invoice_head = #{invoiceHead}
+      </if>
+      <if test="taxNum != null and taxNum != ''" >
+        AND tax_num = #{taxNum}
+      </if>
+      <if test="bank != null and bank != ''" >
+        AND bank = #{bank}
+      </if>
+      <if test="bankNum != null and bankNum != ''" >
+        AND bank_num = #{bankNum}
+      </if>
+      <if test="minOrderQuantity != null" >
+        AND min_order_quantity = #{minOrderQuantity}
+      </if>
+      <if test="anjoyId != null and anjoyId != ''" >
+        AND anjoy_id = #{anjoyId}
+      </if>
+      <if test="anjoyParentId != null and anjoyParentId != ''" >
+        AND anjoy_parent_id = #{anjoyParentId}
+      </if>
+      <if test="anjoyCfbibscidId != null and anjoyCfbibscidId != ''" >
+        AND anjoy_cfbibscid_id = #{anjoyCfbibscidId}
+      </if>
+      <if test="anjoySaleOrgId != null and anjoySaleOrgId != ''" >
+        AND anjoy_sale_org_id = #{anjoySaleOrgId}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsChannel" resultMap="DmsChannelResultMap" >
+    select
+    <include refid="DmsChannel_Column_List" />
+    from dms_channel
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_channel
+    <set >
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.shortName != null" >
+        short_name = #{po.shortName},
+      </if>
+      <if test="po.parentId != null" >
+        parent_id = #{po.parentId},
+      </if>
+      <if test="po.rank != null" >
+        rank = #{po.rank},
+      </if>
+      <if test="po.channelType != null" >
+        channel_type = #{po.channelType},
+      </if>
+      <if test="po.contacts != null" >
+        contacts = #{po.contacts},
+      </if>
+      <if test="po.contactsMobile != null" >
+        contacts_mobile = #{po.contactsMobile},
+      </if>
+      <if test="po.province != null" >
+        province = #{po.province},
+      </if>
+      <if test="po.city != null" >
+        city = #{po.city},
+      </if>
+      <if test="po.county != null" >
+        county = #{po.county},
+      </if>
+      <if test="po.address != null" >
+        address = #{po.address},
+      </if>
+      <if test="po.areaId != null" >
+        area_id = #{po.areaId},
+      </if>
+      <if test="po.employeeId != null" >
+        employee_id = #{po.employeeId},
+      </if>
+      <if test="po.compnyPhone != null" >
+        compny_phone = #{po.compnyPhone},
+      </if>
+      <if test="po.companyFax != null" >
+        company_fax = #{po.companyFax},
+      </if>
+      <if test="po.employeeNum != null" >
+        employee_num = #{po.employeeNum},
+      </if>
+      <if test="po.companyWebsite != null" >
+        company_website = #{po.companyWebsite},
+      </if>
+      <if test="po.companyCeo != null" >
+        company_ceo = #{po.companyCeo},
+      </if>
+      <if test="po.companyIncome != null" >
+        company_income = #{po.companyIncome},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.postageFreePrice != null" >
+        postage_free_price = #{po.postageFreePrice},
+      </if>
+      <if test="po.easNum != null" >
+        eas_num = #{po.easNum},
+      </if>
+      <if test="po.logisticsNum != null" >
+        logistics_num = #{po.logisticsNum},
+      </if>
+      <if test="po.active != null" >
+        active = #{po.active},
+      </if>
+      <if test="po.creditLimit != null" >
+        credit_limit = #{po.creditLimit},
+      </if>
+      <if test="po.accountLimit != null" >
+        account_limit = #{po.accountLimit},
+      </if>
+      <if test="po.invoiceType != null" >
+        invoice_type = #{po.invoiceType},
+      </if>
+      <if test="po.invoiceHead != null" >
+        invoice_head = #{po.invoiceHead},
+      </if>
+      <if test="po.taxNum != null" >
+        tax_num = #{po.taxNum},
+      </if>
+      <if test="po.bank != null" >
+        bank = #{po.bank},
+      </if>
+      <if test="po.bankNum != null" >
+        bank_num = #{po.bankNum},
+      </if>
+      <if test="po.minOrderQuantity != null" >
+        min_order_quantity = #{po.minOrderQuantity},
+      </if>
+      <if test="po.anjoyId != null" >
+        anjoy_id = #{po.anjoyId},
+      </if>
+      <if test="po.anjoyParentId != null" >
+        anjoy_parent_id = #{po.anjoyParentId},
+      </if>
+      <if test="po.anjoyCfbibscidId != null" >
+        anjoy_cfbibscid_id = #{po.anjoyCfbibscidId},
+      </if>
+      <if test="po.anjoySaleOrgId != null" >
+        anjoy_sale_org_id = #{po.anjoySaleOrgId},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--############################################## new sql update by tanyb ##############################################-->
+
+  <resultMap extends="DmsChannelResultMap" id="DmsChannelVoResultMap" type="com.coracle.dms.vo.DmsChannelVo">
+    <result column="rank_Text" jdbcType="VARCHAR" property="rankText" />
+    <result column="channel_Type_Text" jdbcType="VARCHAR" property="channelTypeText" />
+    <result column="area_text" property="areaText" jdbcType="VARCHAR" />
+    <result column="province_text" property="provinceText" jdbcType="VARCHAR" />
+    <result column="city_text" property="cityText" jdbcType="VARCHAR" />
+    <result column="county_text" property="countyText" jdbcType="VARCHAR" />
+    <result column="employee_text" property="employeeText" jdbcType="VARCHAR" />
+    <result column="parent_text" property="parentText" jdbcType="VARCHAR" />
+    <collection property="areaList" column="id" ofType="com.coracle.dms.po.DmsChannelArea" javaType="ArrayList"  
+    			select="com.coracle.dms.dao.mybatis.DmsChannelAreaMapper.getChannelAreaList"></collection>
+    <collection property="productList" column="id" ofType="com.coracle.dms.po.DmsChannelProduct" javaType="ArrayList"  
+    			select="com.coracle.dms.dao.mybatis.DmsChannelProductMapper.getChannelProductList"></collection>
+  </resultMap>
+
+  <!-- 渠道树形结构类型 -->
+  <resultMap id="DmsChannelCategoryTreeResultMap" type="com.coracle.yk.base.vo.TreeNodeVo">
+    <result column="id" property="id" jdbcType="BIGINT"/>
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="sortOrder" property="sort_order" jdbcType="INTEGER"/>
+    <collection property="child" column="id" javaType="java.util.List" ofType="com.coracle.yk.base.vo.TreeNodeVo" select="selectByParentId"/>
+  </resultMap>
+
+  <!-- 根据父id获取子数据 -->
+  <select id="selectByParentId" parameterType="java.lang.Long" resultMap="DmsChannelCategoryTreeResultMap">
+    select
+    c.id ,c.name , 0 as sort_order
+    from
+    dms_channel c
+    where
+    c.parent_id = #{id} AND c.active=1 and c.remove_flag = 0
+  </select>
+
+
+  <select id="getPageList" parameterType="com.coracle.dms.vo.DmsChannelVo" resultMap="DmsChannelVoResultMap">
+    select dc.* ,
+	    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key='channel_rank' and d2.s_key=dc.rank limit 0,1) as rank_Text,
+	    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key='channel_type' and d2.s_key=dc.channel_type limit 0,1) as channel_Type_Text,
+	    (select b.region_name from dms_sys_region b where 1=1 and b.region_id = dc.province ) province_text,
+			(select b.region_name from dms_sys_region b where 1=1 and b.region_id = dc.city) city_text,
+			(select b.region_name from dms_sys_region b where 1=1 and b.region_id = dc.county ) county_text,
+			(select b.`name` from dms_sys_area b where 1=1 and b.id = dc.area_id) area_text,
+			(select b.`name` from dms_channel b where 1=1 and b.id=dc.parent_id) parent_text,
+	    (select b.`name` from dms_employee b where 1=1 and b.id=dc.employee_id) employee_text
+	from dms_channel dc
+    where 1=1 and dc.remove_flag = 0
+    <if test ="userId != null and  userId !=''">
+      and  dc.id  in
+      (select ce.channel_id from dms_channel_employee ce where ce.user_id = #{userId})
+
+
+    </if>
+     <if test="name != null and name != ''">
+       and dc.name like CONCAT('%', #{name},'%')
+     </if>
+
+     <if test="code != null and code != ''">
+       AND dc.code like CONCAT('%', #{code},'%')
+     </if>
+
+     <if test="parentId != null">
+       AND dc.parent_id = #{parentId}
+     </if>
+
+     <if test="contacts != null and contacts != ''">
+       AND dc.id in (
+       select cc.channel_id  from dms_channel_contacts cc where cc.name like concat ('%',#{contacts},'%')
+       )
+     </if>
+
+     <if test="channelType != null and channelType !=''">
+       AND dc.channel_type = #{channelType}
+     </if>
+
+     <if test="areaId != null">
+       AND dc.area_id = #{areaId}
+     </if>
+
+     <if test="orderField != null and orderField != ''">
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''">
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  
+  <select id="getList" parameterType="com.coracle.dms.vo.DmsChannelVo" resultType="java.util.HashMap">
+    select  dc.id ,dc.name , 2 as type 
+    from dms_channel dc 
+    where 1=1 and dc.remove_flag = 0
+     <if test="name != null and name != ''">
+       and name like CONCAT('%', #{name},'%')
+     </if>
+     <if test="code != null and code != ''">
+       AND code = #{code}
+     </if>
+     <if test="orderField != null and orderField != ''">
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''">
+        ${orderString}
+      </if>
+    </if>
+  </select>
+
+
+  <select id="selectDetailByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsChannelVoResultMap">
+	  select dc.*,
+	    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key='channel_rank' and d2.s_key=dc.rank limit 0,1) as rank_Text,
+	    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key='channel_type' and d2.s_key=dc.channel_type limit 0,1) as channel_Type_Text,
+	    (select b.region_name from dms_sys_region b where 1=1 and b.region_id = dc.province ) province_text,
+			(select b.region_name from dms_sys_region b where 1=1 and b.region_id = dc.city) city_text,
+			(select b.region_name from dms_sys_region b where 1=1 and b.region_id = dc.county ) county_text,
+			(select b.`name` from dms_sys_area b where 1=1 and b.id = dc.area_id) area_text,
+			(select b.`name` from dms_channel b where 1=1 and b.id=dc.parent_id) parent_text,
+	       (select b.`name` from dms_employee b where 1=1 and b.id=dc.employee_id) employee_text
+	from dms_channel dc 
+	    where 1=1 and dc.remove_flag = 0 and dc.id = #{id}
+  </select>
+  
+  <select id="selectChannelId" resultType="java.lang.Long">
+    select id  from dms_channel
+    where remove_flag = 0
+    and name like CONCAT('%', #{name},'%')
+  </select>
+
+  <select id="getChannelInfoByUserId" parameterType="java.lang.Long" resultMap="DmsChannelResultMap">
+    select dc.* from dms_channel dc left join dms_channel_contacts dcc on dc.id=dcc.channel_id where dcc.user_id=#{id} limit 0,1
+  </select>
+
+<!--根据userid查询渠道详情-->
+  <select id="selectByUserId" parameterType="java.lang.Long" resultMap="DmsChannelVoResultMap">
+     select dc.* from dms_channel dc left join dms_channel_contacts dcc on dc.id = dcc.channel_id
+	    where 1=1 and dc.remove_flag = 0 and dcc.user_id =  #{userId}
+
+  </select>
+
+
+  <update id="updateMinOrderQuantity" >
+
+      update dms_channel set min_order_quantity = #{minOrderQuantity, jdbcType = BIGINT} where id = #{id,jdbcType = BIGINT }
+
+
+  </update>
+
+  <!-- 根据渠道编码获取渠道数量 -->
+  <select id="countByCode" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+      count(*)
+    from
+      dms_channel
+    where
+      code = #{code}
+      and remove_flag = 0
+  </select>
+
+  <!-- 批量插入 -->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_channel
+    (
+      name, code, short_name, parent_id, rank, channel_type, contacts,
+      contacts_mobile, province, city, county, address, area_id, employee_id,
+      compny_phone, company_fax, employee_num, company_website, company_ceo,
+      company_income, created_date, created_by, last_updated_date, last_updated_by,
+      remove_flag, postage_free_price, eas_num, logistics_num, active, credit_limit,
+      account_limit, invoice_type, invoice_head, tax_num, bank, bank_num,
+      min_order_quantity, anjoy_id, anjoy_parent_id, anjoy_cfbibscid_id, anjoy_sale_org_id
+    )
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+        #{item.name}, #{item.code}, #{item.shortName}, #{item.parentId}, #{item.rank}, #{item.channelType}, #{item.contacts},
+        #{item.contactsMobile}, #{item.province}, #{item.city}, #{item.county}, #{item.address}, #{item.areaId}, #{item.employeeId},
+        #{item.compnyPhone}, #{item.companyFax}, #{item.employeeNum}, #{item.companyWebsite}, #{item.companyCeo},
+        #{item.companyIncome}, #{item.createdDate}, #{item.createdBy}, #{item.lastUpdatedDate}, #{item.lastUpdatedBy},
+        #{item.removeFlag}, #{item.postageFreePrice}, #{item.easNum}, #{item.logisticsNum}, #{item.active}, #{item.creditLimit},
+        #{item.accountLimit}, #{item.invoiceType}, #{item.invoiceHead}, #{item.taxNum}, #{item.bank}, #{item.bankNum},
+        #{item.minOrderQuantity}, #{item.anjoyId}, #{item.anjoyParentId}, #{item.anjoyCfbibscidId}, #{item.anjoySaleOrgId}
+      )
+    </foreach>
+  </insert>
+
+  <!-- 同步安井渠道数据前先将DMS所有渠道数据置为：已删除状态 -->
+  <update id="deleteChannelSyncAnjoy">
+    UPDATE dms_channel t SET t.remove_flag = 1
+  </update>
+</mapper>

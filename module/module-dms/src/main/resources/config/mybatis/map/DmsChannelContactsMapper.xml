@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsChannelContactsMapper" >
+  <resultMap id="DmsChannelContactsResultMap" type="com.coracle.dms.po.DmsChannelContacts" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="channel_id" property="channelId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="dept" property="dept" jdbcType="VARCHAR" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="birthday_date" property="birthdayDate" jdbcType="TIMESTAMP" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsChannelContacts_Column_List" >
+    id, channel_id, user_id, name, sex, dept, post, birthday_date, created_date, created_by, 
+    last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsChannelContactsResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsChannelContacts_Column_List" />
+    from dms_channel_contacts
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_channel_contacts
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsChannelContacts" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_channel_contacts (channel_id, user_id, name, sex, dept, post, birthday_date, 
+      created_date, created_by, last_updated_date, last_updated_by, remove_flag
+      )
+    values (#{channelId}, #{userId}, #{name}, #{sex}, #{dept}, #{post}, #{birthdayDate}, 
+      #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsChannelContacts" >
+    insert into dms_channel_contacts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="dept != null" >
+        dept,
+      </if>
+      <if test="post != null" >
+        post,
+      </if>
+      <if test="birthdayDate != null" >
+        birthday_date,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="channelId != null" >
+        #{channelId},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="sex != null" >
+        #{sex},
+      </if>
+      <if test="dept != null" >
+        #{dept},
+      </if>
+      <if test="post != null" >
+        #{post},
+      </if>
+      <if test="birthdayDate != null" >
+        #{birthdayDate},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsChannelContacts" >
+    update dms_channel_contacts
+    <set >
+      <if test="channelId != null" >
+        channel_id = #{channelId},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex},
+      </if>
+      <if test="dept != null" >
+        dept = #{dept},
+      </if>
+      <if test="post != null" >
+        post = #{post},
+      </if>
+      <if test="birthdayDate != null" >
+        birthday_date = #{birthdayDate},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsChannelContacts" >
+    update dms_channel_contacts
+    set channel_id = #{channelId},
+      user_id = #{userId},
+      name = #{name},
+      sex = #{sex},
+      dept = #{dept},
+      post = #{post},
+      birthday_date = #{birthdayDate},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="channelId != null" >
+        channel_id = #{channelId}
+      </if>
+      <if test="userId != null" >
+        AND user_id = #{userId}
+      </if>
+      <if test="name != null and name != ''" >
+        AND name = #{name}
+      </if>
+      <if test="sex != null" >
+        AND sex = #{sex}
+      </if>
+      <if test="dept != null and dept != ''" >
+        AND dept = #{dept}
+      </if>
+      <if test="post != null" >
+        AND post = #{post}
+      </if>
+      <if test="birthdayDate != null" >
+        AND birthday_date = #{birthdayDate}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+        AND remove_flag = 0
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsChannelContacts" resultMap="DmsChannelContactsResultMap" >
+    select 
+    <include refid="DmsChannelContacts_Column_List" />
+    from dms_channel_contacts
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_channel_contacts
+    <set >
+      <if test="po.channelId != null" >
+        channel_id = #{po.channelId},
+      </if>
+      <if test="po.userId != null" >
+        user_id = #{po.userId},
+      </if>
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.sex != null" >
+        sex = #{po.sex},
+      </if>
+      <if test="po.dept != null" >
+        dept = #{po.dept},
+      </if>
+      <if test="po.post != null" >
+        post = #{po.post},
+      </if>
+      <if test="po.birthdayDate != null" >
+        birthday_date = #{po.birthdayDate},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  
+  <!--############################################## new sql update by tanyb ##############################################-->
+  <!--自定义vo-->
+  <resultMap extends="DmsChannelContactsResultMap" id="DmsChannelContactsVoResultMap" type="com.coracle.dms.vo.DmsChannelContactsVo">
+  	<result column="sex_text" property="sexText" jdbcType="VARCHAR" />
+    <result column="post_text" property="postText" jdbcType="VARCHAR" />
+    <result column="channel_text" property="channelText" jdbcType="VARCHAR" />
+    <association column="id" property="dmsUser" select="com.coracle.dms.dao.mybatis.DmsUserMapper.getChannelAccount" />
+    <collection property="contactInfoList" column="id" ofType="com.coracle.dms.po.DmsContactInfo" javaType="ArrayList"  select="com.coracle.dms.dao.mybatis.DmsContactInfoMapper.getContactInfoByChannel"></collection>
+  </resultMap>
+  
+  <select id="getPageList" parameterType="com.coracle.dms.vo.DmsChannelContactsVo" resultMap="DmsChannelContactsVoResultMap" >
+    select dcc.*,
+    (select d.`name` from dms_channel d where d.remove_flag=0 and d.id=dcc.channel_id) as channel_text,
+    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.s_key='sex' and d2.s_key=dcc.sex limit 0,1) as sex_text,
+    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.s_key='store_post_type' and d2.s_key=dcc.post limit 0,1) as post_text
+    from dms_channel_contacts dcc
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  
+  <select id="selectVoByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsChannelContactsVoResultMap" >
+    select dcc.*, 
+    (select d.`name` from dms_channel d where d.remove_flag=0 and d.id=dcc.channel_id) as channel_text,
+    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.s_key='sex' and d2.s_key=dcc.sex limit 0,1) as sex_text,
+    (select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id where d2.remove_flag=0 and d1.s_key='store_post_type' and d2.s_key=dcc.post limit 0,1) as post_text
+    from dms_channel_contacts dcc where 1=1 and dcc.remove_flag =0 and dcc.id =#{id}
+     
+  </select>
+  
+  <select id="getUserIdsByChannelIds" parameterType="java.util.List" resultType="java.lang.Long">
+    select user_id from dms_channel_contacts where remove_flag=0 and user_id>0
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="and channel_id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </select>
+
+  <select id="queryContactByUserId" resultMap="DmsChannelContactsResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsChannelContacts_Column_List" />
+    from dms_channel_contacts
+    where user_id = #{userId}
+  </select>
+  
+</mapper>

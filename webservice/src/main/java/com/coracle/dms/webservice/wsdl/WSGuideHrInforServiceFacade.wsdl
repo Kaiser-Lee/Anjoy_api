@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"
+                  xmlns:apachesoap="http://xml.apache.org/xml-soap"
+                  xmlns:impl="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"
+                  xmlns:intf="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:tns1="urn:client.guidehrinforservicefacade" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!--WSDL created by Apache Axis version: 1.4
+    Built on Apr 22, 2006 (06:55:48 PDT)-->
+    <wsdl:types>
+        <schema targetNamespace="urn:client.guidehrinforservicefacade" xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+            <complexType name="WSInvokeException">
+                <sequence/>
+            </complexType>
+        </schema>
+    </wsdl:types>
+
+    <wsdl:message name="guideOutResponse">
+
+        <wsdl:part name="guideOutReturn" type="xsd:string">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="guideOutRequest">
+
+        <wsdl:part name="guideOutInfor" type="xsd:string">
+
+        </wsdl:part>
+
+        <wsdl:part name="guideSubmitDate" type="xsd:string">
+
+        </wsdl:part>
+
+        <wsdl:part name="guidellc" type="xsd:string">
+
+        </wsdl:part>
+
+        <wsdl:part name="entryname" type="xsd:string">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="WSInvokeException">
+
+        <wsdl:part name="fault" type="tns1:WSInvokeException">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="osfTestRequest">
+
+        <wsdl:part name="osfServiceName" type="xsd:string">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="getBaseDataResponse">
+
+        <wsdl:part name="getBaseDataReturn" type="xsd:string">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="osfTestResponse">
+
+        <wsdl:part name="osfTestReturn" type="xsd:string">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="getBaseDataRequest">
+
+        <wsdl:part name="tableName" type="xsd:string">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="guideInResponse">
+
+        <wsdl:part name="guideInReturn" type="xsd:string">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="guideInRequest">
+
+        <wsdl:part name="guideInInfor" type="xsd:string">
+
+        </wsdl:part>
+
+        <wsdl:part name="guideSubmitDate" type="xsd:string">
+
+        </wsdl:part>
+
+        <wsdl:part name="guidellc" type="xsd:string">
+
+        </wsdl:part>
+
+        <wsdl:part name="entryname" type="xsd:string">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:portType name="WSGuideHrInforServiceFacadeSrvProxy">
+
+        <wsdl:operation name="getBaseData" parameterOrder="tableName">
+
+            <wsdl:input message="impl:getBaseDataRequest" name="getBaseDataRequest">
+
+            </wsdl:input>
+
+            <wsdl:output message="impl:getBaseDataResponse" name="getBaseDataResponse">
+
+            </wsdl:output>
+
+            <wsdl:fault message="impl:WSInvokeException" name="WSInvokeException">
+
+            </wsdl:fault>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="guideIn" parameterOrder="guideInInfor guideSubmitDate guidellc entryname">
+
+            <wsdl:input message="impl:guideInRequest" name="guideInRequest">
+
+            </wsdl:input>
+
+            <wsdl:output message="impl:guideInResponse" name="guideInResponse">
+
+            </wsdl:output>
+
+            <wsdl:fault message="impl:WSInvokeException" name="WSInvokeException">
+
+            </wsdl:fault>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="osfTest" parameterOrder="osfServiceName">
+
+            <wsdl:input message="impl:osfTestRequest" name="osfTestRequest">
+
+            </wsdl:input>
+
+            <wsdl:output message="impl:osfTestResponse" name="osfTestResponse">
+
+            </wsdl:output>
+
+            <wsdl:fault message="impl:WSInvokeException" name="WSInvokeException">
+
+            </wsdl:fault>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="guideOut" parameterOrder="guideOutInfor guideSubmitDate guidellc entryname">
+
+            <wsdl:input message="impl:guideOutRequest" name="guideOutRequest">
+
+            </wsdl:input>
+
+            <wsdl:output message="impl:guideOutResponse" name="guideOutResponse">
+
+            </wsdl:output>
+
+            <wsdl:fault message="impl:WSInvokeException" name="WSInvokeException">
+
+            </wsdl:fault>
+
+        </wsdl:operation>
+
+    </wsdl:portType>
+
+    <wsdl:binding name="WSGuideHrInforServiceFacadeSoapBinding" type="impl:WSGuideHrInforServiceFacadeSrvProxy">
+
+        <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="getBaseData">
+
+            <wsdlsoap:operation soapAction=""/>
+
+            <wsdl:input name="getBaseDataRequest">
+
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                               namespace="http://webservice.guideservice.webservice.anjoy.com" use="encoded"/>
+
+            </wsdl:input>
+
+            <wsdl:output name="getBaseDataResponse">
+
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                               namespace="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"
+                               use="encoded"/>
+
+            </wsdl:output>
+
+            <wsdl:fault name="WSInvokeException">
+
+                <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="WSInvokeException"
+                                namespace="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"
+                                use="encoded"/>
+
+            </wsdl:fault>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="guideIn">
+
+            <wsdlsoap:operation soapAction=""/>
+
+            <wsdl:input name="guideInRequest">
+
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                               namespace="http://webservice.guideservice.webservice.anjoy.com" use="encoded"/>
+
+            </wsdl:input>
+
+            <wsdl:output name="guideInResponse">
+
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                               namespace="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"
+                               use="encoded"/>
+
+            </wsdl:output>
+
+            <wsdl:fault name="WSInvokeException">
+
+                <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="WSInvokeException"
+                                namespace="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"
+                                use="encoded"/>
+
+            </wsdl:fault>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="osfTest">
+
+            <wsdlsoap:operation soapAction=""/>
+
+            <wsdl:input name="osfTestRequest">
+
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                               namespace="http://webservice.guideservice.webservice.anjoy.com" use="encoded"/>
+
+            </wsdl:input>
+
+            <wsdl:output name="osfTestResponse">
+
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                               namespace="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"
+                               use="encoded"/>
+
+            </wsdl:output>
+
+            <wsdl:fault name="WSInvokeException">
+
+                <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="WSInvokeException"
+                                namespace="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"
+                                use="encoded"/>
+
+            </wsdl:fault>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="guideOut">
+
+            <wsdlsoap:operation soapAction=""/>
+
+            <wsdl:input name="guideOutRequest">
+
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                               namespace="http://webservice.guideservice.webservice.anjoy.com" use="encoded"/>
+
+            </wsdl:input>
+
+            <wsdl:output name="guideOutResponse">
+
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                               namespace="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"
+                               use="encoded"/>
+
+            </wsdl:output>
+
+            <wsdl:fault name="WSInvokeException">
+
+                <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="WSInvokeException"
+                                namespace="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"
+                                use="encoded"/>
+
+            </wsdl:fault>
+
+        </wsdl:operation>
+
+    </wsdl:binding>
+
+    <wsdl:service name="WSGuideHrInforServiceFacadeSrvProxyService">
+
+        <wsdl:port binding="impl:WSGuideHrInforServiceFacadeSoapBinding" name="WSGuideHrInforServiceFacade">
+
+            <wsdlsoap:address location="http://192.168.0.134:6888/ormrpc/services/WSGuideHrInforServiceFacade"/>
+
+        </wsdl:port>
+
+    </wsdl:service>
+
+</wsdl:definitions>

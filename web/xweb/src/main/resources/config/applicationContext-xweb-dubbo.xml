@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="
+	            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	            http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+	            http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	             
+	<context:property-placeholder
+		location="classpath:config/application-xweb.properties" 
+		ignore-resource-not-found="true" 
+		ignore-unresolvable="true"
+		order="1"
+		file-encoding="UTF-8" />             
+	
+	<!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="xweb-consumer" />     
+    
+    <!-- 使用multicast广播注册中心暴露发现服务地址 -->
+    <dubbo:registry protocol="zookeeper" address="${dubbo.zoo.connectString}" file="dubboregistry/dubbo-registry.properties" check="false" subscribe="true" register="true" />
+    
+    <!-- 延迟到Spring初始化完成后，再暴露服务,服务调用超时设置为6秒,超时不重试-->  
+    <dubbo:provider delay="-1" timeout="600000" retries="0"/>
+	<!-- 生成远程服务代理 -->
+    <!-- loadbalance 负载均衡策略，可选值：random,roundrobin,leastactive，分别表示：随机，轮循，最少活跃调用 -->
+
+	<!-- 渠橙dms start -->
+	<dubbo:reference interface="com.coracle.dms.schedule.service.JobEntityService" id="jobEntityServiceImpl"  loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.KnResourceService" id="knResourceServiceImpl" loadbalance="leastactive"  version="${dubbo.version}"  check="false"/>
+
+	<!-- pc端-设置-地区、区域 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsSysRegionService" id="dmsSysRegionServiceImpl"  loadbalance="leastactive"  version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsSysAreaService" id="dmsSysAreaServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsSysAreaRegionService" id="dmsSysAreaRegionServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端-设置-字典管理 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsDataDictionayService" id="dmsDataDictionayServiceImpl"  loadbalance="leastactive"  version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsDataDictionayDependentService" id="dmsDataDictionayDependentServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+    <!-- pc端-设置-组织架构 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsOrganizationService" id="dmsOrganizationServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端-设置-岗位管理 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsPostService" id="dmsPostServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端-设置-账号管理 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsUserService" id="dmsUserServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端-设置-角色管理 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsRoleService" id="dmsRoleServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端-设置-账号-角色关联管理 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsUserRoleService" id="dmsUserRoleServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端-设置-员工管理 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsEmployeeService" id="dmsEmployeeServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端-设置-员工-组织关联管理 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsEmployeeOrganizationService" id="dmsEmployeeOrganizationServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+    <!-- 订货端-购物车接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsShoppingCartService" id="dmsShoppingCartServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+	<!-- 我的足迹接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsFootprintService" id="dmsFootprintServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+	<!-- 二维码 -->
+	<dubbo:reference interface="com.coracle.dms.service.KnQrcodeNumService" id="knQrcodeNumServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+	<!-- 订单接口 -->
+    <dubbo:reference interface="com.coracle.dms.service.DmsOrderService" id="dmsOrderServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+    <!-- 发货单接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsOrderDeliveryService" id="dmsOrderDeliveryServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- 发货单商品接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsOrderDeliveryItemService" id="dmsOrderDeliveryItemServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- 订单评价接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsOrderEvaluationService" id="dmsOrderEvaluationServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- 订单产品评价接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsOrderProductEvaluationService" id="dmsOrderProductEvaluationServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- 订单评价接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsOrderLogisticsEvaluationService" id="dmsOrderLogisticsEvaluationServiceImpl" loadbalance="leastactive" version="${dubbo.version}" check="false"/>
+    <!-- 订单付款接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsOrderPaymentService" id="dmsOrderPaymentServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- 订单操作日志接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsOrderOperationLogService" id="dmsOrderOperationLogServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- 订单商品接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsOrderProductService" id="dmsOrderProductServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+	<!-- 促销接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsPromotionService" id="dmsPromotionServiceImpl" loadbalance="leastactive" version="${dubbo.version}" check="false"/>
+    <!-- 促销适用产品接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsPromotionProductService" id="dmsPromotionProductServiceImpl" loadbalance="leastactive" version="${dubbo.version}" check="false"/>
+	<!-- 促销适用范围接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsPromotionScopeService" id="dmsPromotionScopeServiceImpl" loadbalance="leastactive" version="${dubbo.version}" check="false"/>
+	<!-- 促销产品销售记录接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsPromotionProductRecordService" id="dmsPromotionProductRecordServiceImpl" loadbalance="leastactive" version="${dubbo.version}" check="false"/>
+
+
+	<!-- pc端-设置-全局变量 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsGlobalVariableService" id="dmsGlobalVariableServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端-门店管理-门店 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsStoreService" id="dmsStoreServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端-门店管理-门店店员 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsSellerService" id="dmsSellerServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端-设置-产品品牌接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsProductBrandService" id="dmsProductBrandServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端新闻资讯接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsNewsService" id="dmsNewsServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsNewsCommentService" id="dmsNewsCommentServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsNoticeService" id="dmsNoticeServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsChannelInformationService" id="dmsChannelInformationServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsInfoCommentService" id="dmsInfoCommentServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsPublishRrangeService" id="dmsPublishRrangeServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!--用户收货地址-->
+	<dubbo:reference interface="com.coracle.dms.service.DmsUserAddressService" id="dmsUserAddressServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!--用户增值发票-->
+	<dubbo:reference interface="com.coracle.dms.service.DmsUserValueAddedTaxInvoiceService" id="dmsUserValueAddedTaxInvoiceServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!--首页banner-->
+	<dubbo:reference interface="com.coracle.dms.service.DmsHomeImagesService" id="dmsHomeImagesServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!--Dms零售端接口-->
+	<dubbo:reference interface="com.coracle.dms.service.DmsCustomersService" id="dmsCustomersServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsDynamicService" id="dmsDynamicServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsDynamicProductService" id="dmsDynamicProductServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!--Dms用户收藏接口接口-->
+	<dubbo:reference interface="com.coracle.dms.service.DmsUserCollectService" id="dmsUserCollectServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!--Dms消息接口-->
+	<dubbo:reference interface="com.coracle.dms.service.DmsMessageService" id="dmsMessageServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!--Dms树接口-->
+	<dubbo:reference interface="com.coracle.dms.service.DmsTreeRelationService" id="dmsTreeRelationServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+
+	<!-- pc端-产品管理-产品CRUD接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsProductService" id="dmsProductServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsProductAttachFileService" id="dmsProductAttachFileServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsProductAreaService" id="dmsProductAreaServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsProductSpecMatrixConfigService" id="dmsProductSpecMatrixConfigServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- DMS库存管理接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsStorageOutInRecordService" id="dmsOutInStorageRecordServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsStorageBillService" id="dmsStorageBillServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsStorageBillProductService" id="dmsStorageBillProductServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsStorageTransportationService" id="dmsStorageTransportationServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsStorageInventoryService" id="dmsStorageInventoryServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsStorageSaleOutService" id="dmsStorageSaleOutServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+	<!-- pc端-设置-产品分类接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsProductCategoryService" id="dmsProductCategoryServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- pc端-设置-产品规格接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsProductSpecService" id="dmsProductSpecServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- DMS附件、备注、联系信息接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsContactInfoService" id="dmsContactInfoServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsCommonAttachFileService" id="dmsCommonAttachFileServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsAttachmentRelationService" id="dmsAttachmentRelationServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsRemarkService" id="dmsRemarkServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsRemarkRelationService" id="dmsRemarkRelationServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- dms渠道接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsChannelService" id="dmsChannelServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsChannelContactsService" id="dmsChannelContactsServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsChannelAddressService" id="dmsChannelAddressServiceImpl" loadbalance="leastactive" version="${dubbo.version}" check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsChannelEmployeeService" id="dmsChannelEmployeeServiceImpl" loadbalance="leastactive" version="${dubbo.version}" check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsChannelMinimumService" id="dmsChannelMinimumServiceImpl" loadbalance="leastactive" version="${dubbo.version}" check="false"/>
+
+	<!-- dms仓库接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsStorageService" id="dmsStorageServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- dms调货接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsTransferApplyService" id="dmsTransferApplyServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- dms退换货接口 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsOrderReturnCartService" id="dmsOrderReturnCartServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsOrderReturnService" id="dmsOrderReturnServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+	<!--DMS流水号数据获取接口-->
+	<dubbo:reference interface="com.coracle.dms.service.DmsSerialNumService" id="dmsSerialNumServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!--DMS报表接口接口-->
+	<dubbo:reference interface="com.coracle.dms.service.DmsReportFormsService" id="dmsReportFormsServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!--阶梯价格接口-->
+
+	<dubbo:reference interface="com.coracle.dms.service.DmsLadderPriceScopeService" id="dmsLadderPriceScopeServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+	<dubbo:reference interface="com.coracle.dms.service.DmsLadderPriceService" id="dmsLadderPriceServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+	<dubbo:reference interface="com.coracle.dms.service.DmsLadderPriceProductService" id="dmsLadderPriceProductServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+
+	<!-- 渠橙dms end -->
+
+
+	<!-- 理赔 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsClaimsService" id="dmsClaimsServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsClaimsProductService" id="dmsClaimsProductServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsExceptionClaimsService" id="dmsExceptionClaimsServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- 退货 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsBackGoodsOrderService" id="dmsBackGoodsOrderServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsBackGoodsMaterialService" id="dmsBackGoodsMaterialServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<!-- 库存 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsTianGoodsStoreService" id="dmsTianGoodsStoreServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.DmsTianSubStoreService" id="dmsTianSubStoreServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+	<!-- 天正订单 -->
+	<dubbo:reference interface="com.coracle.dms.service.tz.TgOrderService" id="tgOrderServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.tz.TgOrderProductService" id="tgOrderProductServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+	<dubbo:reference interface="com.coracle.dms.service.tz.TgOrderProductPartService" id="tgOrderProductPartServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+	<!-- 渠道-产品同步 -->
+	<dubbo:reference interface="com.coracle.dms.service.DmsChannelProductAnjoyWhiteListService" id="dmsChannelProductAnjoyWhiteListServiceImpl" loadbalance="leastactive" version="${dubbo.version}"  check="false"/>
+
+</beans>
+
+
+
+
+
+
+

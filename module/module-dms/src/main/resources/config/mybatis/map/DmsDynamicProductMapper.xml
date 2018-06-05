@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsDynamicProductMapper" >
+  <resultMap id="DmsDynamicProductResultMap" type="com.coracle.dms.po.DmsDynamicProduct" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="dynamic_id" property="dynamicId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_spec_id" property="productSpecId" jdbcType="BIGINT" />
+    <result column="product_spec" property="productSpec" jdbcType="VARCHAR" />
+    <result column="product_num" property="productNum" jdbcType="INTEGER" />
+    <result column="product_price" property="productPrice" jdbcType="DECIMAL" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="expand1" property="expand1" jdbcType="VARCHAR" />
+    <result column="expand2" property="expand2" jdbcType="VARCHAR" />
+    <result column="expand3" property="expand3" jdbcType="VARCHAR" />
+    <result column="expand4" property="expand4" jdbcType="VARCHAR" />
+    <result column="expand5" property="expand5" jdbcType="VARCHAR" />
+    <result column="expand6" property="expand6" jdbcType="VARCHAR" />
+    <result column="expand7" property="expand7" jdbcType="VARCHAR" />
+    <result column="expand8" property="expand8" jdbcType="VARCHAR" />
+    <result column="expand9" property="expand9" jdbcType="VARCHAR" />
+    <result column="expand10" property="expand10" jdbcType="VARCHAR" />
+    <result column="expand11" property="expand11" jdbcType="VARCHAR" />
+    <result column="expand12" property="expand12" jdbcType="VARCHAR" />
+    <result column="expand13" property="expand13" jdbcType="VARCHAR" />
+    <result column="expand14" property="expand14" jdbcType="VARCHAR" />
+    <result column="expand15" property="expand15" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsDynamicProduct_Column_List" >
+    id, dynamic_id, product_id, product_name, product_spec_id, product_spec, product_num,
+    product_price, created_by, created_date, last_updated_by, last_updated_date, remove_flag,
+    expand1, expand2, expand3, expand4, expand5, expand6, expand7, expand8, expand9,
+    expand10, expand11, expand12, expand13, expand14, expand15
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsDynamicProductResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsDynamicProduct_Column_List" />
+    from dms_dynamic_product
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_dynamic_product
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsDynamicProduct" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_dynamic_product (dynamic_id, product_id, product_name, product_spec_id, product_spec,
+    product_num, product_price, created_by, created_date, last_updated_by,
+    last_updated_date, remove_flag, expand1, expand2, expand3, expand4,
+    expand5, expand6, expand7, expand8, expand9, expand10, expand11,
+    expand12, expand13, expand14, expand15)
+    values (#{dynamicId}, #{productId}, #{productName}, #{productSpecId}, #{productSpec},
+    #{productNum}, #{productPrice}, #{createdBy}, #{createdDate}, #{lastUpdatedBy},
+    #{lastUpdatedDate}, #{removeFlag}, #{expand1}, #{expand2}, #{expand3}, #{expand4},
+    #{expand5}, #{expand6}, #{expand7}, #{expand8}, #{expand9}, #{expand10}, #{expand11},
+    #{expand12}, #{expand13}, #{expand14}, #{expand15})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsDynamicProduct" >
+    insert into dms_dynamic_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dynamicId != null" >
+        dynamic_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id,
+      </if>
+      <if test="productSpec != null" >
+        product_spec,
+      </if>
+      <if test="productNum != null" >
+        product_num,
+      </if>
+      <if test="productPrice != null" >
+        product_price,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="expand1 != null" >
+        expand1,
+      </if>
+      <if test="expand2 != null" >
+        expand2,
+      </if>
+      <if test="expand3 != null" >
+        expand3,
+      </if>
+      <if test="expand4 != null" >
+        expand4,
+      </if>
+      <if test="expand5 != null" >
+        expand5,
+      </if>
+      <if test="expand6 != null" >
+        expand6,
+      </if>
+      <if test="expand7 != null" >
+        expand7,
+      </if>
+      <if test="expand8 != null" >
+        expand8,
+      </if>
+      <if test="expand9 != null" >
+        expand9,
+      </if>
+      <if test="expand10 != null" >
+        expand10,
+      </if>
+      <if test="expand11 != null" >
+        expand11,
+      </if>
+      <if test="expand12 != null" >
+        expand12,
+      </if>
+      <if test="expand13 != null" >
+        expand13,
+      </if>
+      <if test="expand14 != null" >
+        expand14,
+      </if>
+      <if test="expand15 != null" >
+        expand15,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="dynamicId != null" >
+        #{dynamicId},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="productName != null" >
+        #{productName},
+      </if>
+      <if test="productSpecId != null" >
+        #{productSpecId},
+      </if>
+      <if test="productSpec != null" >
+        #{productSpec},
+      </if>
+      <if test="productNum != null" >
+        #{productNum},
+      </if>
+      <if test="productPrice != null" >
+        #{productPrice},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="expand1 != null" >
+        #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        #{expand15},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsDynamicProduct" >
+    update dms_dynamic_product
+    <set >
+      <if test="dynamicId != null" >
+        dynamic_id = #{dynamicId},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName},
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id = #{productSpecId},
+      </if>
+      <if test="productSpec != null" >
+        product_spec = #{productSpec},
+      </if>
+      <if test="productNum != null" >
+        product_num = #{productNum},
+      </if>
+      <if test="productPrice != null" >
+        product_price = #{productPrice},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="expand1 != null" >
+        expand1 = #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        expand2 = #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        expand3 = #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        expand4 = #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        expand5 = #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        expand6 = #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        expand7 = #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        expand8 = #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        expand9 = #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        expand10 = #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        expand11 = #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        expand12 = #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        expand13 = #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        expand14 = #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        expand15 = #{expand15},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsDynamicProduct" >
+    update dms_dynamic_product
+    set dynamic_id = #{dynamicId},
+    product_id = #{productId},
+    product_name = #{productName},
+    product_spec_id = #{productSpecId},
+    product_spec = #{productSpec},
+    product_num = #{productNum},
+    product_price = #{productPrice},
+    created_by = #{createdBy},
+    created_date = #{createdDate},
+    last_updated_by = #{lastUpdatedBy},
+    last_updated_date = #{lastUpdatedDate},
+    remove_flag = #{removeFlag},
+    expand1 = #{expand1},
+    expand2 = #{expand2},
+    expand3 = #{expand3},
+    expand4 = #{expand4},
+    expand5 = #{expand5},
+    expand6 = #{expand6},
+    expand7 = #{expand7},
+    expand8 = #{expand8},
+    expand9 = #{expand9},
+    expand10 = #{expand10},
+    expand11 = #{expand11},
+    expand12 = #{expand12},
+    expand13 = #{expand13},
+    expand14 = #{expand14},
+    expand15 = #{expand15}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="dynamicId != null" >
+        dynamic_id = #{dynamicId}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId}
+      </if>
+      <if test="productName != null and productName != ''" >
+        AND product_name = #{productName}
+      </if>
+      <if test="productSpecId != null" >
+        AND product_spec_id = #{productSpecId}
+      </if>
+      <if test="productSpec != null and productSpec != ''" >
+        AND product_spec = #{productSpec}
+      </if>
+      <if test="productNum != null" >
+        AND product_num = #{productNum}
+      </if>
+      <if test="productPrice != null" >
+        AND product_price = #{productPrice}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="expand1 != null and expand1 != ''" >
+        AND expand1 = #{expand1}
+      </if>
+      <if test="expand2 != null and expand2 != ''" >
+        AND expand2 = #{expand2}
+      </if>
+      <if test="expand3 != null and expand3 != ''" >
+        AND expand3 = #{expand3}
+      </if>
+      <if test="expand4 != null and expand4 != ''" >
+        AND expand4 = #{expand4}
+      </if>
+      <if test="expand5 != null and expand5 != ''" >
+        AND expand5 = #{expand5}
+      </if>
+      <if test="expand6 != null and expand6 != ''" >
+        AND expand6 = #{expand6}
+      </if>
+      <if test="expand7 != null and expand7 != ''" >
+        AND expand7 = #{expand7}
+      </if>
+      <if test="expand8 != null and expand8 != ''" >
+        AND expand8 = #{expand8}
+      </if>
+      <if test="expand9 != null and expand9 != ''" >
+        AND expand9 = #{expand9}
+      </if>
+      <if test="expand10 != null and expand10 != ''" >
+        AND expand10 = #{expand10}
+      </if>
+      <if test="expand11 != null and expand11 != ''" >
+        AND expand11 = #{expand11}
+      </if>
+      <if test="expand12 != null and expand12 != ''" >
+        AND expand12 = #{expand12}
+      </if>
+      <if test="expand13 != null and expand13 != ''" >
+        AND expand13 = #{expand13}
+      </if>
+      <if test="expand14 != null and expand14 != ''" >
+        AND expand14 = #{expand14}
+      </if>
+      <if test="expand15 != null and expand15 != ''" >
+        AND expand15 = #{expand15}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsDynamicProduct" resultMap="DmsDynamicProductResultMap" >
+    select
+    <include refid="DmsDynamicProduct_Column_List" />
+    from dms_dynamic_product
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_dynamic_product
+    <set >
+      <if test="po.dynamicId != null" >
+        dynamic_id = #{po.dynamicId},
+      </if>
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.productName != null" >
+        product_name = #{po.productName},
+      </if>
+      <if test="po.productSpecId != null" >
+        product_spec_id = #{po.productSpecId},
+      </if>
+      <if test="po.productSpec != null" >
+        product_spec = #{po.productSpec},
+      </if>
+      <if test="po.productNum != null" >
+        product_num = #{po.productNum},
+      </if>
+      <if test="po.productPrice != null" >
+        product_price = #{po.productPrice},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.expand1 != null" >
+        expand1 = #{po.expand1},
+      </if>
+      <if test="po.expand2 != null" >
+        expand2 = #{po.expand2},
+      </if>
+      <if test="po.expand3 != null" >
+        expand3 = #{po.expand3},
+      </if>
+      <if test="po.expand4 != null" >
+        expand4 = #{po.expand4},
+      </if>
+      <if test="po.expand5 != null" >
+        expand5 = #{po.expand5},
+      </if>
+      <if test="po.expand6 != null" >
+        expand6 = #{po.expand6},
+      </if>
+      <if test="po.expand7 != null" >
+        expand7 = #{po.expand7},
+      </if>
+      <if test="po.expand8 != null" >
+        expand8 = #{po.expand8},
+      </if>
+      <if test="po.expand9 != null" >
+        expand9 = #{po.expand9},
+      </if>
+      <if test="po.expand10 != null" >
+        expand10 = #{po.expand10},
+      </if>
+      <if test="po.expand11 != null" >
+        expand11 = #{po.expand11},
+      </if>
+      <if test="po.expand12 != null" >
+        expand12 = #{po.expand12},
+      </if>
+      <if test="po.expand13 != null" >
+        expand13 = #{po.expand13},
+      </if>
+      <if test="po.expand14 != null" >
+        expand14 = #{po.expand14},
+      </if>
+      <if test="po.expand15 != null" >
+        expand15 = #{po.expand15},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--*************************************-->
+  <insert id="batchInsert" parameterType="java.util.List" >
+    insert into dms_dynamic_product (dynamic_id, product_id, product_name,product_spec_id, product_spec, product_num,
+    product_price, created_by, created_date, last_updated_by, last_updated_date,
+    remove_flag, expand1, expand2, expand3, expand4, expand5, expand6,
+    expand7, expand8, expand9, expand10, expand11, expand12, expand13,
+    expand14, expand15)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+    (#{item.dynamicId}, #{item.productId}, #{item.productName}, #{item.productSpecId}, #{item.productSpec}, #{item.productNum},
+    #{item.productPrice}, #{item.createdBy}, #{item.createdDate}, #{item.lastUpdatedBy}, #{item.lastUpdatedDate},
+    #{item.removeFlag}, #{item.expand1}, #{item.expand2}, #{item.expand3}, #{item.expand4}, #{item.expand5}, #{item.expand6},
+    #{item.expand7}, #{item.expand8}, #{item.expand9}, #{item.expand10}, #{item.expand11}, #{item.expand12}, #{item.expand13},
+    #{item.expand14}, #{item.expand15})
+    </foreach>
+  </insert>
+</mapper>

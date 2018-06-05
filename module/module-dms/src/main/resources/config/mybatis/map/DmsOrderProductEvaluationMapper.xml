@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderProductEvaluationMapper" >
+  <resultMap id="DmsOrderProductEvaluationResultMap" type="com.coracle.dms.po.DmsOrderProductEvaluation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_product_id" property="orderProductId" jdbcType="BIGINT" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="evaluation" property="evaluation" jdbcType="VARCHAR" />
+    <result column="audio_file_id" property="audioFileId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsOrderProductEvaluation_Column_List" >
+    id, order_id, order_product_id, score, evaluation, audio_file_id, created_date, created_by, 
+    last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsOrderProductEvaluationResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsOrderProductEvaluation_Column_List" />
+    from dms_order_product_evaluation
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_order_product_evaluation
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrderProductEvaluation" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_order_product_evaluation (order_id, order_product_id, score, evaluation, audio_file_id, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag)
+    values (#{orderId}, #{orderProductId}, #{score}, #{evaluation}, #{audioFileId}, #{createdDate}, 
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrderProductEvaluation" >
+    insert into dms_order_product_evaluation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderProductId != null" >
+        order_product_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="evaluation != null" >
+        evaluation,
+      </if>
+      <if test="audioFileId != null" >
+        audio_file_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="orderId != null" >
+        #{orderId},
+      </if>
+      <if test="orderProductId != null" >
+        #{orderProductId},
+      </if>
+      <if test="score != null" >
+        #{score},
+      </if>
+      <if test="evaluation != null" >
+        #{evaluation},
+      </if>
+      <if test="audioFileId != null" >
+        #{audioFileId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrderProductEvaluation" >
+    update dms_order_product_evaluation
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId},
+      </if>
+      <if test="orderProductId != null" >
+        order_product_id = #{orderProductId},
+      </if>
+      <if test="score != null" >
+        score = #{score},
+      </if>
+      <if test="evaluation != null" >
+        evaluation = #{evaluation},
+      </if>
+      <if test="audioFileId != null" >
+        audio_file_id = #{audioFileId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrderProductEvaluation" >
+    update dms_order_product_evaluation
+    set order_id = #{orderId},
+      order_product_id = #{orderProductId},
+      score = #{score},
+      evaluation = #{evaluation},
+      audio_file_id = #{audioFileId},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="orderId != null" >
+        order_id = #{orderId}
+      </if>
+      <if test="orderProductId != null" >
+        AND order_product_id = #{orderProductId}
+      </if>
+      <if test="score != null" >
+        AND score = #{score}
+      </if>
+      <if test="evaluation != null and evaluation != ''" >
+        AND evaluation = #{evaluation}
+      </if>
+      <if test="audioFileId != null" >
+        AND audio_file_id = #{audioFileId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrderProductEvaluation" resultMap="DmsOrderProductEvaluationResultMap" >
+    select 
+    <include refid="DmsOrderProductEvaluation_Column_List" />
+    from dms_order_product_evaluation
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_order_product_evaluation
+    <set >
+      <if test="po.orderId != null" >
+        order_id = #{po.orderId},
+      </if>
+      <if test="po.orderProductId != null" >
+        order_product_id = #{po.orderProductId},
+      </if>
+      <if test="po.score != null" >
+        score = #{po.score},
+      </if>
+      <if test="po.evaluation != null" >
+        evaluation = #{po.evaluation},
+      </if>
+      <if test="po.audioFileId != null" >
+        audio_file_id = #{po.audioFileId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+  <resultMap id="DmsOrderProductEvaluationVoResultMap" type="com.coracle.dms.vo.DmsOrderProductEvaluationVo" extends="DmsOrderProductEvaluationResultMap">
+    <result column="evaluator" property="evaluator" jdbcType="VARCHAR"/>
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR"/>
+    <result column="related_table_type" property="relatedTableType" jdbcType="INTEGER"/>
+    <result column="spec_union_key" property="specUnionKey" jdbcType="VARCHAR"/>
+    <association property="audioFile" column="audioFileId" javaType="com.coracle.dms.po.DmsCommonAttachFile" select="com.coracle.dms.dao.mybatis.DmsCommonAttachFileMapper.selectByPrimaryKey"/>
+    <collection property="picFileList" column="{type=related_table_type, id=id}" javaType="java.util.List" ofType="com.coracle.dms.po.DmsCommonAttachFile" select="com.coracle.dms.dao.mybatis.DmsCommonAttachFileMapper.selectByParam"/>
+  </resultMap>
+
+  <!-- 根据条件获取vo对象 -->
+  <select id="selectVoByCondition" parameterType="com.coracle.dms.po.DmsOrderProductEvaluation" resultMap="DmsOrderProductEvaluationVoResultMap">
+    select
+      ope.*,
+      cc.name as evaluator,
+      u.photo_url as picUrl,
+      5 as related_table_type
+    from
+      dms_order_product_evaluation ope
+    left join dms_channel_contacts cc on cc.user_id = ope.created_by
+    left join dms_user u on u.id = ope.created_by
+    where
+      ope.remove_flag = 0
+    <if test="orderId != null">
+      and ope.order_id = #{orderId}
+    </if>
+    <if test="orderProductId != null">
+      and ope.order_product_id = #{orderProductId}
+    </if>
+  </select>
+
+  <!-- 根据订单产品id条件获取对象集合 -->
+  <select id="selectVoByOrderProductProductId" parameterType="java.lang.Long" resultMap="DmsOrderProductEvaluationVoResultMap">
+    select
+      ope.*,
+      cc.name as evaluator,
+      op.spec_union_key as specUnionKey,
+      u.photo_url as picUrl,
+      5 as related_table_type
+    from
+      dms_order_product op
+    left join dms_order_product_evaluation ope on op.id=ope.order_product_id
+    left join dms_channel_contacts cc on cc.user_id = ope.created_by
+    left join dms_user u on u.id = ope.created_by
+    where
+      ope.remove_flag = 0
+      and op.product_id = #{productId}
+  </select>
+
+  <!-- 根据条件获取产品的评论列表 -->
+  <select id="selectVoByParam" parameterType="com.coracle.dms.vo.DmsOrderProductEvaluationVo" resultMap="DmsOrderProductEvaluationVoResultMap">
+    select
+      t.*
+    from (
+      select
+        ope.*,
+        cc.name as evaluator,
+        op.spec_union_key as specUnionKey,
+        u.photo_url as picUrl,
+        5 as related_table_type
+      from
+        dms_order_product_evaluation ope
+      left join dms_order_product op on op.id = ope.order_product_id
+      left join dms_channel_contacts cc on cc.user_id = ope.created_by
+      left join dms_user u on u.id = ope.created_by
+      where
+        ope.remove_flag = 0
+        <if test="evaluation != null and evaluation != ''">
+          and ope.evaluation like concat('%', #{evaluation}, '%')
+        </if>
+    ) t
+    where 1 = 1
+    <if test="evaluator != null and evaluator != ''">
+      and t.evaluator like concat('%', #{evaluator}, '%')
+    </if>
+    order by t.created_date desc
+  </select>
+
+  <!-- 根据主键逻辑删除 -->
+  <update id="removeByPrimaryKey" parameterType="java.lang.Long">
+    update dms_order_product_evaluation set remove_flag = 1 where id = #{id}
+  </update>
+
+  <!-- 根据id列表批量逻辑删除 -->
+  <update id="batchRemove" parameterType="java.util.List">
+    update dms_order_product_evaluation set remove_flag = 1 where id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>

@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsNewsMapper" >
+  <resultMap id="DmsNewsResultMap" type="com.coracle.dms.po.DmsNews" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="publish_user_id" property="publishUserId" jdbcType="BIGINT" />
+    <result column="is_comment" property="isComment" jdbcType="INTEGER" />
+    <result column="is_publish" property="isPublish" jdbcType="INTEGER" />
+    <result column="publish_date" property="publishDate" jdbcType="TIMESTAMP" />
+    <result column="pic_id" property="picId" jdbcType="BIGINT" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="LONGVARCHAR" />
+    <result column="click_count" property="clickCount" jdbcType="BIGINT" />
+    <result column="comment_count" property="commentCount" jdbcType="BIGINT" />
+    <result column="forward_count" property="forwardCount" jdbcType="BIGINT" />
+    <result column="is_show" property="isShow" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="is_can_forward" property="isCanForward" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsNews_Column_List" >
+    id, title, publish_user_id, is_comment, is_publish, publish_date, pic_id, content,
+    keyword, click_count, comment_count, forward_count, is_show, type, created_by, last_updated_by,
+    created_date, last_updated_date, remove_flag, is_can_forward
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsNewsResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsNews_Column_List" />
+    from dms_news
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_news
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsNews" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_news (title, publish_user_id, is_comment, is_publish, publish_date, pic_id,
+    content, keyword, click_count, comment_count, forward_count, is_show,
+    type, created_by, last_updated_by, created_date, last_updated_date, remove_flag,
+    is_can_forward)
+    values (#{title}, #{publishUserId}, #{isComment}, #{isPublish}, #{publishDate}, #{picId},
+    #{content}, #{keyword}, #{clickCount}, #{commentCount}, #{forwardCount}, #{isShow},
+    #{type}, #{createdBy}, #{lastUpdatedBy}, #{createdDate}, #{lastUpdatedDate}, #{removeFlag},
+    #{isCanForward})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsNews" >
+    insert into dms_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="publishUserId != null" >
+        publish_user_id,
+      </if>
+      <if test="isComment != null" >
+        is_comment,
+      </if>
+      <if test="isPublish != null" >
+        is_publish,
+      </if>
+      <if test="publishDate != null" >
+        publish_date,
+      </if>
+      <if test="picId != null" >
+        pic_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="clickCount != null" >
+        click_count,
+      </if>
+      <if test="commentCount != null" >
+        comment_count,
+      </if>
+      <if test="forwardCount != null" >
+        forward_count,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="isCanForward != null" >
+        is_can_forward,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="title != null" >
+        #{title},
+      </if>
+      <if test="publishUserId != null" >
+        #{publishUserId},
+      </if>
+      <if test="isComment != null" >
+        #{isComment},
+      </if>
+      <if test="isPublish != null" >
+        #{isPublish},
+      </if>
+      <if test="publishDate != null" >
+        #{publishDate},
+      </if>
+      <if test="picId != null" >
+        #{picId},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="keyword != null" >
+        #{keyword},
+      </if>
+      <if test="clickCount != null" >
+        #{clickCount},
+      </if>
+      <if test="commentCount != null" >
+        #{commentCount},
+      </if>
+      <if test="forwardCount != null" >
+        #{forwardCount},
+      </if>
+      <if test="isShow != null" >
+        #{isShow},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="isCanForward != null" >
+        #{isCanForward},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsNews" >
+    update dms_news
+    <set >
+      <if test="title != null" >
+        title = #{title},
+      </if>
+      <if test="publishUserId != null" >
+        publish_user_id = #{publishUserId},
+      </if>
+      <if test="isComment != null" >
+        is_comment = #{isComment},
+      </if>
+      <if test="isPublish != null" >
+        is_publish = #{isPublish},
+      </if>
+      <if test="publishDate != null" >
+        publish_date = #{publishDate},
+      </if>
+      <if test="picId != null" >
+        pic_id = #{picId},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword},
+      </if>
+      <if test="clickCount != null" >
+        click_count = #{clickCount},
+      </if>
+      <if test="commentCount != null" >
+        comment_count = #{commentCount},
+      </if>
+      <if test="forwardCount != null" >
+        forward_count = #{forwardCount},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow},
+      </if>
+      <if test="type != null" >
+        type = #{type},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="isCanForward != null" >
+        is_can_forward = #{isCanForward},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsNews" >
+    update dms_news
+    set title = #{title},
+    publish_user_id = #{publishUserId},
+    is_comment = #{isComment},
+    is_publish = #{isPublish},
+    publish_date = #{publishDate},
+    pic_id = #{picId},
+    content = #{content},
+    keyword = #{keyword},
+    click_count = #{clickCount},
+    comment_count = #{commentCount},
+    forward_count = #{forwardCount},
+    is_show = #{isShow},
+    type = #{type},
+    created_by = #{createdBy},
+    last_updated_by = #{lastUpdatedBy},
+    created_date = #{createdDate},
+    last_updated_date = #{lastUpdatedDate},
+    remove_flag = #{removeFlag},
+    is_can_forward = #{isCanForward}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="title != null and title != ''" >
+        title = #{title}
+      </if>
+      <if test="publishUserId != null" >
+        AND publish_user_id = #{publishUserId}
+      </if>
+      <if test="isComment != null" >
+        AND is_comment = #{isComment}
+      </if>
+      <if test="isPublish != null" >
+        AND is_publish = #{isPublish}
+      </if>
+      <if test="publishDate != null" >
+        AND publish_date = #{publishDate}
+      </if>
+      <if test="picId != null" >
+        AND pic_id = #{picId}
+      </if>
+      <if test="content != null and content != ''" >
+        AND content = #{content}
+      </if>
+      <if test="keyword != null and keyword != ''" >
+        AND keyword = #{keyword}
+      </if>
+      <if test="clickCount != null" >
+        AND click_count = #{clickCount}
+      </if>
+      <if test="commentCount != null" >
+        AND comment_count = #{commentCount}
+      </if>
+      <if test="forwardCount != null" >
+        AND forward_count = #{forwardCount}
+      </if>
+      <if test="isShow != null" >
+        AND is_show = #{isShow}
+      </if>
+      <if test="type != null and type != ''" >
+        AND type = #{type}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="isCanForward != null" >
+        AND is_can_forward = #{isCanForward}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsNews" resultMap="DmsNewsResultMap" >
+    select
+    <include refid="DmsNews_Column_List" />
+    from dms_news
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_news
+    <set >
+      <if test="po.title != null" >
+        title = #{po.title},
+      </if>
+      <if test="po.publishUserId != null" >
+        publish_user_id = #{po.publishUserId},
+      </if>
+      <if test="po.isComment != null" >
+        is_comment = #{po.isComment},
+      </if>
+      <if test="po.isPublish != null" >
+        is_publish = #{po.isPublish},
+      </if>
+      <if test="po.publishDate != null" >
+        publish_date = #{po.publishDate},
+      </if>
+      <if test="po.picId != null" >
+        pic_id = #{po.picId},
+      </if>
+      <if test="po.content != null" >
+        content = #{po.content},
+      </if>
+      <if test="po.keyword != null" >
+        keyword = #{po.keyword},
+      </if>
+      <if test="po.clickCount != null" >
+        click_count = #{po.clickCount},
+      </if>
+      <if test="po.commentCount != null" >
+        comment_count = #{po.commentCount},
+      </if>
+      <if test="po.forwardCount != null" >
+        forward_count = #{po.forwardCount},
+      </if>
+      <if test="po.isShow != null" >
+        is_show = #{po.isShow},
+      </if>
+      <if test="po.type != null" >
+        type = #{po.type},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.isCanForward != null" >
+        is_can_forward = #{po.isCanForward},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--************************************************-->
+  <resultMap id="DmsNewsVoResultMap" type="com.coracle.dms.vo.DmsNewsVo" extends="DmsNewsResultMap">
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="file_compress_path" property="fileCompressPath" jdbcType="VARCHAR" />
+    <result column="file_preview_path" property="filePreviewPath" jdbcType="VARCHAR" />
+    <collection column="id" property="rangeList" select="getRangeIds" />
+  </resultMap>
+  <select id="selectVoByPrimaryKey" resultMap="DmsNewsVoResultMap" parameterType="java.lang.Long" >
+    select
+    dn.id, dn.title, dn.publish_user_id, dn.is_comment, dn.is_publish, dn.publish_date, dn.pic_id, dn.content,
+    dn.keyword, dn.click_count, dn.comment_count, dn.forward_count, dn.is_show, dn.type, dn.created_by, dn.last_updated_by,
+    dn.created_date, dn.last_updated_date, dn.remove_flag, dn.is_can_forward,du.source,du.staff_id,
+    case du.source
+        when 1 then (select de.name from dms_employee de where de.id = du.staff_id limit 0,1)
+        when 2 then (select dcc.name from dms_channel_contacts dcc where dcc.id = du.staff_id limit 0,1)
+        when 3 then (select ds.name from dms_seller ds where du.staff_id=ds.id limit 0,1)
+    end as user_name,
+    (select t3.file_path from dms_common_attach_file t3 where t3.id = dn.pic_id) as file_path
+    from dms_news dn left join dms_user du on dn.publish_user_id = du.id where dn.id=#{id}
+  </select>
+  <!--查询新闻列表-->
+  <select id="findDmsNewsPageList" parameterType="com.coracle.dms.vo.DmsNewsVo" resultMap="DmsNewsVoResultMap">
+    select
+    dn.id, dn.title, dn.publish_user_id, dn.is_comment, dn.is_publish, dn.publish_date, dn.pic_id, dn.content,
+    dn.keyword, dn.click_count, dn.comment_count, dn.forward_count, dn.is_show, dn.type, dn.created_by, dn.last_updated_by,
+    dn.created_date, dn.last_updated_date, dn.remove_flag, dn.is_can_forward,du.source,du.staff_id,
+    case du.source
+    when 1 then (select de.name from dms_employee de where de.id = du.staff_id limit 0,1)
+    when 2 then (select dcc.name from dms_channel_contacts dcc where dcc.id = du.staff_id limit 0,1)
+    when 3 then (select ds.name from dms_seller ds where du.staff_id=ds.id limit 0,1)
+    end as user_name,
+    (select t3.file_path from dms_common_attach_file t3 where t3.id = dn.pic_id) as file_path,
+    (select t3.file_compress_path from dms_common_attach_file t3 where t3.id = dn.pic_id) as file_compress_path,
+    (select t3.file_preview_path from dms_common_attach_file t3 where t3.id = dn.pic_id) as file_preview_path
+    from dms_news dn left join dms_user du on dn.publish_user_id = du.id where dn.remove_flag = 0
+    <if test="searchContent != null and searchContent != ''" >
+      and (dn.title like CONCAT('%',#{searchContent},'%') or dn.keyword like CONCAT('%',#{searchContent},'%') )
+    </if>
+    <if test="title != null and title != ''" >
+      and dn.title like CONCAT('%',#{title},'%')
+    </if>
+    <if test="publishUserId != null" >
+      AND dn.publish_user_id = #{publishUserId}
+    </if>
+    <if test="isComment != null" >
+      AND dn.is_comment = #{isComment}
+    </if>
+    <if test="isPublish != null" >
+      AND dn.is_publish = #{isPublish}
+    </if>
+    <if test="startDate != null and startDate!=''" >
+      AND dn.publish_date &gt;= #{startDate}
+    </if>
+    <if test="endDate != null and endDate!=''" >
+      AND dn.publish_date &lt;= #{endDate}
+    </if>
+    <if test="content != null and content != ''" >
+      AND dn.content like CONCAT('%',#{content},'%')
+    </if>
+    <if test="keyword != null and keyword != ''" >
+      AND dn.keyword like CONCAT('%',#{keyword},'%')
+    </if>
+    <if test="clickCount != null" >
+      AND dn.click_count = #{clickCount}
+    </if>
+    <if test="commentCount != null" >
+      AND dn.comment_count = #{commentCount}
+    </if>
+    <if test="forwardCount != null" >
+      AND dn.forward_count = #{forwardCount}
+    </if>
+    <if test="isShow != null" >
+      AND dn.is_show = #{isShow}
+    </if>
+    <if test="type != null" >
+      AND dn.type = #{type}
+    </if>
+    <if test="createdBy != null" >
+      AND dn.created_by = #{createdBy}
+    </if>
+    <if test="lastUpdatedBy != null" >
+      AND dn.last_updated_by = #{lastUpdatedBy}
+    </if>
+    <if test="createdDate != null" >
+      AND dn.created_date = #{createdDate}
+    </if>
+    <if test="lastUpdatedDate != null" >
+      AND dn.last_updated_date = #{lastUpdatedDate}
+    </if>
+    <if test="isCanForward != null" >
+      AND dn.is_can_forward = #{isCanForward}
+    </if>
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <!--删除评论时同步评论量减一-->
+  <update id="reductionComentCount">
+    UPDATE  dms_news SET  comment_count=comment_count-#{count}
+    where 1=2
+    <if test="ids != null and ids.size &gt; 0">
+      <foreach close=")" collection="ids" item="listItem" open="or id in(" separator=",">
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <select id="getRangeIds" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select publish_range_id from dms_publish_range where remove_flag=0 and related_type=1 and related_id=#{id}
+  </select>
+
+  <!--根据自己所属范围查询自己所能看到的新闻-->
+  <select id="getNewsListByUser" resultMap="DmsNewsVoResultMap">
+    SELECT
+    dn.id, dn.title, dn.publish_user_id, dn.is_comment, dn.is_publish, dn.publish_date, dn.pic_id, dn.content,
+    dn.keyword, dn.click_count, dn.comment_count, dn.forward_count, dn.is_show, dn.type, dn.created_by, dn.last_updated_by,
+    dn.created_date, dn.last_updated_date, dn.remove_flag, dn.is_can_forward,
+    (select t3.file_path from dms_common_attach_file t3 where t3.id = dn.pic_id) as file_path,
+    (select t3.file_compress_path from dms_common_attach_file t3 where t3.id = dn.pic_id) as file_compress_path,
+    (select t3.file_preview_path from dms_common_attach_file t3 where t3.id = dn.pic_id) as file_preview_path
+    FROM dms_news dn left join `dms_publish_range` dpr on dn.id=dpr.related_id
+    where dn.is_publish =1 and dpr.related_type=1 and dpr.publish_range_id=#{id}
+    <if test="isShow !=null and isShow==1">
+      and dn.is_show=#{isShow}
+    </if>
+     order by dn.publish_date desc
+  </select>
+</mapper>

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsClaimsProductMapper" >
+  <resultMap id="DmsClaimsProductResultMap" type="com.coracle.dms.po.DmsClaimsProduct" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="specifit" property="specifit" jdbcType="VARCHAR" />
+    <result column="type_no" property="typeNo" jdbcType="VARCHAR" />
+    <result column="coding" property="coding" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="production_date" property="productionDate" jdbcType="TIMESTAMP" />
+    <result column="box_no" property="boxNo" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="record" property="record" jdbcType="VARCHAR" />
+    <result column="dms_claims_id" property="dmsClaimsId" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsClaimsProduct_Column_List" >
+    id, category, specifit, type_no, coding, name, production_date, box_no, count, record, 
+    dms_claims_id, remark, created_date, created_by, last_updated_date, last_updated_by, 
+    remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsClaimsProductResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="DmsClaimsProduct_Column_List" />
+    from dms_claims_product
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dms_claims_product
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsClaimsProduct" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_claims_product (category, specifit, type_no, coding, name, production_date, 
+      box_no, count, record, dms_claims_id, remark, created_date, created_by, 
+      last_updated_date, last_updated_by, remove_flag)
+    values (#{category}, #{specifit}, #{typeNo}, #{coding}, #{name}, #{productionDate}, 
+      #{boxNo}, #{count}, #{record}, #{dmsClaimsId}, #{remark}, #{createdDate}, #{createdBy}, 
+      #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsClaimsProduct" >
+    insert into dms_claims_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="specifit != null" >
+        specifit,
+      </if>
+      <if test="typeNo != null" >
+        type_no,
+      </if>
+      <if test="coding != null" >
+        coding,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="productionDate != null" >
+        production_date,
+      </if>
+      <if test="boxNo != null" >
+        box_no,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="record != null" >
+        record,
+      </if>
+      <if test="dmsClaimsId != null" >
+        dms_claims_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="category != null" >
+        #{category},
+      </if>
+      <if test="specifit != null" >
+        #{specifit},
+      </if>
+      <if test="typeNo != null" >
+        #{typeNo},
+      </if>
+      <if test="coding != null" >
+        #{coding},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="productionDate != null" >
+        #{productionDate},
+      </if>
+      <if test="boxNo != null" >
+        #{boxNo},
+      </if>
+      <if test="count != null" >
+        #{count},
+      </if>
+      <if test="record != null" >
+        #{record},
+      </if>
+      <if test="dmsClaimsId != null" >
+        #{dmsClaimsId},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsClaimsProduct" >
+    update dms_claims_product
+    <set >
+      <if test="category != null" >
+        category = #{category},
+      </if>
+      <if test="specifit != null" >
+        specifit = #{specifit},
+      </if>
+      <if test="typeNo != null" >
+        type_no = #{typeNo},
+      </if>
+      <if test="coding != null" >
+        coding = #{coding},
+      </if>
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="productionDate != null" >
+        production_date = #{productionDate},
+      </if>
+      <if test="boxNo != null" >
+        box_no = #{boxNo},
+      </if>
+      <if test="count != null" >
+        count = #{count},
+      </if>
+      <if test="record != null" >
+        record = #{record},
+      </if>
+      <if test="dmsClaimsId != null" >
+        dms_claims_id = #{dmsClaimsId},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsClaimsProduct" >
+    update dms_claims_product
+    set category = #{category},
+      specifit = #{specifit},
+      type_no = #{typeNo},
+      coding = #{coding},
+      name = #{name},
+      production_date = #{productionDate},
+      box_no = #{boxNo},
+      count = #{count},
+      record = #{record},
+      dms_claims_id = #{dmsClaimsId},
+      remark = #{remark},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="category != null and category != ''" >
+        category = #{category}
+      </if>
+      <if test="specifit != null and specifit != ''" >
+        AND specifit = #{specifit}
+      </if>
+      <if test="typeNo != null and typeNo != ''" >
+        AND type_no = #{typeNo}
+      </if>
+      <if test="coding != null and coding != ''" >
+        AND coding = #{coding}
+      </if>
+      <if test="name != null and name != ''" >
+        AND name = #{name}
+      </if>
+      <if test="productionDate != null" >
+        AND production_date = #{productionDate}
+      </if>
+      <if test="boxNo != null and boxNo != ''" >
+        AND box_no = #{boxNo}
+      </if>
+      <if test="count != null" >
+        AND count = #{count}
+      </if>
+      <if test="record != null and record != ''" >
+        AND record = #{record}
+      </if>
+      <if test="dmsClaimsId != null" >
+        AND dms_claims_id = #{dmsClaimsId}
+      </if>
+      <if test="remark != null and remark != ''" >
+        AND remark = #{remark}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsClaimsProduct" resultMap="DmsClaimsProductResultMap" >
+    select 
+    <include refid="DmsClaimsProduct_Column_List" />
+    from dms_claims_product
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_claims_product
+    <set >
+      <if test="po.category != null" >
+        category = #{po.category},
+      </if>
+      <if test="po.specifit != null" >
+        specifit = #{po.specifit},
+      </if>
+      <if test="po.typeNo != null" >
+        type_no = #{po.typeNo},
+      </if>
+      <if test="po.coding != null" >
+        coding = #{po.coding},
+      </if>
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.productionDate != null" >
+        production_date = #{po.productionDate},
+      </if>
+      <if test="po.boxNo != null" >
+        box_no = #{po.boxNo},
+      </if>
+      <if test="po.count != null" >
+        count = #{po.count},
+      </if>
+      <if test="po.record != null" >
+        record = #{po.record},
+      </if>
+      <if test="po.dmsClaimsId != null" >
+        dms_claims_id = #{po.dmsClaimsId},
+      </if>
+      <if test="po.remark != null" >
+        remark = #{po.remark},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

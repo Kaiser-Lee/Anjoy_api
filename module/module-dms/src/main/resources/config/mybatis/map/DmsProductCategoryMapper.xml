@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsProductCategoryMapper" >
+  <resultMap id="DmsProductCategoryResultMap" type="com.coracle.dms.po.DmsProductCategory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="full_path" property="fullPath" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="attach_id" property="attachId" jdbcType="BIGINT" />
+    <result column="photo_url" property="photoUrl" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="anjoy_id" property="anjoyId" jdbcType="VARCHAR" />
+    <result column="anjoy_parent_id" property="anjoyParentId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsProductCategory_Column_List" >
+    id, name, path,full_path, level, active, code, parent_id, description, attach_id, photo_url, created_date, 
+    created_by, last_updated_date, last_updated_by, remove_flag, anjoy_id, anjoy_parent_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsProductCategoryResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsProductCategory_Column_List" />
+    from dms_product_category
+    where id = #{id} AND remove_flag = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_product_category
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsProductCategory" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_product_category (name, path, full_path,level, active, code, parent_id, description, attach_id,
+      photo_url, created_date, created_by, last_updated_date, last_updated_by, 
+      remove_flag, anjoy_id, anjoy_parent_id)
+    values (#{name}, #{path},#{fullPath}, #{level}, #{active}, #{code}, #{parentId}, #{description}, #{attachId},
+      #{photoUrl}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, 
+      #{removeFlag}, #{anjoyId}, #{anjoyParentId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsProductCategory" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_product_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="photoUrl != null" >
+        photo_url,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="anjoyId != null" >
+        anjoy_id,
+      </if>
+      <if test="anjoyParentId != null" >
+        anjoy_parent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="path != null" >
+        #{path},
+      </if>
+      <if test="level != null" >
+        #{level},
+      </if>
+      <if test="active != null" >
+        #{active},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="parentId != null" >
+        #{parentId},
+      </if>
+      <if test="description != null" >
+        #{description},
+      </if>
+      <if test="photoUrl != null" >
+        #{photoUrl},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="anjoyId != null" >
+        #{anjoyId},
+      </if>
+      <if test="anjoyParentId != null" >
+        #{anjoyParentId},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsProductCategory" >
+    update dms_product_category
+    <set >
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="fullPath != null" >
+        full_path = #{fullPath},
+      </if>
+      <if test="path != null" >
+        path = #{path},
+      </if>
+      <if test="level != null" >
+        level = #{level},
+      </if>
+      <if test="active != null" >
+        active = #{active},
+      </if>
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId},
+      </if>
+      <if test="description != null" >
+        description = #{description},
+      </if>
+      <if test="attachId != null" >
+        attach_id = #{attachId},
+      </if>
+      <if test="photoUrl != null" >
+        photo_url = #{photoUrl},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="anjoyId != null" >
+        anjoy_id = #{anjoyId},
+      </if>
+      <if test="anjoyParentId != null" >
+        anjoy_parent_id = #{anjoyParentId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsProductCategory" >
+    update dms_product_category
+    set name = #{name},
+      full_path = #{fullPath},
+      path = #{path},
+      level = #{level},
+      active = #{active},
+      code = #{code},
+      parent_id = #{parentId},
+      description = #{description},
+      attach_id = #{attachId},
+      photo_url = #{photoUrl},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      anjoy_id = #{anjoyId},
+      anjoy_parent_id = #{anjoyParentId}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="name != null and name != ''" >
+         and name like CONCAT('%', #{name},'%')
+      </if>
+      <if test="path != null and path != ''" >
+        AND path = #{path}
+      </if>
+      <if test="fullPath != null and fullPath != ''" >
+        AND full_path = #{fullPath}
+      </if>
+      <if test="level != null" >
+        AND level = #{level}
+      </if>
+      <if test="active != null" >
+        AND active = #{active}
+      </if>
+      <if test="code != null and code != ''" >
+        AND code = #{code}
+      </if>
+      <if test="parentId != null" >
+        AND parent_id = #{parentId}
+      </if>
+      <if test="description != null and description != ''" >
+        AND description = #{description}
+      </if>
+      <if test="photoUrl != null and photoUrl != ''" >
+        AND photo_url = #{photoUrl}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="anjoyId != null and anjoyId != ''" >
+        AND BINARY anjoy_id = #{anjoyId}
+      </if>
+      <if test="anjoyParentId != null and anjoyParentId != ''" >
+        AND anjoy_parent_id = #{anjoyParentId}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsProductCategory" resultMap="DmsProductCategoryResultMap" >
+    select 
+    <include refid="DmsProductCategory_Column_List" />
+    from dms_product_category
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_product_category
+    <set >
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.path != null" >
+        path = #{po.path},
+      </if>
+      <if test="po.level != null" >
+        level = #{po.level},
+      </if>
+      <if test="po.active != null" >
+        active = #{po.active},
+      </if>
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.parentId != null" >
+        parent_id = #{po.parentId},
+      </if>
+      <if test="po.description != null" >
+        description = #{po.description},
+      </if>
+      <if test="po.photoUrl != null" >
+        photo_url = #{po.photoUrl},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.anjoyId != null" >
+        anjoy_id = #{po.anjoyId},
+      </if>
+      <if test="po.anjoyParentId != null" >
+        anjoy_parent_id = #{po.anjoyParentId},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--########################################################### new add sql create by tanyb ######################################-->
+  <!-- 区域树形结构类型 -->
+  <resultMap id="DmsProductCategoryTreeResultMap" type="com.coracle.yk.base.vo.TreeNode">
+    <result property="key" column="key" jdbcType="VARCHAR"/>
+    <result property="value" column="value" jdbcType="VARCHAR"/>
+    <result property="label" column="label" jdbcType="VARCHAR"/>
+    <result property="isLeaf" column="isLeaf" jdbcType="BOOLEAN"/>
+    <collection property="children" column="key" javaType="java.util.List" ofType="com.coracle.yk.base.vo.TreeNode"
+        select="selectByParentId"/>
+  </resultMap>
+
+  <!-- 根据父id获取子数据 -->
+  <select id="selectByParentId" parameterType="map" resultMap="DmsProductCategoryTreeResultMap">
+    select
+      d.id as 'key', d.id as 'value',d.name as label,false as isLeaf, 0 as sort_order
+    from
+      dms_product_category d
+    where
+      d.parent_id = #{id}
+      AND d.active = 1
+      AND d.remove_flag = 0
+  </select>
+
+  <!--根据code进行查询-->
+  <select id="selectByCode" parameterType="java.lang.String" resultMap="DmsProductCategoryResultMap">
+    select
+    <include refid="DmsProductCategory_Column_List" />
+    from
+    dms_product_category d
+    where
+    d.code=#{code}
+  </select>
+  
+  <update id="updateInvalidCategory" parameterType="com.coracle.dms.po.DmsProductCategory" >
+    update dms_product_category
+    set  
+      active = #{active},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy}
+    where id = #{id}
+  </update>
+  <!-- 软删除 -->
+  <update id="deleteByIdSoft" parameterType="java.lang.Long">
+    update dms_product_category set remove_Flag = 1 where id = #{id}
+  </update>
+  
+  <select id="selectByPid" resultMap="DmsProductCategoryResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsProductCategory_Column_List" />
+    from dms_product_category
+    where parent_id = #{cid} AND remove_flag = 0
+  </select>
+  
+  <select id="selectByPathList" resultMap="DmsProductCategoryResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsProductCategory_Column_List" />
+    from dms_product_category t
+    where FIND_IN_SET(#{id},t.path)
+  </select>
+  
+  <select id="getLevelMax" resultType="java.lang.Integer">
+    select max(level) from dms_product_category where remove_flag = 0
+  </select>
+
+  <!-- 批量插入 -->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_product_category
+    (
+      name, path, full_path, level, active, code, parent_id,
+      description, attach_id, photo_url, created_date, created_by, last_updated_date,
+      last_updated_by, remove_flag, anjoy_id, anjoy_parent_id
+    )
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (
+        #{item.name}, #{item.path}, #{item.fullPath}, #{item.level}, #{item.active}, #{item.code}, #{item.parentId},
+        #{item.description}, #{item.attachId}, #{item.photoUrl}, #{item.createdDate}, #{item.createdBy}, #{item.lastUpdatedDate},
+        #{item.lastUpdatedBy}, #{item.removeFlag}, #{item.anjoyId}, #{item.anjoyParentId}
+      )
+    </foreach>
+  </insert>
+
+  <!-- 根据安井的父id获取组织信息 -->
+  <select id="listByAnjoyParentId" parameterType="java.util.List" resultMap="DmsProductCategoryResultMap">
+    select
+      pc.*
+    from
+      dms_product_category pc
+    where
+      pc.remove_flag = 0
+    <choose>
+      <when test="list == null or list.size() == 0">
+        and binary pc.anjoy_parent_id is null
+      </when>
+      <otherwise>
+        and binary pc.anjoy_parent_id in
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </otherwise>
+    </choose>
+  </select>
+
+  <!-- 根据父id 集合获取组织信息 -->
+  <select id="listByParentId" parameterType="java.util.List" resultMap="DmsProductCategoryResultMap">
+    select
+    pc.*
+    from
+    dms_product_category pc
+    where
+    pc.remove_flag = 0
+    <choose>
+      <when test="list == null or list.size() == 0">
+        and binary pc.parent_id is null
+      </when>
+      <otherwise>
+        and binary pc.parent_id in
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </otherwise>
+    </choose>
+  </select>
+
+
+  <select id="selectSon" resultMap="DmsProductCategoryResultMap">
+
+    select pc.* from dms_product_category pc where pc.parent_id > 0 and pc.remove_flag = 0 and pc.active = 1
+
+  </select>
+
+
+  <!-- 同步安井-产品分类据前先将DMS所有产品分类数据置为：已删除状态 -->
+  <update id="deleteProductCategorySyncAnjoy">
+    UPDATE dms_product_category t SET t.remove_flag = 1
+  </update>
+
+  <select id="selectOneByCondition" parameterType="com.coracle.dms.po.DmsProductCategory" resultMap="DmsProductCategoryResultMap" >
+    select
+      <include refid="DmsProductCategory_Column_List" />
+    from dms_product_category
+      <include refid="Where_Condition" />
+      <if test="orderField != null and orderField != ''" >
+        ORDER BY ${orderField}
+        <if test="orderString != null and orderString != ''" >
+          ${orderString}
+        </if>
+      </if>
+  </select>
+
+</mapper>

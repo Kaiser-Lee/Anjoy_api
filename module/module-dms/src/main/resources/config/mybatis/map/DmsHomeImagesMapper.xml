@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsHomeImagesMapper" >
+  <resultMap id="DmsHomeImagesResultMap" type="com.coracle.dms.po.DmsHomeImages" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="attach_id" property="attachId" jdbcType="BIGINT" />
+    <result column="attach_name" property="attachName" jdbcType="VARCHAR" />
+    <result column="link_url" property="linkUrl" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="BIGINT" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="image_type" property="imageType" jdbcType="INTEGER" />
+    <result column="expand1" property="expand1" jdbcType="VARCHAR" />
+    <result column="expand2" property="expand2" jdbcType="VARCHAR" />
+    <result column="expand3" property="expand3" jdbcType="VARCHAR" />
+    <result column="expand4" property="expand4" jdbcType="VARCHAR" />
+    <result column="expand5" property="expand5" jdbcType="VARCHAR" />
+    <result column="expand6" property="expand6" jdbcType="VARCHAR" />
+    <result column="expand7" property="expand7" jdbcType="VARCHAR" />
+    <result column="expand8" property="expand8" jdbcType="VARCHAR" />
+    <result column="expand9" property="expand9" jdbcType="VARCHAR" />
+    <result column="expand10" property="expand10" jdbcType="VARCHAR" />
+    <result column="expand11" property="expand11" jdbcType="VARCHAR" />
+    <result column="expand12" property="expand12" jdbcType="VARCHAR" />
+    <result column="expand13" property="expand13" jdbcType="VARCHAR" />
+    <result column="expand14" property="expand14" jdbcType="VARCHAR" />
+    <result column="expand15" property="expand15" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsHomeImages_Column_List" >
+    id, attach_id, attach_name, link_url, sort, created_by, created_date, last_updated_by,
+    last_updated_date, remove_flag, image_type, expand1, expand2, expand3, expand4, expand5, 
+    expand6, expand7, expand8, expand9, expand10, expand11, expand12, expand13, expand14, 
+    expand15
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsHomeImagesResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsHomeImages_Column_List" />
+    from dms_home_images
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_home_images
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsHomeImages" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_home_images (attach_id, attach_name, link_url, sort, created_by, created_date,
+      last_updated_by, last_updated_date, remove_flag, image_type, expand1, 
+      expand2, expand3, expand4, expand5, expand6, expand7, expand8, 
+      expand9, expand10, expand11, expand12, expand13, expand14, expand15
+      )
+    values (#{attachId}, #{attachName}, #{linkUrl}, #{sort}, #{createdBy}, #{createdDate},
+      #{lastUpdatedBy}, #{lastUpdatedDate}, #{removeFlag}, #{imageType}, #{expand1}, 
+      #{expand2}, #{expand3}, #{expand4}, #{expand5}, #{expand6}, #{expand7}, #{expand8}, 
+      #{expand9}, #{expand10}, #{expand11}, #{expand12}, #{expand13}, #{expand14}, #{expand15}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsHomeImages" >
+    insert into dms_home_images
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="attachId != null" >
+        attach_id,
+      </if>
+      <if test="attachName != null" >
+        attach_name,
+      </if>
+      <if test="linkUrl != null" >
+        link_url,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="imageType != null" >
+        image_type,
+      </if>
+      <if test="expand1 != null" >
+        expand1,
+      </if>
+      <if test="expand2 != null" >
+        expand2,
+      </if>
+      <if test="expand3 != null" >
+        expand3,
+      </if>
+      <if test="expand4 != null" >
+        expand4,
+      </if>
+      <if test="expand5 != null" >
+        expand5,
+      </if>
+      <if test="expand6 != null" >
+        expand6,
+      </if>
+      <if test="expand7 != null" >
+        expand7,
+      </if>
+      <if test="expand8 != null" >
+        expand8,
+      </if>
+      <if test="expand9 != null" >
+        expand9,
+      </if>
+      <if test="expand10 != null" >
+        expand10,
+      </if>
+      <if test="expand11 != null" >
+        expand11,
+      </if>
+      <if test="expand12 != null" >
+        expand12,
+      </if>
+      <if test="expand13 != null" >
+        expand13,
+      </if>
+      <if test="expand14 != null" >
+        expand14,
+      </if>
+      <if test="expand15 != null" >
+        expand15,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="attachId != null" >
+        #{attachId},
+      </if>
+      <if test="attachName != null" >
+        #{attachName},
+      </if>
+      <if test="linkUrl != null" >
+        #{linkUrl},
+      </if>
+      <if test="sort != null" >
+        #{sort},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="imageType != null" >
+        #{imageType},
+      </if>
+      <if test="expand1 != null" >
+        #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        #{expand15},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsHomeImages" >
+    update dms_home_images
+    <set >
+      <if test="attachId != null" >
+        attach_id = #{attachId},
+      </if>
+      <if test="attachName != null" >
+        attach_name = #{attachName},
+      </if>
+      <if test="linkUrl != null" >
+        link_url = #{linkUrl},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="imageType != null" >
+        image_type = #{imageType},
+      </if>
+      <if test="expand1 != null" >
+        expand1 = #{expand1},
+      </if>
+      <if test="expand2 != null" >
+        expand2 = #{expand2},
+      </if>
+      <if test="expand3 != null" >
+        expand3 = #{expand3},
+      </if>
+      <if test="expand4 != null" >
+        expand4 = #{expand4},
+      </if>
+      <if test="expand5 != null" >
+        expand5 = #{expand5},
+      </if>
+      <if test="expand6 != null" >
+        expand6 = #{expand6},
+      </if>
+      <if test="expand7 != null" >
+        expand7 = #{expand7},
+      </if>
+      <if test="expand8 != null" >
+        expand8 = #{expand8},
+      </if>
+      <if test="expand9 != null" >
+        expand9 = #{expand9},
+      </if>
+      <if test="expand10 != null" >
+        expand10 = #{expand10},
+      </if>
+      <if test="expand11 != null" >
+        expand11 = #{expand11},
+      </if>
+      <if test="expand12 != null" >
+        expand12 = #{expand12},
+      </if>
+      <if test="expand13 != null" >
+        expand13 = #{expand13},
+      </if>
+      <if test="expand14 != null" >
+        expand14 = #{expand14},
+      </if>
+      <if test="expand15 != null" >
+        expand15 = #{expand15},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsHomeImages" >
+    update dms_home_images
+    set attach_id = #{attachId},
+      attach_name = #{attachName},
+      link_url = #{linkUrl},
+      sort = #{sort},
+      created_by = #{createdBy},
+      created_date = #{createdDate},
+      last_updated_by = #{lastUpdatedBy},
+      last_updated_date = #{lastUpdatedDate},
+      remove_flag = #{removeFlag},
+      image_type = #{imageType},
+      expand1 = #{expand1},
+      expand2 = #{expand2},
+      expand3 = #{expand3},
+      expand4 = #{expand4},
+      expand5 = #{expand5},
+      expand6 = #{expand6},
+      expand7 = #{expand7},
+      expand8 = #{expand8},
+      expand9 = #{expand9},
+      expand10 = #{expand10},
+      expand11 = #{expand11},
+      expand12 = #{expand12},
+      expand13 = #{expand13},
+      expand14 = #{expand14},
+      expand15 = #{expand15}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="attachId != null" >
+        attach_id = #{attachId}
+      </if>
+      <if test="attachName != null and attachName != ''" >
+        AND attach_name = #{attachName}
+      </if>
+      <if test="linkUrl != null and linkUrl != ''" >
+        AND link_url = #{linkUrl}
+      </if>
+      <if test="sort != null" >
+        AND sort = #{sort}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="imageType != null" >
+        AND image_type = #{imageType}
+      </if>
+      <if test="expand1 != null and expand1 != ''" >
+        AND expand1 = #{expand1}
+      </if>
+      <if test="expand2 != null and expand2 != ''" >
+        AND expand2 = #{expand2}
+      </if>
+      <if test="expand3 != null and expand3 != ''" >
+        AND expand3 = #{expand3}
+      </if>
+      <if test="expand4 != null and expand4 != ''" >
+        AND expand4 = #{expand4}
+      </if>
+      <if test="expand5 != null and expand5 != ''" >
+        AND expand5 = #{expand5}
+      </if>
+      <if test="expand6 != null and expand6 != ''" >
+        AND expand6 = #{expand6}
+      </if>
+      <if test="expand7 != null and expand7 != ''" >
+        AND expand7 = #{expand7}
+      </if>
+      <if test="expand8 != null and expand8 != ''" >
+        AND expand8 = #{expand8}
+      </if>
+      <if test="expand9 != null and expand9 != ''" >
+        AND expand9 = #{expand9}
+      </if>
+      <if test="expand10 != null and expand10 != ''" >
+        AND expand10 = #{expand10}
+      </if>
+      <if test="expand11 != null and expand11 != ''" >
+        AND expand11 = #{expand11}
+      </if>
+      <if test="expand12 != null and expand12 != ''" >
+        AND expand12 = #{expand12}
+      </if>
+      <if test="expand13 != null and expand13 != ''" >
+        AND expand13 = #{expand13}
+      </if>
+      <if test="expand14 != null and expand14 != ''" >
+        AND expand14 = #{expand14}
+      </if>
+      <if test="expand15 != null and expand15 != ''" >
+        AND expand15 = #{expand15}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsHomeImages" resultMap="DmsHomeImagesResultMap" >
+    select 
+    <include refid="DmsHomeImages_Column_List" />
+    from dms_home_images
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_home_images
+    <set >
+      <if test="po.attachId != null" >
+        attach_id = #{po.attachId},
+      </if>
+      <if test="po.attachName != null" >
+        attach_name = #{po.attachName},
+      </if>
+      <if test="po.linkUrl != null" >
+        link_url = #{po.linkUrl},
+      </if>
+      <if test="po.sort != null" >
+        sort = #{po.sort},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.imageType != null" >
+        image_type = #{po.imageType},
+      </if>
+      <if test="po.expand1 != null" >
+        expand1 = #{po.expand1},
+      </if>
+      <if test="po.expand2 != null" >
+        expand2 = #{po.expand2},
+      </if>
+      <if test="po.expand3 != null" >
+        expand3 = #{po.expand3},
+      </if>
+      <if test="po.expand4 != null" >
+        expand4 = #{po.expand4},
+      </if>
+      <if test="po.expand5 != null" >
+        expand5 = #{po.expand5},
+      </if>
+      <if test="po.expand6 != null" >
+        expand6 = #{po.expand6},
+      </if>
+      <if test="po.expand7 != null" >
+        expand7 = #{po.expand7},
+      </if>
+      <if test="po.expand8 != null" >
+        expand8 = #{po.expand8},
+      </if>
+      <if test="po.expand9 != null" >
+        expand9 = #{po.expand9},
+      </if>
+      <if test="po.expand10 != null" >
+        expand10 = #{po.expand10},
+      </if>
+      <if test="po.expand11 != null" >
+        expand11 = #{po.expand11},
+      </if>
+      <if test="po.expand12 != null" >
+        expand12 = #{po.expand12},
+      </if>
+      <if test="po.expand13 != null" >
+        expand13 = #{po.expand13},
+      </if>
+      <if test="po.expand14 != null" >
+        expand14 = #{po.expand14},
+      </if>
+      <if test="po.expand15 != null" >
+        expand15 = #{po.expand15},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!--**************************************-->
+  <!--分页获取图片集合-->
+  <select id="findAll" parameterType="com.coracle.dms.po.DmsHomeImages" resultType="java.util.Map">
+    SELECT
+    t.id AS 'id',
+    t1.file_path as 'filePath',
+    t1.file_compress_path as 'fileCompressPath',
+    t1.file_preview_path as 'filePreviewPath',
+    t.sort as 'sort',
+    t.attach_name as 'attachName',
+    t.link_url as 'linkUrl',
+    t.image_type as 'imageType',
+    t.attach_id as 'attachId'
+    FROM
+    dms_home_images t
+    LEFT JOIN dms_common_attach_file t1 ON t.attach_id = t1.id
+    WHERE
+    t.remove_flag = 0
+    <if test="imageType != null">
+      AND t.image_type = #{imageType}
+    </if>
+  </select>
+
+<!--批量更新-->
+  <update id="batchDelete" parameterType="java.lang.Integer">
+    update dms_home_images
+    set
+    remove_flag = 1
+    <if test="type != null">
+     and image_type = #{type}
+    </if>
+  </update>
+
+  <!--批量新增-->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_home_images (attach_id, attach_name, link_url, sort, created_by, created_date,
+    last_updated_by, last_updated_date, remove_flag, image_type, expand1,
+    expand2, expand3, expand4, expand5, expand6, expand7, expand8,
+    expand9, expand10, expand11, expand12, expand13, expand14, expand15
+    )
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.attachId}, #{item.attachName}, #{item.linkUrl}, #{item.sort}, #{item.createdBy}, #{item.createdDate},
+      #{item.lastUpdatedBy}, #{item.lastUpdatedDate}, #{item.removeFlag}, #{item.imageType}, #{item.expand1},
+      #{item.expand2}, #{item.expand3}, #{item.expand4}, #{item.expand5}, #{item.expand6}, #{item.expand7}, #{item.expand8},
+      #{item.expand9}, #{item.expand10}, #{item.expand11}, #{item.expand12}, #{item.expand13}, #{item.expand14}, #{item.expand15})
+    </foreach>
+  </insert>
+
+</mapper>

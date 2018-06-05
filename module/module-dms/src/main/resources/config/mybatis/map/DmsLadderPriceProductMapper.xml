@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsLadderPriceProductMapper" >
+  <resultMap id="DmsLadderPriceProductResultMap" type="com.coracle.dms.po.DmsLadderPriceProduct" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="product_code" property="productCode" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="lastupdate_date" property="lastupdateDate" jdbcType="TIMESTAMP" />
+    <result column="lastupdate_by" property="lastupdateBy" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsLadderPriceProduct_Column_List" >
+    id, code, product_code, product_name, category_id, category_name, start_time, end_time,
+    created_date, created_by, lastupdate_date, lastupdate_by, price, active, remove_flag,
+    flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsLadderPriceProductResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsLadderPriceProduct_Column_List" />
+    from dms_ladderprice_product
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_ladderprice_product
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsLadderPriceProduct" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_ladderprice_product (code, product_code, product_name, category_id, category_name,
+    start_time, end_time, created_date, created_by, lastupdate_date, lastupdate_by,
+    price, active, remove_flag, flag)
+    values (#{code}, #{productCode}, #{productName}, #{categoryId}, #{categoryName},
+    #{startTime}, #{endTime}, #{createdDate}, #{createdBy}, #{lastupdateDate}, #{lastupdateBy},
+    #{price}, #{active}, #{removeFlag}, #{flag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsLadderPriceProduct" >
+    insert into dms_ladderprice_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="productCode != null" >
+        product_code,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="categoryName != null" >
+        category_name,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastupdateDate != null" >
+        lastupdate_date,
+      </if>
+      <if test="lastupdateBy != null" >
+        lastupdate_by,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="productCode != null" >
+        #{productCode},
+      </if>
+      <if test="productName != null" >
+        #{productName},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId},
+      </if>
+      <if test="categoryName != null" >
+        #{categoryName},
+      </if>
+      <if test="startTime != null" >
+        #{startTime},
+      </if>
+      <if test="endTime != null" >
+        #{endTime},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastupdateDate != null" >
+        #{lastupdateDate},
+      </if>
+      <if test="lastupdateBy != null" >
+        #{lastupdateBy},
+      </if>
+      <if test="price != null" >
+        #{price},
+      </if>
+      <if test="active != null" >
+        #{active},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="flag != null" >
+        #{flag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsLadderPriceProduct" >
+    update dms_ladderprice_product
+    <set >
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="productCode != null" >
+        product_code = #{productCode},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId},
+      </if>
+      <if test="categoryName != null" >
+        category_name = #{categoryName},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastupdateDate != null" >
+        lastupdate_date = #{lastupdateDate},
+      </if>
+      <if test="lastupdateBy != null" >
+        lastupdate_by = #{lastupdateBy},
+      </if>
+      <if test="price != null" >
+        price = #{price},
+      </if>
+      <if test="active != null" >
+        active = #{active},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsLadderPriceProduct" >
+    update dms_ladderprice_product
+    set code = #{code},
+    product_code = #{productCode},
+    product_name = #{productName},
+    category_id = #{categoryId},
+    category_name = #{categoryName},
+    start_time = #{startTime},
+    end_time = #{endTime},
+    created_date = #{createdDate},
+    created_by = #{createdBy},
+    lastupdate_date = #{lastupdateDate},
+    lastupdate_by = #{lastupdateBy},
+    price = #{price},
+    active = #{active},
+    remove_flag = #{removeFlag},
+    flag = #{flag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="code != null and code != ''" >
+        code = #{code}
+      </if>
+      <if test="productCode != null and productCode != ''" >
+        AND product_code = #{productCode}
+      </if>
+      <if test="productName != null and productName != ''" >
+        AND product_name = #{productName}
+      </if>
+      <if test="categoryId != null" >
+        AND category_id = #{categoryId}
+      </if>
+      <if test="categoryName != null and categoryName != ''" >
+        AND category_name = #{categoryName}
+      </if>
+      <if test="startTime != null" >
+        AND start_time = #{startTime}
+      </if>
+      <if test="endTime != null" >
+        AND end_time = #{endTime}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastupdateDate != null" >
+        AND lastupdate_date = #{lastupdateDate}
+      </if>
+      <if test="lastupdateBy != null" >
+        AND lastupdate_by = #{lastupdateBy}
+      </if>
+      <if test="price != null" >
+        AND price = #{price}
+      </if>
+      <if test="active != null" >
+        AND active = #{active}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="flag != null" >
+        AND flag = #{flag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsLadderPriceProduct" resultMap="DmsLadderPriceProductResultMap" >
+    select
+    <include refid="DmsLadderPriceProduct_Column_List" />
+    from dms_ladderprice_product
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_ladderprice_product
+    <set >
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.productCode != null" >
+        product_code = #{po.productCode},
+      </if>
+      <if test="po.productName != null" >
+        product_name = #{po.productName},
+      </if>
+      <if test="po.categoryId != null" >
+        category_id = #{po.categoryId},
+      </if>
+      <if test="po.categoryName != null" >
+        category_name = #{po.categoryName},
+      </if>
+      <if test="po.startTime != null" >
+        start_time = #{po.startTime},
+      </if>
+      <if test="po.endTime != null" >
+        end_time = #{po.endTime},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastupdateDate != null" >
+        lastupdate_date = #{po.lastupdateDate},
+      </if>
+      <if test="po.lastupdateBy != null" >
+        lastupdate_by = #{po.lastupdateBy},
+      </if>
+      <if test="po.price != null" >
+        price = #{po.price},
+      </if>
+      <if test="po.active != null" >
+        active = #{po.active},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.flag != null" >
+        flag = #{po.flag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+
+  <resultMap id="DmsLadderPriceProductListVoResultMap" type="com.coracle.dms.vo.DmsLadderPriceProductVo" extends="DmsLadderPriceProductResultMap">
+    <result column="active_text" property="activeText" jdbcType="VARCHAR"/>
+    <result column="status_text" property="statusText" jdbcType="VARCHAR"/>
+    <result column="modifiable" property="modifiable" jdbcType="BOOLEAN"/>
+    <association property="scope" column="id" jdbcType="VARCHAR" select="com.coracle.dms.dao.mybatis.DmsLadderPriceScopeMapper.selectScopeByLadderPriceProductId"/>
+  </resultMap>
+
+  <resultMap id="DmsLadderPriceProductDetailVoResultMap" type="com.coracle.dms.vo.DmsLadderPriceProductVo" extends="DmsLadderPriceProductListVoResultMap">
+    <association property="creator" column="created_by" select="com.coracle.dms.dao.mybatis.DmsUserMapper.selectNameById"/>
+    <collection property="scopeList" column="id" javaType="java.util.List" ofType="com.coracle.dms.vo.DmsLadderProductScopeVo" select="com.coracle.dms.dao.mybatis.DmsLadderPriceScopeMapper.selectVoByLadderPriceProductId"/>
+    <collection property="priceList" column="id" javaType="java.util.List" ofType="com.coracle.dms.vo.DmsLadderPriceVo" select="com.coracle.dms.dao.mybatis.DmsLadderPriceMapper.selectVoByLadderPriceProductId"/>
+  </resultMap>
+
+  <!-- 根据主键id获取vo对象 -->
+  <select id="selectVoByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsLadderPriceProductDetailVoResultMap">
+    select
+    lp.*,
+    if (lp.active = 0, '无效', '有效') as active_text,
+    case lp.active
+      when 0 then '已下架'
+        when 1 then
+          case
+          when sysdate() &lt; lp.start_time then '未开始'
+          when sysdate() &gt; lp.end_time then '已结束'
+        else '进行中'
+      end
+    end as status_text
+    from
+    dms_ladderprice_product lp
+    where
+    lp.id = #{ladderPriceProductId} and lp.remove_flag = 0
+  </select>
+
+  <!-- 根据条件获取vo对象 -->
+  <select id="selectVoByCondition" parameterType="com.coracle.dms.vo.DmsLadderPriceProductVo" resultMap="DmsLadderPriceProductListVoResultMap">
+    select
+    lp.*,
+    if (lp.active = 0, '无效', '有效') as active_text,
+    case lp.active
+      when 0 then '已下架'
+        when 1 then
+        case
+        when sysdate() &lt; lp.start_time then '未开始'
+        when sysdate() &gt; lp.end_time then '已结束'
+        else '进行中'
+      end
+    end as status_text,
+    case
+    when sysdate() &gt; lp.end_time or lp.active = 0 then 0
+    else 1
+    end as modifiable
+    from
+    dms_ladderprice_product lp
+    where
+    lp.remove_flag = 0
+    <if test="productCode != null and productCode != ''">
+      and lp.product_code like concat('%', #{productCode}, '%')
+    </if>
+    <if test="productName != null and productName != ''">
+      and lp.product_name like concat('%', #{productName}, '%')
+    </if>
+
+    <if test="categoryName != null and categoryName != ''">
+      and lp.category_name like concat('%',#{categoryName}, '%')
+    </if>
+    <if test="startDate != null and startDate != ''">
+      <![CDATA[ and lp.start_time >= str_to_date(concat(#{startDate}, '00:00:00'), '%Y-%m-%d %H:%i:%s') ]]>
+    </if>
+    <if test="endDate != null and endDate != ''">
+      <![CDATA[ and lp.end_time <= str_to_date(concat(#{endDate}, '23:59:59'), '%Y-%m-%d %H:%i:%s') ]]>
+    </if>
+    <if test="status != null and status != ''">
+      and (1 = 2
+      <if test="status.indexOf('0') != -1">
+        or (lp.active = 1 and sysdate() &lt; lp.start_time)
+      </if>
+      <if test="status.indexOf('1') != -1">
+        <![CDATA[ or (lp.active = 1 and sysdate() >= lp.start_time and sysdate() <= lp.end_time) ]]>
+      </if>
+      <if test="status.indexOf('2') != -1">
+        or (lp.active = 1 and sysdate() &gt; lp.end_time)
+      </if>
+      <if test="status.indexOf('3') != -1">
+        or lp.active = 0
+      </if>
+      )
+    </if>
+    order by lp.id desc
+  </select>
+
+
+
+</mapper>

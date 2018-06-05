@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.AnjoyCustomerPriceMapper" >
+  <resultMap id="AnjoyCustomerPriceResultMap" type="com.coracle.dms.po.AnjoyCustomerPrice" >
+    <id column="eas_channel_code" property="easChannelCode" jdbcType="VARCHAR" />
+    <id column="eas_product_code" property="easProductCode" jdbcType="VARCHAR" />
+    <result column="fprice" property="fprice" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="AnjoyCustomerPrice_Column_List" >
+    eas_channel_code, eas_product_code, fprice
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="AnjoyCustomerPriceResultMap" parameterType="com.coracle.dms.po.AnjoyCustomerPriceKey" >
+    select 
+    <include refid="AnjoyCustomerPrice_Column_List" />
+    from anjoy_customer_price
+    where eas_channel_code = #{easChannelCode}
+      and eas_product_code = #{easProductCode}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.coracle.dms.po.AnjoyCustomerPriceKey" >
+    delete from anjoy_customer_price
+    where eas_channel_code = #{easChannelCode}
+      and eas_product_code = #{easProductCode}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.AnjoyCustomerPrice" useGeneratedKeys="true" keyProperty="easChannelCode" >
+    insert into anjoy_customer_price (eas_channel_code, eas_product_code, fprice)
+    values (#{easChannelCode}, #{easProductCode}, #{fprice})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.AnjoyCustomerPrice" >
+    insert into anjoy_customer_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="easChannelCode != null" >
+        eas_channel_code,
+      </if>
+      <if test="easProductCode != null" >
+        eas_product_code,
+      </if>
+      <if test="fprice != null" >
+        fprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="easChannelCode != null" >
+        #{easChannelCode},
+      </if>
+      <if test="easProductCode != null" >
+        #{easProductCode},
+      </if>
+      <if test="fprice != null" >
+        #{fprice},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.AnjoyCustomerPrice" >
+    update anjoy_customer_price
+    <set >
+      <if test="fprice != null" >
+        fprice = #{fprice},
+      </if>
+    </set>
+    where eas_channel_code = #{easChannelCode}
+      and eas_product_code = #{easProductCode}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.AnjoyCustomerPrice" >
+    update anjoy_customer_price
+    set fprice = #{fprice}
+    where eas_channel_code = #{easChannelCode}
+      and eas_product_code = #{easProductCode}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="fprice != null" >
+        fprice = #{fprice}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.AnjoyCustomerPrice" resultMap="AnjoyCustomerPriceResultMap" >
+    select 
+    <include refid="AnjoyCustomerPrice_Column_List" />
+    from anjoy_customer_price
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update anjoy_customer_price
+    <set >
+      <if test="po.fprice != null" >
+        fprice = #{po.fprice},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,1083 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderMapper" >
+  <resultMap id="DmsOrderResultMap" type="com.coracle.dms.po.DmsOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="expect_delivery_date" property="expectDeliveryDate" jdbcType="TIMESTAMP" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="invoice_type" property="invoiceType" jdbcType="INTEGER" />
+    <result column="invoice_content" property="invoiceContent" jdbcType="VARCHAR" />
+    <result column="invoice_title" property="invoiceTitle" jdbcType="VARCHAR" />
+    <result column="invoice_taxpayer_code" property="invoiceTaxpayerCode" jdbcType="VARCHAR" />
+    <result column="invoice_address" property="invoiceAddress" jdbcType="VARCHAR" />
+    <result column="invoice_phone" property="invoicePhone" jdbcType="VARCHAR" />
+    <result column="invoice_bank" property="invoiceBank" jdbcType="VARCHAR" />
+    <result column="invoice_account" property="invoiceAccount" jdbcType="VARCHAR" />
+    <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="receiver_mobile" property="receiverMobile" jdbcType="VARCHAR" />
+    <result column="receiver_address" property="receiverAddress" jdbcType="VARCHAR" />
+    <result column="deliver_type" property="deliverType" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="freight" property="freight" jdbcType="DECIMAL" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="finished_date" property="finishedDate" jdbcType="TIMESTAMP" />
+    <result column="invoice_id" property="invoiceId" jdbcType="BIGINT" />
+    <result column="address_id" property="addressId" jdbcType="BIGINT" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="third_order_no" property="thirdOrderNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="DmsOrder_Column_List" >
+    id, code, amount, customer_name, contacts, phone, expect_delivery_date, area_id,
+    area, order_status, pay_status, invoice_type, invoice_content, invoice_title, invoice_taxpayer_code,
+    invoice_address, invoice_phone, invoice_bank, invoice_account, receiver_name, receiver_mobile,
+    receiver_address, deliver_type, remark, freight, user_id, created_date, created_by,
+    last_updated_date, last_updated_by, remove_flag, finished_date, invoice_id, address_id,
+    source, type,third_order_no
+  </sql>
+  <select id="selectByThirdOrderNo" resultMap="DmsOrderResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="DmsOrder_Column_List" />
+    from dms_order
+    where third_order_no = #{thirdOrderNo}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="DmsOrderResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsOrder_Column_List" />
+    from dms_order
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_order
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrder" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_order (code, amount, customer_name, contacts, phone, expect_delivery_date,
+    area_id, area, order_status, pay_status, invoice_type, invoice_content,
+    invoice_title, invoice_taxpayer_code, invoice_address, invoice_phone, invoice_bank,
+    invoice_account, receiver_name, receiver_mobile, receiver_address, deliver_type,
+    remark, freight, user_id, created_date, created_by, last_updated_date,
+    last_updated_by, remove_flag, finished_date, invoice_id, address_id, source,
+    type,third_order_no)
+    values (#{code}, #{amount}, #{customerName}, #{contacts}, #{phone}, #{expectDeliveryDate},
+    #{areaId}, #{area}, #{orderStatus}, #{payStatus}, #{invoiceType}, #{invoiceContent},
+    #{invoiceTitle}, #{invoiceTaxpayerCode}, #{invoiceAddress}, #{invoicePhone}, #{invoiceBank},
+    #{invoiceAccount}, #{receiverName}, #{receiverMobile}, #{receiverAddress}, #{deliverType},
+    #{remark}, #{freight}, #{userId}, #{createdDate}, #{createdBy}, #{lastUpdatedDate},
+    #{lastUpdatedBy}, #{removeFlag}, #{finishedDate}, #{invoiceId}, #{addressId}, #{source},
+    #{type},#{thirdOrderNo})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrder" >
+    insert into dms_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="expectDeliveryDate != null" >
+        expect_delivery_date,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type,
+      </if>
+      <if test="invoiceContent != null" >
+        invoice_content,
+      </if>
+      <if test="invoiceTitle != null" >
+        invoice_title,
+      </if>
+      <if test="invoiceTaxpayerCode != null" >
+        invoice_taxpayer_code,
+      </if>
+      <if test="invoiceAddress != null" >
+        invoice_address,
+      </if>
+      <if test="invoicePhone != null" >
+        invoice_phone,
+      </if>
+      <if test="invoiceBank != null" >
+        invoice_bank,
+      </if>
+      <if test="invoiceAccount != null" >
+        invoice_account,
+      </if>
+      <if test="receiverName != null" >
+        receiver_name,
+      </if>
+      <if test="receiverMobile != null" >
+        receiver_mobile,
+      </if>
+      <if test="receiverAddress != null" >
+        receiver_address,
+      </if>
+      <if test="deliverType != null" >
+        deliver_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="freight != null" >
+        freight,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="finishedDate != null" >
+        finished_date,
+      </if>
+      <if test="invoiceId != null" >
+        invoice_id,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="thirdOrderNo!=null">
+        third_order_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="amount != null" >
+        #{amount},
+      </if>
+      <if test="customerName != null" >
+        #{customerName},
+      </if>
+      <if test="contacts != null" >
+        #{contacts},
+      </if>
+      <if test="phone != null" >
+        #{phone},
+      </if>
+      <if test="expectDeliveryDate != null" >
+        #{expectDeliveryDate},
+      </if>
+      <if test="areaId != null" >
+        #{areaId},
+      </if>
+      <if test="area != null" >
+        #{area},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus},
+      </if>
+      <if test="invoiceType != null" >
+        #{invoiceType},
+      </if>
+      <if test="invoiceContent != null" >
+        #{invoiceContent},
+      </if>
+      <if test="invoiceTitle != null" >
+        #{invoiceTitle},
+      </if>
+      <if test="invoiceTaxpayerCode != null" >
+        #{invoiceTaxpayerCode},
+      </if>
+      <if test="invoiceAddress != null" >
+        #{invoiceAddress},
+      </if>
+      <if test="invoicePhone != null" >
+        #{invoicePhone},
+      </if>
+      <if test="invoiceBank != null" >
+        #{invoiceBank},
+      </if>
+      <if test="invoiceAccount != null" >
+        #{invoiceAccount},
+      </if>
+      <if test="receiverName != null" >
+        #{receiverName},
+      </if>
+      <if test="receiverMobile != null" >
+        #{receiverMobile},
+      </if>
+      <if test="receiverAddress != null" >
+        #{receiverAddress},
+      </if>
+      <if test="deliverType != null" >
+        #{deliverType},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="freight != null" >
+        #{freight},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="finishedDate != null" >
+        #{finishedDate},
+      </if>
+      <if test="invoiceId != null" >
+        #{invoiceId},
+      </if>
+      <if test="addressId != null" >
+        #{addressId},
+      </if>
+      <if test="source != null" >
+        #{source},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      <if test="thirdOrderNo!=null">
+        #{thirdOrderNo},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrder" >
+    update dms_order
+    <set >
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone},
+      </if>
+      <if test="expectDeliveryDate != null" >
+        expect_delivery_date = #{expectDeliveryDate},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId},
+      </if>
+      <if test="area != null" >
+        area = #{area},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus},
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type = #{invoiceType},
+      </if>
+      <if test="invoiceContent != null" >
+        invoice_content = #{invoiceContent},
+      </if>
+      <if test="invoiceTitle != null" >
+        invoice_title = #{invoiceTitle},
+      </if>
+      <if test="invoiceTaxpayerCode != null" >
+        invoice_taxpayer_code = #{invoiceTaxpayerCode},
+      </if>
+      <if test="invoiceAddress != null" >
+        invoice_address = #{invoiceAddress},
+      </if>
+      <if test="invoicePhone != null" >
+        invoice_phone = #{invoicePhone},
+      </if>
+      <if test="invoiceBank != null" >
+        invoice_bank = #{invoiceBank},
+      </if>
+      <if test="invoiceAccount != null" >
+        invoice_account = #{invoiceAccount},
+      </if>
+      <if test="receiverName != null" >
+        receiver_name = #{receiverName},
+      </if>
+      <if test="receiverMobile != null" >
+        receiver_mobile = #{receiverMobile},
+      </if>
+      <if test="receiverAddress != null" >
+        receiver_address = #{receiverAddress},
+      </if>
+      <if test="deliverType != null" >
+        deliver_type = #{deliverType},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+      <if test="freight != null" >
+        freight = #{freight},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="finishedDate != null" >
+        finished_date = #{finishedDate},
+      </if>
+      <if test="invoiceId != null" >
+        invoice_id = #{invoiceId},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId},
+      </if>
+      <if test="source != null" >
+        source = #{source},
+      </if>
+      <if test="type != null" >
+        type = #{type},
+      </if>
+      <if test="thirdOrderNo!=null">
+        third_order_no=#{thirdOrderNo}
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrder" >
+    update dms_order
+    set code = #{code},
+    amount = #{amount},
+    customer_name = #{customerName},
+    contacts = #{contacts},
+    phone = #{phone},
+    expect_delivery_date = #{expectDeliveryDate},
+    area_id = #{areaId},
+    area = #{area},
+    order_status = #{orderStatus},
+    pay_status = #{payStatus},
+    invoice_type = #{invoiceType},
+    invoice_content = #{invoiceContent},
+    invoice_title = #{invoiceTitle},
+    invoice_taxpayer_code = #{invoiceTaxpayerCode},
+    invoice_address = #{invoiceAddress},
+    invoice_phone = #{invoicePhone},
+    invoice_bank = #{invoiceBank},
+    invoice_account = #{invoiceAccount},
+    receiver_name = #{receiverName},
+    receiver_mobile = #{receiverMobile},
+    receiver_address = #{receiverAddress},
+    deliver_type = #{deliverType},
+    remark = #{remark},
+    freight = #{freight},
+    user_id = #{userId},
+    created_date = #{createdDate},
+    created_by = #{createdBy},
+    last_updated_date = #{lastUpdatedDate},
+    last_updated_by = #{lastUpdatedBy},
+    remove_flag = #{removeFlag},
+    finished_date = #{finishedDate},
+    invoice_id = #{invoiceId},
+    address_id = #{addressId},
+    source = #{source},
+    type = #{type},
+    third_order_no=#{thirdOrderNo}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="code != null and code != ''" >
+        code = #{code}
+      </if>
+      <if test="amount != null" >
+        AND amount = #{amount}
+      </if>
+      <if test="customerName != null and customerName != ''" >
+        AND customer_name = #{customerName}
+      </if>
+      <if test="contacts != null and contacts != ''" >
+        AND contacts = #{contacts}
+      </if>
+      <if test="phone != null and phone != ''" >
+        AND phone = #{phone}
+      </if>
+      <if test="expectDeliveryDate != null" >
+        AND expect_delivery_date = #{expectDeliveryDate}
+      </if>
+      <if test="areaId != null" >
+        AND area_id = #{areaId}
+      </if>
+      <if test="area != null and area != ''" >
+        AND area = #{area}
+      </if>
+      <if test="orderStatus != null" >
+        AND order_status = #{orderStatus}
+      </if>
+      <if test="payStatus != null" >
+        AND pay_status = #{payStatus}
+      </if>
+      <if test="invoiceType != null" >
+        AND invoice_type = #{invoiceType}
+      </if>
+      <if test="invoiceContent != null and invoiceContent != ''" >
+        AND invoice_content = #{invoiceContent}
+      </if>
+      <if test="invoiceTitle != null and invoiceTitle != ''" >
+        AND invoice_title = #{invoiceTitle}
+      </if>
+      <if test="invoiceTaxpayerCode != null and invoiceTaxpayerCode != ''" >
+        AND invoice_taxpayer_code = #{invoiceTaxpayerCode}
+      </if>
+      <if test="invoiceAddress != null and invoiceAddress != ''" >
+        AND invoice_address = #{invoiceAddress}
+      </if>
+      <if test="invoicePhone != null and invoicePhone != ''" >
+        AND invoice_phone = #{invoicePhone}
+      </if>
+      <if test="invoiceBank != null and invoiceBank != ''" >
+        AND invoice_bank = #{invoiceBank}
+      </if>
+      <if test="invoiceAccount != null and invoiceAccount != ''" >
+        AND invoice_account = #{invoiceAccount}
+      </if>
+      <if test="receiverName != null and receiverName != ''" >
+        AND receiver_name = #{receiverName}
+      </if>
+      <if test="receiverMobile != null and receiverMobile != ''" >
+        AND receiver_mobile = #{receiverMobile}
+      </if>
+      <if test="receiverAddress != null and receiverAddress != ''" >
+        AND receiver_address = #{receiverAddress}
+      </if>
+      <if test="deliverType != null and deliverType != ''" >
+        AND deliver_type = #{deliverType}
+      </if>
+      <if test="remark != null and remark != ''" >
+        AND remark = #{remark}
+      </if>
+      <if test="freight != null" >
+        AND freight = #{freight}
+      </if>
+      <if test="userId != null" >
+        AND user_id = #{userId}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="finishedDate != null" >
+        AND finished_date = #{finishedDate}
+      </if>
+      <if test="invoiceId != null" >
+        AND invoice_id = #{invoiceId}
+      </if>
+      <if test="addressId != null" >
+        AND address_id = #{addressId}
+      </if>
+      <if test="source != null" >
+        AND source = #{source}
+      </if>
+      <if test="type != null" >
+        AND type = #{type}
+      </if>
+      <if test="thirdOrderNo!=null">
+        AND BINARY third_order_no = #{thirdOrderNo}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrder" resultMap="DmsOrderResultMap" >
+    select
+    <include refid="DmsOrder_Column_List" />
+    from dms_order
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_order
+    <set >
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.amount != null" >
+        amount = #{po.amount},
+      </if>
+      <if test="po.customerName != null" >
+        customer_name = #{po.customerName},
+      </if>
+      <if test="po.contacts != null" >
+        contacts = #{po.contacts},
+      </if>
+      <if test="po.phone != null" >
+        phone = #{po.phone},
+      </if>
+      <if test="po.expectDeliveryDate != null" >
+        expect_delivery_date = #{po.expectDeliveryDate},
+      </if>
+      <if test="po.areaId != null" >
+        area_id = #{po.areaId},
+      </if>
+      <if test="po.area != null" >
+        area = #{po.area},
+      </if>
+      <if test="po.orderStatus != null" >
+        order_status = #{po.orderStatus},
+      </if>
+      <if test="po.payStatus != null" >
+        pay_status = #{po.payStatus},
+      </if>
+      <if test="po.invoiceType != null" >
+        invoice_type = #{po.invoiceType},
+      </if>
+      <if test="po.invoiceContent != null" >
+        invoice_content = #{po.invoiceContent},
+      </if>
+      <if test="po.invoiceTitle != null" >
+        invoice_title = #{po.invoiceTitle},
+      </if>
+      <if test="po.invoiceTaxpayerCode != null" >
+        invoice_taxpayer_code = #{po.invoiceTaxpayerCode},
+      </if>
+      <if test="po.invoiceAddress != null" >
+        invoice_address = #{po.invoiceAddress},
+      </if>
+      <if test="po.invoicePhone != null" >
+        invoice_phone = #{po.invoicePhone},
+      </if>
+      <if test="po.invoiceBank != null" >
+        invoice_bank = #{po.invoiceBank},
+      </if>
+      <if test="po.invoiceAccount != null" >
+        invoice_account = #{po.invoiceAccount},
+      </if>
+      <if test="po.receiverName != null" >
+        receiver_name = #{po.receiverName},
+      </if>
+      <if test="po.receiverMobile != null" >
+        receiver_mobile = #{po.receiverMobile},
+      </if>
+      <if test="po.receiverAddress != null" >
+        receiver_address = #{po.receiverAddress},
+      </if>
+      <if test="po.deliverType != null" >
+        deliver_type = #{po.deliverType},
+      </if>
+      <if test="po.remark != null" >
+        remark = #{po.remark},
+      </if>
+      <if test="po.freight != null" >
+        freight = #{po.freight},
+      </if>
+      <if test="po.userId != null" >
+        user_id = #{po.userId},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.finishedDate != null" >
+        finished_date = #{po.finishedDate},
+      </if>
+      <if test="po.invoiceId != null" >
+        invoice_id = #{po.invoiceId},
+      </if>
+      <if test="po.addressId != null" >
+        address_id = #{po.addressId},
+      </if>
+      <if test="po.source != null" >
+        source = #{po.source},
+      </if>
+      <if test="po.type != null" >
+        type = #{po.type},
+      </if>
+      <if test="po.thirdOrderNo!=null">
+        third_order_no=#{po.thirdOrderNo},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  <!-- +++++++ 自定义sql start +++++++ -->
+  <resultMap id="DmsOrderListVoResultMap" type="com.coracle.dms.vo.DmsOrderVo" extends="DmsOrderResultMap">
+    <result column="buyer_order_status_text" property="buyerOrderStatusText" jdbcType="VARCHAR"/>
+    <result column="seller_order_status_text" property="sellerOrderStatusText" jdbcType="VARCHAR"/>
+    <result column="pay_status_text" property="payStatusText" jdbcType="VARCHAR"/>
+    <result column="unpaid_amount" property="unpaidAmount" jdbcType="DECIMAL"/>
+    <result column="unconfirmed_amount" property="unconfirmedAmount" jdbcType="DECIMAL"/>
+    <result column="unevaluated_count" property="unevaluatedCount" jdbcType="INTEGER"/>
+    <result column="order_product_names" property="orderProductNames" jdbcType="VARCHAR"/>
+    <result column="received_count" property="receivedCount" jdbcType="INTEGER"/>
+    <result column="login_id" property="loginId" jdbcType="BIGINT"/>
+    <result column="type_text" property="typeText" jdbcType="VARCHAR"/>
+    <collection property="productList" column="{id=id,loginId=login_id}" javaType="java.util.List" ofType="com.coracle.dms.po.DmsOrderProductVo" select="com.coracle.dms.dao.mybatis.DmsOrderProductMapper.selectByOrder"/>
+  </resultMap>
+
+  <resultMap id="DmsOrderDetailVoResultMap" type="com.coracle.dms.vo.DmsOrderVo" extends="DmsOrderListVoResultMap">
+    <result column="deliver_type_text" property="deliverTypeText" jdbcType="VARCHAR"/>
+    <result column="weight_volume_ratio" property="weightVolumeRatio" jdbcType="DECIMAL"/>
+    <association property="weightTotal" column="id" select="com.coracle.dms.dao.mybatis.DmsOrderProductMapper.getTotalWeightByOrderId"/>
+    <association property="volumeTotal" column="id" select="com.coracle.dms.dao.mybatis.DmsOrderProductMapper.getTotalVolumeByOrderId"/>
+    <collection property="paymentList" column="id" javaType="java.util.List" ofType="com.coracle.dms.po.DmsOrderPayment" select="com.coracle.dms.dao.mybatis.DmsOrderPaymentMapper.selectByOrderId"/>
+    <collection property="productList" column="{orderId=id}" javaType="java.util.List" ofType="com.coracle.dms.vo.DmsOrderProductVo" select="com.coracle.dms.dao.mybatis.DmsOrderProductMapper.selectProductListByOrder"/>
+    <collection property="undeliveredList" column="{id=id,loginId=login_id}" javaType="java.util.List" ofType="com.coracle.dms.vo.DmsOrderProductVo" select="com.coracle.dms.dao.mybatis.DmsOrderProductMapper.selectUndeliveredListByOrder"/>
+    <collection property="deliveredList" column="id" javaType="java.util.List" ofType="com.coracle.dms.vo.DmsOrderDeliveryItemVo" select="com.coracle.dms.dao.mybatis.DmsOrderDeliveryItemMapper.selectDeliveredListByOrderId"/>
+  </resultMap>
+  
+  <!-- 订单详情 -->
+  <select id="selectVoByOrder" parameterType="com.coracle.dms.vo.DmsOrderVo" resultMap="DmsOrderDetailVoResultMap">
+    select
+      o.*,
+      case o.order_status
+        when 1 then '待审核'
+        when 2 then '待发货'
+        when 3 then '待客户收货'
+        when 4 then '已完成'
+        when 5 then '交易关闭'
+      end as seller_order_status_text,
+      case o.order_status
+        when 1 then '待审核'
+        when 2 then '待厂商发货'
+        when 3 then '待收货'
+        when 4 then '已完成'
+        when 5 then '交易关闭'
+      end as buyer_order_status_text,
+      case o.pay_status
+        when 1 then '待客户付款'
+        when 2 then '待确认收款'
+        when 3 then '部分收款'
+        when 4 then '收款完成'
+      end as pay_status_text,
+      ddd.name as deliver_type_text,
+      (o.amount - ifnull((select sum(if(op.confirm_amount = 0, op.amount, op.confirm_amount)) from dms_order_payment op where op.order_id = o.id and op.remove_flag = 0), 0)) as unpaid_amount,
+      (select ifnull(sum(op.amount), 0) from dms_order_payment op where op.order_id = o.id and op.confirm_date is null and op.remove_flag = 0) as unconfirmed_amount,
+      #{loginId} as login_id,
+      case type
+        when 1 then '常规订单'
+        when 2 then '预订单'
+        when 3 then '特价订单'
+      end as type_text
+    from
+      dms_order o
+      left join dms_data_dictionary_dependent ddd on ddd.s_key = o.deliver_type
+    where
+      o.id = #{id}
+  </select>
+
+  <!-- App订单列表 -->
+  <select id="selectVoByCondition" parameterType="com.coracle.dms.vo.DmsOrderVo" resultMap="DmsOrderListVoResultMap">
+    select
+      t.*
+    from
+      (
+        select
+          o.*,
+          case o.order_status
+            when 1 then '待审核'
+            when 2 then '待发货'
+            when 3 then '待客户收货'
+            when 4 then '已完成'
+            when 5 then '交易关闭'
+          end as seller_order_status_text,
+          case o.order_status
+            when 1 then '待审核'
+            when 2 then '待厂商发货'
+            when 3 then '待收货'
+            when 4 then '已完成'
+            when 5 then '交易关闭'
+          end as buyer_order_status_text,
+          case o.pay_status
+            when 1 then '待客户付款'
+            when 2 then '待确认收款'
+            when 3 then '部分收款'
+            when 4 then '收款完成'
+          end as pay_status_text,
+          (o.amount - ifnull((select sum(if(op.confirm_amount = 0, op.amount, op.confirm_amount)) from dms_order_payment op where op.order_id = o.id and op.remove_flag = 0), 0)) as unpaid_amount,
+          (
+            select
+              ifnull(count(*), 0)
+            from
+              dms_order_product op
+            where
+              op.order_id = o.id
+              and op.remove_flag = 0
+              and op.id not in (
+                select
+                  ope.order_product_id
+                from
+                  dms_order_product_evaluation ope
+                where
+                  ope.order_id = o.id
+                  and ope.remove_flag = 0
+              )
+          ) as unevaluated_count,
+          (
+            select
+              group_concat(op.product_name)
+            from
+              dms_order_product op
+            where
+              op.order_id = o.id
+              and op.remove_flag = 0
+          ) order_product_names,
+          (
+            select
+              ifnull(sum(odi.count), 0)
+            from
+              dms_order_delivery_item odi
+            where
+              odi.order_id = o.id
+              and odi.related_type = 1
+              and odi.remove_flag = 0
+              and odi.receive_date is not null
+          ) as received_count,
+          #{userId} as login_id,
+          case type
+            when 1 then '常规订单'
+            when 2 then '预订单'
+            when 3 then '特价订单'
+          end as type_text
+        from
+          dms_order o
+        left join dms_sys_area sa on sa.id = o.area_id
+        where
+          o.remove_flag = 0
+        <if test="channelId != null">
+          and o.user_id in ( select cc.user_id from dms_channel_contacts cc where cc.channel_id = #{channelId} )
+        </if>
+        <if test="code != null and code != ''">
+          and o.code like concat('%', #{code}, '%')
+        </if>
+        <if test="customerName != null and customerName != ''">
+          and o.customer_name like concat('%', #{customerName}, '%')
+        </if>
+        <if test="areaId != null">
+          and sa.id like concat('%', #{areaId}, '%')
+        </if>
+        <if test="startCreatedDate != null and startCreatedDate != ''">
+          and <![CDATA[ o.created_date >= str_to_date(concat(#{startCreatedDate},' 00:00:00'),'%Y-%m-%d %H:%i:%s')]]>
+      </if>
+      <if test="endCreatedDate != null and endCreatedDate != ''">
+        and <![CDATA[ o.created_date <= str_to_date(concat(#{endCreatedDate},' 23:59:59'),'%Y-%m-%d %H:%i:%s')]]>
+      </if>
+      <if test="orderStatus != null">
+        and o.order_status = #{orderStatus}
+      </if>
+      <if test="payStatus != null">
+        and o.pay_status = #{payStatus}
+      </if>
+    ) t
+    where
+      1 = 1
+    <if test="evaluated != null and evaluated == 1">
+      and t.unevaluated_count > 0
+    </if>
+    <if test="orderProductNames != null and orderProductNames != ''">
+      and t.order_product_names like concat('%', #{orderProductNames}, '%')
+    </if>
+    order by t.id desc
+  </select>
+
+
+  <!-- PC订单列表 -->
+  <!----><select id="selectVoByConditionPC" parameterType="com.coracle.dms.vo.DmsOrderVo" resultMap="DmsOrderListVoResultMap">
+    select
+    t.*
+    from
+    (
+    select
+    o.*,
+    case o.order_status
+    when 1 then '待审核'
+    when 2 then '待发货'
+    when 3 then '待客户收货'
+    when 4 then '已完成'
+    when 5 then '交易关闭'
+    end as seller_order_status_text,
+    case o.order_status
+    when 1 then '待审核'
+    when 2 then '待厂商发货'
+    when 3 then '待收货'
+    when 4 then '已完成'
+    when 5 then '交易关闭'
+    end as buyer_order_status_text,
+    case o.pay_status
+    when 1 then '待客户付款'
+    when 2 then '待确认收款'
+    when 3 then '部分收款'
+    when 4 then '收款完成'
+    end as pay_status_text,
+    (o.amount - ifnull((select sum(if(op.confirm_amount = 0, op.amount, op.confirm_amount)) from dms_order_payment op where op.order_id = o.id and op.remove_flag = 0), 0)) as unpaid_amount,
+    (
+    select
+    ifnull(count(*), 0)
+    from
+    dms_order_product op
+    where
+    op.order_id = o.id
+    and op.remove_flag = 0
+    and op.id not in (
+    select
+    ope.order_product_id
+    from
+    dms_order_product_evaluation ope
+    where
+    ope.order_id = o.id
+    and ope.remove_flag = 0
+    )
+    ) as unevaluated_count,
+    (
+    select
+    group_concat(op.product_name)
+    from
+    dms_order_product op
+    where
+    op.order_id = o.id
+    and op.remove_flag = 0
+    ) order_product_names,
+    (
+    select
+    ifnull(sum(odi.count), 0)
+    from
+    dms_order_delivery_item odi
+    where
+    odi.order_id = o.id
+    and odi.related_type = 1
+    and odi.remove_flag = 0
+    and odi.receive_date is not null
+    ) as received_count,
+    #{userId} as login_id,
+    case type
+    when 1 then '常规订单'
+    when 2 then '预订单'
+    when 3 then '特价订单'
+    end as type_text
+    from
+    dms_order o left join dms_sys_area sa on sa.id = o.area_id
+      left join dms_channel_contacts cc on o.user_id = cc.user_id
+      where cc.channel_id in
+      (select dce.channel_id from dms_channel_employee dce where dce.user_id = #{userId}) and o.remove_flag = 0
+    <if test="code != null and code != ''">
+      and o.code like concat('%', #{code}, '%')
+    </if>
+    <if test="customerName != null and customerName != ''">
+      and o.customer_name like concat('%', #{customerName}, '%')
+    </if>
+    <if test="areaId != null">
+      and sa.id like concat('%', #{areaId}, '%')
+    </if>
+    <if test="startCreatedDate != null and startCreatedDate != ''">
+      and <![CDATA[ o.created_date >= str_to_date(concat(#{startCreatedDate},' 00:00:00'),'%Y-%m-%d %H:%i:%s')]]>
+    </if>
+    <if test="endCreatedDate != null and endCreatedDate != ''">
+      and <![CDATA[ o.created_date <= str_to_date(concat(#{endCreatedDate},' 23:59:59'),'%Y-%m-%d %H:%i:%s')]]>
+    </if>
+    <if test="orderStatus != null">
+      and o.order_status = #{orderStatus}
+    </if>
+    <if test="payStatus != null">
+      and o.pay_status = #{payStatus}
+    </if>
+    ) t
+    where
+    1 = 1
+    <if test="evaluated != null and evaluated == 1">
+      and t.unevaluated_count > 0
+    </if>
+    <if test="orderProductNames != null and orderProductNames != ''">
+      and t.order_product_names like concat('%', #{orderProductNames}, '%')
+    </if>
+    order by t.id desc
+  </select>
+
+  <!-- 根据条件订单数量 -->
+  <select id="selectCountByCondition" parameterType="com.coracle.dms.po.DmsOrder" resultType="java.lang.Integer">
+    select
+      ifnull(count(*), 0)
+    from
+      dms_order o
+    where
+      <!--
+      o.user_id = #{userId}
+      -->
+      o.user_id IN (
+		SELECT t.user_id FROM dms_channel_contacts t WHERE t.remove_flag = 0 AND t.channel_id = #{channelId}
+	  )
+      and o.order_status = #{orderStatus}
+      and o.remove_flag = 0
+  </select>
+
+  <!--根据条件获取订单金额-->
+  <select id="selectSumByCondition" parameterType="com.coracle.dms.po.DmsOrder" resultType="java.math.BigDecimal">
+    select
+      ifnull(sum(o.amount),0)
+    from dms_order o
+    where
+      o.user_id in
+    (
+    SELECT t.user_id FROM dms_channel_contacts t WHERE t.remove_flag = 0 AND t.channel_id = #{channelId}
+    )
+    and o.order_status = #{orderStatus}
+
+    and o.remove_flag = 0
+  </select>
+
+  <!-- 获取"待评价"的订单数量 -->
+  <!-- 订单只要有产品还未评价，该订单都是"待评价"状态-->
+  <select id="selectUnEvaluatedCountByUserId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select
+      count(*)
+    from
+      (
+        select
+          (
+            select
+              count(*)
+            from
+              dms_order_product op
+            where
+              op.order_id = o.id
+              and op.remove_flag = 0
+              and op.id not in (
+                select
+                  ope.order_product_id
+                from
+                  dms_order_product_evaluation ope
+                where
+                  ope.order_id = o.id
+                  and ope.remove_flag = 0
+              )
+          ) as unevaluated_count
+        from
+          dms_order o
+        where
+          o.user_id = #{userId}
+          and o.order_status = 4
+          and o.remove_flag = 0
+      ) t
+      where
+        t.unevaluated_count > 0
+  </select>
+
+  <select id="selectOneByCondition" parameterType="com.coracle.dms.po.DmsOrder" resultMap="DmsOrderResultMap" >
+    select
+    <include refid="DmsOrder_Column_List" />
+    from dms_order
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>

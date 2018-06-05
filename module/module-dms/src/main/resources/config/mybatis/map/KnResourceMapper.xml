@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.KnResourceMapper" >
+  <resultMap id="KnResourceResultMap" type="com.coracle.dms.po.KnResource" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="create_id" property="createId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_id" property="updateId" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+    <result column="active" property="active" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="depth" property="depth" jdbcType="BIGINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="en_title" property="enTitle" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="mark_name" property="markName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="seq" property="seq" jdbcType="BIGINT" />
+    <result column="sup_id" property="supId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="KnResource_Column_List" >
+    id, create_id, create_time, update_id, update_time, active, code, depth, description, 
+    en_title, icon, mark_name, name, path, seq, sup_id, type, url, version
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="KnResourceResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="KnResource_Column_List" />
+    from kn_resource
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from kn_resource
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.KnResource" useGeneratedKeys="true" keyProperty="id" >
+    insert into kn_resource (create_id, create_time, update_id, update_time, active, code, 
+      depth, description, en_title, icon, mark_name, name, path, seq, 
+      sup_id, type, url, version)
+    values (#{createId}, #{createTime}, #{updateId}, #{updateTime}, #{active}, #{code}, 
+      #{depth}, #{description}, #{enTitle}, #{icon}, #{markName}, #{name}, #{path}, #{seq}, 
+      #{supId}, #{type}, #{url}, #{version})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.KnResource" >
+    insert into kn_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateId != null" >
+        update_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="depth != null" >
+        depth,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="enTitle != null" >
+        en_title,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="markName != null" >
+        mark_name,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+      <if test="supId != null" >
+        sup_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="createId != null" >
+        #{createId},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="updateId != null" >
+        #{updateId},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime},
+      </if>
+      <if test="active != null" >
+        #{active},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="depth != null" >
+        #{depth},
+      </if>
+      <if test="description != null" >
+        #{description},
+      </if>
+      <if test="enTitle != null" >
+        #{enTitle},
+      </if>
+      <if test="icon != null" >
+        #{icon},
+      </if>
+      <if test="markName != null" >
+        #{markName},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="path != null" >
+        #{path},
+      </if>
+      <if test="seq != null" >
+        #{seq},
+      </if>
+      <if test="supId != null" >
+        #{supId},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      <if test="url != null" >
+        #{url},
+      </if>
+      <if test="version != null" >
+        #{version},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.KnResource" >
+    update kn_resource
+    <set >
+      <if test="createId != null" >
+        create_id = #{createId},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="updateId != null" >
+        update_id = #{updateId},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime},
+      </if>
+      <if test="active != null" >
+        active = #{active},
+      </if>
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="depth != null" >
+        depth = #{depth},
+      </if>
+      <if test="description != null" >
+        description = #{description},
+      </if>
+      <if test="enTitle != null" >
+        en_title = #{enTitle},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon},
+      </if>
+      <if test="markName != null" >
+        mark_name = #{markName},
+      </if>
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="path != null" >
+        path = #{path},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq},
+      </if>
+      <if test="supId != null" >
+        sup_id = #{supId},
+      </if>
+      <if test="type != null" >
+        type = #{type},
+      </if>
+      <if test="url != null" >
+        url = #{url},
+      </if>
+      <if test="version != null" >
+        version = #{version},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.KnResource" >
+    update kn_resource
+    set create_id = #{createId},
+      create_time = #{createTime},
+      update_id = #{updateId},
+      update_time = #{updateTime},
+      active = #{active},
+      code = #{code},
+      depth = #{depth},
+      description = #{description},
+      en_title = #{enTitle},
+      icon = #{icon},
+      mark_name = #{markName},
+      name = #{name},
+      path = #{path},
+      seq = #{seq},
+      sup_id = #{supId},
+      type = #{type},
+      url = #{url},
+      version = #{version}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="createId != null" >
+        create_id = #{createId}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime}
+      </if>
+      <if test="updateId != null" >
+        AND update_id = #{updateId}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime}
+      </if>
+      <if test="active != null and active != ''" >
+        AND active = #{active}
+      </if>
+      <if test="code != null and code != ''" >
+        AND code = #{code}
+      </if>
+      <if test="depth != null" >
+        AND depth = #{depth}
+      </if>
+      <if test="description != null and description != ''" >
+        AND description = #{description}
+      </if>
+      <if test="enTitle != null and enTitle != ''" >
+        AND en_title = #{enTitle}
+      </if>
+      <if test="icon != null and icon != ''" >
+        AND icon = #{icon}
+      </if>
+      <if test="markName != null and markName != ''" >
+        AND mark_name = #{markName}
+      </if>
+      <if test="name != null and name != ''" >
+        AND name = #{name}
+      </if>
+      <if test="path != null and path != ''" >
+        AND path = #{path}
+      </if>
+      <if test="seq != null" >
+        AND seq = #{seq}
+      </if>
+      <if test="supId != null" >
+        AND sup_id = #{supId}
+      </if>
+      <if test="type != null and type != ''" >
+        AND type = #{type}
+      </if>
+      <if test="url != null and url != ''" >
+        AND url = #{url}
+      </if>
+      <if test="version != null and version != ''" >
+        AND version = #{version}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.KnResource" resultMap="KnResourceResultMap" >
+    select 
+    <include refid="KnResource_Column_List" />
+    from kn_resource
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update kn_resource
+    <set >
+      <if test="po.createId != null" >
+        create_id = #{po.createId},
+      </if>
+      <if test="po.createTime != null" >
+        create_time = #{po.createTime},
+      </if>
+      <if test="po.updateId != null" >
+        update_id = #{po.updateId},
+      </if>
+      <if test="po.updateTime != null" >
+        update_time = #{po.updateTime},
+      </if>
+      <if test="po.active != null" >
+        active = #{po.active},
+      </if>
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.depth != null" >
+        depth = #{po.depth},
+      </if>
+      <if test="po.description != null" >
+        description = #{po.description},
+      </if>
+      <if test="po.enTitle != null" >
+        en_title = #{po.enTitle},
+      </if>
+      <if test="po.icon != null" >
+        icon = #{po.icon},
+      </if>
+      <if test="po.markName != null" >
+        mark_name = #{po.markName},
+      </if>
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.path != null" >
+        path = #{po.path},
+      </if>
+      <if test="po.seq != null" >
+        seq = #{po.seq},
+      </if>
+      <if test="po.supId != null" >
+        sup_id = #{po.supId},
+      </if>
+      <if test="po.type != null" >
+        type = #{po.type},
+      </if>
+      <if test="po.url != null" >
+        url = #{po.url},
+      </if>
+      <if test="po.version != null" >
+        version = #{po.version},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+
+  <select id="selectResourcesByUserId" parameterType="java.lang.Long" resultMap="KnResourceResultMap" >
+    select * from kn_resource res where
+    res.path like '102.%' and res.id in (
+        select res_id from kn_role_resource where role_id in (
+          select role_id from kn_user_role where user_id = #{userId}
+        )
+    ) and res.active='ENABLE' order by res.seq desc
+  </select>
+
+  <select id="selectResourcesByIds" parameterType="java.util.List" resultMap="KnResourceResultMap" >
+    select * from kn_resource res where res.active='ENABLE' AND
+      <foreach collection="list" item="item" open="id in(" close=")" separator="," >
+        #{item}
+      </foreach>
+    order by res.seq desc
+  </select>
+
+  <select id="selectButtonsByResId" parameterType="com.coracle.dms.po.KnResource"  resultType="java.lang.String" >
+    select res.code from kn_resource res where
+    res.sup_id=#{supId} and res.id in (
+        select res_id from kn_role_resource where role_id in (
+          select role_id from kn_user_role where user_id = #{updateId}
+        )
+    ) and res.active='ENABLE' and res.type='BUTTON'
+  </select>
+
+</mapper>

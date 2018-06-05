@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsProductSpecMatrixConfigMapper" >
+  <resultMap id="DmsProductSpecMatrixConfigResultMap" type="com.coracle.dms.po.DmsProductSpecMatrixConfig" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="spec_union_key" property="specUnionKey" jdbcType="VARCHAR" />
+    <result column="product_code" property="productCode" jdbcType="VARCHAR" />
+    <result column="bar_code" property="barCode" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="suggested_retail_price" property="suggestedRetailPrice" jdbcType="DECIMAL" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="sort_order" property="sortOrder" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsProductSpecMatrixConfig_Column_List" >
+    id, product_id, spec_union_key, product_code, bar_code, price, suggested_retail_price,
+    active, created_date, created_by, last_updated_date, last_updated_by, remove_flag, 
+    sort_order
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsProductSpecMatrixConfigResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsProductSpecMatrixConfig_Column_List" />
+    from dms_product_spec_matrix_config
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_product_spec_matrix_config
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsProductSpecMatrixConfig" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_product_spec_matrix_config (product_id, spec_union_key, product_code, bar_code, price, suggested_retail_price,
+      active, created_date, created_by, last_updated_date, last_updated_by, 
+      remove_flag, sort_order)
+    values (#{productId}, #{specUnionKey}, #{productCode}, #{barCode}, #{price}, #{suggestedRetailPrice},
+      #{active}, #{createdDate}, #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, 
+      #{removeFlag}, #{sortOrder})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsProductSpecMatrixConfig" >
+    insert into dms_product_spec_matrix_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key,
+      </if>
+      <if test="productCode != null" >
+        product_code,
+      </if>
+      <if test="barCode != null" >
+        bar_code,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="suggestedRetailPrice != null" >
+        suggested_retail_price,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="sortOrder != null" >
+        sort_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="specUnionKey != null" >
+        #{specUnionKey},
+      </if>
+      <if test="productCode != null" >
+        #{productCode},
+      </if>
+      <if test="barCode != null" >
+        #{barCode},
+      </if>
+      <if test="price != null" >
+        #{price},
+      </if>
+      <if test="suggestedRetailPrice != null" >
+        #{suggestedRetailPrice},
+      </if>
+      <if test="active != null" >
+        #{active},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsProductSpecMatrixConfig" >
+    update dms_product_spec_matrix_config
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key = #{specUnionKey},
+      </if>
+      <if test="productCode != null" >
+        product_code = #{productCode},
+      </if>
+      <if test="barCode != null" >
+        bar_code = #{barCode},
+      </if>
+      <if test="price != null" >
+        price = #{price},
+      </if>
+      <if test="suggestedRetailPrice != null" >
+        suggested_retail_price = #{suggestedRetailPrice},
+      </if>
+      <if test="active != null" >
+        active = #{active},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="sortOrder != null" >
+        sort_order = #{sortOrder},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsProductSpecMatrixConfig" >
+    update dms_product_spec_matrix_config
+    set product_id = #{productId},
+      spec_union_key = #{specUnionKey},
+      product_code = #{productCode},
+      bar_code = #{barCode},
+      price = #{price},
+      suggested_retail_price = #{suggestedRetailPrice},
+      active = #{active},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag},
+      sort_order = #{sortOrder}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="productId != null" >
+        product_id = #{productId}
+      </if>
+      <if test="specUnionKey != null and specUnionKey != ''" >
+        AND spec_union_key = #{specUnionKey}
+      </if>
+      <if test="productCode != null and productCode != ''" >
+        AND product_code = #{productCode}
+      </if>
+      <if test="barCode != null and barCode != ''" >
+        AND bar_code = #{barCode}
+      </if>
+      <if test="price != null" >
+        AND price = #{price}
+      </if>
+      <if test="suggestedRetailPrice != null" >
+        AND suggested_retail_price = #{suggestedRetailPrice}
+      </if>
+      <if test="active != null" >
+        AND active = #{active}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="sortOrder != null" >
+        AND sort_order = #{sortOrder}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsProductSpecMatrixConfig" resultMap="DmsProductSpecMatrixConfigResultMap" >
+    select 
+    <include refid="DmsProductSpecMatrixConfig_Column_List" />
+    from dms_product_spec_matrix_config
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_product_spec_matrix_config
+    <set >
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.specUnionKey != null" >
+        spec_union_key = #{po.specUnionKey},
+      </if>
+      <if test="po.productCode != null" >
+        product_code = #{po.productCode},
+      </if>
+      <if test="po.barCode != null" >
+        bar_code = #{po.barCode},
+      </if>
+      <if test="po.price != null" >
+        price = #{po.price},
+      </if>
+      <if test="po.suggestedRetailPrice != null" >
+        suggested_retail_price = #{po.suggestedRetailPrice},
+      </if>
+      <if test="po.active != null" >
+        active = #{po.active},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.sortOrder != null" >
+        sort_order = #{po.sortOrder},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++Parting line : new sql here++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <resultMap id="DmsProductSpecMatrixConfigVoResultMap" type="com.coracle.dms.vo.DmsProductSpecMatrixConfigVo" extends="DmsProductSpecMatrixConfigResultMap">
+    <result column="inventory" property="inventory" jdbcType="INTEGER"/>
+  </resultMap>
+
+  <resultMap id="DmsProductSpecMatrixConfigPromotionVoResultMap" type="com.coracle.dms.vo.DmsProductSpecMatrixConfigVo" extends="DmsProductSpecMatrixConfigVoResultMap">
+    <result column="channel_id" property="channelId" jdbcType="BIGINT"/>
+    <association property="promotionCount" column="{id=product_id,specId=id,channelId=channel_id}" jdbcType="INTEGER" select="com.coracle.dms.dao.mybatis.DmsPromotionProductMapper.selectCountByProduct"/>
+    <association property="promotionPrice" column="{id=product_id,specId=id,channelId=channel_id}" jdbcType="DECIMAL" select="com.coracle.dms.dao.mybatis.DmsProductMapper.selectMinPromotionPriceByProduct"/>
+  </resultMap>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_product_spec_matrix_config (product_id, spec_union_key, product_code, bar_code, price, suggested_retail_price,
+    active, created_date, created_by, last_updated_date, last_updated_by,
+    remove_flag, sort_order)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.productId}, #{item.specUnionKey}, #{item.productCode},#{item.barCode}, #{item.price}, #{item.suggestedRetailPrice},
+      #{item.active},#{item.createdDate},#{item.createdBy},#{item.lastUpdatedBy}, #{item.lastUpdatedDate}, #{item.removeFlag} ,#{item.sortOrder})
+    </foreach>
+  </insert>
+
+  <update id="batchDelete" parameterType="com.coracle.dms.po.DmsProductSpecMatrixConfig">
+    DELETE FROM dms_product_spec_matrix_config
+    where id in (
+    <foreach collection="list" index="index" item="item" separator=",">
+      #{item.id}
+    </foreach>)
+  </update>
+
+  <!-- 根据产品id获取产品的规格属性矩阵vo -->
+  <select id="selectVoByProductId" parameterType="com.coracle.dms.vo.DmsProductVo" resultMap="DmsProductSpecMatrixConfigPromotionVoResultMap">
+    select
+  	  psmc.*,
+      (
+        select
+          ifnull(sum(si.use_num), 0)
+        from
+          dms_storage_inventory si
+        where
+          si.product_id = #{productId} and si.product_spec_id = psmc.id and si.remove_flag = 0 and si.storage in (
+            select s.id from dms_storage s where s.active = 1 and s.storage_type = 1 and s.remove_flag = 0
+          )
+      ) as inventory,
+      (select cc.channel_id from dms_channel_contacts cc where cc.user_id = #{userId}) as channel_id
+    from
+	  dms_product_spec_matrix_config psmc
+    where
+      psmc.product_id = #{id} and psmc.remove_flag = 0
+  </select>
+
+  <!-- 根据产品id和规格属性获取产品的库存 -->
+  <select id="selectVoByProductIdSpec" parameterType="com.coracle.dms.vo.DmsProductSpecMatrixConfigVo" resultMap="DmsProductSpecMatrixConfigPromotionVoResultMap">
+    select
+      psmc.*,
+      (
+        select
+          ifnull(sum(si.use_num), 0)
+        from
+          dms_storage_inventory si
+        where
+          si.product_id = #{productId}
+          and si.remove_flag = 0
+          and si.product_spec_id = psmc.id
+            <choose>
+              <!-- 渠道（查品牌商库存） -->
+              <when test="type != null and type == 1">
+                and si.storage in ((select s.id from dms_storage s where s.active = 1 and s.storage_type = 1 and s.remove_flag = 0)
+              </when>
+              <!-- 门店（查门店自己的库存）-->
+              <when test="type != null and type == 2">
+                and si.storage in ((select s.id from dms_seller ds left join dms_store st on ds.shop_id = st.id left join dms_storage s on s.relation_id = st.id
+                left join dms_user u on u.staff_id = ds.id  where u.id = #{userId})
+              </when>
+            </choose>
+          )
+      ) as inventory,
+      (select cc.channel_id from dms_channel_contacts cc where cc.user_id = #{userId}) as channel_id
+    from
+	  dms_product_spec_matrix_config psmc
+    where
+      psmc.product_id = #{productId}
+      and psmc.spec_union_key = #{specUnionKey}
+      and psmc.remove_flag = 0
+  </select>
+
+  <!-- 根据产品id获取产品规格属性的数量 -->
+  <select id="selectCountByProductId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select
+      count(*)
+    from
+      dms_product_spec_matrix_config
+    where
+      product_id = #{productId}
+      and remove_flag = 0
+  </select>
+</mapper>

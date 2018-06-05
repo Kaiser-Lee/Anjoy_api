@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="
+	            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	            http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+	             http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!-- redis配置开始 -->
+	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${redis.pool.maxTotal}" />
+		<property name="maxIdle" value="${redis.pool.maxIdle}" />
+		<property name="minIdle" value="${redis.pool.minIdle}" />
+		<property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}" />
+		<property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+		<property name="testOnReturn" value="${redis.pool.testOnReturn}" />
+		<property name="testWhileIdle" value="${redis.pool.testWhileIdle}" />
+	</bean>
+
+	<bean id="connectionFactory"
+		  class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" >
+		<property name="poolConfig" ref="poolConfig" />
+		<property name="port" value="${redis.port}" />
+		<property name="password" value="${redis.pass}" />
+		<property name="hostName" value="${redis.ip}" />
+		<property name="timeout" value="5000" ></property>
+	</bean >
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" >
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="keySerializer" >
+			<bean
+					class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="valueSerializer" >
+			<bean
+					class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+		</property>
+	</bean >
+
+	<bean id="redisUtil" class="com.coracle.yk.xframework.redis.RedisUtil" >
+		<property name="redisTemplate"><ref bean= "redisTemplate"/></property>
+		<property name="redisIp" value="${redis.ip}" />
+	</bean>
+
+	<!-- redis配置结束 -->
+</beans>

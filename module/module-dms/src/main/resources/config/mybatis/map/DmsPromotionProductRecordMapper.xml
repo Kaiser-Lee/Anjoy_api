@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsPromotionProductRecordMapper" >
+  <resultMap id="DmsPromotionProductRecordResultMap" type="com.coracle.dms.po.DmsPromotionProductRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="promotion_product_id" property="promotionProductId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="channel_id" property="channelId" jdbcType="BIGINT" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsPromotionProductRecord_Column_List" >
+    id, promotion_product_id, order_id, channel_id, count, created_date, created_by, 
+    last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsPromotionProductRecordResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsPromotionProductRecord_Column_List" />
+    from dms_promotion_product_record
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_promotion_product_record
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsPromotionProductRecord" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_promotion_product_record (promotion_product_id, order_id, channel_id, count, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag)
+    values (#{promotionProductId}, #{orderId}, #{channelId}, #{count}, #{createdDate}, 
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsPromotionProductRecord" >
+    insert into dms_promotion_product_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="promotionProductId != null" >
+        promotion_product_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="promotionProductId != null" >
+        #{promotionProductId},
+      </if>
+      <if test="orderId != null" >
+        #{orderId},
+      </if>
+      <if test="channelId != null" >
+        #{channelId},
+      </if>
+      <if test="count != null" >
+        #{count},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsPromotionProductRecord" >
+    update dms_promotion_product_record
+    <set >
+      <if test="promotionProductId != null" >
+        promotion_product_id = #{promotionProductId},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId},
+      </if>
+      <if test="channelId != null" >
+        channel_id = #{channelId},
+      </if>
+      <if test="count != null" >
+        count = #{count},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsPromotionProductRecord" >
+    update dms_promotion_product_record
+    set promotion_product_id = #{promotionProductId},
+      order_id = #{orderId},
+      channel_id = #{channelId},
+      count = #{count},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="promotionProductId != null" >
+        promotion_product_id = #{promotionProductId}
+      </if>
+      <if test="orderId != null" >
+        AND order_id = #{orderId}
+      </if>
+      <if test="channelId != null" >
+        AND channel_id = #{channelId}
+      </if>
+      <if test="count != null" >
+        AND count = #{count}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsPromotionProductRecord" resultMap="DmsPromotionProductRecordResultMap" >
+    select 
+    <include refid="DmsPromotionProductRecord_Column_List" />
+    from dms_promotion_product_record
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_promotion_product_record
+    <set >
+      <if test="po.promotionProductId != null" >
+        promotion_product_id = #{po.promotionProductId},
+      </if>
+      <if test="po.orderId != null" >
+        order_id = #{po.orderId},
+      </if>
+      <if test="po.channelId != null" >
+        channel_id = #{po.channelId},
+      </if>
+      <if test="po.count != null" >
+        count = #{po.count},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  
+  <!-- +++++++ 自定义sql start +++++++ -->
+  
+  <resultMap id="DmsPromotionProductRecordVoResultMap" type="com.coracle.dms.vo.DmsPromotionProductRecordVo" extends="DmsPromotionProductRecordResultMap">
+    <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+    <result column="product_spec" property="productSpec" jdbcType="VARCHAR"/>
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR"/>
+    <result column="order_code" property="orderCode" jdbcType="VARCHAR"/>
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+
+  <!-- 根据促销产品id获取促销产品销售记录 -->
+  <select id="selectVoByPromotionProductId" parameterType="com.coracle.dms.vo.DmsPromotionProductRecordVo" resultMap="DmsPromotionProductRecordVoResultMap">
+    select
+      ppr.*,
+      p.name as product_name,
+      psmc.spec_union_key as product_spec,
+      o.customer_name as customer_name,
+      o.code as order_code,
+      o.created_date as order_time
+    from
+      dms_promotion_product_record ppr
+    left join dms_promotion_product pp on pp.id = ppr.promotion_product_id
+    left join dms_product p on p.id = pp.product_id
+    left join dms_product_spec_matrix_config psmc on psmc.id = pp.product_spec_id
+    left join dms_order o on o.id = ppr.order_id
+    where
+      ppr.promotion_product_id = #{promotionProductId}
+      and ppr.remove_flag = 0
+  </select>
+
+  <!-- 根据促销产品id逻辑删除 -->
+  <update id="removeByPromotionProductId" parameterType="java.lang.Long">
+    update dms_promotion_product_record set remove_flag = 1 where promotion_product_id = #{promotionProductId}
+  </update>
+  
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>

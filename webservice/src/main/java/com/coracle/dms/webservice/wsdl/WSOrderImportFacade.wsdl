@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://192.168.0.134:6888/ormrpc/services/WSOrderImportFacade" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://192.168.0.134:6888/ormrpc/services/WSOrderImportFacade" xmlns:intf="http://192.168.0.134:6888/ormrpc/services/WSOrderImportFacade" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="urn:client.orderimportfacade" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="urn:client.orderimportfacade" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="WSInvokeException">
+    <sequence/>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="OrderImportBeginResponse">
+
+      <wsdl:part name="OrderImportBeginReturn" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="OrderImportBeginRequest">
+
+      <wsdl:part name="paraOrderString" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="WSInvokeException">
+
+      <wsdl:part name="fault" type="tns1:WSInvokeException">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="WSOrderImportFacadeSrvProxy">
+
+      <wsdl:operation name="OrderImportBegin" parameterOrder="paraOrderString">
+
+         <wsdl:input message="impl:OrderImportBeginRequest" name="OrderImportBeginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:OrderImportBeginResponse" name="OrderImportBeginResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:WSInvokeException" name="WSInvokeException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WSOrderImportFacadeSoapBinding" type="impl:WSOrderImportFacadeSrvProxy">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="OrderImportBegin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="OrderImportBeginRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.orderinter.interfaces.xxb.anjoy.eas.kingdee.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="OrderImportBeginResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://192.168.0.134:6888/ormrpc/services/WSOrderImportFacade" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="WSInvokeException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="WSInvokeException" namespace="http://192.168.0.134:6888/ormrpc/services/WSOrderImportFacade" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WSOrderImportFacadeSrvProxyService">
+
+      <wsdl:port binding="impl:WSOrderImportFacadeSoapBinding" name="WSOrderImportFacade">
+
+         <wsdlsoap:address location="http://192.168.0.134:6888/ormrpc/services/WSOrderImportFacade"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsPostMapper" >
+  <resultMap id="DmsPostResultMap" type="com.coracle.dms.po.DmsPost" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsPost_Column_List" >
+    id, name, code, active, parent_id, path, created_date, created_by, last_updated_date,
+    last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsPostResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsPost_Column_List" />
+    from dms_post
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_post
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsPost" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_post (name, code, active, parent_id, path, created_date, created_by, 
+      last_updated_date, last_updated_by, remove_flag)
+    values (#{name}, #{code}, #{active}, #{parentId}, #{path}, #{createdDate}, #{createdBy}, 
+      #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsPost" >
+    insert into dms_post
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="code != null" >
+        #{code},
+      </if>
+      <if test="active != null" >
+        #{active},
+      </if>
+      <if test="parentId != null" >
+        #{parentId},
+      </if>
+      <if test="path != null" >
+        #{path},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsPost" >
+    update dms_post
+    <set >
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="code != null" >
+        code = #{code},
+      </if>
+      <if test="active != null" >
+        active = #{active},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId},
+      </if>
+      <if test="path != null" >
+        path = #{path},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsPost" >
+    update dms_post
+    set name = #{name},
+      code = #{code},
+      active = #{active},
+      parent_id = #{parentId},
+      path = #{path},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="name != null and name != ''" >
+        name = #{name}
+      </if>
+      <if test="code != null and code != ''" >
+        AND code = #{code}
+      </if>
+      <if test="active != null" >
+        AND active = #{active}
+      </if>
+      <if test="parentId != null" >
+        AND parent_id = #{parentId}
+      </if>
+      <if test="path != null and path != ''" >
+        AND path = #{path}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsPost" resultMap="DmsPostResultMap" >
+    select 
+    <include refid="DmsPost_Column_List" />
+    from dms_post
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_post
+    <set >
+      <if test="po.name != null" >
+        name = #{po.name},
+      </if>
+      <if test="po.code != null" >
+        code = #{po.code},
+      </if>
+      <if test="po.active != null" >
+        active = #{po.active},
+      </if>
+      <if test="po.parentId != null" >
+        parent_id = #{po.parentId},
+      </if>
+      <if test="po.path != null" >
+        path = #{po.path},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+  <!-- 岗位树形结构类型 -->
+  <resultMap id="DmsPostTreeResultMap" type="com.coracle.yk.base.vo.TreeNodeVo">
+    <result column="id" property="id" jdbcType="BIGINT"/>
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="sortOrder" property="sort_order" jdbcType="INTEGER"/>
+    <collection property="child" column="id" javaType="java.util.List" ofType="com.coracle.yk.base.vo.TreeNodeVo" select="selectByParentId"/>
+  </resultMap>
+
+  <!-- 根据父id获取子岗位 -->
+  <select id="selectByParentId" parameterType="java.lang.Long" resultMap="DmsPostTreeResultMap">
+    select
+      p.id, p.name, 0 sort_order
+    from
+      dms_post p
+    where
+      p.parent_id = #{id}
+      and p.remove_flag = 0
+  </select>
+  
+  <!-- 根据主键id逻辑删除岗位 -->
+  <update id="removeByPrimaryKey" parameterType="java.lang.Long">
+    update dms_post set remove_flag = 1 where id = #{id}
+  </update>
+
+  <!-- 根据父岗位id获取子岗位id -->
+  <select id="selectCountByParentId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select
+      count(*)
+    from
+      dms_post p
+    where
+      p.parent_id = #{parentId}
+      and p.remove_flag = 0
+  </select>
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>

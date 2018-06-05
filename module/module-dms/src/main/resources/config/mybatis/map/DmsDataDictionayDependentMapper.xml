@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsDataDictionayDependentMapper">
+  <resultMap id="DmsDataDictionayDependentResultMap" type="com.coracle.dms.po.DmsDataDictionayDependent">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="dictionary_id" jdbcType="BIGINT" property="dictionaryId" />
+    <result column="dependent_data_item_id" jdbcType="BIGINT" property="dependentDataItemId" />
+    <result column="dependent_data_item_value" jdbcType="VARCHAR" property="dependentDataItemValue" />
+    <result column="s_key" jdbcType="VARCHAR" property="sKey" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="active" jdbcType="INTEGER" property="active" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+    <result column="remove_flag" jdbcType="INTEGER" property="removeFlag" />
+  </resultMap>
+  <sql id="DmsDataDictionayDependent_Column_List">
+    id, dictionary_id, dependent_data_item_id, dependent_data_item_value, s_key, name, 
+    description, active, sort_order, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsDataDictionayDependentResultMap">
+    select 
+    <include refid="DmsDataDictionayDependent_Column_List" />
+    from dms_data_dictionary_dependent
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dms_data_dictionary_dependent
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyProperty="id" parameterType="com.coracle.dms.po.DmsDataDictionayDependent" useGeneratedKeys="true">
+    insert into dms_data_dictionary_dependent (dictionary_id, dependent_data_item_id, dependent_data_item_value, s_key, 
+      name, description, active, sort_order, remove_flag)
+    values (#{dictionaryId}, #{dependentDataItemId}, #{dependentDataItemValue}, #{sKey}, 
+      #{name}, #{description}, #{active}, #{sortOrder}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsDataDictionayDependent">
+    insert into dms_data_dictionary_dependent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dictionaryId != null">
+        dictionary_id,
+      </if>
+      <if test="dependentDataItemId != null">
+        dependent_data_item_id,
+      </if>
+      <if test="dependentDataItemValue != null">
+        dependent_data_item_value,
+      </if>
+      <if test="sKey != null">
+        s_key,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="active != null">
+        active,
+      </if>
+      <if test="sortOrder != null">
+        sort_order,
+      </if>
+      <if test="removeFlag != null">
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="dictionaryId != null">
+        #{dictionaryId},
+      </if>
+      <if test="dependentDataItemId != null">
+        #{dependentDataItemId},
+      </if>
+      <if test="dependentDataItemValue != null">
+        #{dependentDataItemValue},
+      </if>
+      <if test="sKey != null">
+        #{sKey},
+      </if>
+      <if test="name != null">
+        #{name},
+      </if>
+      <if test="description != null">
+        #{description},
+      </if>
+      <if test="active != null">
+        #{active},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder},
+      </if>
+      <if test="removeFlag != null">
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsDataDictionayDependent">
+    update dms_data_dictionary_dependent
+    <set>
+      <if test="dictionaryId != null">
+        dictionary_id = #{dictionaryId},
+      </if>
+      <if test="dependentDataItemId != null">
+        dependent_data_item_id = #{dependentDataItemId},
+      </if>
+      <if test="dependentDataItemValue != null">
+        dependent_data_item_value = #{dependentDataItemValue},
+      </if>
+      <if test="sKey != null">
+        s_key = #{sKey},
+      </if>
+      <if test="name != null">
+        name = #{name},
+      </if>
+      <if test="description != null">
+        description = #{description},
+      </if>
+      <if test="active != null">
+        active = #{active},
+      </if>
+      <if test="sortOrder != null">
+        sort_order = #{sortOrder},
+      </if>
+      <if test="removeFlag != null">
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsDataDictionayDependent">
+    update dms_data_dictionary_dependent
+    set dictionary_id = #{dictionaryId},
+      dependent_data_item_id = #{dependentDataItemId},
+      dependent_data_item_value = #{dependentDataItemValue},
+      s_key = #{sKey},
+      name = #{name},
+      description = #{description},
+      active = #{active},
+      sort_order = #{sortOrder},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition">
+    <where>
+      <if test="dictionaryId != null">
+        dictionary_id = #{dictionaryId}
+      </if>
+      <if test="dependentDataItemId != null">
+        AND dependent_data_item_id = #{dependentDataItemId}
+      </if>
+      <if test="dependentDataItemValue != null and dependentDataItemValue != ''">
+        AND dependent_data_item_value = #{dependentDataItemValue}
+      </if>
+      <if test="sKey != null and sKey != ''">
+        AND s_key = #{sKey}
+      </if>
+      <if test="name != null and name != ''">
+        AND name = #{name}
+      </if>
+      <if test="description != null and description != ''">
+        AND description = #{description}
+      </if>
+      <if test="active != null">
+        AND active = #{active}
+      </if>
+      <if test="sortOrder != null">
+        AND sort_order = #{sortOrder}
+      </if>
+      <if test="removeFlag != null">
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsDataDictionayDependent" resultMap="DmsDataDictionayDependentResultMap">
+    select 
+    <include refid="DmsDataDictionayDependent_Column_List" />
+    from dms_data_dictionary_dependent
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''">
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''">
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective">
+    update dms_data_dictionary_dependent
+    <set>
+      <if test="po.dictionaryId != null">
+        dictionary_id = #{po.dictionaryId},
+      </if>
+      <if test="po.dependentDataItemId != null">
+        dependent_data_item_id = #{po.dependentDataItemId},
+      </if>
+      <if test="po.dependentDataItemValue != null">
+        dependent_data_item_value = #{po.dependentDataItemValue},
+      </if>
+      <if test="po.sKey != null">
+        s_key = #{po.sKey},
+      </if>
+      <if test="po.name != null">
+        name = #{po.name},
+      </if>
+      <if test="po.description != null">
+        description = #{po.description},
+      </if>
+      <if test="po.active != null">
+        active = #{po.active},
+      </if>
+      <if test="po.sortOrder != null">
+        sort_order = #{po.sortOrder},
+      </if>
+      <if test="po.removeFlag != null">
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size &gt; 0">
+      <foreach close=")" collection="ids" item="listItem" open="or id in(" separator=",">
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++Parting line : new sql here++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+  <select id="findByDictionayId" resultMap="DmsDataDictionayDependentResultMap" parameterType="java.util.Map">
+    SELECT
+     ddd.id, ddd.dictionary_id dictionaryId, ddd.dependent_data_item_id dependentDataItemId,ddd.dependent_data_item_value dependentDataItemValue,
+     ddd.s_key, ddd.name,
+     ddd.description, ddd.active, ddd.sort_order sortOrder, ddd.remove_flag removeFlag
+    FROM
+    dms_data_dictionary_dependent ddd
+    left JOIN dms_data_dictionary dd on dd.id = ddd.dictionary_id
+    where dd.remove_flag=0 and dd.active = 1 and ddd.remove_flag=0
+    <if test="type != null and type==1" >
+      and ddd.active = 1
+    </if>
+    and ddd.dictionary_id=#{dictionaryId} order by sort_order desc
+  </select>
+  <select id="findByDependentDataItemId" resultMap="DmsDataDictionayDependentResultMap" resultType="com.coracle.dms.po.DmsDataDictionayDependent">
+    SELECT
+    <include refid="DmsDataDictionayDependent_Column_List" />
+    FROM
+    dms_data_dictionary_dependent
+    where remove_flag=0 and dependent_data_item_id=#{dependentDataItemId} order by sort_order desc
+  </select>
+  <update id="updateById" parameterType="com.coracle.dms.po.DmsDataDictionayDependent">
+    update dms_data_dictionary_dependent
+    set remove_flag = 1
+    where id = #{id}
+  </update>
+
+  <select id="getDataValueName" resultType="java.lang.String">
+    select d2.`name` from dms_data_dictionary d1 left join dms_data_dictionary_dependent d2 on d1.id=d2.dictionary_id
+    where d2.remove_flag=0 and d1.remove_flag=0 and d1.s_key=#{sKey} and d2.s_key=#{dataValue} limit 0,1
+  </select>
+</mapper>

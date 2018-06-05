@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.coracle</groupId>
+  <artifactId>common-parent</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>common-parent</name>
+  
+  <properties>
+        <java.version>1.7</java.version>
+        <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <main.basedir>${basedir}/../..</main.basedir>
+        <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
+        <ykee.version>1.0.0</ykee.version>
+        <mysql-connector.version>5.1.37</mysql-connector.version>
+        <spring.version>4.2.4.RELEASE</spring.version>
+        <aspectj.version>1.8.7</aspectj.version>
+        <mybatis.version>3.3.0</mybatis.version>
+        <mybatis-spring.version>1.2.3</mybatis-spring.version>
+        <zookeeper.version>3.4.6</zookeeper.version>
+        <curator.version>2.9.0</curator.version>
+        <zkclient.version>0.6</zkclient.version>
+        <alibaba.dubbo.version>2.5.3</alibaba.dubbo.version>
+        <alibaba.druid.version>1.0.16</alibaba.druid.version>
+        <alibaba.fastjson.version>1.2.28</alibaba.fastjson.version>
+        <junit.version>4.9</junit.version>
+</properties>
+
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <name>Local Repository</name>
+            <url>http://192.168.8.23:8081/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>offical</id>
+            <name>Maven Official Repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
+    <distributionManagement>
+        <repository>
+            <id>shj-releases</id>
+            <name>Internal Releases</name>
+            <url>http://192.168.8.23:8081/nexus/content/repositories/shj-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>shj-snapshots</id>
+            <name>Internal Snapshots</name>
+            <url>http://192.168.8.23:8081/nexus/content/repositories/shj-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+  <build>
+    <resources>  
+      <resource>  
+        <directory>src/main/java/com/coracle/yk/${project.build.name}/po</directory> 
+   	    <filtering>true</filtering>
+        <includes>
+          <include>*.xml</include>
+        </includes> 
+        <targetPath>${project.build.directory}/classes/com/coracle/yk/${project.build.name}/po</targetPath>
+      </resource>  
+      <resource>  
+        <directory>src/main/resources</directory>  
+      </resource>  
+    </resources>
+    <plugins>      
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.5</version>
+			<configuration>
+				<source>1.7</source>
+				<target>1.7</target>
+				<encoding>UTF-8</encoding>
+			</configuration>
+		</plugin>      
+    </plugins>
+  </build>
+</project>
+

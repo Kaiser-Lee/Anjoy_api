@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsPromotionProductMapper" >
+  <resultMap id="DmsPromotionProductResultMap" type="com.coracle.dms.po.DmsPromotionProduct" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="promotion_id" property="promotionId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_category_id" property="productCategoryId" jdbcType="BIGINT" />
+    <result column="product_spec_id" property="productSpecId" jdbcType="BIGINT" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="quantity_limit" property="quantityLimit" jdbcType="INTEGER" />
+    <result column="personal_limit" property="personalLimit" jdbcType="INTEGER" />
+    <result column="sold_quantity" property="soldQuantity" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="DmsPromotionProduct_Column_List" >
+    id, promotion_id, product_id, product_category_id, product_spec_id, discount, quantity_limit, 
+    personal_limit, sold_quantity, created_date, created_by, last_updated_date, last_updated_by, 
+    remove_flag
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="DmsPromotionProductResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsPromotionProduct_Column_List" />
+    from dms_promotion_product
+    where id = #{id}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_promotion_product
+    where id = #{id}
+  </delete>
+
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsPromotionProduct" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_promotion_product (promotion_id, product_id, product_category_id, product_spec_id, discount, 
+      quantity_limit, personal_limit, sold_quantity, created_date, created_by, 
+      last_updated_date, last_updated_by, remove_flag)
+    values (#{promotionId}, #{productId}, #{productCategoryId}, #{productSpecId}, #{discount}, 
+      #{quantityLimit}, #{personalLimit}, #{soldQuantity}, #{createdDate}, #{createdBy}, 
+      #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsPromotionProduct" >
+    insert into dms_promotion_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="promotionId != null" >
+        promotion_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productCategoryId != null" >
+        product_category_id,
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="quantityLimit != null" >
+        quantity_limit,
+      </if>
+      <if test="personalLimit != null" >
+        personal_limit,
+      </if>
+      <if test="soldQuantity != null" >
+        sold_quantity,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="promotionId != null" >
+        #{promotionId},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="productCategoryId != null" >
+        #{productCategoryId},
+      </if>
+      <if test="productSpecId != null" >
+        #{productSpecId},
+      </if>
+      <if test="discount != null" >
+        #{discount},
+      </if>
+      <if test="quantityLimit != null" >
+        #{quantityLimit},
+      </if>
+      <if test="personalLimit != null" >
+        #{personalLimit},
+      </if>
+      <if test="soldQuantity != null" >
+        #{soldQuantity},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsPromotionProduct" >
+    update dms_promotion_product
+    <set >
+      <if test="promotionId != null" >
+        promotion_id = #{promotionId},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="productCategoryId != null" >
+        product_category_id = #{productCategoryId},
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id = #{productSpecId},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount},
+      </if>
+      <if test="quantityLimit != null" >
+        quantity_limit = #{quantityLimit},
+      </if>
+      <if test="personalLimit != null" >
+        personal_limit = #{personalLimit},
+      </if>
+      <if test="soldQuantity != null" >
+        sold_quantity = #{soldQuantity},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsPromotionProduct" >
+    update dms_promotion_product
+    set promotion_id = #{promotionId},
+      product_id = #{productId},
+      product_category_id = #{productCategoryId},
+      product_spec_id = #{productSpecId},
+      discount = #{discount},
+      quantity_limit = #{quantityLimit},
+      personal_limit = #{personalLimit},
+      sold_quantity = #{soldQuantity},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="promotionId != null" >
+        promotion_id = #{promotionId}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId}
+      </if>
+      <if test="productCategoryId != null" >
+        AND product_category_id = #{productCategoryId}
+      </if>
+      <if test="productSpecId != null" >
+        AND product_spec_id = #{productSpecId}
+      </if>
+      <if test="discount != null" >
+        AND discount = #{discount}
+      </if>
+      <if test="quantityLimit != null" >
+        AND quantity_limit = #{quantityLimit}
+      </if>
+      <if test="personalLimit != null" >
+        AND personal_limit = #{personalLimit}
+      </if>
+      <if test="soldQuantity != null" >
+        AND sold_quantity = #{soldQuantity}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsPromotionProduct" resultMap="DmsPromotionProductResultMap" >
+    select 
+    <include refid="DmsPromotionProduct_Column_List" />
+    from dms_promotion_product
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+
+  <update id="updateByIdsSelective" >
+    update dms_promotion_product
+    <set >
+      <if test="po.promotionId != null" >
+        promotion_id = #{po.promotionId},
+      </if>
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.productCategoryId != null" >
+        product_category_id = #{po.productCategoryId},
+      </if>
+      <if test="po.productSpecId != null" >
+        product_spec_id = #{po.productSpecId},
+      </if>
+      <if test="po.discount != null" >
+        discount = #{po.discount},
+      </if>
+      <if test="po.quantityLimit != null" >
+        quantity_limit = #{po.quantityLimit},
+      </if>
+      <if test="po.personalLimit != null" >
+        personal_limit = #{po.personalLimit},
+      </if>
+      <if test="po.soldQuantity != null" >
+        sold_quantity = #{po.soldQuantity},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++ 自定义sql start +++++++ -->
+    
+  <resultMap id="DmsPromotionProductVoResultMap" type="com.coracle.dms.vo.DmsPromotionProductVo" extends="DmsPromotionProductResultMap">
+    <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+    <result column="product_category_name" property="productCategoryName" jdbcType="VARCHAR"/>
+    <result column="product_spec_name" property="productSpecName" jdbcType="VARCHAR"/>
+    <result column="unit" property="unit" jdbcType="VARCHAR"/>
+    <result column="show_price" property="showPrice" jdbcType="DECIMAL"/>
+    <result column="discounted_price" property="discountedPrice" jdbcType="DECIMAL"/>
+    <result column="promotion_subject" property="promotionSubject" jdbcType="LONGVARCHAR"/>
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+
+  <!-- 根据促销活动id获取促销适用产品信息id列表 -->
+  <select id="selectIdListByPromotionId" parameterType="java.lang.Long" resultType="java.lang.Long">
+    select
+      pp.id
+    from
+      dms_promotion_product pp
+    where
+      pp.promotion_id = #{promotionId}
+      and pp.remove_flag = 0
+  </select>
+
+  <!-- 批量逻辑删除 -->
+  <update id="batchRemove" parameterType="java.util.List">
+    update dms_promotion_product set remove_flag = 1 where id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+
+  <!-- 根据促销活动id获取促销适用产品信息 -->
+  <select id="selectVoByPromotionId" parameterType="java.lang.Long" resultMap="DmsPromotionProductVoResultMap">
+    select
+      pp.*,
+      p.name as product_name,
+      pc.full_path as product_category_name,
+      psmc.spec_union_key as product_spec_name,
+      ddd.name as unit,
+      case
+        when pp.product_id is null then null
+        when pp.product_spec_id is null then p.show_price
+        else psmc.price
+      end as show_price,
+      case
+        when pp.product_id is null then null
+        when pp.product_spec_id is null then (p.show_price * pp.discount) / 100
+        else (psmc.price * pp.discount) / 100
+      end as discounted_price
+    from
+      dms_promotion_product pp
+    left join dms_product p on p.id = pp.product_id
+    left join dms_data_dictionary_dependent ddd on ddd.s_key = p.unit
+    left join dms_product_category pc on pc.id = pp.product_category_id
+    left join dms_product_spec_matrix_config psmc on psmc.id = pp.product_spec_id
+    where
+      pp.promotion_id = #{promotionId}
+      and pp.remove_flag = 0
+  </select>
+
+  <!-- 根据产品id判断该产品是否有促销可用 -->
+  <!-- 如果规格id(specId)不为空，则判断的是具体规格的产品是否有促销可用 -->
+  <select id="selectCountByProduct" parameterType="com.coracle.dms.vo.DmsProductVo" resultType="java.lang.Integer">
+    select
+      count(*)
+    from
+      dms_promotion_product pp
+    left join dms_promotion p on p.id = pp.promotion_id
+    where
+      pp.remove_flag = 0
+      and p.active = 1
+      and p.remove_flag = 0
+      and p.category = 'promoting'
+      <![CDATA[ and sysdate() >= p.start_time ]]>
+      <![CDATA[ and sysdate() <= p.end_time ]]>
+      and (
+        (
+          pp.product_id = #{id}
+          <if test="specId != null">
+            and pp.product_spec_id = #{specId}
+          </if>
+        )
+        or
+        (
+          pp.product_id is null and pp.product_category_id in (
+            select
+              id
+            from
+              dms_product_category
+            where
+              find_in_set(id, (select path from dms_product_category where id = (select category_id from dms_product where id = #{id}))) > 0
+          )
+        )
+      )
+      <if test="channelId != null">
+        and (
+          (select count(*) from dms_promotion_scope ps where ps.promotion_id = pp.promotion_id and ps.remove_flag = 0) = 0
+          or
+          #{channelId} in (
+            select
+              tr.related_id
+            from
+              dms_promotion_scope ps
+            left join dms_tree_relation tr on tr.id = ps.scope_id
+            where
+              ps.promotion_id = pp.promotion_id
+              and ps.remove_flag = 0
+              and tr.related_type = 1
+          )
+        )
+      </if>
+  </select>
+
+  <!-- 根据条件获取折扣最高的一条促销信息 -->
+  <!-- 用于订单下单时选择最佳的一条促销 -->
+  <select id="selectBestByProduct" parameterType="com.coracle.dms.vo.DmsProductVo" resultMap="DmsPromotionProductVoResultMap">
+    select
+      pp.*,
+      p.subject as promotion_subject,
+      p.start_time as start_time,
+      p.end_time as end_time
+    from
+      dms_promotion_product pp
+    left join dms_promotion p on p.id = pp.promotion_id
+    where
+      pp.remove_flag = 0
+      and p.active = 1
+      and p.remove_flag = 0
+      <![CDATA[ and sysdate() >= p.start_time ]]>
+      <![CDATA[ and sysdate() <= p.end_time ]]>
+      and (
+        (
+          pp.product_id = #{id}
+          <if test="specId != null">
+            and pp.product_spec_id = #{specId}
+          </if>
+        )
+        or
+        (
+          pp.product_id is null and pp.product_category_id in (
+            select
+              id
+            from
+              dms_product_category
+            where
+              find_in_set(id, (select path from dms_product_category where id = (select category_id from dms_product where id = #{id}))) > 0
+          )
+        )
+      )
+      <if test="channelId != null">
+        and (
+          (select count(*) from dms_promotion_scope ps where ps.promotion_id = pp.promotion_id and ps.remove_flag = 0) = 0
+          or
+          #{channelId} in (
+            select
+              tr.related_id
+            from
+              dms_promotion_scope ps
+            left join dms_tree_relation tr on tr.id = ps.scope_id
+            where
+              ps.promotion_id = pp.promotion_id
+              and ps.remove_flag = 0
+              and tr.related_type = 1
+          )
+        )
+      </if>
+    order by pp.discount asc
+    limit 1
+  </select>
+
+  <!-- 根据条件获取折扣最高的一条折扣促销类型的促销信息 -->
+  <select id="selectBestPromotingPromotionByProduct" parameterType="com.coracle.dms.vo.DmsProductVo" resultMap="DmsPromotionProductVoResultMap">
+    select
+      pp.*,
+      p.subject as promotion_subject,
+      p.start_time as start_time,
+      p.end_time as end_time
+    from
+      dms_promotion_product pp
+    left join dms_promotion p on p.id = pp.promotion_id
+    where
+      pp.remove_flag = 0
+      and p.active = 1
+      and p.remove_flag = 0
+      and p.category = 'promoting'
+      <![CDATA[ and sysdate() >= p.start_time ]]>
+      <![CDATA[ and sysdate() <= p.end_time ]]>
+      and (
+        (
+          pp.product_id = #{id}
+          <if test="specId != null">
+            and pp.product_spec_id = #{specId}
+          </if>
+        )
+        or
+        (
+          pp.product_id is null and pp.product_category_id in (
+            select
+              id
+            from
+              dms_product_category
+            where
+              find_in_set(id, (select path from dms_product_category where id = (select category_id from dms_product where id = #{id}))) > 0
+          )
+        )
+      )
+     <if test="channelId != null">
+        and (
+          (select count(*) from dms_promotion_scope ps where ps.promotion_id = pp.promotion_id and ps.remove_flag = 0) = 0
+          or
+          #{channelId} in (
+            select
+              tr.related_id
+            from
+              dms_promotion_scope ps
+            left join dms_tree_relation tr on tr.id = ps.scope_id
+            where
+              ps.promotion_id = pp.promotion_id
+              and ps.remove_flag = 0
+              and tr.related_type = 1
+          )
+        )
+      </if>
+    order by pp.discount asc
+    limit 1
+  </select>
+
+  <!-- 根据条件获取可用的产品促销数量 -->
+  <!-- 返回-1则表示可用的数量没有限制 -->
+  <!-- 如果总量限制和个人限制都为0，则返回-1 -->
+  <!-- 如果总量限制为0，但个人限制不为0，则返回个人可购剩余数量 -->
+  <!-- 如果总量限制不为0，但个人限制为0，则返回剩余可购总数 -->
+  <!-- 如果两个限制的数量都不为0，则范围剩余数量较少的一个 -->
+  <select id="selectAvailableCountByCondition" parameterType="com.coracle.dms.vo.DmsPromotionProductVo" resultType="java.lang.Integer">
+    select
+      case
+        when pp.quantity_limit = 0 and pp.personal_limit = 0 then -1
+        when pp.quantity_limit = 0 and pp.personal_limit != 0 then
+    	  pp.personal_limit - (
+    	    select
+    		  ifnull(sum(ppr.count), 0)
+    		from
+    		  dms_promotion_product_record ppr
+    		where
+    		  ppr.promotion_product_id = #{id}
+    		  and ppr.channel_id = #{channelId}
+              and ppr.remove_flag = 0
+    	  )
+    	when pp.quantity_limit != 0 and pp.personal_limit = 0 then
+    	  pp.quantity_limit - pp.sold_quantity
+    	when pp.quantity_limit != 0 and pp.personal_limit != 0 then
+    	  least(
+    		pp.quantity_limit - pp.sold_quantity,
+    		pp.personal_limit - (
+    		  select
+    		    ifnull(sum(ppr.count), 0)
+    		  from
+    			dms_promotion_product_record ppr
+    		  where
+    			ppr.promotion_product_id = #{id}
+    			and ppr.channel_id = #{channelId}
+    			and ppr.remove_flag = 0
+    		)
+    	  )
+      end
+    from
+    	dms_promotion_product pp
+    where
+    	pp.id = #{id}
+  </select>
+
+  <!-- +++++++ 自定义sql end +++++++ -->
+
+
+
+</mapper>

@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsStorageTransportationMapper">
+  <resultMap id="DmsStorageTransportationResultMap" type="com.coracle.dms.po.DmsStorageTransportation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="product_spec_id" jdbcType="BIGINT" property="productSpecId" />
+    <result column="transportation_num" jdbcType="INTEGER" property="transportationNum" />
+    <result column="send_storage" jdbcType="BIGINT" property="sendStorage" />
+    <result column="send_storage_local" jdbcType="BIGINT" property="sendStorageLocal" />
+    <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="send_bill" jdbcType="VARCHAR" property="sendBill" />
+    <result column="relation_id" jdbcType="BIGINT" property="relationId" />
+    <result column="relation_type" jdbcType="INTEGER" property="relationType" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="created_by" jdbcType="BIGINT" property="createdBy" />
+    <result column="last_updated_date" jdbcType="TIMESTAMP" property="lastUpdatedDate" />
+    <result column="last_updated_by" jdbcType="BIGINT" property="lastUpdatedBy" />
+    <result column="remove_flag" jdbcType="INTEGER" property="removeFlag" />
+  </resultMap>
+  <sql id="DmsStorageTransportation_Column_List">
+    id, product_id, product_spec_id, transportation_num, send_storage, send_storage_local, 
+    send_time, send_bill, relation_id, relation_type, created_date, created_by, last_updated_date, 
+    last_updated_by, remove_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="DmsStorageTransportationResultMap">
+    select 
+    <include refid="DmsStorageTransportation_Column_List" />
+    from dms_storage_transportation
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dms_storage_transportation
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyProperty="id" parameterType="com.coracle.dms.po.DmsStorageTransportation" useGeneratedKeys="true">
+    insert into dms_storage_transportation (product_id, product_spec_id, transportation_num, send_storage, send_storage_local, 
+      send_time, send_bill, relation_id, relation_type, created_date, created_by, 
+      last_updated_date, last_updated_by, remove_flag)
+    values (#{productId}, #{productSpecId}, #{transportationNum}, #{sendStorage}, #{sendStorageLocal}, 
+      #{sendTime}, #{sendBill}, #{relationId}, #{relationType}, #{createdDate}, #{createdBy}, 
+      #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsStorageTransportation">
+    insert into dms_storage_transportation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productSpecId != null">
+        product_spec_id,
+      </if>
+      <if test="transportationNum != null">
+        transportation_num,
+      </if>
+      <if test="sendStorage != null">
+        send_storage,
+      </if>
+      <if test="sendStorageLocal != null">
+        send_storage_local,
+      </if>
+      <if test="sendTime != null">
+        send_time,
+      </if>
+      <if test="sendBill != null">
+        send_bill,
+      </if>
+      <if test="relationId != null">
+        relation_id,
+      </if>
+      <if test="relationType != null">
+        relation_type,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null">
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="productId != null">
+        #{productId},
+      </if>
+      <if test="productSpecId != null">
+        #{productSpecId},
+      </if>
+      <if test="transportationNum != null">
+        #{transportationNum},
+      </if>
+      <if test="sendStorage != null">
+        #{sendStorage},
+      </if>
+      <if test="sendStorageLocal != null">
+        #{sendStorageLocal},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime},
+      </if>
+      <if test="sendBill != null">
+        #{sendBill},
+      </if>
+      <if test="relationId != null">
+        #{relationId},
+      </if>
+      <if test="relationType != null">
+        #{relationType},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null">
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null">
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsStorageTransportation">
+    update dms_storage_transportation
+    <set>
+      <if test="productId != null">
+        product_id = #{productId},
+      </if>
+      <if test="productSpecId != null">
+        product_spec_id = #{productSpecId},
+      </if>
+      <if test="transportationNum != null">
+        transportation_num = #{transportationNum},
+      </if>
+      <if test="sendStorage != null">
+        send_storage = #{sendStorage},
+      </if>
+      <if test="sendStorageLocal != null">
+        send_storage_local = #{sendStorageLocal},
+      </if>
+      <if test="sendTime != null">
+        send_time = #{sendTime},
+      </if>
+      <if test="sendBill != null">
+        send_bill = #{sendBill},
+      </if>
+      <if test="relationId != null">
+        relation_id = #{relationId},
+      </if>
+      <if test="relationType != null">
+        relation_type = #{relationType},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null">
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null">
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsStorageTransportation">
+    update dms_storage_transportation
+    set product_id = #{productId},
+      product_spec_id = #{productSpecId},
+      transportation_num = #{transportationNum},
+      send_storage = #{sendStorage},
+      send_storage_local = #{sendStorageLocal},
+      send_time = #{sendTime},
+      send_bill = #{sendBill},
+      relation_id = #{relationId},
+      relation_type = #{relationType},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition">
+    <where>
+      <if test="productId != null">
+        product_id = #{productId}
+      </if>
+      <if test="productSpecId != null">
+        AND product_spec_id = #{productSpecId}
+      </if>
+      <if test="transportationNum != null">
+        AND transportation_num = #{transportationNum}
+      </if>
+      <if test="sendStorage != null">
+        AND send_storage = #{sendStorage}
+      </if>
+      <if test="sendStorageLocal != null">
+        AND send_storage_local = #{sendStorageLocal}
+      </if>
+      <if test="sendTime != null">
+        AND send_time = #{sendTime}
+      </if>
+      <if test="sendBill != null and sendBill != ''">
+        AND send_bill = #{sendBill}
+      </if>
+      <if test="relationId != null">
+        AND relation_id = #{relationId}
+      </if>
+      <if test="relationType != null">
+        AND relation_type = #{relationType}
+      </if>
+      <if test="createdDate != null">
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null">
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null">
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null">
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null">
+        AND remove_flag = #{removeFlag}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsStorageTransportation" resultMap="DmsStorageTransportationResultMap">
+    select 
+    <include refid="DmsStorageTransportation_Column_List" />
+    from dms_storage_transportation
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''">
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''">
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective">
+    update dms_storage_transportation
+    <set>
+      <if test="po.productId != null">
+        product_id = #{po.productId},
+      </if>
+      <if test="po.productSpecId != null">
+        product_spec_id = #{po.productSpecId},
+      </if>
+      <if test="po.transportationNum != null">
+        transportation_num = #{po.transportationNum},
+      </if>
+      <if test="po.sendStorage != null">
+        send_storage = #{po.sendStorage},
+      </if>
+      <if test="po.sendStorageLocal != null">
+        send_storage_local = #{po.sendStorageLocal},
+      </if>
+      <if test="po.sendTime != null">
+        send_time = #{po.sendTime},
+      </if>
+      <if test="po.sendBill != null">
+        send_bill = #{po.sendBill},
+      </if>
+      <if test="po.relationId != null">
+        relation_id = #{po.relationId},
+      </if>
+      <if test="po.relationType != null">
+        relation_type = #{po.relationType},
+      </if>
+      <if test="po.createdDate != null">
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null">
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null">
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null">
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null">
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size &gt; 0">
+      <foreach close=")" collection="ids" item="listItem" open="or id in(" separator=",">
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++Parting line : new sql here++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <resultMap id="DmsStorageTransportationVoResultMap" type="com.coracle.dms.vo.DmsStorageTransportationVo" extends="DmsStorageTransportationResultMap">
+    <result column="unitText" property="unitText" jdbcType="VARCHAR"/>
+    <result column="localCode" property="localCode" jdbcType="VARCHAR"/>
+    <result column="categoryText" property="categoryText" jdbcType="VARCHAR"/>
+    <result column="productName" property="productName" jdbcType="VARCHAR"/>
+    <result column="productCode" property="productCode" jdbcType="VARCHAR"/>
+    <result column="storageName" property="storageName" jdbcType="VARCHAR"/>
+    <result column="specName" property="specName" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <!-- 根据条件获取Vo对象 -->
+  <select id="getPageList" parameterType="com.coracle.dms.vo.DmsStorageTransportationVo" resultMap="DmsStorageTransportationVoResultMap">
+    select
+    st.id, st.product_id productId, st.transportation_num transportationNum,
+    st.send_storage sendStorage, st.send_storage_local sendStorageLocal, st.send_time sendTime ,
+    case st.relation_type when 1 THEN CONCAT('MO：',st.send_bill)
+    when 2 THEN CONCAT('SO：',st.send_bill)
+    when 3 THEN CONCAT('R-SO：',st.send_bill)
+    ELSE  CONCAT('R-SO：',st.send_bill)
+    END  as sendBill,
+    st.relation_id relationId, st.relation_type relationType,
+    st.created_date createdDate, st.created_by createdBy, st.last_updated_date lastUpdatedDate, st.last_updated_by lastUpdatedBy, st.remove_flag removeFlag,
+    ddd.`name` as unitText,sl.`code` localCode,p.`name` categoryText,p.`name` productName,p.`code` productCode,ds.`name` as storageName,smc.spec_union_key specName
+    from
+    dms_storage_transportation st
+    LEFT JOIN dms_product p on st.product_id=p.id
+    LEFT JOIN dms_product_category pc on p.category_id=pc.id
+    LEFT JOIN dms_storage_local sl on sl.id=st.send_storage_local
+    LEFT JOIN dms_storage ds on ds.id=st.send_storage
+    LEFT JOIN dms_product_spec_matrix_config smc on st.product_spec_id=smc.id
+    LEFT JOIN dms_data_dictionary dd on dd.s_key='product_unit' LEFT JOIN dms_data_dictionary_dependent ddd on dd.id=ddd.dictionary_id and ddd.s_key=p.unit
+    where
+    st.remove_flag = 0
+    <choose>
+      <!-- 查询品牌商产品库存 -->
+      <when test="orgType != null and orgType == 1">
+        and ds.org_id = #{orgId} and ds.storage_type = 1
+      </when>
+      <!-- 查询渠道商产品库存 -->
+      <when test="orgType != null and orgType == 2">
+        and ds.org_id = #{orgId}
+        and (
+          (ds.storage_type = 2 and ds.relation_id = #{channelId})
+          <if test="storeIdList != null and storeIdList.size > 0">
+          or
+          (
+            ds.storage_type = 3 and ds.relation_id in
+            <foreach collection="storeIdList" item="item" open="(" separator="," close=")">
+              #{item}
+            </foreach>
+          )
+          </if>
+        )
+      </when>
+    </choose>
+    <if test="storageName!=null and storageName!=''">
+      and ds.`name` like concat('%',#{storageName},'%')
+    </if>
+    <if test="categoryId!=null">
+      and pc.id IN (SELECT id from dms_product_category where find_in_set(#{categoryId},path))
+    </if>
+    <if test="productName!=null and productName!=''">
+      and p.`name` like concat('%',#{productName},'%')
+    </if>
+    order by st.id desc
+  </select>
+
+  <update id="updateById" parameterType="com.coracle.dms.po.DmsStorageTransportation">
+    update dms_storage_transportation
+    set remove_flag = 1
+    where id = #{id}
+  </update>
+</mapper>

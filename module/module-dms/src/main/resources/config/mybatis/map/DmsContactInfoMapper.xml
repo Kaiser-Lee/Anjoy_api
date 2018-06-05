@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsContactInfoMapper" >
+  <resultMap id="DmsContactInfoResultMap" type="com.coracle.dms.po.DmsContactInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="related_table_type" property="relatedTableType" jdbcType="INTEGER" />
+    <result column="related_table_id" property="relatedTableId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="DmsContactInfo_Column_List" >
+    id, related_table_type, related_table_id, type, content, created_date, created_by, 
+    last_updated_date, last_updated_by, remove_flag
+  </sql>
+  <sql id="DmsContactInfo_Column_List1" >
+    id,type, content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsContactInfoResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="DmsContactInfo_Column_List" />
+    from dms_contact_info
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_contact_info
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsContactInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_contact_info (related_table_type, related_table_id, type, content, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag)
+    values (#{relatedTableType}, #{relatedTableId}, #{type}, #{content}, #{createdDate}, 
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsContactInfo" >
+    insert into dms_contact_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="relatedTableType != null" >
+        related_table_type,
+      </if>
+      <if test="relatedTableId != null" >
+        related_table_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="relatedTableType != null" >
+        #{relatedTableType},
+      </if>
+      <if test="relatedTableId != null" >
+        #{relatedTableId},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsContactInfo" >
+    update dms_contact_info
+    <set >
+      <if test="relatedTableType != null" >
+        related_table_type = #{relatedTableType},
+      </if>
+      <if test="relatedTableId != null" >
+        related_table_id = #{relatedTableId},
+      </if>
+      <if test="type != null" >
+        type = #{type},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsContactInfo" >
+    update dms_contact_info
+    set related_table_type = #{relatedTableType},
+      related_table_id = #{relatedTableId},
+      type = #{type},
+      content = #{content},
+      created_date = #{createdDate},
+      created_by = #{createdBy},
+      last_updated_date = #{lastUpdatedDate},
+      last_updated_by = #{lastUpdatedBy},
+      remove_flag = #{removeFlag}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="relatedTableType != null" >
+        related_table_type = #{relatedTableType}
+      </if>
+      <if test="relatedTableId != null" >
+        AND related_table_id = #{relatedTableId}
+      </if>
+      <if test="type != null" >
+        AND type = #{type}
+      </if>
+      <if test="content != null and content != ''" >
+        AND content = #{content}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+        AND remove_flag = 0
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsContactInfo" resultMap="DmsContactInfoResultMap" >
+    select 
+    <include refid="DmsContactInfo_Column_List1" />
+    from dms_contact_info
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+         ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_contact_info
+    <set >
+      <if test="po.relatedTableType != null" >
+        related_table_type = #{po.relatedTableType},
+      </if>
+      <if test="po.relatedTableId != null" >
+        related_table_id = #{po.relatedTableId},
+      </if>
+      <if test="po.type != null" >
+        type = #{po.type},
+      </if>
+      <if test="po.content != null" >
+        content = #{po.content},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  <!--############################################## new sql updateStatus by tanyb ##############################################-->
+  <insert id="batchInsert" parameterType="java.util.List">
+       insert into dms_contact_info (related_table_type, related_table_id, type, content, created_date, 
+      created_by, last_updated_date, last_updated_by, remove_flag)
+    values
+     <foreach collection="list" index="index" item="item" separator=",">
+       (#{item.relatedTableType}, #{item.relatedTableId}, #{item.type}, #{item.content}, #{item.createdDate}, 
+      #{item.createdBy}, #{item.lastUpdatedDate}, #{item.lastUpdatedBy}, #{item.removeFlag})
+     </foreach>
+  </insert>
+  
+  <select id="getContactInfoByChannel" parameterType="java.lang.Long" resultMap="DmsContactInfoResultMap" >
+    select  <include refid="DmsContactInfo_Column_List" />
+    from dms_contact_info
+      WHERE
+      	  related_table_type = 1
+          and related_table_id = #{id}
+          and remove_flag=0
+  </select>
+  
+  <delete id="deleteByRelated" parameterType="com.coracle.dms.po.DmsContactInfo" >
+    delete from dms_contact_info
+    where related_table_type = #{relatedTableType} and related_table_id = #{relatedTableId}
+  </delete>
+
+  <!--获取门店店员联系信息列表-->
+  <select id="getDmsSellerContactList" parameterType="java.lang.Long" resultType="java.util.Map">
+    select
+    id,type, content
+    from dms_contact_info
+    where remove_flag=0 and related_table_type = 2 and related_table_id = #{id}
+  </select>
+
+</mapper>

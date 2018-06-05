@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coracle.dms.dao.mybatis.DmsOrderProductMapper" >
+  <resultMap id="DmsOrderProductResultMap" type="com.coracle.dms.po.DmsOrderProduct" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_spec_id" property="productSpecId" jdbcType="BIGINT" />
+    <result column="spec_union_key" property="specUnionKey" jdbcType="VARCHAR" />
+    <result column="shoppingcart_id" property="shoppingcartId" jdbcType="BIGINT" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="return_count" property="returnCount" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="BIGINT" />
+    <result column="last_updated_date" property="lastUpdatedDate" jdbcType="TIMESTAMP" />
+    <result column="last_updated_by" property="lastUpdatedBy" jdbcType="BIGINT" />
+    <result column="remove_flag" property="removeFlag" jdbcType="INTEGER" />
+    <result column="original_price" property="originalPrice" jdbcType="DECIMAL" />
+    <result column="promotion_product_id" property="promotionProductId" jdbcType="BIGINT" />
+    <result column="promotion_subject" property="promotionSubject" jdbcType="LONGVARCHAR" />
+    <result column="yankon_price" property="yankonPrice" jdbcType="DECIMAL" />
+    <result column="weight" property="weight" jdbcType="DECIMAL" />
+    <result column="volume" property="volume" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="DmsOrderProduct_Column_List" >
+    id, order_id, product_id, product_name, product_spec_id, spec_union_key, shoppingcart_id,
+    unit, price, count, return_count, status, created_date, created_by, last_updated_date,
+    last_updated_by, remove_flag, original_price, promotion_product_id, promotion_subject,
+    yankon_price, weight, volume
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="DmsOrderProductResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="DmsOrderProduct_Column_List" />
+    from dms_order_product
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dms_order_product
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.coracle.dms.po.DmsOrderProduct" useGeneratedKeys="true" keyProperty="id" >
+    insert into dms_order_product (
+      order_id, product_id, product_code, product_name, product_spec_id, spec_union_key,
+      shoppingcart_id, unit, price, count, return_count, status, created_date,
+      created_by, last_updated_date, last_updated_by, remove_flag, original_price,
+      promotion_product_id, promotion_subject, yankon_price, weight, volume
+    )
+    values (
+      #{orderId}, #{productId}, #{productCode}, #{productName}, #{productSpecId}, #{specUnionKey},
+      #{shoppingcartId}, #{unit}, #{price}, #{count}, #{returnCount}, #{status}, #{createdDate},
+      #{createdBy}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{removeFlag}, #{originalPrice},
+      #{promotionProductId}, #{promotionSubject}, #{yankonPrice}, #{weight}, #{volume}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coracle.dms.po.DmsOrderProduct" >
+    insert into dms_order_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productCode != null" >
+        product_code,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id,
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key,
+      </if>
+      <if test="shoppingcartId != null" >
+        shoppingcart_id,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="returnCount != null" >
+        return_count,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date,
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by,
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag,
+      </if>
+      <if test="originalPrice != null" >
+        original_price,
+      </if>
+      <if test="promotionProductId != null" >
+        promotion_product_id,
+      </if>
+      <if test="promotionSubject != null" >
+        promotion_subject,
+      </if>
+      <if test="yankonPrice != null" >
+        yankon_price,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="volume != null" >
+        volume,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="orderId != null" >
+        #{orderId},
+      </if>
+      <if test="productId != null" >
+        #{productId},
+      </if>
+      <if test="productCode != null" >
+        product_code,
+      </if>
+      <if test="productName != null" >
+        #{productName},
+      </if>
+      <if test="productSpecId != null" >
+        #{productSpecId},
+      </if>
+      <if test="specUnionKey != null" >
+        #{specUnionKey},
+      </if>
+      <if test="shoppingcartId != null" >
+        #{shoppingcartId},
+      </if>
+      <if test="unit != null" >
+        #{unit},
+      </if>
+      <if test="price != null" >
+        #{price},
+      </if>
+      <if test="count != null" >
+        #{count},
+      </if>
+      <if test="returnCount != null" >
+        #{returnCount},
+      </if>
+      <if test="status != null" >
+        #{status},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        #{removeFlag},
+      </if>
+      <if test="originalPrice != null" >
+        #{originalPrice},
+      </if>
+      <if test="promotionProductId != null" >
+        #{promotionProductId},
+      </if>
+      <if test="promotionSubject != null" >
+        #{promotionSubject},
+      </if>
+      <if test="yankonPrice != null" >
+        #{yankonPrice},
+      </if>
+      <if test="weight != null" >
+        #{weight},
+      </if>
+      <if test="volume != null" >
+        #{volume},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coracle.dms.po.DmsOrderProduct" >
+    update dms_order_product
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId},
+      </if>
+      <if test="productCode != null" >
+        product_code = #{productCode},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName},
+      </if>
+      <if test="productSpecId != null" >
+        product_spec_id = #{productSpecId},
+      </if>
+      <if test="specUnionKey != null" >
+        spec_union_key = #{specUnionKey},
+      </if>
+      <if test="shoppingcartId != null" >
+        shoppingcart_id = #{shoppingcartId},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit},
+      </if>
+      <if test="price != null" >
+        price = #{price},
+      </if>
+      <if test="count != null" >
+        count = #{count},
+      </if>
+      <if test="returnCount != null" >
+        return_count = #{returnCount},
+      </if>
+      <if test="status != null" >
+        status = #{status},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="lastUpdatedDate != null" >
+        last_updated_date = #{lastUpdatedDate},
+      </if>
+      <if test="lastUpdatedBy != null" >
+        last_updated_by = #{lastUpdatedBy},
+      </if>
+      <if test="removeFlag != null" >
+        remove_flag = #{removeFlag},
+      </if>
+      <if test="originalPrice != null" >
+        original_price = #{originalPrice},
+      </if>
+      <if test="promotionProductId != null" >
+        promotion_product_id = #{promotionProductId},
+      </if>
+      <if test="promotionSubject != null" >
+        promotion_subject = #{promotionSubject},
+      </if>
+      <if test="yankonPrice != null" >
+        yankon_price = #{yankonPrice},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight},
+      </if>
+      <if test="volume != null" >
+        volume = #{volume},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coracle.dms.po.DmsOrderProduct" >
+    update dms_order_product
+    set order_id = #{orderId},
+    product_id = #{productId},
+    product_code = #{productCode},
+    product_name = #{productName},
+    product_spec_id = #{productSpecId},
+    spec_union_key = #{specUnionKey},
+    shoppingcart_id = #{shoppingcartId},
+    unit = #{unit},
+    price = #{price},
+    count = #{count},
+    return_count = #{returnCount},
+    status = #{status},
+    created_date = #{createdDate},
+    created_by = #{createdBy},
+    last_updated_date = #{lastUpdatedDate},
+    last_updated_by = #{lastUpdatedBy},
+    remove_flag = #{removeFlag},
+    original_price = #{originalPrice},
+    promotion_product_id = #{promotionProductId},
+    promotion_subject = #{promotionSubject},
+    yankon_price = #{yankonPrice},
+    weight = #{weight},
+    volume = #{volume}
+    where id = #{id}
+  </update>
+  <sql id="Where_Condition" >
+    <where >
+      <if test="orderId != null" >
+        order_id = #{orderId}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId}
+      </if>
+      <if test="productCode != null and productCode != ''" >
+        AND product_code = #{productCode}
+      </if>
+      <if test="productName != null and productName != ''" >
+        AND product_name = #{productName}
+      </if>
+      <if test="productSpecId != null" >
+        AND product_spec_id = #{productSpecId}
+      </if>
+      <if test="specUnionKey != null and specUnionKey != ''" >
+        AND spec_union_key = #{specUnionKey}
+      </if>
+      <if test="shoppingcartId != null" >
+        AND shoppingcart_id = #{shoppingcartId}
+      </if>
+      <if test="unit != null and unit != ''" >
+        AND unit = #{unit}
+      </if>
+      <if test="price != null" >
+        AND price = #{price}
+      </if>
+      <if test="count != null" >
+        AND count = #{count}
+      </if>
+      <if test="returnCount != null" >
+        AND return_count = #{returnCount}
+      </if>
+      <if test="status != null" >
+        AND status = #{status}
+      </if>
+      <if test="createdDate != null" >
+        AND created_date = #{createdDate}
+      </if>
+      <if test="createdBy != null" >
+        AND created_by = #{createdBy}
+      </if>
+      <if test="lastUpdatedDate != null" >
+        AND last_updated_date = #{lastUpdatedDate}
+      </if>
+      <if test="lastUpdatedBy != null" >
+        AND last_updated_by = #{lastUpdatedBy}
+      </if>
+      <if test="removeFlag != null" >
+        AND remove_flag = #{removeFlag}
+      </if>
+      <if test="originalPrice != null" >
+        AND original_price = #{originalPrice}
+      </if>
+      <if test="promotionProductId != null" >
+        AND promotion_product_id = #{promotionProductId}
+      </if>
+      <if test="promotionSubject != null" >
+        AND promotion_subject = #{promotionSubject}
+      </if>
+      <if test="yankonPrice != null" >
+        AND yankon_price = #{yankonPrice}
+      </if>
+      <if test="weight != null" >
+        AND weight = #{weight}
+      </if>
+      <if test="volume != null" >
+        AND volume = #{volume}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByCondition" parameterType="com.coracle.dms.po.DmsOrderProduct" resultMap="DmsOrderProductResultMap" >
+    select
+    <include refid="DmsOrderProduct_Column_List" />
+    from dms_order_product
+    <include refid="Where_Condition" />
+    <if test="orderField != null and orderField != ''" >
+      ORDER BY ${orderField}
+      <if test="orderString != null and orderString != ''" >
+        ${orderString}
+      </if>
+    </if>
+  </select>
+  <update id="updateByIdsSelective" >
+    update dms_order_product
+    <set >
+      <if test="po.orderId != null" >
+        order_id = #{po.orderId},
+      </if>
+      <if test="po.productId != null" >
+        product_id = #{po.productId},
+      </if>
+      <if test="po.productCode != null" >
+        product_code = #{po.productCode},
+      </if>
+      <if test="po.productName != null" >
+        product_name = #{po.productName},
+      </if>
+      <if test="po.productSpecId != null" >
+        product_spec_id = #{po.productSpecId},
+      </if>
+      <if test="po.specUnionKey != null" >
+        spec_union_key = #{po.specUnionKey},
+      </if>
+      <if test="po.shoppingcartId != null" >
+        shoppingcart_id = #{po.shoppingcartId},
+      </if>
+      <if test="po.unit != null" >
+        unit = #{po.unit},
+      </if>
+      <if test="po.price != null" >
+        price = #{po.price},
+      </if>
+      <if test="po.count != null" >
+        count = #{po.count},
+      </if>
+      <if test="po.returnCount != null" >
+        return_count = #{po.returnCount},
+      </if>
+      <if test="po.status != null" >
+        status = #{po.status},
+      </if>
+      <if test="po.createdDate != null" >
+        created_date = #{po.createdDate},
+      </if>
+      <if test="po.createdBy != null" >
+        created_by = #{po.createdBy},
+      </if>
+      <if test="po.lastUpdatedDate != null" >
+        last_updated_date = #{po.lastUpdatedDate},
+      </if>
+      <if test="po.lastUpdatedBy != null" >
+        last_updated_by = #{po.lastUpdatedBy},
+      </if>
+      <if test="po.removeFlag != null" >
+        remove_flag = #{po.removeFlag},
+      </if>
+      <if test="po.originalPrice != null" >
+        original_price = #{po.originalPrice},
+      </if>
+      <if test="po.promotionProductId != null" >
+        promotion_product_id = #{po.promotionProductId},
+      </if>
+      <if test="po.promotionSubject != null" >
+        promotion_subject = #{po.promotionSubject},
+      </if>
+      <if test="po.yankonPrice != null" >
+        yankon_price = #{po.yankonPrice},
+      </if>
+      <if test="po.weight != null" >
+        weight = #{po.weight},
+      </if>
+      <if test="po.volume != null" >
+        volume = #{po.volume},
+      </if>
+    </set>
+    where 1=2
+    <if test="ids != null and ids.size > 0" >
+      <foreach collection="ids" item="listItem" open="or id in(" close=")" separator="," >
+        #{listItem}
+      </foreach>
+    </if>
+  </update>
+  <!-- +++++++ 自定义sql start +++++++ -->
+
+  <resultMap id="DmsOrderProductVoResultMap" type="com.coracle.dms.vo.DmsOrderProductVo" extends="DmsOrderProductResultMap">
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR"/>
+    <result column="undelivered_count" property="undeliveredCount" jdbcType="INTEGER"/>
+    <result column="delivered_count" property="deliveredCount" jdbcType="INTEGER"/>
+    <result column="received_count" property="receivedCount" jdbcType="INTEGER"/>
+    <result column="evaluation_count" property="evaluationCount" jdbcType="INTEGER"/>
+    <result column="available_count" property="availableCount" jdbcType="INTEGER"/>
+    <result column="logistics_company" property="logisticsCompany" jdbcType="VARCHAR"/>
+    <result column="logistics_code" property="logisticsCode" jdbcType="VARCHAR"/>
+    <result column="product_code" property="productCode" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <!-- 标识订单产品的有货仓库和货位的信息 -->
+  <resultMap id="DmsOrderProductStorageResultMap" type="com.coracle.dms.vo.DmsOrderProductVo" extends="DmsOrderProductVoResultMap">
+    <collection property="storageList" column="{productId=product_id, productSpecId=product_spec_id}" javaType="java.util.List" ofType="com.coracle.yk.base.vo.TreeNode" select="com.coracle.dms.dao.mybatis.DmsStorageInventoryMapper.selectStorageByOrderProduct"/>
+  </resultMap>
+
+  <!-- 包含促销数量信息 -->
+  <resultMap id="DmsOrderProductPromotionVoResultMap" type="com.coracle.dms.vo.DmsOrderProductVo" extends="DmsOrderProductVoResultMap">
+    <association property="promotionCount" column="{id=product_id,channelId=channel_id}" select="com.coracle.dms.dao.mybatis.DmsPromotionProductMapper.selectCountByProduct"/>
+  </resultMap>
+
+  <!-- 批量新增订单产品信息 -->
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into dms_order_product
+    (
+      order_id, product_id, product_code, product_name, product_spec_id, spec_union_key, shoppingcart_id, unit, original_price,
+      price, count, return_count, status, promotion_product_id, promotion_subject, created_date, created_by,
+      last_updated_date, last_updated_by, remove_flag, weight, volume
+    )
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (
+        #{item.orderId}, #{item.productId}, #{item.productCode}, #{item.productName}, #{item.productSpecId},
+        #{item.specUnionKey},#{item.shoppingcartId}, #{item.unit}, #{item.originalPrice}, #{item.price}, #{item.count},
+        #{item.returnCount}, #{item.status}, #{item.promotionProductId}, #{item.promotionSubject}, #{item.createdDate},
+        #{item.createdBy}, #{item.lastUpdatedDate}, #{item.lastUpdatedBy}, #{item.removeFlag}, #{item.weight}, #{item.volume}
+      )
+    </foreach>
+  </insert>
+
+  <!-- 根据订单id获取待发货产品信息列表，并根据产品id和规格属性获取有库存的仓库和货位列表 -->
+  <select id="selectStorageInfoByOrderId" parameterType="java.lang.Long" resultMap="DmsOrderProductStorageResultMap">
+    select
+      t.*
+    from
+      (
+        select
+          op.*,
+          (
+            select
+              ifnull(op.count - ifnull(sum(odi.count), 0), 0)
+            from
+              dms_order_delivery_item odi
+            where
+               odi.order_product_id = op.id
+               and odi.related_type = 1
+               and odi.remove_flag = 0
+          ) as undelivered_count
+        from
+          dms_order_product op
+        where
+          op.order_id = #{id}
+          and op.remove_flag = 0
+      ) t
+    where
+      t.undelivered_count > 0
+  </select>
+
+
+  <!-- 根据条件获取订单产品列表 -->
+  <select id="selectProductListByOrder" parameterType="com.coracle.dms.vo.DmsOrderVo" resultMap="DmsOrderProductVoResultMap">
+    select
+      op.*
+    from
+      dms_order_product op
+    where
+      op.order_id = #{orderId}
+  </select>
+
+  <!-- 根据条件获取待发货产品信息列表 -->
+  <select id="selectUndeliveredListByOrder" parameterType="com.coracle.dms.vo.DmsOrderVo" resultMap="DmsOrderProductPromotionVoResultMap">
+    select
+      t.*,
+      (select cc.channel_id from dms_channel_contacts cc where cc.user_id = #{loginId}) as channel_id
+    from
+      (
+        select
+          op.*,
+          (
+            select
+              ifnull(op.count - ifnull(sum(odi.count), 0), 0)
+            from
+              dms_order_delivery_item odi
+            where
+               odi.order_product_id = op.id
+               and odi.related_type = 1
+               and odi.remove_flag = 0
+          ) as undelivered_count,
+          caf.file_compress_path as pic_url
+        from
+          dms_order_product op
+        left join dms_product p on p.id = op.product_id
+        left join dms_common_attach_file caf on caf.id = p.pic_id
+        where
+          op.order_id = #{id}
+          and op.remove_flag = 0
+      ) t
+    where
+      t.undelivered_count > 0
+  </select>
+
+  <!-- 根据条件获取订单产品列表 -->
+  <select id="selectByOrder" parameterType="com.coracle.dms.vo.DmsOrderVo" resultMap="DmsOrderProductPromotionVoResultMap">
+    select
+      op.*,
+      (
+        select
+          ifnull(sum(odi.count), 0)
+        from
+          dms_order_delivery_item odi
+        where
+          odi.order_product_id = op.id
+          and odi.related_type = 1
+          and odi.remove_flag = 0
+      ) as delivered_count,
+      (
+        select
+          ifnull(sum(odi.count), 0)
+        from
+          dms_order_delivery_item odi
+        where
+          odi.order_product_id = op.id
+          and odi.related_type = 1
+          and odi.remove_flag = 0
+          and odi.receive_date is not null
+      ) as received_count,
+      caf.file_compress_path as pic_url,
+      (
+        select
+          ifnull(count(*), 0)
+        from
+          dms_order_product_evaluation ope
+        where
+          ope.order_product_id = op.id
+          and ope.remove_flag = 0
+      ) evaluation_count,
+      (select cc.channel_id from dms_channel_contacts cc where cc.user_id = #{loginId}) as channel_id
+    from
+      dms_order_product op
+      left join dms_product p on p.id = op.product_id
+      left join dms_common_attach_file caf on caf.id = p.pic_id
+    where
+      op.remove_flag = 0
+      and op.order_id = #{id}
+  </select>
+
+  <!-- 根据账号id获取已完成的订单产品，已完成但全部退货的数据不显示 -->
+  <select id="selectFinishedByOrder" parameterType="com.coracle.dms.vo.DmsOrderVo" resultMap="DmsOrderProductVoResultMap">
+    select
+      t.*
+    from
+      (
+        select
+          op.*,
+          (
+            select
+    		  sum(odi.count) - op.return_count
+    		from
+    		  dms_order_delivery_item odi
+    		where
+    		  odi.order_id = op.order_id
+              and odi.related_type = 1
+    		  and odi.order_product_id = op.id
+    		  and odi.receive_date is not null
+              and odi.remove_flag = 0
+          ) as available_count,
+          caf.file_compress_path as pic_url
+        from
+          dms_order_product op
+        left join dms_order o on o.id = op.order_id
+        left join dms_product p on p.id = op.product_id
+        left join dms_common_attach_file caf on caf.id = p.pic_id
+        where
+          o.user_id = #{userId}
+          and op.remove_flag = 0
+        <if test="id != null">
+          and op.order_id = #{id}
+        </if>
+        <if test="productName != null and productName != ''">
+          and p.name like concat('%', #{productName}, '%')
+        </if>
+      ) t
+    where
+      t.available_count > 0
+  </select>
+    
+  <!-- 根据订单产品id条件获取星级统计 -->
+  <select id="selectCountByOrderProductProductId" parameterType="java.lang.Long" resultType="java.util.Map">
+    select
+	  sum(case ope.score when 1 then 1 else 0 end) as oneCount,
+	  sum(case ope.score when 2 then 1 else 0 end) as twoCount,
+	  sum(case ope.score when 3 then 1 else 0 end) as threeCount,
+	  sum(case ope.score when 4 then 1 else 0 end) as fourCount,
+	  sum(case ope.score when 5 then 1 else 0 end) as fiveCount
+    from
+      dms_order_product op
+    left join dms_order_product_evaluation ope on op.id=ope.order_product_id
+    where
+      ope.remove_flag = 0
+      and op.product_id = #{productId}
+  </select>
+
+  <!-- 获取订单的未收货产品数量 -->
+  <select id="selectUnreceivedCountByOrderId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select
+      ifnull(sum(op.count - (select ifnull(sum(odi.count), 0) from dms_order_delivery_item odi where odi.order_product_id = op.id and odi.related_type = 1 and odi.receive_date is not null and odi.remove_flag = 0)), 0)
+    from
+      dms_order_product op
+    where
+      op.order_id = #{orderId}
+      and op.remove_flag = 0
+  </select>
+
+  <!-- 根据订单id获取订单金额 -->
+  <select id="selectAmountByOrderId" parameterType="java.lang.Long" resultType="java.math.BigDecimal">
+    select
+      ifnull(sum(op.count * op.price), 0)
+    from
+      dms_order_product op
+    where
+      op.order_id = #{orderId}
+      and op.remove_flag = 0
+  </select>
+
+  <!-- 根据条件逻辑删除订单产品 -->
+  <update id="removeByCondition" parameterType="com.coracle.dms.po.DmsOrderProduct">
+    update
+      dms_order_product
+    set
+      remove_flag = 1
+    where
+      order_id = #{orderId}
+      and id not in
+      <foreach collection="ids" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+  </update>
+
+  <!-- 根据订单id获取订单产品总重量 -->
+  <select id="getTotalWeightByOrderId" parameterType="java.lang.Long" resultType="java.math.BigDecimal">
+    select
+      ifnull(sum(op.weight), 0)
+    from
+      dms_order_product op
+    where
+      op.order_id = #{orderId}
+      and op.remove_flag = 0
+  </select>
+
+  <!-- 根据订单id获取订单产品总体积 -->
+  <select id="getTotalVolumeByOrderId" parameterType="java.lang.Long" resultType="java.math.BigDecimal">
+    select
+      ifnull(sum(op.volume), 0)
+    from
+      dms_order_product op
+    where
+      op.order_id = #{orderId}
+      and op.remove_flag = 0
+  </select>
+
+  <!-- +++++++ 自定义sql end +++++++ -->
+</mapper>
